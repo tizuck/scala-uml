@@ -1,0 +1,22 @@
+@startuml
+class TypeParameter {
+    identifier : String 
+    isCovariant : Boolean 
+    isContraVariant : Boolean 
+}
+
+class Annotation
+
+Class *--> "*" TypeParameter : genericParameter 
+TypeParameter --> "*" Annotation : annotations 
+TypeParameter --> "0..1  " TypeParameterBounds : bounds 
+TypeParameterBounds ---> "0..1  " Type : upperBound 
+TypeParameterBounds ---> "0..1" Type :  " lowerBound" 
+TypeParameter ----> "*" TypeParameter : "hkTypeParameter"
+
+hide class circle
+hide class methods
+hide Type members
+hide Annotation members 
+hide TypeParameterBounds members 
+@enduml
