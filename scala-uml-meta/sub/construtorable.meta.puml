@@ -1,0 +1,18 @@
+@startuml
+class Constructerable 
+
+Constructerable *--> "*" TypeParameter : genericParameter 
+Constructerable *--> "*" Annotation : modAnnotations 
+Constructerable *--> "*" AccessModifier : accessModifiers
+Constructerable *--> "*" ParameterSeqLike : parameterSeqs
+
+hide class circle
+hide class methods
+
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+
+@enduml 

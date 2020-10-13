@@ -1,0 +1,40 @@
+@startuml
+
+class Export {
+    isGiven : boolean 
+}
+class Import {
+    inner_classes : String [*] {ordered}
+}
+class Reference {
+    identifier : String [0..1]
+    isThis:boolean 
+    isSuper:boolean 
+    superIdentifier : String [0..1]
+    classQualid : String [0..1]
+}
+
+class ImportSelectorLike 
+class WildCardSelector extends ImportSelectorLike {
+    isWildCard : boolean 
+    isGiven : boolean 
+}
+class ImportSelector extends ImportSelectorLike {
+    identifier : String 
+    asIdentifier : String [0..1]
+    isWildCardSelector : boolean 
+}
+
+Import *--> "1..*  " ImportSelectorLike : importSelectors
+Import *--> "1" Reference : reference
+Export *--> "1..*" Import : exports
+
+hide class circle
+hide class methods
+
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+@enduml 

@@ -1,0 +1,18 @@
+@startuml
+class Defines 
+
+Constructerable *--> "*" ValDef : vals 
+Constructerable *--> "*" DefDef : defs 
+Constructerable *--> "*" VarDef : vars
+Constructerable *--> "*" TypeDef : types
+
+hide class circle
+hide class methods
+
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+
+@enduml 

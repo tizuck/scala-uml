@@ -1,0 +1,24 @@
+@startuml
+class Object extends Defineable, Defines {
+    identifier : String
+}
+
+Object --> "*" Import : imports
+Object --> "*" Export : exports
+Object *--> "0..1  " Inherit : "inherits"
+Object *--> "*" Extension : "extensions"
+
+hide class circle
+hide class methods
+hide Defineable members
+hide Defines members 
+
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+
+
+
+@enduml

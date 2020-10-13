@@ -1,0 +1,42 @@
+@startuml
+
+class ParameterSeqLike 
+
+class Parameter {
+    isInline : Boolean 
+    identifier : String 
+}
+
+class ClassParameter extends Parameter {
+    isVal : Boolean 
+    isVar : Boolean 
+}
+
+ParameterSeqLike <|-- UsingParameterSeq
+ParameterSeqLike <|-- ParameterSeq 
+ParameterSeq <|-- ClassParameterSeq 
+UsingParameterSeq <|-- ClassUsingParameterSeq
+ClassParameterSeqLike <|-- ClassUsingParameterSeq 
+ClassParameterSeqLike <|-- ClassParameterSeq
+UsingParameterSeq *--left> "*" Type : usingTypes
+ParameterSeqLike *--> "          1..*" Parameter : {ordered}\nparameter
+ClassParameterSeq *--> "       1..*" ClassParameter : {refines parameter}\nparameter
+ClassUsingParameterSeq *--> "1..* " ClassParameter : {refines parameter}\nparameter
+Parameter --> "*" Annotation : annotations
+Parameter --right> "1" Type : type 
+ClassParameter --> "*" Modifier : " mods"
+
+
+
+hide class circle
+hide class methods
+
+
+
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+
+@enduml

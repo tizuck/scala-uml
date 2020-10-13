@@ -1,23 +1,21 @@
 @startuml
-class Class {
-    identifier : String 
+class Class extends Defineable, Constructerable, Defines {
+    isCaseClass : Boolean 
+    isTrait : Boolean 
+    isSuperTrait : Boolean 
 }
 
 Class --> "*" Class : innerClasses
-Class --> "*" Annotation : annotation
-Class --> "0..1  " AccessModifier : packageAccess
 Class --> "*" Import : imports
-Class --> "*" Export : exports
-Class *--up> "*" ValDef : vals
-Class *--up> "*" VarDef : vars 
-Class *--up> "*" DefDef : defs  
-Class *--up> "*" TypeDef : types  
-Class *--> "*" ParameterSeq : classParams
+Class --> "*" Export : exports 
 Class *--left> "0..1  " Inherit : "inherits"
-Class *--up> "*" Extension : "extensions"
+Class *--> "*" Extension : "extensions"
+Class *--> "*" ClassParameterSeq : parameterSeqs \n{refines parameterSeqs}
 
 hide class circle
 hide class methods
+hide Defineable members
+hide Constructerable members 
 
 skinparam class {
     BackgroundColor White

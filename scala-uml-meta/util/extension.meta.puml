@@ -1,0 +1,18 @@
+@startuml
+
+class Extension 
+
+Extension --left> "*" TypeParameter : genericParameter
+Extension *--> "1" Parameter : parameter 
+Extension --> "0..*  " UsingParameterSeq
+Extension *--right> "1..*" DefDef : extensionMethods
+
+hide class circle
+hide class methods
+
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+@enduml

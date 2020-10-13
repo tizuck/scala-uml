@@ -1,0 +1,24 @@
+@startuml
+class Inherit {
+    derives : String [*]
+}
+
+Inherit *--> "1..*" Type : extends
+
+note right of Inherit : "very rough abstraction.\nTypes that can be used here are actually more detailed\n but should be approximate enough for uml purposes"
+    
+
+hide class circle
+hide class methods
+
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+
+skinparam note {
+    BackgroundColor White
+    BorderColor Red
+}
+@enduml 

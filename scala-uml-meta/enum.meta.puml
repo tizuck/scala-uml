@@ -1,0 +1,35 @@
+@startuml
+class Enum extends Defineable, Constructerable, Defines {
+    \n 
+    \n 
+    \n"              "
+}
+
+class Case extends Constructerable {
+
+}
+
+Enum --> "*" Import : imports
+Enum --> "*" Export : exports
+Enum *--left> "0..1  " Inherit : "inherits"
+Enum *--left> "*" Extension : "extensions"
+Enum *--> "*" ClassParameterSeq : parameterSeqs \n{refines parameterSeqs}
+Enum *--right> "*"Case 
+Case *--> "*" Inherit : inherits
+Case *--> "   0..* " Modifier : caseModifiers
+Case *--> "*" Annotation : caseAnnotations
+
+hide class circle
+hide class methods
+hide Defineable members
+hide Constructerable members 
+
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+
+
+
+@enduml
