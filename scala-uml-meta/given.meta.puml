@@ -1,0 +1,35 @@
+@startuml
+class Given {
+    identifier : String [0..1]
+    \n
+    \n
+}
+
+note top of TypeParameter : isCovariant = false &&\nisContraVariant = false
+class GivenInstance extends Defines 
+
+Given <|-- AliasGiven 
+Given <|-- GivenInstance
+
+Given *--right> "*" TypeParameter : genericParameters
+Given *--left> "*"  UsingParameterSeq : usingParameters
+Given *--up> "1   " Type : asType
+GivenInstance *--> "*" Import : imports 
+GivenInstance *--> "*" Export : exports
+GivenInstance *--> "*" Extension : extensions
+
+hide class circle
+hide class methods
+hide Defines members 
+
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+
+skinparam note {
+    BackgroundColor White 
+    BorderColor Red
+}
+@enduml 

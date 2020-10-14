@@ -1,10 +1,14 @@
 @startuml
 class Defines 
 
-Constructerable *--> "*" ValDef : vals 
-Constructerable *--> "*" DefDef : defs 
-Constructerable *--> "*" VarDef : vars
-Constructerable *--> "*" TypeDef : types
+Defines *--> "*" ValDef : vals 
+Defines *--> "*" DefDef : defs 
+Defines *--> "*" VarDef : vars
+Defines *--> "*" TypeDef : types
+Defines *--> "*" Class : classes
+Defines *--> "*" Enum  : enums 
+Defines *--> "*" Object : objects 
+Defines *--> "*" Given : givens 
 
 hide class circle
 hide class methods

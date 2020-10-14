@@ -1,6 +1,8 @@
 @startuml
 class Object extends Defineable, Defines {
     identifier : String
+    isPackageObject : boolean 
+    \n
 }
 
 Object --> "*" Import : imports

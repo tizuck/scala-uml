@@ -5,10 +5,10 @@ class Class extends Defineable, Constructerable, Defines {
     isSuperTrait : Boolean 
 }
 
-Class --> "*" Class : innerClasses
+Class --> "*" Class : innerClasses\n {refines classes}
 Class --> "*" Import : imports
 Class --> "*" Export : exports 
-Class *--left> "0..1  " Inherit : "inherits"
+Class *--left> "0..1  " Inherit : inherits
 Class *--> "*" Extension : "extensions"
 Class *--> "*" ClassParameterSeq : parameterSeqs \n{refines parameterSeqs}
 
@@ -16,13 +16,11 @@ hide class circle
 hide class methods
 hide Defineable members
 hide Constructerable members 
+hide Defines members 
 
 skinparam class {
     BackgroundColor White
     ArrowColor Black
     BorderColor Black
 }
-
-
-
 @enduml
