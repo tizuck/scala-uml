@@ -1,4 +1,4 @@
-@startuml
+@startuml TopLevel
 
 class CompilationUnit {
     package : String [0..1]

@@ -1,4 +1,4 @@
-@startuml
+@startuml Class
 class Class extends Defineable, Constructerable, Defines {
     isCaseClass : Boolean 
     isTrait : Boolean 

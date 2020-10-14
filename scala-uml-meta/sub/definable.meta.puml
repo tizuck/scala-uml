@@ -1,4 +1,4 @@
-@startuml
+@startuml Defineable 
 class Definable {
     identifier:String
 }

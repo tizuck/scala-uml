@@ -1,4 +1,4 @@
-@startuml
+@startuml Object
 class Object extends Defineable, Defines {
     identifier : String
     isPackageObject : boolean 

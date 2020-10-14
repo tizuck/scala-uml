@@ -1,4 +1,4 @@
-@startuml
+@startuml TypeParameters 
 class TypeParameter {
     identifier : String 
     isCovariant : Boolean 

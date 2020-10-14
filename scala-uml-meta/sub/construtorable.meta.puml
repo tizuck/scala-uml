@@ -1,10 +1,10 @@
-@startuml
-class Constructerable 
+@startuml Constructorabler
+class Constructorable 
 
-Constructerable *--> "*" TypeParameter : genericParameter 
-Constructerable *--> "*" Annotation : modAnnotations 
-Constructerable *--> "*" AccessModifier : accessModifiers
-Constructerable *--> "*" ParameterSeqLike : parameterSeqs
+Constructorable *--> "*" TypeParameter : genericParameter 
+Constructorable *--> "*" Annotation : modAnnotations 
+Constructorable *--> "*" AccessModifier : accessModifiers
+Constructorable *--> "*" ParameterSeqLike : parameterSeqs
 
 hide class circle
 hide class methods
