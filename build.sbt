@@ -1,1 +1,0 @@
-scalaVersion := "0.19.0-RC1"

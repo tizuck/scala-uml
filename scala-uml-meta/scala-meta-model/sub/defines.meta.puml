@@ -1,14 +1,18 @@
 @startuml Defines 
-class Defines 
+class Defines {
+    \n
+    \n
+    \n 
+}
 
-Defines *--> "*" ValDef : vals 
-Defines *--> "*" DefDef : defs 
+Defines *--left> "*" ValDef : vals 
+Defines *--left> "*" DefDef : "\n defs" 
 Defines *--> "*" VarDef : vars
 Defines *--> "*" TypeDef : types
 Defines *--> "*" Class : classes
 Defines *--> "*" Enum  : enums 
-Defines *--> "*" Object : objects 
-Defines *--> "*" Given : givens 
+Defines *--right> "*\n" Object : "\nobjects" 
+Defines *--right> "*" Given : givens 
 
 hide class circle
 hide class methods

@@ -1,12 +1,13 @@
-val dottyVersion = "0.27.0-RC1"
+import Dependencies._
 
-lazy val root = project
-  .in(file("."))
+ThisBuild / scalaVersion     := "2.13.3"
+ThisBuild / version          := "0.1.0-SNAPSHOT"
+ThisBuild / organization     := "com.example"
+ThisBuild / organizationName := "example"
+
+lazy val root = (project in file("."))
   .settings(
-    name := "dotty-simple",
-    version := "0.1.0",
-
-    scalaVersion := dottyVersion,
-
-    libraryDependencies += "com.novocode" % "junit-interface" % "0.11" % "test"
+    name := "scala-uml",
+    libraryDependencies += scalaTest % Test,
+    libraryDependencies += "org.scalameta" %% "scalameta" % "4.3.24"
   )

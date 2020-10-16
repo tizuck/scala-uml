@@ -1,0 +1,32 @@
+@startuml
+class UMLElement 
+class Class {
+    operations : List<Operation>
+}
+
+class Relationship {
+    
+}
+
+Relationship --> "1" Relateable : from
+Relationship --> "1" Relateable : to 
+
+UMLElement <|-- Relateable 
+UMLElement <|-- TopLevelable
+UMLElement <|-- Operation 
+UMLElement <|-- Parameter 
+TopLevelable <|-- Relationship
+Relateable <|-- Class 
+TopLevelable <|-- Class 
+
+hide class circle
+hide class methods 
+hide enum methods 
+
+
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+@enduml 

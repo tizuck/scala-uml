@@ -10,7 +10,8 @@ Class --> "*" Import : imports
 Class --> "*" Export : exports 
 Class *--left> "0..1  " Inherit : inherits
 Class *--> "*" Extension : "extensions"
-Class *--> "*" ClassParameterSeq : parameterSeqs \n{refines parameterSeqs}
+Class *--> "*" ClassParameterSeqLike : parameterSeqs \n{refines parameterSeqs}
+Class *--left> "*" ClassParameter : \nimplicits
 
 hide class circle
 hide class methods

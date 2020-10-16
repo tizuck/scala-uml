@@ -1,0 +1,117 @@
+@startuml Scala Class Profile 
+package "<<profile>> ScalaClass" #00 {
+
+    '---------------------------------------------------
+    'Metaclasses 
+    class "Class" <<metaclass>>
+    class "Operation" <<metaclass>>
+    class "Association" <<metaclass>>
+    class "Property" <<metaclass>>
+    class "Comment" <<metaclass>>
+    class "Parameter" <<metaclass>>
+
+    '---------------------------------------------------
+    'Class Stereotype 
+    class ScalaClass <<stereotype>> {
+        isFinal : boolean 
+        isImplicit : boolean 
+        isInline : boolean 
+        isLazy : boolean 
+        isOpaque : boolean 
+        isOpen : boolean 
+        isOverride : boolean 
+        isSealed : boolean 
+    }
+
+    class Trait <<stereotype>> {
+        isSuper : boolean 
+    } 
+    class CaseClass <<stereotype>>
+    Class <-- ScalaClass
+    ScalaClass <-- Trait 
+    ScalaClass <-- CaseClass 
+
+    '---------------------------------------------------
+    'Class Properties 
+
+    class DefineableProperty <<stereotype>> {
+        isFinal : boolean 
+        isImplicit : boolean 
+        isInline : boolean 
+        isLazy : boolean 
+        isOpaque : boolean 
+        isOpen : boolean 
+        isOverride : boolean 
+        isSealed : boolean 
+    } 
+
+    class Var <<stereotype>> 
+    class Val <<stereotype>>
+    class Type <<stereotype>> 
+
+    Property <-- DefineableProperty
+    DefineableProperty <-- Var 
+    DefineableProperty <-- Val 
+    DefineableProperty <-- Type 
+
+    '---------------------------------------------------
+    'Class Parameter
+
+    class Using <<stereotype>> 
+    class Implicit <<stereotype>>
+
+    Parameter <-- Using
+    Parameter <-- Implicit  
+
+    '---------------------------------------------------
+    ' Operations 
+
+    class Def <<stereotype>> {
+        isFinal : boolean 
+        isImplicit : boolean 
+        isInline : boolean 
+        isLazy : boolean 
+        isOpaque : boolean 
+        isOpen : boolean 
+        isOverride : boolean 
+        isSealed : boolean 
+    }
+
+    Operation <-- Def
+    
+    '---------------------------------------------------
+    'Class Constructor 
+    class ClassConstr <<stereotype>>
+
+    Operation <-- ClassConstr
+
+    '---------------------------------------------------
+    'Extensions 
+    class Extension <<stereotype>> 
+    Class <-- Extension 
+    Association <-- Extension 
+
+    '---------------------------------------------------
+    'Annotations 
+
+    class Annotation <<stereotype>>
+
+    Comment <-- Annotation  
+
+    
+}
+
+hide class circle
+hide class methods 
+hide <<metaclass>> members 
+hide ClassConstr members 
+hide Operation members 
+hide Extension members 
+
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+
+@enduml 
