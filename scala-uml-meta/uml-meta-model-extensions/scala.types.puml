@@ -1,0 +1,17 @@
+@startuml
+package DottyTypes {
+    class Type 
+    class ProxyType
+
+    Type <|-- ProxyType
+} 
+
+hide class circle
+hide class methods 
+
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+@enduml 

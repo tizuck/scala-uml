@@ -1,0 +1,33 @@
+@startuml Multiple ParameterSeqs
+
+' def max[T](x: T, y: T)(using ord: Ord[T]): T 
+
+class Foo <<object>> {
+    max<T>(x:T,y:T)(<<using>> ord : Ord<T>): T
+}
+
+class "Foo " <<object>> {
+    max<T>(s1:MaxSeq1<T>,s2:MaxSeq2): T 
+}
+
+class MaxSeq1<T> <<paramSeq>> {
+    x : T 
+    y : T
+}
+
+class MaxSeq2<T> <<paramSeq>> {
+    <<using>> ord : Ord<T>
+}
+
+"Foo " +-- MaxSeq1
+"Foo " +-- MaxSeq2
+
+hide class circle
+hide <<paramList>> methods
+
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+@enduml 

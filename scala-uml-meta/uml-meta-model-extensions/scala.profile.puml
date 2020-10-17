@@ -1,5 +1,5 @@
-@startuml Scala Class Profile 
-package "<<profile>> ScalaClass" #00 {
+@startuml Scala Profile 
+package "<<profile>> Scala" #00 {
 
     '---------------------------------------------------
     'Metaclasses 
@@ -34,7 +34,7 @@ package "<<profile>> ScalaClass" #00 {
     '---------------------------------------------------
     'Class Properties 
 
-    class DefineableProperty <<stereotype>> {
+    abstract class DefineableProperty <<stereotype>> {
         isFinal : boolean 
         isImplicit : boolean 
         isInline : boolean 
@@ -78,6 +78,10 @@ package "<<profile>> ScalaClass" #00 {
     }
 
     Operation <-- Def
+
+    class ParamSeq <<stereotype>>
+
+    Class <-- ParamSeq
     
     '---------------------------------------------------
     'Class Constructor 
@@ -88,14 +92,17 @@ package "<<profile>> ScalaClass" #00 {
     '---------------------------------------------------
     'Extensions 
     class Extension <<stereotype>> 
+    class ExtendedBy <<stereotype>> 
     Class <-- Extension 
-    Association <-- Extension 
+    Association <-- ExtendedBy 
 
     '---------------------------------------------------
     'Annotations 
 
     class Annotation <<stereotype>>
+    class AnnotatedBy <<stereotype>> 
 
+    Association <-- AnnotatedBy
     Comment <-- Annotation  
 
     

@@ -1,15 +1,11 @@
 @startuml
 class UMLElement 
 class Class {
-    operations : List<Operation>
 }
 
 class Relationship {
     
 }
-
-Relationship --> "1" Relateable : from
-Relationship --> "1" Relateable : to 
 
 UMLElement <|-- Relateable 
 UMLElement <|-- TopLevelable
