@@ -5,11 +5,17 @@ package plantuml
  */
 sealed trait UMLElement
 
+trait StereotypeElement extends UMLElement {
+  val stereotype: Option[String] = None
+}
+
 sealed trait TopLevelElement extends UMLElement
 
 sealed trait RelateableElement extends UMLElement
 
 sealed trait ClassBodyElement extends UMLElement
+
+sealed trait CompartmentElement extends UMLElement
 
 /***************
  * Classes
@@ -25,16 +31,79 @@ sealed trait Modificator
 case object Static extends Modificator
 case object Abstract extends Modificator
 
-sealed case class Parameter(identifier:String,paramType:String) extends UMLElement
+sealed case class Class(classBodyElements:Seq[ClassBodyElement])(stereotype:Option[String] = None) extends {
+  override val stereotype = stereotype
+} with RelateableElement with TopLevelElement with StereotypeElement
+
+/***************
+ * Operations
+ **************/
+
+sealed case class Parameter(identifier:String,paramType:String)(stereotype:Option[String] = None) extends {
+  override val stereotype = stereotype
+  } with StereotypeElement
+
+
 sealed case class Operation(modificator: Modificator,
                             accessModifier: AccessModifier,
                             identifier:String,paramSeq:Seq[Seq[Parameter]],
-                            returnType:String) extends ClassBodyElement
+                            returnType:String)(stereotype:Option[String] = None) extends {
+  override val stereotype = stereotype
+  } with ClassBodyElement with CompartmentElement  with StereotypeElement
 
+sealed trait LineType
+case object Single extends LineType
+case object Dotted extends LineType
+case object Double extends LineType
+case object ThickSingle extends LineType
 
-sealed case class Class(classBodyElements:Seq[ClassBodyElement]) extends RelateableElement with TopLevelElement
-sealed case class CompartedClass() extends RelateableElement with TopLevelElement
+sealed case class Compartment(isHeading:Boolean,
+                              lineType: LineType,
+                              identifier:Option[String],
+                              compartmentElements:Seq[CompartmentElement]) extends UMLElement
 
+sealed case class CompartedClass(compartments:Seq[Compartment]) extends RelateableElement with TopLevelElement
+
+/***************
+ * Notes
+ **************/
+
+sealed trait Position
+case object Left extends Position
+case object Right extends Position
+case object Top extends Position
+case object Bottom extends Position
+
+/**
+ * Corresponds to a UML Note.
+ *
+ * notes can be produced using the following syntax in PlantUML:
+ * ```
+ * note ::= 'note' ('top of' | 'left of' | 'right of' | 'bottom of') classIdentifier ':' text
+ * note ::= text 'as' identifier
+ * ```
+ *
+ * Examples:
+ * ```
+ * note top of Object : In java, every class\nextends this one.
+ * -> Note(None,Some((Top,"Object")),"In java, every class\nextends this one")
+ *
+ * note "This is a floating note" as N1
+ * -> Note(Some("N1"),None,"This is a floating note")
+ * ```
+ *
+ * For Relationships the `Relationship` class is used in a special manner:
+ * ```
+ * Object .. N2
+ * -> Relationship(Note,"","","Object","N1","",Note(...),Note(...))
+ * ```
+ * @param identifier
+ * @param position
+ * @param stereotype
+ */
+abstract case class Note(identifier:Option[String],position:Option[(Position,String)], text:String)(stereotype:Option[String] = None) extends {
+  override val stereotype = stereotype
+} with TopLevelElement with StereotypeElement with RelateableElement
 /***************
  * Skinparams
  **************/
@@ -52,6 +121,7 @@ case object Aggregation extends RelationshipType
 case object Annotation extends RelationshipType
 case object Association extends RelationshipType
 case object Inner extends RelationshipType
+case object Note extends RelationshipType
 
 sealed trait RelationshipDirection
 case object FromTo
@@ -68,4 +138,6 @@ sealed case class Relationship(relationshipType: RelationshipType,
                                relationshipDirection: RelationshipDirection,
                                relationshipInfo: RelationshipInfo,
                                from:RelateableElement,
-                               to:RelateableElement) extends TopLevelElement
+                               to:RelateableElement)(stereotype:Option[String] = None) extends {
+  override val stereotype = stereotype
+  } with TopLevelElement with StereotypeElement
