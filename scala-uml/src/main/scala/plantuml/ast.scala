@@ -11,8 +11,6 @@ trait StereotypeElement extends UMLElement {
 
 sealed trait TopLevelElement extends UMLElement
 
-sealed trait RelateableElement extends UMLElement
-
 sealed trait ClassBodyElement extends UMLElement
 
 sealed trait CompartmentElement extends UMLElement
@@ -33,7 +31,7 @@ case object Abstract extends Modificator
 
 sealed case class Class(classBodyElements:Seq[ClassBodyElement])(stereotype:Option[String] = None) extends {
   override val stereotype = stereotype
-} with RelateableElement with TopLevelElement with StereotypeElement
+}  with TopLevelElement with StereotypeElement
 
 /***************
  * Operations
@@ -62,7 +60,7 @@ sealed case class Compartment(isHeading:Boolean,
                               identifier:Option[String],
                               compartmentElements:Seq[CompartmentElement]) extends UMLElement
 
-sealed case class CompartedClass(compartments:Seq[Compartment]) extends RelateableElement with TopLevelElement
+sealed case class CompartedClass(compartments:Seq[Compartment]) extends  TopLevelElement
 
 /***************
  * Notes
@@ -95,15 +93,16 @@ case object Bottom extends Position
  * For Relationships the `Relationship` class is used in a special manner:
  * ```
  * Object .. N2
- * -> Relationship(Note,"","","Object","N1","",Note(...),Note(...))
+ * -> Relationship(Note,"","","Object","N1","")
  * ```
- * @param identifier
- * @param position
- * @param stereotype
+ *
  */
-abstract case class Note(identifier:Option[String],position:Option[(Position,String)], text:String)(stereotype:Option[String] = None) extends {
-  override val stereotype = stereotype
-} with TopLevelElement with StereotypeElement with RelateableElement
+ trait Note extends TopLevelElement with StereotypeElement {
+  val text : String
+}
+
+sealed case class DirectionNode() extends Note
+
 /***************
  * Skinparams
  **************/
@@ -126,6 +125,7 @@ case object Note extends RelationshipType
 sealed trait RelationshipDirection
 case object FromTo
 case object ToFrom
+case object Without
 
 class RelationshipInfo(fromMultiplicity:String,
                        sourceMultiplicity:String,
@@ -136,8 +136,7 @@ class RelationshipInfo(fromMultiplicity:String,
 
 sealed case class Relationship(relationshipType: RelationshipType,
                                relationshipDirection: RelationshipDirection,
-                               relationshipInfo: RelationshipInfo,
-                               from:RelateableElement,
-                               to:RelateableElement)(stereotype:Option[String] = None) extends {
+                               relationshipInfo: RelationshipInfo)(stereotype:Option[String] = None) extends {
+
   override val stereotype = stereotype
   } with TopLevelElement with StereotypeElement
