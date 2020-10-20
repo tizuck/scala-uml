@@ -3,7 +3,9 @@ package plantuml
 /**
  * @todo will be used later to define operations on all nodes
  */
-sealed trait UMLElement
+sealed trait UMLElement { self =>
+  def pretty : String = PrettyPrinter.format(self).layout
+}
 
 trait StereotypeElement extends UMLElement {
   val stereotype: Option[String]
@@ -60,16 +62,16 @@ sealed case class Class(isAbstract:Boolean,
                         classBodyElements:Seq[ClassBodyElement],
                         genericParameter: Option[GenericParameter],
                         symbolDepiction:Option[(String,String)])
-                       (stereotype:Option[String] = None) extends {
-  override val stereotype:Option[String] = stereotype
+                       (stereotypeN:Option[String] = None) extends {
+  override val stereotype:Option[String] = stereotypeN
 }  with TopLevelElement with StereotypeElement with PackageBodyElement
 
 /***************
  * Attributes
  **************/
 
-sealed case class Attribute(modificator:Option[Modificator],modifier: Option[AccessModifier], identifier:String,attributeType:String)(stereotype:Option[String]=None) extends {
-  override val stereotype:Option[String] = stereotype
+sealed case class Attribute(modificator:Option[Modificator],modifier: Option[AccessModifier], identifier:String,attributeType:String)(stereotypeN:Option[String]=None) extends {
+  override val stereotype:Option[String] = stereotypeN
 } with ClassBodyElement with CompartmentElement with StereotypeElement
 
 /***************
@@ -77,8 +79,8 @@ sealed case class Attribute(modificator:Option[Modificator],modifier: Option[Acc
  **************/
 
 sealed case class Parameter(identifier:String,paramType:String)
-                           (stereotype:Option[String] = None) extends {
-  override val stereotype:Option[String] = stereotype
+                           (stereotypeN:Option[String] = None) extends {
+  override val stereotype:Option[String] = stereotypeN
   } with StereotypeElement
 
 
@@ -86,8 +88,8 @@ sealed case class Operation(modificator: Option[Modificator],
                             accessModifier: Option[AccessModifier],
                             identifier:String,
                             paramSeq:Seq[Seq[Parameter]],
-                            returnType:String)(stereotype:Option[String] = None) extends {
-  override val stereotype = stereotype
+                            returnType:String)(stereotypeN:Option[String] = None) extends {
+  override val stereotype = stereotypeN
   } with ClassBodyElement with CompartmentElement  with StereotypeElement
 
 sealed trait LineType
@@ -105,8 +107,8 @@ sealed case class CompartedClass(isAbstract:Boolean,
                                  identifier:String,
                                  genericParameter: Option[GenericParameter],
                                  symbolDepiction:Option[(String,String)],
-                                 compartments:Seq[Compartment])(stereotype:Option[String]) extends {
-  override val stereotype : Option[String] = stereotype
+                                 compartments:Seq[Compartment])(stereotypeN:Option[String]) extends {
+  override val stereotype : Option[String] = stereotypeN
 } with TopLevelElement with PackageBodyElement with StereotypeElement
 
 /***************
@@ -148,19 +150,19 @@ case object Bottom extends Position
   val text : String
 }
 
-sealed case class DirectionNote(position: Position, of:String,text:String)(stereotype:Option[String]) extends {
-  override val stereotype:Option[String] = stereotype
-  override val text:String = text
+sealed case class DirectionNote(position: Position, of:String,textN:String)(stereotypeN:Option[String]) extends {
+  override val stereotype:Option[String] = stereotypeN
+  override val text:String = textN
 } with Note
 
-sealed case class AliasNote(alias:String, text:String)(stereotype:Option[String]) extends {
-  override val stereotype:Option[String] = stereotype
-  override val text:String = text
+sealed case class AliasNote(alias:String, textN:String)(stereotypeN:Option[String]) extends {
+  override val stereotype:Option[String] = stereotypeN
+  override val text:String = textN
 } with Note
 
-sealed case class LinkNote(position: Position, text:String)(stereotype:Option[String]) extends {
-  override val stereotype:Option[String] = stereotype
-  override val text:String = text
+sealed case class LinkNote(position: Position, textN:String)(stereotypeN:Option[String]) extends {
+  override val stereotype:Option[String] = stereotypeN
+  override val text:String = textN
 } with Note
 
 /***************
@@ -202,6 +204,6 @@ sealed case class RelationshipInfo(fromMultiplicity:Option[String],
 
 sealed case class Relationship(relationshipType: RelationshipType,
                                relationshipDirection: RelationshipDirection,
-                               relationshipInfo: RelationshipInfo)(stereotype:Option[String] = None) extends {
-  override val stereotype:Option[String] = stereotype
+                               relationshipInfo: RelationshipInfo)(stereotypeN:Option[String] = None) extends {
+  override val stereotype:Option[String] = stereotypeN
   } with TopLevelElement with PackageBodyElement with StereotypeElement

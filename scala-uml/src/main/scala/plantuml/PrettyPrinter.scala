@@ -1,8 +1,20 @@
 package plantuml
 
 import org.bitbucket.inkytonik.kiama.output.PrettyPrinterBase
+import org.bitbucket.inkytonik.kiama.output.PrettyPrinterTypes.Document
 
+/**
+ * @todo Remove empty string from relationship
+ * @todo If classes are without members don't print the body { }
+ * @todo Refine the Type system of relationships. Introduce multiplicity elements and non multiplicity elements
+ * @todo erase stereotype from second parameter list and put it into the first one
+ * @todo cleanup opt mess
+ */
 object PrettyPrinter extends org.bitbucket.inkytonik.kiama.output.PrettyPrinter {
+
+  def format[T<:UMLElement](t: T) : Document = {
+    super.pretty(show(t))
+  }
 
   def show(umlElement: UMLElement): Doc = umlElement match {
 
@@ -20,21 +32,19 @@ object PrettyPrinter extends org.bitbucket.inkytonik.kiama.output.PrettyPrinter 
             optWithSpace( space <> ":>", upperBound, text,emptyDoc))) <> ">"
 
     case c@Class(isAbstract, identifier: String, classBodyElements, genericParameter, symbolDepiction) =>
-      if(isAbstract) {"abstract" <+> } else { emptyDoc <> }
+      if(isAbstract) {"abstract" <> space } else { emptyDoc } <>
       "class" <+> stringWrap(identifier) <>
-        opt(genericParameter,show) <>
-        if(c.stereotype.isDefined) {
+        opt(genericParameter,show) <> (if (c.stereotype.isDefined) {
           space <> "<<" <+>
-            symbolDepiction.map(t => '(' <> text(t._1) <> ',' <> text(t._2) <> ')' <+>).getOrElse(emptyDoc <>)(
-              stringWrap(c.stereotype.get)
-            )
+            symbolDepiction.map(t => '(' <> text(t._1) <> ',' <> text(t._2) <> ')' <> space).getOrElse(emptyDoc) <>
+              c.stereotype.get <+> ">>"
         } else {
           if(symbolDepiction.isDefined){
             space <> "<<" <+> '(' <> symbolDepiction.get._1 <> ',' <> symbolDepiction.get._2 <> ')' <+> ">>"
           } else {
             emptyDoc
           }
-        } <+> enclose("{",
+        }) <+> enclose("{",
         nest(line <> vsep(classBodyElements.map(show))),
         line <> "}")
 
@@ -55,43 +65,43 @@ object PrettyPrinter extends org.bitbucket.inkytonik.kiama.output.PrettyPrinter 
         opt(modificator,showModificator) <>
         opt(accessModifier,showAccessModifier) <>
         identifier <>
-        hsep(paramSeq.map(params => '(' <> hsep(params.map(show),", ") <> ')')) <>
-        returnType
+        hsep(paramSeq.map(params => '(' <> hsep(params.map(show),", ") <> ')')) <+>
+        ":" <+> returnType
 
     case Compartment(isHeading, lineType, identifier, compartmentElements) =>
       if(isHeading){
         showLineType(lineType) <> opt(identifier,text,l=space,r=space <> showLineType(lineType) ) <> line
       } else {emptyDoc} <>
       vsep(compartmentElements.map(show)) <>
-      if(!isHeading){
+        (if(!isHeading){
         showLineType(lineType) <> opt(identifier,text,l=space,r=space <> showLineType(lineType) ) <> line
-      } else {emptyDoc}
+      } else {emptyDoc})
 
     case c@CompartedClass(isAbstract,identifier,genericParameter,symbolDepiction,compartments) =>
-      if(isAbstract) {"abstract" <+> } else { emptyDoc <> }
+      if(isAbstract) {"abstract" <> space } else { emptyDoc} <>
       "class" <+> stringWrap(identifier) <>
         opt(genericParameter,show) <>
-      if(c.stereotype.isDefined) {
+        (if(c.stereotype.isDefined) {
         space <> "<<" <+>
-          symbolDepiction.map(t => '(' <> text(t._1) <> ',' <> text(t._2) <> ')' <+>).getOrElse(emptyDoc <>)(
+          symbolDepiction.map(t => '(' <> text(t._1) <> ',' <> text(t._2) <> ')' <> space).getOrElse(emptyDoc) <>
             stringWrap(c.stereotype.get)
-          )
+
       } else {
         if(symbolDepiction.isDefined){
           space <> "<<" <+> '(' <> symbolDepiction.get._1 <> ',' <> symbolDepiction.get._2 <> ')' <+> ">>"
         } else {
           emptyDoc
         }
-      } <+> enclose("{", compartments.map(show), line <> "}")
+      } ) <+> enclose("{", vsep(compartments.map(show)), line <> "}")
     //@todo implement stereotype
-    case DirectionNote(position,of,text) =>
-      "note" <+> showPosition(position) <+> "of" <+> stringWrap(of) <+> ':' <+> text
+    case DirectionNote(position,of,t) =>
+      text("note") <+> showPosition(position) <+> "of" <+> stringWrap(of) <+> ':' <+> t
 
-    case AliasNote(alias,text) =>
-      "note" <+> surround(text,'"') <+> "as" <+> alias
+    case AliasNote(alias,t) =>
+      text("note") <+> surround(t,'"') <+> "as" <+> alias
 
-    case LinkNote(position,text) =>
-      "note" <+> showPosition(position) <+> "on link :" <+> text
+    case LinkNote(position,t) =>
+      text("note") <+> showPosition(position) <+> "on link :" <+> t
 
     case SkinParam(args) =>
       "skinparam" <+> hsep(args.map(text))
@@ -103,15 +113,15 @@ object PrettyPrinter extends org.bitbucket.inkytonik.kiama.output.PrettyPrinter 
       RelationshipInfo(fromMultiplicity, sourceMultiplicity, fromIdentifier,
       toIdentifier, relationshipIdentifier, identifierDirection)) =>
       stringWrap(fromIdentifier) <+>
-      opt(fromMultiplicity,text) <>
+      opt(fromMultiplicity,(s:String) => surround(text(s),'"')) <>
       showRelationshipConnector(relationshipType,relationshipDirection) <+>
-      opt(sourceMultiplicity,text) <>
+      opt(sourceMultiplicity,(s:String) => surround(text(s),'"')) <>
       stringWrap(toIdentifier) <+>
       ":" <+>
-      if(relationshipDirection.equals(ToFrom)){"<" <> space} else {emptyDoc} <>
+        (if(identifierDirection.equals(ToFrom)){"<" <> space} else {emptyDoc}) <>
         '"' <+> showStereotype(r) <>
         opt(relationshipIdentifier,text) <>
-        '"' <> if(relationshipDirection.equals(FromTo)){">" <> space} else {emptyDoc}
+        '"' <> (if(identifierDirection.equals(FromTo)){">" <> space} else {emptyDoc})
   }
 
   /**
@@ -220,9 +230,17 @@ object PrettyPrinter extends org.bitbucket.inkytonik.kiama.output.PrettyPrinter 
   }
 
   def appendRelationshipEnd(relEnd:String,relationship:String,relationshipDirection: RelationshipDirection):String = relationshipDirection match {
-    case FromTo => relationship + relEnd.reverse
+    case FromTo => relationship + inverse(relEnd)
     case ToFrom => relEnd + relationship
     case Without => relationship
+  }
+
+  def inverse(s:String) = s match {
+    case "<|" => "|>"
+    case "<" => ">"
+    case "*" => "*"
+    case "o" => "o"
+    case "+" => "+"
   }
 
 }
