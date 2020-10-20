@@ -19,7 +19,7 @@ class MaxSeq2<T> <<paramSeq>> {
     <<using>> ord : Ord<T>
 }
 
-"Foo " +-- MaxSeq1
+"Foo "  +-- MaxSeq1
 "Foo " +-- MaxSeq2
 
 hide class circle

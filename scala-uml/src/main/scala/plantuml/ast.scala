@@ -6,7 +6,7 @@ package plantuml
 sealed trait UMLElement
 
 trait StereotypeElement extends UMLElement {
-  val stereotype: Option[String] = None
+  val stereotype: Option[String]
 }
 
 sealed trait TopLevelElement extends UMLElement
@@ -17,7 +17,7 @@ sealed trait CompartmentElement extends UMLElement
 
 sealed trait PackageBodyElement extends UMLElement
 
-sealed case class PlantUMLUnit(identifier:String,toplevelElements:Seq[TopLevelElement])
+sealed case class PlantUMLUnit(identifier:String,toplevelElements:Seq[TopLevelElement]) extends UMLElement
 
 /***************
  * Packages
@@ -34,16 +34,16 @@ case object Database extends PackageStyle
 
 sealed case class Package(identifier:String,
                           color:Option[String],
-                          packageBodyElements:Seq[PackageBodyElement])
-                         (packageStyle: PackageStyle = Default) extends TopLevelElement with PackageBodyElement
+                          packageBodyElements:Seq[PackageBodyElement],
+                          packageStyle: PackageStyle = Default) extends TopLevelElement with PackageBodyElement
 /***************
  * Classes
  **************/
 
 sealed case class GenericParameter(identifier:String,
                                    nested:Option[GenericParameter],
-                                   lowerBound:String,
-                                   upperBound:String) extends UMLElement
+                                   lowerBound:Option[String],
+                                   upperBound:Option[String]) extends UMLElement
 
 sealed trait AccessModifier
 case object Private extends AccessModifier
@@ -56,19 +56,20 @@ case object Static extends Modificator
 case object Abstract extends Modificator
 
 sealed case class Class(isAbstract:Boolean,
+                        identifier:String,
                         classBodyElements:Seq[ClassBodyElement],
-                        genericParameter: GenericParameter,
+                        genericParameter: Option[GenericParameter],
                         symbolDepiction:Option[(String,String)])
                        (stereotype:Option[String] = None) extends {
-  override val stereotype = stereotype
+  override val stereotype:Option[String] = stereotype
 }  with TopLevelElement with StereotypeElement with PackageBodyElement
 
 /***************
  * Attributes
  **************/
 
-sealed case class Attribute(identifier:String,attributeType:String)(stereotype:Option[String]=None) extends {
-  override val stereotype = stereotype
+sealed case class Attribute(modificator:Option[Modificator],modifier: Option[AccessModifier], identifier:String,attributeType:String)(stereotype:Option[String]=None) extends {
+  override val stereotype:Option[String] = stereotype
 } with ClassBodyElement with CompartmentElement with StereotypeElement
 
 /***************
@@ -77,13 +78,14 @@ sealed case class Attribute(identifier:String,attributeType:String)(stereotype:O
 
 sealed case class Parameter(identifier:String,paramType:String)
                            (stereotype:Option[String] = None) extends {
-  override val stereotype = stereotype
+  override val stereotype:Option[String] = stereotype
   } with StereotypeElement
 
 
-sealed case class Operation(modificator: Modificator,
-                            accessModifier: AccessModifier,
-                            identifier:String,paramSeq:Seq[Seq[Parameter]],
+sealed case class Operation(modificator: Option[Modificator],
+                            accessModifier: Option[AccessModifier],
+                            identifier:String,
+                            paramSeq:Seq[Seq[Parameter]],
                             returnType:String)(stereotype:Option[String] = None) extends {
   override val stereotype = stereotype
   } with ClassBodyElement with CompartmentElement  with StereotypeElement
@@ -99,7 +101,13 @@ sealed case class Compartment(isHeading:Boolean,
                               identifier:Option[String],
                               compartmentElements:Seq[CompartmentElement]) extends UMLElement
 
-sealed case class CompartedClass(compartments:Seq[Compartment]) extends  TopLevelElement with PackageBodyElement
+sealed case class CompartedClass(isAbstract:Boolean,
+                                 identifier:String,
+                                 genericParameter: Option[GenericParameter],
+                                 symbolDepiction:Option[(String,String)],
+                                 compartments:Seq[Compartment])(stereotype:Option[String]) extends {
+  override val stereotype : Option[String] = stereotype
+} with TopLevelElement with PackageBodyElement with StereotypeElement
 
 /***************
  * Notes
@@ -141,18 +149,18 @@ case object Bottom extends Position
 }
 
 sealed case class DirectionNote(position: Position, of:String,text:String)(stereotype:Option[String]) extends {
-  override val stereotype = stereotype
-  override val text = text
+  override val stereotype:Option[String] = stereotype
+  override val text:String = text
 } with Note
 
 sealed case class AliasNote(alias:String, text:String)(stereotype:Option[String]) extends {
-  override val stereotype = stereotype
-  override val text = text
+  override val stereotype:Option[String] = stereotype
+  override val text:String = text
 } with Note
 
-sealed case class LinkNote(position: Position, of:String,text:String)(stereotype:Option[String]) extends {
-  override val stereotype = stereotype
-  override val text = text
+sealed case class LinkNote(position: Position, text:String)(stereotype:Option[String]) extends {
+  override val stereotype:Option[String] = stereotype
+  override val text:String = text
 } with Note
 
 /***************
@@ -181,19 +189,19 @@ case object Inner extends RelationshipType
 case object Note extends RelationshipType
 
 sealed trait RelationshipDirection
-case object FromTo
-case object ToFrom
-case object Without
+case object FromTo extends RelationshipDirection
+case object ToFrom extends RelationshipDirection
+case object Without extends RelationshipDirection
 
-class RelationshipInfo(fromMultiplicity:String,
-                       sourceMultiplicity:String,
+sealed case class RelationshipInfo(fromMultiplicity:Option[String],
+                       sourceMultiplicity:Option[String],
                        fromIdentifier:String,
                        toIdentifier:String,
-                       relationshipIdentifier:String,
+                       relationshipIdentifier:Option[String],
                        identifierDirection:RelationshipDirection)
 
 sealed case class Relationship(relationshipType: RelationshipType,
                                relationshipDirection: RelationshipDirection,
                                relationshipInfo: RelationshipInfo)(stereotype:Option[String] = None) extends {
-  override val stereotype = stereotype
+  override val stereotype:Option[String] = stereotype
   } with TopLevelElement with PackageBodyElement with StereotypeElement

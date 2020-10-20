@@ -9,5 +9,6 @@ lazy val root = (project in file("."))
   .settings(
     name := "scala-uml",
     libraryDependencies += scalaTest % Test,
-    libraryDependencies += "org.scalameta" %% "scalameta" % "4.3.24"
+    libraryDependencies += "org.scalameta" %% "scalameta" % "4.3.24",
+    libraryDependencies += "org.bitbucket.inkytonik.kiama" %% "kiama" % "2.3.0"
   )
