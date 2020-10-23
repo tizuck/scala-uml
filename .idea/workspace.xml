@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/scala/Main.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/DefnPlantUMLCollector.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/PlantUMLCollector.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/astFunctionality.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/scala/scalameta/examplecontainer/colorOption.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../scala-uml-meta/examples/multipleparamseqs.example.puml" beforeDir="false" afterPath="$PROJECT_DIR$/../scala-uml-meta/examples/multipleparamseqs.example.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../scala-uml-meta/uml-meta-model-extensions/scala.profile.puml" beforeDir="false" afterPath="$PROJECT_DIR$/../scala-uml-meta/uml-meta-model-extensions/scala.profile.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../scala-uml-meta/uml-meta-model-extensions/scala.types.puml" beforeDir="false" afterPath="$PROJECT_DIR$/../scala-uml-meta/uml-meta-model-extensions/scala.types.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="SBT">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="scala-uml" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1iyesOLlXnlX376ct4lGJG3aqWE" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="org.plantuml.idea.lang.settings.PlantUmlSettingsPage" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="plantuml" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Hello" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="Hello" />
+      <module name="scala-uml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="scala-uml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PrettyPrintSpec" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="scala-uml" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <option name="testKind" value="Class" />
+      <option name="testClassPath" value="plantuml.PrettyPrintSpec" />
+      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\scala-uml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PrettyPrintSpec.A Plant UML File with two classes should be printed correctly" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="scala-uml" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <option name="testKind" value="Test name" />
+      <option name="testClassPath" value="plantuml.PrettyPrintSpec" />
+      <option name="testName" value="A Plant UML File with two classes should be printed correctly" />
+      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\scala-uml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="ScalaTest.PrettyPrintSpec" />
+        <item itemvalue="ScalaTest.PrettyPrintSpec.A Plant UML File with two classes should be printed correctly" />
+        <item itemvalue="Application.Hello" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="" />
+      <created>1602884464685</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1602884464685</updated>
+      <workItem from="1602884471322" duration="7927000" />
+      <workItem from="1602937088017" duration="3068000" />
+      <workItem from="1603138032066" duration="723000" />
+      <workItem from="1603184698629" duration="22703000" />
+      <workItem from="1603312609133" duration="133000" />
+      <workItem from="1603312753351" duration="1788000" />
+      <workItem from="1603320426021" duration="691000" />
+      <workItem from="1603357863421" duration="9473000" />
+      <workItem from="1603443061905" duration="564000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="725" y="379" width="469" height="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1603206406610">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="725" y="379" width="469" height="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603206406610" />
+    <state x="707" y="340" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1603198151364">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="707" y="340" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603198151363" />
+    <state x="915" y="277" key="FileChooserDialogImpl" timestamp="1602884588099">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="915" y="277" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602884588099" />
+    <state width="1411" height="133" key="GridCell.Tab.0.bottom" timestamp="1603394587716">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1411" height="133" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603394587716" />
+    <state width="1411" height="133" key="GridCell.Tab.0.center" timestamp="1603394587716">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1411" height="133" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603394587716" />
+    <state width="1411" height="133" key="GridCell.Tab.0.left" timestamp="1603394587716">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1411" height="133" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603394587716" />
+    <state width="1411" height="133" key="GridCell.Tab.0.right" timestamp="1603394587716">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1411" height="133" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603394587716" />
+    <state width="1877" height="421" key="GridCell.Tab.1.bottom" timestamp="1603321117319">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="421" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603321117319" />
+    <state width="1877" height="421" key="GridCell.Tab.1.center" timestamp="1603321117319">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="421" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603321117319" />
+    <state width="1877" height="421" key="GridCell.Tab.1.left" timestamp="1603321117319">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="421" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603321117319" />
+    <state width="1877" height="421" key="GridCell.Tab.1.right" timestamp="1603321117319">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="421" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603321117319" />
+    <state x="440" y="93" key="SettingsEditor" timestamp="1603184757522">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="93" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603184757522" />
+    <state x="708" y="173" key="com.intellij.ide.util.TipDialog" timestamp="1603138034249">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="708" y="173" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603138034249" />
+    <state x="767" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602887823064">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="767" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602887823064" />
+    <state width="600" height="440" key="javadoc.popup" timestamp="1602939693611">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="600" height="440" key="javadoc.popup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602939693611" />
+  </component>
+</project>

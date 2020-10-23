@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scala-uml.iml" filepath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scala-uml-build.iml" filepath="$PROJECT_DIR$/.idea/modules/scala-uml-build.iml" />
+    </modules>
+  </component>
+</project>
