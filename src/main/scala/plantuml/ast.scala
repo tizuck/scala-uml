@@ -66,11 +66,16 @@ sealed case class Class(isAbstract:Boolean,
   override val stereotype:Option[String] = stereotypeN
 }  with TopLevelElement with StereotypeElement with PackageBodyElement
 
+
 /***************
  * Attributes
  **************/
 
-sealed case class Attribute(modificator:Option[Modificator],modifier: Option[AccessModifier], identifier:String,attributeType:String)(stereotypeN:Option[String]=None) extends {
+sealed case class Attribute(modificator:Option[Modificator],
+                            modifier: Option[AccessModifier],
+                            identifier:String,
+                            attributeType:String)
+                           (stereotypeN:Option[String]=None) extends {
   override val stereotype:Option[String] = stereotypeN
 } with ClassBodyElement with CompartmentElement with StereotypeElement
 
@@ -195,12 +200,12 @@ case object FromTo extends RelationshipDirection
 case object ToFrom extends RelationshipDirection
 case object Without extends RelationshipDirection
 
-sealed case class RelationshipInfo(fromMultiplicity:Option[String],
-                       sourceMultiplicity:Option[String],
-                       fromIdentifier:String,
-                       toIdentifier:String,
-                       relationshipIdentifier:Option[String],
-                       identifierDirection:RelationshipDirection)
+sealed case class RelationshipInfo(sourceMultiplicity:Option[String],
+                                   targetMultiplicity:Option[String],
+                                   fromIdentifier:String,
+                                   toIdentifier:String,
+                                   relationshipIdentifier:Option[String],
+                                   identifierDirection:RelationshipDirection)
 
 sealed case class Relationship(relationshipType: RelationshipType,
                                relationshipDirection: RelationshipDirection,

@@ -1,13 +1,10 @@
 package plantuml
 
-import org.bitbucket.inkytonik.kiama.output.PrettyPrinterBase
 import org.bitbucket.inkytonik.kiama.output.PrettyPrinterTypes.Document
 
 /**
  * @todo Remove empty string from relationship
  * @todo If classes are without members don't print the body { }
- * @todo Refine the Type system of relationships. Introduce multiplicity elements and non multiplicity elements
- * @todo erase stereotype from second parameter list and put it into the first one
  * @todo cleanup opt mess
  */
 object PrettyPrinter extends org.bitbucket.inkytonik.kiama.output.PrettyPrinter {
@@ -32,7 +29,7 @@ object PrettyPrinter extends org.bitbucket.inkytonik.kiama.output.PrettyPrinter 
             optWithSpace( space <> ":>", upperBound, text,emptyDoc))) <> ">"
 
     case c@Class(isAbstract, identifier: String, classBodyElements, genericParameter, symbolDepiction) =>
-      if(isAbstract) {"abstract" <> space } else { emptyDoc } <>
+      (if(isAbstract) {"abstract" <> space } else { emptyDoc }) <>
       "class" <+> stringWrap(identifier) <>
         opt(genericParameter,show) <> (if (c.stereotype.isDefined) {
           space <> "<<" <+>
@@ -78,7 +75,7 @@ object PrettyPrinter extends org.bitbucket.inkytonik.kiama.output.PrettyPrinter 
       } else {emptyDoc})
 
     case c@CompartedClass(isAbstract,identifier,genericParameter,symbolDepiction,compartments) =>
-      if(isAbstract) {"abstract" <> space } else { emptyDoc} <>
+      (if(isAbstract) {"abstract" <> space } else { emptyDoc}) <>
       "class" <+> stringWrap(identifier) <>
         opt(genericParameter,show) <>
         (if(c.stereotype.isDefined) {
@@ -110,18 +107,19 @@ object PrettyPrinter extends org.bitbucket.inkytonik.kiama.output.PrettyPrinter 
       "hide" <+> hsep(args.map(text))
 
     case r@Relationship(relationshipType,relationshipDirection,
-      RelationshipInfo(fromMultiplicity, sourceMultiplicity, fromIdentifier,
+      RelationshipInfo(sourceMultiplicity, targetMultiplicity, fromIdentifier,
       toIdentifier, relationshipIdentifier, identifierDirection)) =>
       stringWrap(fromIdentifier) <+>
-      opt(fromMultiplicity,(s:String) => surround(text(s),'"')) <>
+      opt(sourceMultiplicity, (s:String) => surround(text(s),'"')) <>
       showRelationshipConnector(relationshipType,relationshipDirection) <+>
-      opt(sourceMultiplicity,(s:String) => surround(text(s),'"')) <>
+      opt(targetMultiplicity, (s:String) => surround(text(s),'"')) <>
       stringWrap(toIdentifier) <+>
       ":" <+>
         (if(identifierDirection.equals(ToFrom)){"<" <> space} else {emptyDoc}) <>
-        '"' <+> showStereotype(r) <>
+        (if(r.stereotype.isDefined){'"'} else {emptyDoc}) <> showStereotype(r) <>
         opt(relationshipIdentifier,text) <>
-        '"' <> (if(identifierDirection.equals(FromTo)){">" <> space} else {emptyDoc})
+        (if(r.stereotype.isDefined){'"'} else {emptyDoc}) <>
+        (if(identifierDirection.equals(FromTo)){space <> ">" <> space} else {emptyDoc})
   }
 
   /**
