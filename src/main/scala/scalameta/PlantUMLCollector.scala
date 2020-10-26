@@ -2,6 +2,7 @@ package scalameta
 
 import scala.meta.{Defn, Source}
 import plantuml._
+import scalameta.toplevel.ToplevelDefnCollector
 
 case class PlantUMLCollector(plantUMLUnit:PlantUMLUnit)
 

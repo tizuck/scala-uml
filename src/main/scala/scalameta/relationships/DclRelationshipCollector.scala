@@ -11,9 +11,7 @@ case class DclRelationshipCollector(relationships:List[Relationship])
 
 object DclRelationshipCollector {
   def apply(dcl:Decl)(implicit context: CollectorContext): DclRelationshipCollector = {
-    dcl match {
-      case value: Decl.Def => throw new NotImplementedException
-      case value: Decl.Type => throw new NotImplementedException
+    val relationships = dcl match {
       case Decl.Val(mods,pats,decltpe) =>
         val pSources : List[String] = pats.collect { _.syntax }
 
@@ -25,8 +23,10 @@ object DclRelationshipCollector {
           //@TODO might not allways be no stereotype
           s => Relationship(Association,FromTo,RelationshipInfo(None,Some(targetMultiplicity),context.thisPointer,pDeclType,Some(s),FromTo))(None)
         }
-        new DclRelationshipCollector(relationships)
-      case Decl.Var(mods, pattern, decltpe) => throw new NotImplementedException
+        Some(new DclRelationshipCollector(relationships))
+      case _ => None
     }
+
+    relationships.getOrElse(new DclRelationshipCollector(Nil))
   }
 }

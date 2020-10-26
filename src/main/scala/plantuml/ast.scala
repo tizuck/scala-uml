@@ -19,7 +19,7 @@ sealed trait CompartmentElement extends UMLElement
 
 sealed trait PackageBodyElement extends UMLElement
 
-sealed case class PlantUMLUnit(identifier:String,toplevelElements:Seq[TopLevelElement]) extends UMLElement
+sealed case class PlantUMLUnit(identifier:String,toplevelElements:List[TopLevelElement]) extends UMLElement
 
 /***************
  * Packages
@@ -36,7 +36,7 @@ case object Database extends PackageStyle
 
 sealed case class Package(identifier:String,
                           color:Option[String],
-                          packageBodyElements:Seq[PackageBodyElement],
+                          packageBodyElements:List[PackageBodyElement],
                           packageStyle: PackageStyle = Default) extends TopLevelElement with PackageBodyElement
 /***************
  * Classes
@@ -59,7 +59,7 @@ case object Abstract extends Modificator
 
 sealed case class Class(isAbstract:Boolean,
                         identifier:String,
-                        classBodyElements:Seq[ClassBodyElement],
+                        classBodyElements:List[ClassBodyElement],
                         genericParameter: Option[GenericParameter],
                         symbolDepiction:Option[(String,String)])
                        (stereotypeN:Option[String] = None) extends {
@@ -71,7 +71,7 @@ sealed case class Class(isAbstract:Boolean,
  * Attributes
  **************/
 
-sealed case class Attribute(modificator:Option[Modificator],
+sealed case class Attribute(modificators:Option[List[Modificator]],
                             modifier: Option[AccessModifier],
                             identifier:String,
                             attributeType:String)
@@ -89,10 +89,10 @@ sealed case class Parameter(identifier:String,paramType:String)
   } with StereotypeElement
 
 
-sealed case class Operation(modificator: Option[Modificator],
+sealed case class Operation(modificator: Option[List[Modificator]],
                             accessModifier: Option[AccessModifier],
                             identifier:String,
-                            paramSeq:Seq[Seq[Parameter]],
+                            paramSeq:List[List[Parameter]],
                             returnType:String)(stereotypeN:Option[String] = None) extends {
   override val stereotype = stereotypeN
   } with ClassBodyElement with CompartmentElement  with StereotypeElement
@@ -106,13 +106,13 @@ case object ThickSingle extends LineType
 sealed case class Compartment(isHeading:Boolean,
                               lineType: LineType,
                               identifier:Option[String],
-                              compartmentElements:Seq[CompartmentElement]) extends UMLElement
+                              compartmentElements:List[CompartmentElement]) extends UMLElement
 
 sealed case class CompartedClass(isAbstract:Boolean,
                                  identifier:String,
                                  genericParameter: Option[GenericParameter],
                                  symbolDepiction:Option[(String,String)],
-                                 compartments:Seq[Compartment])(stereotypeN:Option[String]) extends {
+                                 compartments:List[Compartment])(stereotypeN:Option[String]) extends {
   override val stereotype : Option[String] = stereotypeN
 } with TopLevelElement with PackageBodyElement with StereotypeElement
 
@@ -174,13 +174,13 @@ sealed case class LinkNote(position: Position, textN:String)(stereotypeN:Option[
  * Skinparams
  **************/
 
-sealed case class SkinParam(args:Seq[String]) extends TopLevelElement
+sealed case class SkinParam(args:List[String]) extends TopLevelElement
 
 /***************
  * Hide
  **************/
 
-sealed case class Hide(args:Seq[String]) extends TopLevelElement
+sealed case class Hide(args:List[String]) extends TopLevelElement
 
 /***************
  * Relationships

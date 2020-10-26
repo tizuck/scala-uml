@@ -4,7 +4,6 @@ import org.bitbucket.inkytonik.kiama.output.PrettyPrinterTypes.Document
 
 /**
  * @todo Remove empty string from relationship
- * @todo If classes are without members don't print the body { }
  * @todo cleanup opt mess
  */
 object PrettyPrinter extends org.bitbucket.inkytonik.kiama.output.PrettyPrinter {
@@ -45,10 +44,10 @@ object PrettyPrinter extends org.bitbucket.inkytonik.kiama.output.PrettyPrinter 
         nest(line <> vsep(classBodyElements.map(show))),
         line <> "}")
 
-    case a@Attribute(modificator, accessModifier, identifier, attributeType) =>
+    case a@Attribute(modificators, accessModifier, identifier, attributeType) =>
       opt(accessModifier,showAccessModifier,r=emptyDoc) <>
         showStereotype(a) <>
-        opt(modificator,(mod:Modificator) => text(showModificator(mod))) <>
+        opt(modificators,showModificators) <>
         identifier <+> ':' <+> attributeType
 
     case p@Parameter(identifier, paramType) =>
@@ -57,9 +56,9 @@ object PrettyPrinter extends org.bitbucket.inkytonik.kiama.output.PrettyPrinter 
         ':' <+>
         paramType
 
-    case o@Operation(modificator, accessModifier, identifier, paramSeq, returnType) =>
+    case o@Operation(modificators, accessModifier, identifier, paramSeq, returnType) =>
       showStereotype(o) <>
-        opt(modificator,showModificator) <>
+        opt(modificators,showModificators) <>
         opt(accessModifier,showAccessModifier) <>
         identifier <>
         hsep(paramSeq.map(params => '(' <> hsep(params.map(show),", ") <> ')')) <+>
@@ -192,9 +191,10 @@ object PrettyPrinter extends org.bitbucket.inkytonik.kiama.output.PrettyPrinter 
     case Public => "+"
   }
 
-  def showModificator(modificator: Modificator):String = modificator match {
-    case Static => "{static}"
-    case Abstract => "{abstract}"
+  def showModificators(modificators: List[Modificator]):String = modificators match {
+    case Static :: mods => " {static}"
+    case Abstract :: mods => " {abstract}"
+    case Nil => ""
   }
 
   def showLineType(lineType: LineType):String = lineType match {
