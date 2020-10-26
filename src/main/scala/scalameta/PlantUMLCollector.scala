@@ -2,17 +2,17 @@ package scalameta
 
 import scala.meta.{Defn, Source}
 import plantuml._
-import scalameta.toplevel.ToplevelDefnCollector
+import scalameta.toplevel.DefnToplevelCollector
 
 case class PlantUMLCollector(plantUMLUnit:PlantUMLUnit)
 
 object PlantUMLCollector {
   def apply(source: Source): PlantUMLCollector = {
-    val collected:List[ToplevelDefnCollector] =
+    val collected:List[DefnToplevelCollector] =
       for (stat <- source.stats) yield {
         stat match {
           case defn: Defn =>
-            ToplevelDefnCollector(defn)(CollectorContext(thisPointer = ""))
+            DefnToplevelCollector(defn)(CollectorContext(thisPointer = ""))
         }
       }
 

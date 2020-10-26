@@ -3,6 +3,7 @@ package scalameta.operations
 import plantuml.Operation
 import scalameta.CollectorContext
 import scalameta.common.{AccessModifierCollector, ModificatorsCollector, TypeNameCollector}
+import scalameta.operations.parameters.ParameterListsCollector
 
 import scala.meta.Decl
 
@@ -12,7 +13,7 @@ object DeclDefOperationCollector {
   def apply(sDef:Decl.Def)(implicit context: CollectorContext) : DeclDefOperationCollector = {
     val operationName = sDef.name.value
     //@todo get template parameter
-    val parametersLists = MultiParamterCollector(sDef.paramss).parameter
+    val parametersLists = ParameterListsCollector(sDef.paramss).parameterLists
 
     val returnType = TypeNameCollector(sDef.decltpe).typeRep
 

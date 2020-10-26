@@ -4,7 +4,19 @@ import scala.meta._
 import scala.meta.dialects
 
 object Main extends App {
-  val program = """trait B {val a : Int; protected def foo():String ;val c :C}; trait C {val b:Bool}"""
+  val program =
+    """
+      |trait A {
+      | val a : Int
+      | val b : Bool
+      |}
+      |
+      |trait B {
+      |  def foo(numberValid:Map[Int,Bool])(implicit guaranteedValidNumber : Int) : Int
+      |}
+      |
+      |trait C extends A with B
+      |""".stripMargin
   val source = dialects.Dotty(program).parse[Source].get
   val plantUMLUnit = PlantUMLCollector(source).plantUMLUnit
   println(plantUMLUnit)

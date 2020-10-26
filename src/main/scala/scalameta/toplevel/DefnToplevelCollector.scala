@@ -7,14 +7,14 @@ import scalameta.relationships.RelationshipCollector
 
 import scala.meta.Defn
 
-case class ToplevelDefnCollector(topLevelElement: TopLevelElement, relationships:List[Relationship])
+case class DefnToplevelCollector(topLevelElement: TopLevelElement, relationships:List[Relationship])
 
-object ToplevelDefnCollector {
-  def apply(defn: Defn)(implicit context:CollectorContext) : ToplevelDefnCollector = defn match {
+object DefnToplevelCollector {
+  def apply(defn: Defn)(implicit context:CollectorContext) : DefnToplevelCollector = defn match {
     case d : Defn.Trait => {
       //@todo implement ClassBodyCollector
       val traitCollector = TraitCollector(d)
-      new ToplevelDefnCollector(traitCollector.pTrait,traitCollector.relationships)
+      new DefnToplevelCollector(traitCollector.pTrait,traitCollector.relationships)
     }
   }
 }

@@ -113,12 +113,32 @@ object PrettyPrinter extends org.bitbucket.inkytonik.kiama.output.PrettyPrinter 
       showRelationshipConnector(relationshipType,relationshipDirection) <+>
       opt(targetMultiplicity, (s:String) => surround(text(s),'"')) <>
       stringWrap(toIdentifier) <+>
-      ":" <+>
-        (if(identifierDirection.equals(ToFrom)){"<" <> space} else {emptyDoc}) <>
-        (if(r.stereotype.isDefined){'"'} else {emptyDoc}) <> showStereotype(r) <>
-        opt(relationshipIdentifier,text) <>
-        (if(r.stereotype.isDefined){'"'} else {emptyDoc}) <>
-        (if(identifierDirection.equals(FromTo)){space <> ">" <> space} else {emptyDoc})
+        (if(relationshipIdentifier.isDefined || r.stereotype.isDefined) {
+        ":" <+>
+          (if (identifierDirection.equals(ToFrom)) {
+            "<" <> space
+          } else {
+            emptyDoc
+          }) <>
+          (if (r.stereotype.isDefined) {
+            '"'
+          } else {
+            emptyDoc
+          }) <> showStereotype(r) <>
+          opt(relationshipIdentifier, text) <>
+          (if (r.stereotype.isDefined) {
+            '"'
+          } else {
+            emptyDoc
+          }) <>
+          (if (identifierDirection.equals(FromTo)) {
+            space <> ">" <> space
+          } else {
+            emptyDoc
+          })
+      } else {
+        emptyDoc
+      })
   }
 
   /**
