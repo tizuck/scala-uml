@@ -14,7 +14,7 @@ object PrettyPrinter extends org.bitbucket.inkytonik.kiama.output.PrettyPrinter 
 
   def show(umlElement: UMLElement): Doc = umlElement match {
 
-    case PlantUMLUnit(identifier, toplevelElements) =>
+    case UMLUnit(identifier, toplevelElements) =>
       "@startuml" <+> stringWrap(identifier) <@> vsep(toplevelElements.map(show)) <@> "@enduml"
 
     case Package(identifier, color, packageBodyElements, packageStyle) =>

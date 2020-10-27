@@ -4,7 +4,7 @@ import org.scalatest.flatspec.AnyFlatSpec
 
 class PrettyPrintSpec extends AnyFlatSpec {
   "A Plant UML File with two classes" should "be printed correctly" in {
-    println(PlantUMLUnit("Two classes",List(
+    println(UMLUnit("Two classes",List(
       Class(false,"Class1",List.empty,None,None)(Some("case class")),
       Class(false,"BaseTrait",
         List(

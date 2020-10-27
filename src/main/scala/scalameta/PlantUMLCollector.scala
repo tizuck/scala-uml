@@ -4,7 +4,7 @@ import scala.meta.{Defn, Source}
 import plantuml._
 import scalameta.toplevel.DefnToplevelCollector
 
-case class PlantUMLCollector(plantUMLUnit:PlantUMLUnit)
+case class PlantUMLCollector(plantUMLUnit:UMLUnit)
 
 object PlantUMLCollector {
   def apply(source: Source): PlantUMLCollector = {
@@ -17,6 +17,6 @@ object PlantUMLCollector {
       }
 
     val topLevelUMLElements = collected.flatMap {tdc => tdc.topLevelElement :: tdc.relationships}
-    new PlantUMLCollector(PlantUMLUnit("need_to_find_id",toplevelElements = topLevelUMLElements))
+    new PlantUMLCollector(UMLUnit("need_to_find_id",toplevelElements = topLevelUMLElements))
   }
 }

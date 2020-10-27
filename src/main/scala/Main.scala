@@ -9,6 +9,7 @@ object Main extends App {
       |trait A(a:Int)(implicit c : CollectorContext) {
       | val a : Int
       | val b : Bool
+      | var c : List
       |}
       |
       |trait B {

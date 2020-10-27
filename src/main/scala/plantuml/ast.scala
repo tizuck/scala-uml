@@ -19,7 +19,7 @@ sealed trait CompartmentElement extends UMLElement
 
 sealed trait PackageBodyElement extends UMLElement
 
-sealed case class PlantUMLUnit(identifier:String,toplevelElements:List[TopLevelElement]) extends UMLElement
+sealed case class UMLUnit(identifier:String, toplevelElements:List[TopLevelElement]) extends UMLElement
 
 /***************
  * Packages
