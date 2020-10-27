@@ -93,7 +93,7 @@ sealed case class Operation(modificator: Option[List[Modificator]],
                             accessModifier: Option[AccessModifier],
                             identifier:String,
                             paramSeq:List[List[Parameter]],
-                            returnType:String)(stereotypeN:Option[String] = None) extends {
+                            returnType:Option[String])(stereotypeN:Option[String] = None) extends {
   override val stereotype = stereotypeN
   } with ClassBodyElement with CompartmentElement  with StereotypeElement
 

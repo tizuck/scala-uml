@@ -1,4 +1,5 @@
 package scalameta
 
 
-case class CollectorContext(thisPointer:String)
+case class CollectorContext(thisPointer:String,
+                            cstrOrigin:Option[String] = None)

@@ -26,7 +26,7 @@ object DeclDefOperationCollector {
       accessModifiers,
       operationName,
       parametersLists,
-      returnType
+      Some(returnType)
     )(None)
     //@todo if for example the context say we are in a constructor, then add the <<Constr>> stereotype
     new DeclDefOperationCollector(op)

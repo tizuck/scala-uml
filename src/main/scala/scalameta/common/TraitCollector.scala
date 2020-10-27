@@ -2,7 +2,7 @@ package scalameta.common
 
 import plantuml.{Class, Relationship}
 import scalameta.CollectorContext
-import scalameta.operations.OperationCollector
+import scalameta.operations.{OperationCollector, PrimaryConstructorCollector}
 import scalameta.relationships.RelationshipCollector
 
 import scala.meta.Defn
@@ -17,6 +17,17 @@ object TraitCollector {
 
     val operations = OperationCollector(sTrait.templ.stats).operations
 
-    new TraitCollector(Class(true,traitName,List.empty ++ operations,None,None)(Some("trait")),relationships)
+    val primaryConstructor = PrimaryConstructorCollector(sTrait.ctor)(context.copy(cstrOrigin = Some(traitName)))
+
+    val cls = Class(
+      true,
+      traitName,
+      List.empty ++
+        primaryConstructor.primaryCstr.map(p => List(p)).getOrElse(Nil) ++
+        operations,
+      None,
+      None)(Some("trait"))
+
+    new TraitCollector(cls,relationships)
   }
 }

@@ -62,7 +62,7 @@ object PrettyPrinter extends org.bitbucket.inkytonik.kiama.output.PrettyPrinter 
         opt(accessModifier,showAccessModifier) <>
         identifier <>
         hsep(paramSeq.map(params => '(' <> hsep(params.map(show),", ") <> ')')) <+>
-        ":" <+> returnType
+        opt(returnType,text,":" <> space,r = emptyDoc)
 
     case Compartment(isHeading, lineType, identifier, compartmentElements) =>
       if(isHeading){

@@ -11,7 +11,7 @@ class PrettyPrintSpec extends AnyFlatSpec {
           Attribute(None,None,"s","String")(None),
           Operation(None,None,"foo",
             List(List(Parameter("s","String")(None))),
-            "String"
+            Some("String")
           )(None)
         ).asInstanceOf[List[ClassBodyElement]],None,None)(Some("trait")),
       Relationship(Extension,FromTo,RelationshipInfo(None,None,"Class1","BaseTrait",None,Without))(stereotypeN = None),
