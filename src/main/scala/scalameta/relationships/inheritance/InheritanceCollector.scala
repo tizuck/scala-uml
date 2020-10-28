@@ -1,8 +1,8 @@
-package scalameta.relationships
+package scalameta.relationships.inheritance
 
-import scalameta.{CollectorContext, StateChangingCollector}
 import scalameta.common.TypeNameCollector
-import uml.{Class, Extension, NamedElement, Relationship, RelationshipInfo, ToFrom, Without}
+import scalameta.{CollectorContext, StateChangingCollector}
+import uml._
 
 import scala.meta.Init
 

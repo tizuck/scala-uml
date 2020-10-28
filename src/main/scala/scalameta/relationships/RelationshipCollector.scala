@@ -2,7 +2,10 @@ package scalameta.relationships
 
 
 
-import scalameta.{StateChangingCollector, CollectorContext}
+import scalameta.relationships.dcl.DclRelationshipCollector
+import scalameta.relationships.defn.DefnRelationshipCollector
+import scalameta.relationships.inheritance.MultipleInheritanceCollector
+import scalameta.{CollectorContext, StateChangingCollector}
 import uml.Relationship
 import uml.Class
 
@@ -17,26 +20,19 @@ object RelationshipCollector {
     case Defn.Trait(_, _, _ , _ , template) =>
       val inheritances = MultipleInheritanceCollector(defn)
 
-      val foldRels = template.stats.foldLeft[(List[Relationship],CollectorContext)]((List.empty,inheritances.resultingContext)){
+      template.stats.foldLeft(RelationshipCollector(inheritances.inheritance,Nil,inheritances.resultingContext)){
         case (acc,st) => st match {
-          case decl:Decl =>
-            val relationshipCollector = DclRelationshipCollector(decl)(acc._2)
-            (acc._1 ++ relationshipCollector.relationships,acc._2 + relationshipCollector.resultingContext)
-          case _ => acc
+          case decl: Decl =>
+            val declCollector = DclRelationshipCollector(decl)(acc.resultingContext)
+            acc.copy(relationships = acc.relationships ++ declCollector.relationships,
+              typeClasses = acc.typeClasses ++ declCollector.typeClass.map(t => List(t)).getOrElse(Nil),
+              resultingContext = declCollector.resultingContext)
+          case defn: Defn =>
+            val defnCollector = DefnRelationshipCollector(defn)(acc.resultingContext)
+            acc.copy(relationships = acc.relationships ++ defnCollector.relationships,
+              typeClasses = acc.typeClasses ++ defnCollector.typeClass.map(t => List(t)).getOrElse(Nil),
+              resultingContext = defnCollector.resultingContext)
         }
       }
-
-      val relationships = foldRels._1
-      val afterRelsContext = foldRels._2
-
-      val foldTypeClasses = template.stats.foldLeft[(List[Class],CollectorContext)]((List.empty,afterRelsContext)){
-        case (acc,st) => st match {
-          case declType: Decl.Type =>
-            val typeClassCollector = DclRelationshipCollector(declType)(acc._2)
-            (acc._1 ++ List(typeClassCollector.typeClass.get),acc._2 + typeClassCollector.resultingContext)
-          case _ => acc
-        }
-      }
-      new RelationshipCollector(inheritances.inheritance ++ relationships,foldTypeClasses._1,foldTypeClasses._2)
   }
 }

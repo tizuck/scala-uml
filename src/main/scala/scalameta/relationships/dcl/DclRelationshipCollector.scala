@@ -1,12 +1,9 @@
-package scalameta.relationships
-
+package scalameta.relationships.dcl
 
 import scalameta.{CollectorContext, StateChangingCollector}
-import scalameta.common.TypeNameCollector
-import scalameta.relationships.dcl.{DclTypeRelationshipBaseCollector, DclValRelationshipCollector, DclVarRelationshipCollector}
-import uml.{Association, Class, FromTo, NamedElement, RelateableElement, Relationship, RelationshipInfo}
+import uml.{Class, Relationship}
 
-import scala.meta.{Decl, Pat, Type}
+import scala.meta.Decl
 
 case class DclRelationshipCollector(relationships:List[Relationship],
                                     typeClass:Option[Class],

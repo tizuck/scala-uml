@@ -1,4 +1,4 @@
-package scalameta.relationships
+package scalameta.relationships.inheritance
 
 import scalameta.{CollectorContext, StateChangingCollector}
 import uml.Relationship
