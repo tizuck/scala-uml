@@ -1,9 +1,9 @@
 package scalameta.operations
 
-import plantuml.Operation
 import scalameta.CollectorContext
 import scalameta.common.{AccessModifierCollector, ModificatorsCollector, TypeNameCollector}
 import scalameta.operations.parameters.ParameterListsCollector
+import uml.Operation
 
 import scala.meta.Decl
 
@@ -21,13 +21,13 @@ object DeclDefOperationCollector {
 
     val accessModifiers = AccessModifierCollector(sDef.mods).accessModifier
 
-    val op = Operation(
+    val op = uml.Operation(
       Option.when(modificators.nonEmpty)(modificators),
       accessModifiers,
       operationName,
       parametersLists,
-      Some(returnType)
-    )(None)
+      Some(returnType),
+      None)
     //@todo if for example the context say we are in a constructor, then add the <<Constr>> stereotype
     new DeclDefOperationCollector(op)
   }

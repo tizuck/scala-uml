@@ -10,7 +10,10 @@ object Main extends App {
       | val a : Int
       | val b : Bool
       | var c : List
+      | type E
       |}
+      |
+      |trait Int
       |
       |trait B {
       |  def foo(numberValid:Map[Int,Bool])(implicit guaranteedValidNumber : Int) : Int

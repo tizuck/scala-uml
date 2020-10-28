@@ -1,6 +1,6 @@
 package scalameta.common
 
-import plantuml.{AccessModifier, Private, Protected}
+import uml.{AccessModifier, Private, Protected}
 
 import scala.meta.Mod
 

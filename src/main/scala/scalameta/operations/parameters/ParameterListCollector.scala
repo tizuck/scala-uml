@@ -1,7 +1,7 @@
 package scalameta.operations.parameters
 
-import plantuml.Parameter
 import scalameta.CollectorContext
+import uml.Parameter
 
 import scala.meta.Term
 

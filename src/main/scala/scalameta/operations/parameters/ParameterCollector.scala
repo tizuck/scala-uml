@@ -1,9 +1,9 @@
 package scalameta.operations.parameters
 
-import plantuml.Parameter
 import scalameta.CollectorContext
 import scalameta.common.TypeNameCollector
 import scalameta.stereotypes.ImplicitStereotypeCollector
+import uml.Parameter
 
 import scala.meta.{Term, Type}
 
@@ -17,6 +17,6 @@ object ParameterCollector {
 
     val isImplicit = ImplicitStereotypeCollector(param.mods).isImplicitStereotype
 
-    new ParameterCollector(Parameter(paramName,paramType)(if (isImplicit) Some("implicit") else None))
+    new ParameterCollector(Parameter(paramName,paramType,if (isImplicit) Some("implicit") else None))
   }
 }

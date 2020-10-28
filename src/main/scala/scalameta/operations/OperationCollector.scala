@@ -1,8 +1,8 @@
 package scalameta.operations
 
-import plantuml.Operation
 import scalameta.CollectorContext
 import scalameta.common.{AccessModifierCollector, ModificatorsCollector, TypeNameCollector}
+import uml.Operation
 
 import scala.meta.{Decl, Defn, Stat}
 

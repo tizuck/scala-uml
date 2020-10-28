@@ -1,67 +1,31 @@
 package scalameta.relationships
 
-import plantuml.{Association, FromTo, Relationship, RelationshipInfo}
-import scalameta.CollectorContext
+
+import scalameta.{CollectorContext, StateChangingCollector}
 import scalameta.common.TypeNameCollector
-import sun.reflect.generics.reflectiveObjects.NotImplementedException
+import scalameta.relationships.dcl.{DclTypeRelationshipBaseCollector, DclValRelationshipCollector, DclVarRelationshipCollector}
+import uml.{Association, Class, FromTo, NamedElement, RelateableElement, Relationship, RelationshipInfo}
 
 import scala.meta.{Decl, Pat, Type}
 
-case class DclRelationshipCollector(relationships:List[Relationship])
+case class DclRelationshipCollector(relationships:List[Relationship],
+                                    typeClass:Option[Class],
+                                    override val resultingContext: CollectorContext) extends StateChangingCollector
 
 object DclRelationshipCollector {
   def apply(dcl:Decl)(implicit context: CollectorContext): DclRelationshipCollector = {
-    val relationships = dcl match {
-      case Decl.Val(mods,pats,decltpe) =>
-        val assocInfo = collectAssociationInformation(pats,decltpe)
-
-        val relationships = assocInfo.pSources.map{
-          s =>
-            Relationship(
-              Association,
-              FromTo,
-              RelationshipInfo(
-                None,
-                Some(assocInfo.targetMultiplicity),
-                context.thisPointer,
-                assocInfo.pDeclType,Some(s),
-                FromTo))(None)
-        }
-        Some(new DclRelationshipCollector(relationships))
-      case Decl.Var(mods,pats,decltpe) =>
-        val assocInfo = collectAssociationInformation(pats,decltpe)
-
-        val relationships = assocInfo.pSources.map{
-          s =>
-            Relationship(
-              Association,
-              FromTo,
-              RelationshipInfo(
-                None,
-                Some(assocInfo.targetMultiplicity),
-                context.thisPointer,
-                assocInfo.pDeclType,Some(s),
-                FromTo))(Some("var"))
-        }
-        Some(new DclRelationshipCollector(relationships))
+    val dclRelationsships = dcl match {
+      case d : Decl.Val => Some(DclValRelationshipCollector(d))
+      case d : Decl.Var => Some(DclVarRelationshipCollector(d))
+      case d : Decl.Type => Some(DclTypeRelationshipBaseCollector(d))
       case _ => None
     }
 
-    relationships.getOrElse(new DclRelationshipCollector(Nil))
-  }
+    val relationships = if(dclRelationsships.isDefined){ dclRelationsships.get.relationships } else Nil
+    val newContext = if(dclRelationsships.isDefined){ dclRelationsships.get.resultingContext } else context
+    val typeClass = if(dclRelationsships.isDefined){dclRelationsships.get.typeClass} else None
 
-  trait AssociationInformation {
-    val pDeclType : String
-    val targetMultiplicity : String
-    val pSources : List[String]
-  }
-  private def collectAssociationInformation(pats:List[Pat],decltpe:Type)(
-    implicit context: CollectorContext
-  ) : AssociationInformation = {
-    new AssociationInformation {
-      override val pDeclType: String = TypeNameCollector(decltpe).typeRep
-      override val targetMultiplicity: String = TargetMultiplicityCollector(decltpe).multiplicity
-      override val pSources: List[String] = pats.collect { _.syntax }
-    }
+    new DclRelationshipCollector(relationships,typeClass,newContext)
+
   }
 }

@@ -1,7 +1,7 @@
 package scalameta.common
 
-import plantuml.{Modificator, Static}
 import scalameta.CollectorContext
+import uml.{Modificator, Static}
 
 import scala.meta.Mod
 

@@ -1,17 +1,20 @@
 package scalameta.common
 
-import plantuml.{Class, Relationship}
-import scalameta.CollectorContext
+
+import scalameta.{StateChangingCollector, CollectorContext}
 import scalameta.operations.{OperationCollector, PrimaryConstructorCollector}
 import scalameta.relationships.RelationshipCollector
+import uml.{Class, Relationship}
 
 import scala.meta.Defn
 
-case class TraitCollector(pTrait:Class, relationships:List[Relationship])
+case class TraitCollector(pTrait:Class,
+                          relationships:List[Relationship],
+                          typeClasses:List[Class],
+                          override val resultingContext: CollectorContext) extends StateChangingCollector
 
 object TraitCollector {
   def apply(sTrait:Defn.Trait)(implicit context: CollectorContext): TraitCollector = {
-    val relationships = RelationshipCollector(sTrait).relationships
     //@todo implement generic type parameter collector
     val traitName = sTrait.name.value
 
@@ -22,12 +25,18 @@ object TraitCollector {
     val cls = Class(
       true,
       traitName,
+      List.empty,
       List.empty ++
         primaryConstructor.primaryCstr.map(p => List(p)).getOrElse(Nil) ++
         operations,
+      List.empty,
       None,
-      None)(Some("trait"))
+      Some("trait"))
 
-    new TraitCollector(cls,relationships)
+    val relationships = RelationshipCollector(sTrait)(
+      context.copy(thisPointer = Some(cls),definedTemplates = cls :: context.definedTemplates.filter(_.identifier.equals(traitName)))
+    )
+
+    new TraitCollector(cls,relationships.relationships,relationships.typeClasses,relationships.resultingContext)
   }
 }
