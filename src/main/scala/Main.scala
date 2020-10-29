@@ -8,9 +8,12 @@ object Main extends App {
     """
       |trait A(a:Int)(implicit c : CollectorContext) {
       | val a : Int
-      | val b : Bool
+      | val b : Bool = true
       | var c : List
+      | type E
       |}
+      |
+      |trait Int
       |
       |trait B {
       |  def foo(numberValid:Map[Int,Bool])(implicit guaranteedValidNumber : Int) : Int
