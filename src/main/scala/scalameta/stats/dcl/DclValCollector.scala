@@ -1,15 +1,15 @@
-package scalameta.relationships.dcl
+package scalameta.stats.dcl
 
-import scalameta.relationships.util
+import scalameta.common.RelationshipBaseCollector
+import scalameta.stats.util
 import scalameta.{CollectorContext, StateChangingCollector}
-import uml.{Association, Class, FromTo, NamedElement, Relationship, RelationshipInfo}
+import uml.{Association, Class, FromTo, NamedElement, Operation, Relationship, RelationshipInfo, UMLElement}
 
 import scala.meta.Decl
 
-case class DclValRelationshipCollector(relationships:List[Relationship],
-                                       override val resultingContext: CollectorContext,
-                                       override val typeClass: Option[Class],
-                                       ) extends DclRelationshipBaseCollector
+case class DclValRelationshipCollector(override val definedElements : List[UMLElement],
+                                       override val resultingContext: CollectorContext
+                                       ) extends RelationshipBaseCollector
 
 object DclValRelationshipCollector {
   def apply(dclVal:Decl.Val)(implicit context:CollectorContext): DclValRelationshipCollector = {
@@ -33,6 +33,6 @@ object DclValRelationshipCollector {
             FromTo),
           None)
     }
-    new DclValRelationshipCollector(relationships,newContext,None)
+    new DclValRelationshipCollector(relationships,newContext)
   }
 }

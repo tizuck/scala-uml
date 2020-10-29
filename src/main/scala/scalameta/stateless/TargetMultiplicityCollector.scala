@@ -1,4 +1,4 @@
-package scalameta.relationships
+package scalameta.stats
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException
 

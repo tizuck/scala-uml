@@ -1,6 +1,6 @@
-package scalameta.relationships.inheritance
+package scalameta.stats.init
 
-import scalameta.{CollectorContext, StateChangingCollector}
+import scalameta.util.{CollectorContext, StateChangingCollector}
 import uml.Relationship
 
 import scala.meta.Defn
@@ -12,7 +12,7 @@ object MultipleInheritanceCollector {
   def apply(defn:Defn)(implicit context : CollectorContext): MultipleInheritanceCollector = defn match {
     case Defn.Trait(_,name,_,_,templ) =>
      val inheritances = for(init <- templ.inits) yield {
-        InheritanceCollector(init)
+        InitCollector(init)
       }
 
       new MultipleInheritanceCollector(

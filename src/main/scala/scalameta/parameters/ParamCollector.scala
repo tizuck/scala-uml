@@ -1,8 +1,8 @@
 package scalameta.operations.parameters
 
-import scalameta.CollectorContext
-import scalameta.common.TypeNameCollector
+import scalameta.stateless.TypeNameCollector
 import scalameta.stereotypes.ImplicitStereotypeCollector
+import scalameta.util.CollectorContext
 import uml.Parameter
 
 import scala.meta.{Term, Type}
