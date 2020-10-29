@@ -1,4 +1,4 @@
-package scalameta.common
+package scalameta.stateless
 
 import uml.{AccessModifier, Private, Protected}
 

@@ -1,15 +1,14 @@
 package scalameta.relationships.dcl
-import scalameta.CollectorContext
-import scalameta.common.{AccessModifierCollector, ModificatorsCollector, TypeNameCollector}
-import scalameta.operations.DeclDefOperationCollector
+
 import scalameta.operations.parameters.ParameterListsCollector
-import scalameta.relationships.RelationshipBaseCollector
+import scalameta.stateless.{AccessModifierCollector, ModificatorsCollector, TypeNameCollector}
+import scalameta.util.{BaseCollector, CollectorContext}
 import uml.{Operation, Relationship, UMLElement}
 
 import scala.meta.Decl
 
 case class DclDefCollector(override val definedElements: List[UMLElement],
-                           override val resultingContext: CollectorContext) extends RelationshipBaseCollector
+                           override val resultingContext: CollectorContext) extends BaseCollector
 
 object DclDefCollector {
   def apply(dclDef :Decl.Def)(implicit context:CollectorContext): DclDefCollector = {

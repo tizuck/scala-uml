@@ -1,8 +1,7 @@
-package scalameta.relationships.util
+package scalameta.stats.util
 
-import scalameta.CollectorContext
-import scalameta.common.TypeNameCollector
-import scalameta.relationships.TargetMultiplicityCollector
+import scalameta.stateless.{TargetMultiplicityCollector, TypeNameCollector}
+import scalameta.util.CollectorContext
 
 import scala.meta.{Pat, Type}
 

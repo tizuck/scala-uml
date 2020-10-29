@@ -1,16 +1,17 @@
-package scalameta.relationships.inheritance
+package scalameta.stats.init
 
-import scalameta.common.TypeNameCollector
-import scalameta.{CollectorContext, StateChangingCollector}
+
+import scalameta.stateless.TypeNameCollector
+import scalameta.util.{CollectorContext, StateChangingCollector}
 import uml._
 
 import scala.meta.Init
 
-case class InheritanceCollector(inheritance:Relationship,
-                                override val resultingContext: CollectorContext) extends StateChangingCollector
+case class InitCollector(inheritance:Relationship,
+                         override val resultingContext: CollectorContext) extends StateChangingCollector
 
-object InheritanceCollector {
-  def apply(init:Init)(implicit context:CollectorContext): InheritanceCollector = {
+object InitCollector {
+  def apply(init:Init)(implicit context:CollectorContext): InitCollector = {
     val extendedType = TypeNameCollector(init.tpe)
 
     //Define Template for inner call in case it has not been defined before
@@ -22,6 +23,6 @@ object InheritanceCollector {
       Extension,
       ToFrom,
       RelationshipInfo(None,None, newContext.definedTemplates.find((n:NamedElement) => n.identifier.equals(extendedType.typeRep)).get,context.thisPointer.get,None,Without),None)
-    new InheritanceCollector(inheritance,newContext)
+    new InitCollector(inheritance,newContext)
   }
 }

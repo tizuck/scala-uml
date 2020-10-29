@@ -1,18 +1,18 @@
 package scalameta.stats.dcl
-import scalameta.CollectorContext
-import scalameta.common.RelationshipBaseCollector
-import scalameta.stats.util
+
+import scalameta.stats.util.AssociationInformation
+import scalameta.util.{BaseCollector, CollectorContext}
 import uml.{Association, Class, FromTo, NamedElement, Operation, Relationship, RelationshipInfo, UMLElement}
 
 import scala.meta.Decl.Var
 
-case class DclVarRelationshipCollector(override val definedElements: List[UMLElement],
-                                       override val resultingContext: CollectorContext
-                                       ) extends RelationshipBaseCollector
+case class DclVarCollector(override val definedElements: List[UMLElement],
+                           override val resultingContext: CollectorContext
+                                       ) extends BaseCollector
 
-object DclVarRelationshipCollector {
-  def apply(declVar:Var)(implicit context:CollectorContext): DclVarRelationshipCollector = {
-    val assocInfo = util.AssociationInformation(declVar.pats,declVar.decltpe)
+object DclVarCollector {
+  def apply(declVar:Var)(implicit context:CollectorContext): DclVarCollector = {
+    val assocInfo = AssociationInformation(declVar.pats,declVar.decltpe)
 
     //Define Template for inner call in case it has not been defined before
     val newContext = if(context.definedTemplates.forall( (n:NamedElement) => !n.identifier.equals(assocInfo.pDeclType) )) {
@@ -35,6 +35,6 @@ object DclVarRelationshipCollector {
           Some("var"))
     }
 
-    new DclVarRelationshipCollector(relationships,newContext)
+    new DclVarCollector(relationships,newContext)
   }
 }

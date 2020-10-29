@@ -1,4 +1,4 @@
-package scalameta.stats
+package scalameta.stateless
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException
 

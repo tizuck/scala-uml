@@ -1,5 +1,8 @@
 package scalameta
 
+import scalameta.stats.StatsCollector
+import scalameta.util.CollectorContext
+
 import scala.meta.{Defn, Source}
 import uml.{TopLevelElement, UMLUnit}
 

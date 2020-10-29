@@ -1,19 +1,20 @@
 package scalameta.stats.dcl
 
-import scalameta.common.RelationshipBaseCollector
-import scalameta.stats.util
-import scalameta.{CollectorContext, StateChangingCollector}
+
+
+import scalameta.stats.util.AssociationInformation
+import scalameta.util.{BaseCollector, CollectorContext}
 import uml.{Association, Class, FromTo, NamedElement, Operation, Relationship, RelationshipInfo, UMLElement}
 
 import scala.meta.Decl
 
-case class DclValRelationshipCollector(override val definedElements : List[UMLElement],
-                                       override val resultingContext: CollectorContext
-                                       ) extends RelationshipBaseCollector
+case class DclValCollector(override val definedElements : List[UMLElement],
+                           override val resultingContext: CollectorContext
+                                       ) extends BaseCollector
 
-object DclValRelationshipCollector {
-  def apply(dclVal:Decl.Val)(implicit context:CollectorContext): DclValRelationshipCollector = {
-    val assocInfo = util.AssociationInformation(dclVal.pats,dclVal.decltpe)
+object DclValCollector {
+  def apply(dclVal:Decl.Val)(implicit context:CollectorContext): DclValCollector = {
+    val assocInfo = AssociationInformation(dclVal.pats,dclVal.decltpe)
 
     val newContext = if(context.definedTemplates.forall( (n:NamedElement) => !n.identifier.equals(assocInfo.pDeclType) )) {
       context.copy(definedTemplates =  Class(false,assocInfo.pDeclType,List.empty,List.empty,List.empty,None,None) :: context.definedTemplates)
@@ -33,6 +34,6 @@ object DclValRelationshipCollector {
             FromTo),
           None)
     }
-    new DclValRelationshipCollector(relationships,newContext)
+    new DclValCollector(relationships,newContext)
   }
 }

@@ -1,23 +1,27 @@
 package scalameta.stats.defn
 
-import scalameta.common.RelationshipBaseCollector
-import scalameta.operations.{PrimaryConstructorCollector}
-import scalameta.{CollectorContext, StatsCollector}
+import scalameta.operations.PrimaryConstructorCollector
+import scalameta.stats.StatsCollector
+import scalameta.stats.init.InitsCollector
+import scalameta.util.{BaseCollector, CollectorContext}
 import uml.{Class, Operation, UMLElement}
 
 import scala.meta.Defn
 
-case class DefnTraitRelationshipCollector(override val definedElements : List[UMLElement],
-                                          override val resultingContext: CollectorContext
+case class DefnTraitCollector(override val definedElements : List[UMLElement],
+                              override val resultingContext: CollectorContext
                                      )
-  extends RelationshipBaseCollector
+  extends BaseCollector
 
-object DefnTraitRelationshipCollector {
-  def apply(defnTrait:Defn.Trait)(implicit context:CollectorContext): DefnTraitRelationshipCollector = {
+object DefnTraitCollector {
+  def apply(defnTrait:Defn.Trait)(implicit context:CollectorContext): DefnTraitCollector = {
     //@todo implement generic type parameter collector
     val traitName = defnTrait.name.value
 
-    val innerElements = StatsCollector(defnTrait.templ.stats)(context.copy(thisPointer = Some(Class(true,traitName,Nil,Nil,Nil,None,None))))
+    val tempThisPointer = Class(true,traitName,Nil,Nil,Nil,None,None)
+
+    val inheritedElements = InitsCollector(defnTrait.templ.inits)(context.copy(thisPointer = Some(tempThisPointer)))
+    val innerElements = StatsCollector(defnTrait.templ.stats)(inheritedElements.resultingContext)
 
     val operations = innerElements.definedElements.flatMap{
       case o:Operation =>Some(o)
@@ -42,9 +46,10 @@ object DefnTraitRelationshipCollector {
       None,
       Some("trait"))
 
-    new DefnTraitRelationshipCollector(
-      cls :: innerWithoutOperations,
-      innerElements.resultingContext.copy(definedTemplates = cls :: innerElements.resultingContext.definedTemplates)
+    new DefnTraitCollector(
+      cls :: innerWithoutOperations ++ inheritedElements.inheritance,
+      innerElements.resultingContext.copy(definedTemplates = cls :: innerElements.resultingContext.definedTemplates,
+        thisPointer = None)
     )
   }
 }

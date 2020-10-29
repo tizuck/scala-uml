@@ -1,38 +1,38 @@
 package scalameta.stats.defn
 
-import scalameta.common.RelationshipBaseCollector
-import scalameta.stats.dcl.DclRelationshipCollector
-import scalameta.{CollectorContext, StateChangingCollector}
-import uml.{Class, Relationship, UMLElement}
+
+import scalameta.stats.dcl.DclCollector
+import scalameta.util.{BaseCollector, CollectorContext}
+import uml.{ UMLElement}
 
 import scala.meta.{Decl, Defn, Type}
 
-case class DefnRelationshipCollector(definedElements:List[UMLElement],
-                                     override val resultingContext: CollectorContext) extends RelationshipBaseCollector
+case class DefnCollector(definedElements:List[UMLElement],
+                         override val resultingContext: CollectorContext) extends BaseCollector
 
-object DefnRelationshipCollector {
-  def apply(defn:Defn)(implicit context:CollectorContext): DefnRelationshipCollector = {
+object DefnCollector {
+  def apply(defn:Defn)(implicit context:CollectorContext): DefnCollector = {
     val defnRelationships = defn match {
       case Defn.Val(mods, pats, optionType , _) =>
-        val dclRels = DclRelationshipCollector(Decl.Val(mods,pats,optionType.getOrElse(Type.Name(""))))
+        val dclRels = DclCollector(Decl.Val(mods,pats,optionType.getOrElse(Type.Name(""))))
         fromDecl(dclRels)
       case Defn.Var(mods,pats,optionType,_) =>
-        val dclRels = DclRelationshipCollector(Decl.Var(mods,pats,optionType.getOrElse(Type.Name(""))))
+        val dclRels = DclCollector(Decl.Var(mods,pats,optionType.getOrElse(Type.Name(""))))
         fromDecl(dclRels)
       case Defn.Type(mods,pats,typeparams,_) =>
         //@todo clearance upon what happens with the body of a type definition
-      val dclRels = DclRelationshipCollector(Decl.Type(mods,pats,typeparams,Type.Bounds(None,None)))
+      val dclRels = DclCollector(Decl.Type(mods,pats,typeparams,Type.Bounds(None,None)))
         fromDecl(dclRels)
-      case t : Defn.Trait => DefnTraitRelationshipCollector(t)
+      case t : Defn.Trait => DefnTraitCollector(t)
     }
 
-    new DefnRelationshipCollector(
+    new DefnCollector(
       defnRelationships.definedElements,
       defnRelationships.resultingContext)
   }
 
-  private def fromDecl(dclRelationshipCollector: DclRelationshipCollector):RelationshipBaseCollector = {
-    new RelationshipBaseCollector {
+  private def fromDecl(dclRelationshipCollector: DclCollector):BaseCollector = {
+    new BaseCollector {
       override val definedElements: List[UMLElement] = dclRelationshipCollector.definedElements
       override val resultingContext: CollectorContext = dclRelationshipCollector.resultingContext
     }
