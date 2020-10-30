@@ -1,5 +1,6 @@
 package scalameta.stats.defn
 
+import scalameta.mods.ClassModsCollector
 import scalameta.util.{BaseCollector, CollectorContext}
 import uml.UMLElement
 
@@ -11,7 +12,8 @@ class DefnClassCollector(override val definedElements: List[UMLElement],
 
 object DefnClassCollector {
   def apply(defnClass:Defn.Class)(implicit context : CollectorContext): DefnClassCollector = {
-
+    val mods = ClassModsCollector(defnClass.mods)
+    
   }
 
 

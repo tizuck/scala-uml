@@ -13,17 +13,6 @@ case class ClassModsCollector(modifier:List[Attribute], stereotype:Option[String
 }
 
 object ClassModsCollector {
-  def modsAttributeManifest:Map[Mod,Attribute] = Map (
-    Mod.Final -> Attribute(None,None,"isFinal",None,None),
-    Mod.Protected -> Attribute(None,None,"isProtected",None,None),
-    Mod.Implicit -> Attribute(None,None,"isImplicit",None,None),
-    Mod.Inline -> Attribute(None,None,"isInline",None,None),
-    Mod.Lazy -> Attribute(None,None,"isLazy",None,None),
-    Mod.Opaque -> Attribute(None,None,"isOpaque",None,None),
-    Mod.Open -> Attribute(None,None,"isOpen",None,None),
-    Mod.Override -> Attribute(None,None,"isOverride",None,None),
-    Mod.Private -> Attribute(None,None,"isPrivate",None,None)
-  )
 
   def apply(mods:List[Mod]): ClassModsCollector = {
     mods.foldLeft(ClassModsCollector(Nil,None,false)){
@@ -31,11 +20,15 @@ object ClassModsCollector {
       case (acc,Mod.Private(ref)) => acc + Attribute(None,None,"isPrivate",None,Some(s"<<private in=${ref.syntax}"))
       case (acc,Mod.Override()) => acc + Attribute(None,None,"isOverride",None,None)
       case (acc,Mod.Open()) => acc + Attribute(None,None,"isOpen",None,None)
+      case (acc,Mod.Abstract()) => acc + true
+      case (acc,Mod.Case()) => acc + "caseclass"
+      case (acc,Mod.Protected(ref)) => acc + Attribute(None,None,"isPrivate",None,Some(s"<<protected in=${ref.syntax}"))
+      case (acc,Mod.Opaque()) => acc + Attribute(None,None,"isOpaque",None,None)
+      case (acc,Mod.Lazy()) => acc + Attribute(None,None,"isLazy",None,None)
+      case (acc,Mod.Implicit()) => acc + Attribute(None,None,"isImplicit",None,None)
+      case (acc,Mod.Inline()) => acc + Attribute(None,None,"isInline",None,None)
+      case (acc,Mod.Sealed()) => acc + Attribute(None,None,"isSealed",None,None)
     }
-  }
-
-  private def addAttribute(atts:List[Attribute]):List[Attribute] = {
-    atts
   }
 }
 
