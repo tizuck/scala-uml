@@ -11,6 +11,22 @@ object Main extends App {
       | val b : Bool = true
       | var c : List
       | type E
+      |
+      | trait Y {
+      |   trait Z {
+      |     trait AA
+      |     trait AB
+      |     trait AC
+      |     trait AD {
+      |       trait BA
+      |     }
+      |     trait Q {
+      |       trait J {
+      |         val a : Int
+      |       }
+      |     }
+      |   }
+      | }
       |}
       |
       |trait Int

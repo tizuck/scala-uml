@@ -5,27 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/mods/ClassModsCollector.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/mods/ModsInfo.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnClassCollector.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/AccessModifierCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/AccessModifierCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/BoundsNameCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/BoundsNameCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/ModificatorsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/ModificatorsCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TargetMultiplicityCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TargetMultiplicityCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TypeNameCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TypeNameCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/StatCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/StatCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/StatsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/StatsCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclDefCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclDefCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/plantuml/SimplePlantUMLPrettyPrinter.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/plantuml/SimplePlantUMLPrettyPrinter.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclTypeCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclValCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclValCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclVarCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclVarCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnCollector.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTraitCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTraitCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/init/InitCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/init/InitCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/init/InitsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/init/InitsCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/util/AssociationInformation.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/util/AssociationInformation.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/toplevel/UMLCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/toplevel/UMLCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/BaseCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/BaseCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/CollectorContext.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/CollectorContext.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,15 +91,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -177,7 +163,9 @@
       <workItem from="1603743404522" duration="842000" />
       <workItem from="1603798223281" duration="10790000" />
       <workItem from="1603878809876" duration="22716000" />
-      <workItem from="1603984990211" duration="1516000" />
+      <workItem from="1603984990211" duration="3963000" />
+      <workItem from="1604082940498" duration="23000" />
+      <workItem from="1604082973943" duration="4972000" />
     </task>
     <servers />
   </component>
@@ -213,22 +201,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="915" y="277" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602884588099" />
-    <state width="1877" height="188" key="GridCell.Tab.0.bottom" timestamp="1603986501930">
+    <state width="1877" height="190" key="GridCell.Tab.0.bottom" timestamp="1604087022088">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="188" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603986501930" />
-    <state width="1877" height="188" key="GridCell.Tab.0.center" timestamp="1603986501930">
+    <state width="1877" height="190" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604087022088" />
+    <state width="1877" height="190" key="GridCell.Tab.0.center" timestamp="1604087022088">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="188" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603986501930" />
-    <state width="1877" height="188" key="GridCell.Tab.0.left" timestamp="1603986501930">
+    <state width="1877" height="190" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604087022088" />
+    <state width="1877" height="190" key="GridCell.Tab.0.left" timestamp="1604087022088">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="188" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603986501930" />
-    <state width="1877" height="188" key="GridCell.Tab.0.right" timestamp="1603986501930">
+    <state width="1877" height="190" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604087022088" />
+    <state width="1877" height="190" key="GridCell.Tab.0.right" timestamp="1604087022088">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="188" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603986501930" />
+    <state width="1877" height="190" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604087022088" />
     <state width="1877" height="421" key="GridCell.Tab.1.bottom" timestamp="1603321117319">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -257,6 +245,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="767" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603895177210" />
+    <state x="1995" y="-18" width="1130" height="805" maximized="true" key="dock-window-1" timestamp="1604087511591">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1995" y="-18" width="1130" height="805" maximized="true" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604087511591" />
     <state width="600" height="440" key="javadoc.popup" timestamp="1602939693611">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

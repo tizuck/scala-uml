@@ -82,7 +82,7 @@ sealed case class Class(isAbstract:Boolean,
 sealed case class Attribute(modificators:Option[List[Modificator]],
                             modifier: Option[AccessModifier],
                             identifier:String,
-                            attributeType:String,
+                            attributeType:Option[String],
                             stereotype:Option[String]) extends
   CompartmentElement with
   StereotypeElement with

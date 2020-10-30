@@ -4,7 +4,7 @@ import scalameta.operations.PrimaryConstructorCollector
 import scalameta.stats.StatsCollector
 import scalameta.stats.init.InitsCollector
 import scalameta.util.{BaseCollector, CollectorContext}
-import uml.{Class, Operation, UMLElement}
+import uml.{Class, Inner, Operation, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
 
 import scala.meta.Defn
 
@@ -19,6 +19,8 @@ object DefnTraitCollector {
     val traitName = defnTrait.name.value
 
     val tempThisPointer = Class(true,traitName,Nil,Nil,Nil,None,None)
+    //Collect thisPointer for inner associations
+    val previousThisPointer = context.thisPointer
 
     val inheritedElements = InitsCollector(defnTrait.templ.inits)(context.copy(thisPointer = Some(tempThisPointer)))
     val innerElements = StatsCollector(defnTrait.templ.stats)(inheritedElements.resultingContext)
@@ -46,10 +48,14 @@ object DefnTraitCollector {
       None,
       Some("trait"))
 
+    val innerRelationship = if(previousThisPointer.isDefined){
+      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,previousThisPointer.get,cls,None,Without),None))
+    } else {None}
+
     new DefnTraitCollector(
-      cls :: innerWithoutOperations ++ inheritedElements.inheritance,
+      cls :: innerWithoutOperations ++ inheritedElements.inheritance ++ innerRelationship.map(r => List(r)).getOrElse(Nil),
       innerElements.resultingContext.copy(definedTemplates = cls :: innerElements.resultingContext.definedTemplates,
-        thisPointer = None)
+        thisPointer = previousThisPointer)
     )
   }
 }

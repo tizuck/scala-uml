@@ -75,7 +75,7 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
       opt(accessModifier,showAccessModifier,r=emptyDoc) <>
         showStereotype(a) <>
         opt(modificators,showModificators) <>
-        identifier <+> ':' <+> attributeType
+        identifier <+> opt(attributeType,text,':' <> space)
 
     case p@Parameter(
     identifier,
