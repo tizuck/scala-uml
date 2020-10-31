@@ -60,10 +60,10 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
             nest(line <>
               vsep(attributes.map(show)) <>
               (if (attributes.nonEmpty) line else emptyDoc) <>
-              vsep(operations.map(show)) <>
-              (if (operations.nonEmpty) line else emptyDoc) <>
-              vsep(additionalCompartements.map(show))
-            ),
+              vsep(operations.map(show))
+            ) <> space <>
+            (if (operations.nonEmpty) line else emptyDoc) <>
+              vsep(additionalCompartements.map(show)) <> line,
              "}")
         } else emptyDoc)
 
@@ -100,10 +100,11 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
 
     case Compartment(identifier, compartmentElements,stereotype) =>
         "--" <>
-          opt(stereotype,text,space,emptyDoc)
           opt(identifier,text,l=space,r=space <> "--") <>
-          line <>
-          vsep(compartmentElements.map(show))
+          nest (
+            line <>
+            vsep(compartmentElements.map(show))
+          )
 
     case Note(attachedElements,nText,stereotype) =>
       val noteId = randomUUID().toString

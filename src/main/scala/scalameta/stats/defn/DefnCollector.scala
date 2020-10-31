@@ -19,11 +19,15 @@ object DefnCollector {
       case Defn.Var(mods,pats,optionType,_) =>
         val dclRels = DclCollector(Decl.Var(mods,pats,optionType.getOrElse(Type.Name(""))))
         fromDecl(dclRels)
+      case Defn.Def(mods, name, tparams, paramss, maybeType, _) =>
+        val dclRels = DclCollector(Decl.Def(mods,name,tparams,paramss , maybeType.getOrElse(Type.Name(""))))
+        fromDecl(dclRels)
       case Defn.Type(mods,pats,typeparams,_) =>
         //@todo clearance upon what happens with the body of a type definition
       val dclRels = DclCollector(Decl.Type(mods,pats,typeparams,Type.Bounds(None,None)))
         fromDecl(dclRels)
       case t : Defn.Trait => DefnTraitCollector(t)
+      case c : Defn.Class => DefnClassCollector(c)
     }
 
     new DefnCollector(
