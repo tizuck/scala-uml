@@ -5,14 +5,14 @@ import uml.Parameter
 
 import scala.meta.Term
 
-case class ParameterListsCollector(parameterLists:List[List[Parameter]])
+case class ParamssCollector(parameterLists:List[List[Parameter]])
 
-object ParameterListsCollector {
-  def apply(paramss:List[List[Term.Param]])(implicit context:CollectorContext): ParameterListsCollector = {
+object ParamssCollector {
+  def apply(paramss:List[List[Term.Param]])(implicit context:CollectorContext): ParamssCollector = {
     val pparamss = for (params <- paramss) yield {
-      ParameterListCollector(params).parameters
+      ParamsCollector(params).parameters
     }
 
-    new ParameterListsCollector(pparamss)
+    new ParamssCollector(pparamss)
   }
 }

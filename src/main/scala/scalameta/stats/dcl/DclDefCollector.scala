@@ -1,6 +1,6 @@
 package scalameta.relationships.dcl
 
-import scalameta.operations.parameters.ParameterListsCollector
+import scalameta.operations.parameters.ParamssCollector
 import scalameta.stateless.{AccessModifierCollector, ModificatorsCollector, TypeNameCollector}
 import scalameta.util.{BaseCollector, CollectorContext}
 import uml.{Operation, Relationship, UMLElement}
@@ -14,7 +14,7 @@ object DclDefCollector {
   def apply(dclDef :Decl.Def)(implicit context:CollectorContext): DclDefCollector = {
     val operationName = dclDef.name.value
     //@todo get template parameter
-    val parametersLists = ParameterListsCollector(dclDef.paramss).parameterLists
+    val parametersLists = ParamssCollector(dclDef.paramss).parameterLists
 
     val returnType = TypeNameCollector(dclDef.decltpe).typeRep
 

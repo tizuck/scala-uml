@@ -28,11 +28,16 @@ object DefnCollector {
         fromDecl(dclRels)
       case t : Defn.Trait => DefnTraitCollector(t)
       case c : Defn.Class => DefnClassCollector(c)
+      case o : Defn.Object => DefnObjectCollector(o)
+      case e : Defn.Enum => DefnEnumCollector(e)
+      case re : Defn.RepeatedEnumCase => DefnRepeatedEnumCaseCollector(re)
+      case ec : Defn.EnumCase => DefnEnumCaseCollector(ec)
     }
 
     new DefnCollector(
       defnRelationships.definedElements,
-      defnRelationships.resultingContext)
+      defnRelationships.resultingContext
+    )
   }
 
   private def fromDecl(dclRelationshipCollector: DclCollector):BaseCollector = {

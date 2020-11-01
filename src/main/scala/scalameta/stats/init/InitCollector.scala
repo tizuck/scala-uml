@@ -19,6 +19,8 @@ object InitCollector {
       context.copy(definedTemplates =  Class(false,extendedType.typeRep,List.empty,List.empty,List.empty,None,None) :: context.definedTemplates)
     } else {context}
 
+
+
     val inheritance = Relationship(
       Extension,
       ToFrom,

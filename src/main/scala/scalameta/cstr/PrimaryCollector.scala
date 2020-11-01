@@ -1,6 +1,6 @@
 package scalameta.operations
 
-import scalameta.operations.parameters.ParameterListsCollector
+import scalameta.operations.parameters.ParamssCollector
 import scalameta.util.CollectorContext
 import uml.Operation
 
@@ -11,7 +11,7 @@ case class PrimaryConstructorCollector(primaryCstr:Option[Operation])
 object PrimaryConstructorCollector {
   def apply(prim:Ctor.Primary)(implicit context: CollectorContext): PrimaryConstructorCollector = {
     if(prim.paramss.nonEmpty) {
-      val operationParameterLists = ParameterListsCollector(prim.paramss)
+      val operationParameterLists = ParamssCollector(prim.paramss)
       if (context.cstrOrigin.isEmpty) {
         throw new IllegalStateException("context Constructor Origin is empty unexpectedly")
       }
