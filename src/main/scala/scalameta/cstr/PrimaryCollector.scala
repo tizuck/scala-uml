@@ -1,7 +1,7 @@
 package scalameta.operations
 
 import scalameta.operations.parameters.ParamssCollector
-import scalameta.util.CollectorContext
+import scalameta.util.context.CollectorContext
 import uml.Operation
 
 import scala.meta.Ctor

@@ -73,8 +73,6 @@ sealed case class Class(isAbstract:Boolean,
   PackageBodyElement with
   RelateableElement with
   NamedElement
-
-
 /***************
  * Attributes
  **************/

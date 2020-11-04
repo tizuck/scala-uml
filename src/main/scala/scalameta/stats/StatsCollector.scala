@@ -1,6 +1,7 @@
 package scalameta.stats
 
-import scalameta.util.{BaseCollector, CollectorContext}
+import scalameta.util.BaseCollector
+import scalameta.util.context.CollectorContext
 import uml.UMLElement
 
 import scala.meta.Stat

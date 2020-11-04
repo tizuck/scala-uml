@@ -1,5 +1,6 @@
 package scalameta.stats.dcl
-import scalameta.util.{BaseCollector, CollectorContext}
+import scalameta.util.BaseCollector
+import scalameta.util.context.CollectorContext
 import uml.{Association, Class, FromTo, Inner, Operation, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
 
 import scala.meta.Decl

@@ -1,7 +1,6 @@
 package scalameta.stateless
 
-
-import scalameta.util.CollectorContext
+import scalameta.util.context.CollectorContext
 import uml.{Modificator, Static}
 
 import scala.meta.Mod

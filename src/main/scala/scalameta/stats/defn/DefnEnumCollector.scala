@@ -3,7 +3,8 @@ package scalameta.stats.defn
 import scalameta.mods.ClassModsCollector
 import scalameta.operations.PrimaryConstructorCollector
 import scalameta.stats.StatsCollector
-import scalameta.util.{BaseCollector, CollectorContext}
+import scalameta.util.BaseCollector
+import scalameta.util.context.CollectorContext
 import uml.{Class, UMLElement}
 
 import scala.meta.Defn

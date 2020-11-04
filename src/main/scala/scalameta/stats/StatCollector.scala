@@ -2,7 +2,8 @@ package scalameta.stats
 
 import scalameta.stats.dcl.DclCollector
 import scalameta.stats.defn.DefnCollector
-import scalameta.util.{BaseCollector, CollectorContext, StateChangingCollector}
+import scalameta.util.context.CollectorContext
+import scalameta.util.{BaseCollector, StateChangingCollector}
 import uml.UMLElement
 
 import scala.meta.{Decl, Defn, Stat}

@@ -3,7 +3,8 @@ package scalameta.stats.dcl
 
 
 import scalameta.stats.util.AssociationInformation
-import scalameta.util.{BaseCollector, CollectorContext}
+import scalameta.util.BaseCollector
+import scalameta.util.context.CollectorContext
 import uml.{Association, Class, FromTo, NamedElement, Operation, Relationship, RelationshipInfo, UMLElement}
 
 import scala.meta.Decl

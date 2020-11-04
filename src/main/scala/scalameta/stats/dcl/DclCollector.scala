@@ -2,7 +2,8 @@ package scalameta.stats.dcl
 
 
 import scalameta.relationships.dcl.DclDefCollector
-import scalameta.util.{BaseCollector, CollectorContext}
+import scalameta.util.BaseCollector
+import scalameta.util.context.CollectorContext
 import uml.{Class, Operation, Relationship, UMLElement}
 
 import scala.meta.Decl

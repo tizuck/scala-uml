@@ -1,6 +1,6 @@
 package scalameta.operations.parameters
 
-import scalameta.util.CollectorContext
+import scalameta.util.context.CollectorContext
 import uml.Parameter
 
 import scala.meta.Term

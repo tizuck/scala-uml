@@ -1,9 +1,10 @@
 package scalameta.stats.init
 
-import scalameta.util.{CollectorContext, StateChangingCollector}
+import scalameta.util.StateChangingCollector
+import scalameta.util.context.CollectorContext
 import uml.Relationship
 
-import scala.meta.{Init}
+import scala.meta.Init
 
 case class InitsCollector(override val resultingContext: CollectorContext,
                           inheritance:List[Relationship]) extends StateChangingCollector

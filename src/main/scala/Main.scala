@@ -1,4 +1,4 @@
-import scalameta.PlantUMLCollector
+import scalameta.UMLCollector
 
 import scala.meta._
 import scala.meta.dialects
@@ -6,15 +6,25 @@ import scala.meta.dialects
 object Main extends App {
   val program =
     """
-      |enum Color(val rgb: Int) {
-      |  case Red   extends Color(0xFF0000)
-      |  case Green extends Color(0x00FF00)
-      |  case Blue  extends Color(0x0000FF)
+      |trait A {
+      | def foo(b:B):Unit = ()
+      | def bar:B = new B
+      | trait B {
+      |   trait C {
+      |     trait D {
+      |   }
+      |  }
+      | }
       |}
+      |
+      |val a1 = new A
+      |val a2 = new A
+      |a2.foo(a1.bar)
+      |
       |""".stripMargin
   val source = dialects.Dotty(program).parse[Source].get
   println(source.structure)
-  val plantUMLUnit = PlantUMLCollector(source).plantUMLUnit
+  val plantUMLUnit = UMLCollector(source).plantUMLUnit
   println(plantUMLUnit)
   println(plantUMLUnit.pretty)
 }

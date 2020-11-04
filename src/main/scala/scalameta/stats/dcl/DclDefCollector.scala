@@ -2,7 +2,8 @@ package scalameta.relationships.dcl
 
 import scalameta.operations.parameters.ParamssCollector
 import scalameta.stateless.{AccessModifierCollector, ModificatorsCollector, TypeNameCollector}
-import scalameta.util.{BaseCollector, CollectorContext}
+import scalameta.util.BaseCollector
+import scalameta.util.context.CollectorContext
 import uml.{Operation, Relationship, UMLElement}
 
 import scala.meta.Decl

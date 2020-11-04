@@ -2,7 +2,7 @@ package scalameta.operations.parameters
 
 import scalameta.mods.ParameterModsCollector
 import scalameta.stateless.TypeNameCollector
-import scalameta.util.CollectorContext
+import scalameta.util.context.CollectorContext
 import uml.Parameter
 
 import scala.meta.{Term, Type}

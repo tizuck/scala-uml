@@ -1,6 +1,6 @@
 package scalameta.stateless
 
-import scalameta.util.CollectorContext
+import scalameta.util.context.CollectorContext
 import sun.reflect.generics.reflectiveObjects.NotImplementedException
 
 import scala.meta.Type
