@@ -8,7 +8,7 @@ import scala.meta.Type
 case class TypeNameCollector(typeRep:String)
 
 object TypeNameCollector {
-  def apply(mtype:scala.meta.Type)(implicit context : CollectorContext): TypeNameCollector = {
+  def apply(mtype:scala.meta.Type): TypeNameCollector = {
     mtype match {
       case Type.Var(name) => new TypeNameCollector(name.syntax)
       case Type.Name(name) => new TypeNameCollector(name)
@@ -25,6 +25,7 @@ object TypeNameCollector {
           TypeNameCollector(arg).typeRep
         }
         new TypeNameCollector(s"$applyType<${argTypes.mkString(",")}>")
+
     }
   }
 }

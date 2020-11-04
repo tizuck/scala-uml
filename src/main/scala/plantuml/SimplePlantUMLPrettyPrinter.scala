@@ -39,9 +39,9 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
     case GenericParameter(
     identifier,
     concreteType,stereotype) =>
-        opt(stereotype,text) <>
-        identifier <>
-          opt(concreteType,text,space <> ":" <> space,emptyDoc)
+      opt(stereotype,text,r = emptyDoc) <>
+          identifier <>
+          opt(concreteType,text,space <> ":" <> space)
 
     case Class(
     isAbstract,
@@ -55,7 +55,7 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
       (if(isAbstract) {"abstract" <> space } else { emptyDoc }) <>
         "class" <+>
         (namespace match {case "default" => name case s@_ => stringWrap(s + '.' + name)}) <>
-        opt(genericParameter,  (gps:List[GenericParameter]) => hsep(gps.map(show),sep = ','),emptyR = space) <>
+        opt(genericParameter,  (gps:List[GenericParameter]) => hsep(gps.map(show),sep = ','),l="< ",r=" >" <> space,emptyR = space) <>
         opt(stereotype,text,"<<" <> space,space <> ">>") <>
         (if(attributes.nonEmpty || operations.nonEmpty || additionalCompartements.nonEmpty) {
           enclose("{",
