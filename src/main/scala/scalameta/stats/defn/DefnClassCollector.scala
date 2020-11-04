@@ -6,7 +6,7 @@ import scalameta.stats.StatsCollector
 import scalameta.stats.init.InitsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Attribute, Class, Compartment, Inner, Operation, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
+import uml.{Attribute, Class, ClassRef, Compartment, ConcreteClass, Inner, Operation, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
 
 import scala.meta.Defn
 
@@ -20,9 +20,11 @@ object DefnClassCollector {
     val mods = ClassModsCollector(defnClass.mods)
     val className = defnClass.name.value
     println(s"for class:${className} mods: ${mods.modifier} with original modifiers: ${defnClass.mods}")
-    val tempThisPointer = Some(Class(true,className,Nil,Nil,Nil,None,None))
-    val previousThisPointer = context.thisPointer
-    val inheritedElements = InitsCollector(defnClass.templ.inits)(context.copy(thisPointer = tempThisPointer))
+    val tempThisPointer = Some(ClassRef(className))
+    val previousThisPointer = context.localCon.thisPointer
+    val inheritedElements = InitsCollector(defnClass.templ.inits)(
+      context.copy(context.localCon.copy(thisPointer = tempThisPointer))
+    )
     val innerElements = StatsCollector(defnClass.templ.stats)(inheritedElements.resultingContext)
     val operations = innerElements.definedElements.flatMap{
       case o:Operation => Some(o)
@@ -32,8 +34,9 @@ object DefnClassCollector {
       case _:Operation => None
       case other => Some(other)
     }
-    val primaryConstructor = PrimaryConstructorCollector(defnClass.ctor)(context.copy(cstrOrigin = Some(className)))
-
+    val primaryConstructor = PrimaryConstructorCollector(defnClass.ctor)(
+      context.copy(context.localCon.copy(cstrOrigin = Some(className)))
+    )
 
     val cls = Class(
       mods.isAbstract,
@@ -46,7 +49,7 @@ object DefnClassCollector {
     )
 
     val innerRelationship = if(previousThisPointer.isDefined){
-      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,previousThisPointer.get,cls,None,Without),None))
+      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,previousThisPointer.get,ConcreteClass(cls),None,Without),None))
     } else {None}
 
     new DefnClassCollector(
@@ -54,10 +57,11 @@ object DefnClassCollector {
         innerWithoutOperations ++
           inheritedElements.inheritance ++
           innerRelationship.map(r => List(r)).getOrElse(Nil),
-      innerElements.resultingContext.copy(
-        definedTemplates  = cls :: innerElements.resultingContext.definedTemplates,
+      innerElements.resultingContext.copy( innerElements.resultingContext.localCon.copy(
+        definedTemplates  = cls :: innerElements.resultingContext.localCon.definedTemplates,
         thisPointer = previousThisPointer
       ))
+    )
   }
 
 

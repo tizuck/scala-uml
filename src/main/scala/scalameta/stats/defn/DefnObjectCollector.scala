@@ -5,7 +5,7 @@ import scalameta.stats.StatsCollector
 import scalameta.stats.init.InitsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Attribute, Class, Compartment, Inner, Operation, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
+import uml.{Attribute, Class, ClassRef, Compartment, ConcreteClass, Inner, Operation, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
 
 import scala.meta.Defn
 
@@ -17,10 +17,10 @@ object DefnObjectCollector {
     val mods = ObjectModsCollector(defnObject.mods)
     val objectName = defnObject.name.value
 
-    val tempThisPointer = Some(Class(true,objectName,Nil,Nil,Nil,None,None))
-    val previousThisPointer = context.thisPointer
+    val tempThisPointer = Some(ClassRef(objectName))
+    val previousThisPointer = context.localCon.thisPointer
 
-    val inheritedElements = InitsCollector(defnObject.templ.inits)(context.copy(thisPointer = tempThisPointer))
+    val inheritedElements = InitsCollector(defnObject.templ.inits)(context.copy(context.localCon.copy(thisPointer = tempThisPointer)))
     val innerElements = StatsCollector(defnObject.templ.stats)(inheritedElements.resultingContext)
     val operations = innerElements.definedElements.flatMap{
       case o:Operation => Some(o)
@@ -42,15 +42,15 @@ object DefnObjectCollector {
     )
 
     val innerRelationship = if(previousThisPointer.isDefined){
-      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,previousThisPointer.get,cls,None,Without),None))
+      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,previousThisPointer.get,ConcreteClass(cls),None,Without),None))
     } else {None}
 
     new DefnObjectCollector(
       cls :: innerWithoutOperations ++ inheritedElements.inheritance ++ innerRelationship.map( List(_)).getOrElse(Nil),
-      innerElements.resultingContext.copy(
-        definedTemplates =  cls :: innerElements.resultingContext.definedTemplates,
+      innerElements.resultingContext.copy( innerElements.resultingContext.localCon.copy(
+        definedTemplates =  cls :: innerElements.resultingContext.localCon.definedTemplates,
         thisPointer = previousThisPointer
-      )
+      ))
     )
   }
 }

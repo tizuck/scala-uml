@@ -4,15 +4,13 @@ import uml.{NamedElement, Operation, RelateableElement}
 
 import scala.meta.Source
 
-case class CollectorContext(thisPointer: Option[NamedElement with RelateableElement] = None,
-                            definedTemplates: List[NamedElement with RelateableElement] = List.empty,
-                            cstrOrigin:Option[String]) {
+case class CollectorContext(localCon:LocalContext, globalCon:GlobalContext) {
 
   def +(other: CollectorContext): CollectorContext =
     CollectorContext(
-      this.thisPointer,
-      (this.definedTemplates ++ other.definedTemplates).distinct,
-      this.cstrOrigin)
+      localCon.copy(definedTemplates = localCon.definedTemplates ++ other.localCon.definedTemplates)
+      ,globalCon
+    )
 
   def ++(others: List[CollectorContext]): CollectorContext =
     others.foldLeft(this) {
@@ -23,7 +21,7 @@ case class CollectorContext(thisPointer: Option[NamedElement with RelateableElem
 }
 
 object CollectorContext {
-  def apply(): CollectorContext = {
-    new CollectorContext(None,Nil,None)
+  def apply(pre:GlobalContext): CollectorContext = {
+    new CollectorContext(LocalContext(),pre)
   }
 }

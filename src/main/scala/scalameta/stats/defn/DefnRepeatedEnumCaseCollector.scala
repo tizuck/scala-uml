@@ -2,7 +2,7 @@ package scalameta.stats.defn
 
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Class, Extension, FromTo, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
+import uml.{Class, ConcreteClass, Extension, FromTo, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
 
 import scala.meta.Defn
 
@@ -23,12 +23,15 @@ object DefnRepeatedEnumCaseCollector {
           Relationship(
             Extension,
             ToFrom,
-            RelationshipInfo(None,None,context.thisPointer.get,cls,None,Without)
+            RelationshipInfo(None,None,context.localCon.thisPointer.get,ConcreteClass(cls),None,Without)
             ,None
           )
         acc.copy(
           definedElements = cls :: relationship :: acc.definedElements,
-          resultingContext = acc.resultingContext.copy(definedTemplates = cls :: acc.resultingContext.definedTemplates)
+          resultingContext = acc.resultingContext.copy(
+            acc.resultingContext.localCon.copy(
+              definedTemplates = cls :: acc.resultingContext.localCon.definedTemplates)
+          )
         )
     }
   }

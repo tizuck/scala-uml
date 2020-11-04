@@ -5,7 +5,7 @@ import scalameta.stats.StatsCollector
 import scalameta.stats.init.InitsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Class, Inner, Operation, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
+import uml.{Class, ClassRef, ConcreteClass, Inner, Operation, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
 
 import scala.meta.Defn
 
@@ -19,11 +19,14 @@ object DefnTraitCollector {
     //@todo implement generic type parameter collector
     val traitName = defnTrait.name.value
 
-    val tempThisPointer = Class(true,traitName,Nil,Nil,Nil,None,None)
+    val tempThisPointer = ClassRef(traitName)
     //Collect thisPointer for inner associations
-    val previousThisPointer = context.thisPointer
+    val previousThisPointer = context.localCon.thisPointer
 
-    val inheritedElements = InitsCollector(defnTrait.templ.inits)(context.copy(thisPointer = Some(tempThisPointer)))
+    val inheritedElements = InitsCollector(defnTrait.templ.inits)(
+      context.copy(context.localCon.copy(thisPointer = Some(tempThisPointer)))
+    )
+
     val innerElements = StatsCollector(defnTrait.templ.stats)(inheritedElements.resultingContext)
 
     val operations = innerElements.definedElements.flatMap{
@@ -36,7 +39,9 @@ object DefnTraitCollector {
       case other => Some(other)
     }
 
-    val primaryConstructor = PrimaryConstructorCollector(defnTrait.ctor)(context.copy(cstrOrigin = Some(traitName)))
+    val primaryConstructor = PrimaryConstructorCollector(defnTrait.ctor)(
+      context.copy(context.localCon.copy(cstrOrigin = Some(traitName)))
+    )
 
     val cls = Class(
       true,
@@ -50,13 +55,16 @@ object DefnTraitCollector {
       Some("trait"))
 
     val innerRelationship = if(previousThisPointer.isDefined){
-      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,previousThisPointer.get,cls,None,Without),None))
+      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,previousThisPointer.get,ConcreteClass(cls),None,Without),None))
     } else {None}
 
     new DefnTraitCollector(
       cls :: innerWithoutOperations ++ inheritedElements.inheritance ++ innerRelationship.map(r => List(r)).getOrElse(Nil),
-      innerElements.resultingContext.copy(definedTemplates = cls :: innerElements.resultingContext.definedTemplates,
-        thisPointer = previousThisPointer)
+      innerElements.resultingContext.copy(
+        innerElements.resultingContext.localCon.copy(
+          definedTemplates = cls :: innerElements.resultingContext.localCon.definedTemplates,
+          thisPointer = previousThisPointer)
+      )
     )
   }
 }

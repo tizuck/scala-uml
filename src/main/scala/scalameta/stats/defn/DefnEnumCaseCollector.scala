@@ -5,7 +5,7 @@ import scalameta.operations.PrimaryConstructorCollector
 import scalameta.stats.init.InitsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Class, UMLElement}
+import uml.{Class, ClassRef, UMLElement}
 
 import scala.meta.Defn
 
@@ -17,12 +17,14 @@ object DefnEnumCaseCollector {
     val mods = ClassModsCollector(defnEnumCase.mods)
     val caseName = defnEnumCase.name.value
 
-    val tempThisPointer = Some(Class(true,caseName,Nil,Nil,Nil,None,None))
-    val previousThisPointer = context.thisPointer
+    val tempThisPointer = Some(ClassRef(caseName))
+    val previousThisPointer = context.localCon.thisPointer
 
-    val inheritedElements = InitsCollector(defnEnumCase.inits)(context.copy(thisPointer=tempThisPointer))
+    val inheritedElements = InitsCollector(defnEnumCase.inits)(
+      context.copy(context.localCon.copy(thisPointer=tempThisPointer))
+    )
     val primaryConstructor = PrimaryConstructorCollector(defnEnumCase.ctor)(
-      inheritedElements.resultingContext.copy(cstrOrigin = Some(caseName))
+      inheritedElements.resultingContext.copy(context.localCon.copy(cstrOrigin = Some(caseName)))
     )
 
     val cls = Class(
@@ -38,8 +40,8 @@ object DefnEnumCaseCollector {
     new DefnEnumCaseCollector(
       cls :: inheritedElements.inheritance,
       inheritedElements.resultingContext.copy(
-        thisPointer = previousThisPointer,
-        definedTemplates = cls :: inheritedElements.resultingContext.definedTemplates
+        context.localCon.copy(thisPointer = previousThisPointer,
+        definedTemplates = cls :: inheritedElements.resultingContext.localCon.definedTemplates)
       )
     )
   }

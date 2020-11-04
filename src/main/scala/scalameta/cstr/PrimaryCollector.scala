@@ -12,13 +12,13 @@ object PrimaryConstructorCollector {
   def apply(prim:Ctor.Primary)(implicit context: CollectorContext): PrimaryConstructorCollector = {
     if(prim.paramss.nonEmpty) {
       val operationParameterLists = ParamssCollector(prim.paramss)
-      if (context.cstrOrigin.isEmpty) {
+      if (context.localCon.cstrOrigin.isEmpty) {
         throw new IllegalStateException("context Constructor Origin is empty unexpectedly")
       }
       val cstr = uml.Operation(
         None,
         None,
-        context.cstrOrigin.get,
+        context.localCon.cstrOrigin.get,
         operationParameterLists.parameterLists,
         None,
         Some("constr"))

@@ -5,7 +5,7 @@ import scalameta.operations.PrimaryConstructorCollector
 import scalameta.stats.StatsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Class, UMLElement}
+import uml.{Class, ClassRef, UMLElement}
 
 import scala.meta.Defn
 
@@ -17,12 +17,12 @@ object DefnEnumCollector {
     val mods = ClassModsCollector(defnEnum.mods)
     val enumName = defnEnum.name
 
-    val tempThisPointer = Some(Class(true,enumName.value,Nil,Nil,Nil,None,None))
-    val previousThisPointer = context.thisPointer
+    val tempThisPointer = Some(ClassRef(enumName.value))
+    val previousThisPointer = context.localCon.thisPointer
 
-    val innerElements = StatsCollector(defnEnum.templ.stats)(context.copy(thisPointer = tempThisPointer))
+    val innerElements = StatsCollector(defnEnum.templ.stats)(context.copy(context.localCon.copy(thisPointer = tempThisPointer)))
     val primaryConstructor = PrimaryConstructorCollector(defnEnum.ctor)(
-      innerElements.resultingContext.copy(cstrOrigin = Some(enumName.value))
+      innerElements.resultingContext.copy(innerElements.resultingContext.localCon.copy(cstrOrigin = Some(enumName.value)))
     )
 
     val cls = Class(
@@ -37,7 +37,7 @@ object DefnEnumCollector {
 
     DefnEnumCollector(
       cls :: innerElements.definedElements,
-      innerElements.resultingContext.copy(thisPointer = previousThisPointer)
+      innerElements.resultingContext.copy(innerElements.resultingContext.localCon.copy(thisPointer = previousThisPointer))
     )
   }
 }

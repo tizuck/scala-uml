@@ -2,6 +2,11 @@ package uml
 
 import plantuml.SimplePlantUMLPrettyPrinter
 
+object types {
+  type Namespace = String
+  type DefinedTemplates = List[String]
+}
+
 /**
  * @todo will be used later to define operations on all nodes
  */
@@ -23,6 +28,7 @@ sealed trait RelateableElement extends UMLElement
 
 sealed trait NamedElement extends UMLElement {
   val identifier : String
+  val namespace : types.Namespace = "default"
 }
 
 sealed case class UMLUnit(identifier:String,
@@ -34,7 +40,8 @@ sealed case class UMLUnit(identifier:String,
 
 sealed case class Package(identifier:String,
                           packageBodyElements:List[PackageBodyElement],
-                          stereotype:Option[String]) extends
+                          stereotype:Option[String],
+                          override val namespace:types.Namespace="default") extends
   TopLevelElement with
   PackageBodyElement with
   StereotypeElement with
@@ -67,7 +74,8 @@ sealed case class Class(isAbstract:Boolean,
                         operations:List[Operation],
                         additionalCompartements:List[Compartment],
                         genericParameters: Option[List[GenericParameter]],
-                        stereotype : Option[String]) extends
+                        stereotype : Option[String],
+                        override val namespace : types.Namespace = "default") extends
   TopLevelElement with
   StereotypeElement with
   PackageBodyElement with
@@ -142,10 +150,14 @@ case object FromTo extends RelationshipDirection
 case object ToFrom extends RelationshipDirection
 case object Without extends RelationshipDirection
 
+sealed trait RelationshipElement extends UMLElement
+sealed case class ConcreteClass(cls:RelateableElement with NamedElement) extends RelationshipElement
+sealed case class ClassRef(name:String,namespace:String="default") extends RelationshipElement
+
 sealed case class RelationshipInfo(sourceMultiplicity:Option[String],
                                    targetMultiplicity:Option[String],
-                                   from: RelateableElement with NamedElement,
-                                   to: RelateableElement with NamedElement,
+                                   from: RelationshipElement,
+                                   to: RelationshipElement,
                                    relationshipIdentifier:Option[String],
                                    identifierDirection:RelationshipDirection)
 

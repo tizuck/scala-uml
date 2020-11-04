@@ -2,10 +2,8 @@ package plantuml
 
 import org.bitbucket.inkytonik.kiama.output.PrettyPrinterTypes.Document
 import java.util.UUID.randomUUID
-import uml.{Abstract, AccessModifier, Aggregation, Annotation, Association, Attribute, Class, Compartment,
-  Composition, Extension, FromTo, GenericParameter, Inner, Modificator, Note, Operation, Package, PackagePrivate,
-  Parameter, Private, Protected, Public, Relationship, RelationshipDirection, RelationshipInfo, RelationshipType,
-  Static, StereotypeElement, ToFrom, UMLElement, UMLUnit, Without}
+
+import uml.{Abstract, AccessModifier, Aggregation, Annotation, Association, Attribute, Class, ClassRef, Compartment, Composition, ConcreteClass, Extension, FromTo, GenericParameter, Inner, Modificator, Note, Operation, Package, PackagePrivate, Parameter, Private, Protected, Public, Relationship, RelationshipDirection, RelationshipInfo, RelationshipType, Static, StereotypeElement, ToFrom, UMLElement, UMLUnit, Without}
 
 /**
  * @todo Remove empty string from relationship
@@ -29,10 +27,13 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
         "@enduml"
 
     case Package(
-    identifier,
-    packageBodyElements,stereotype) =>
+    name,
+    packageBodyElements,stereotype,namespace) =>
       "package" <+>
-        stringWrap(stereotype.getOrElse("") + identifier) <+>
+        (namespace match {
+          case "default" => stringWrap(stereotype.map(ns => s"<<$ns>> ").getOrElse(""))
+          case ns@_ => stringWrap(s"${stereotype.map(ns => s"<<$ns>> ").getOrElse("")}$ns.$name")
+        }) <+>
         enclose("{",nest(line <> vsep(packageBodyElements.map(show))),line <> "}")
 
     case GenericParameter(
@@ -44,15 +45,16 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
 
     case Class(
     isAbstract,
-    identifier: String,
+    name: String,
     attributes,
     operations,
     additionalCompartements,
     genericParameter,
-    stereotype) =>
+    stereotype,
+    namespace) =>
       (if(isAbstract) {"abstract" <> space } else { emptyDoc }) <>
-      "class" <+>
-        stringWrap(identifier) <>
+        "class" <+>
+        (namespace match {case "default" => name case s@_ => stringWrap(s + '.' + name)}) <>
         opt(genericParameter,  (gps:List[GenericParameter]) => hsep(gps.map(show),sep = ','),emptyR = space) <>
         opt(stereotype,text,"<<" <> space,space <> ">>") <>
         (if(attributes.nonEmpty || operations.nonEmpty || additionalCompartements.nonEmpty) {
@@ -120,6 +122,11 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
         emptyDoc
       })
 
+    case ConcreteClass(cls) =>
+      cls.namespace match {case "default" => cls.identifier case s@_ => stringWrap(s + '.' + cls.identifier)}
+
+    case ClassRef(name,namespace) =>
+      namespace match {case "default" => name case s@_ => stringWrap(s + '.' + name)}
 
     case r@Relationship(
     relationshipType,
@@ -131,11 +138,11 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
       relationshipIdentifier,
       identifierDirection),
     stereotype) =>
-      stringWrap(from.identifier) <+>
+      show(from) <+>
       opt(sourceMultiplicity, (s:String) => surround(text(s),'"')) <>
       showRelationshipConnector(relationshipType,relationshipDirection) <+>
       opt(targetMultiplicity, (s:String) => surround(text(s),'"')) <>
-      stringWrap(to.identifier) <+>
+      show(to) <+>
         (if(relationshipIdentifier.isDefined || r.stereotype.isDefined) {
         ":" <+>
           (if (identifierDirection.equals(ToFrom)) {
