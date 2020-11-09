@@ -21,7 +21,6 @@ object DclCollector {
       case _ => None
     }
 
-    //@todo think about pattern matching over a list of uml elements instead of all the optional values
     val wrap = dclRelationsships.getOrElse(new BaseCollector {
       override val definedElements: List[UMLElement] = Nil
       override val resultingContext: CollectorContext = context

@@ -11,7 +11,14 @@ object TargetMultiplicityCollector {
   def apply(target : Type): TargetMultiplicityCollector = {
     target match {
       case Name(name) => new TargetMultiplicityCollector("1")
-      case _ => throw new NotImplementedException
+      case Apply(tpe, args) => tpe match {
+        case Name(name) => name match {
+          case "Option" => TargetMultiplicityCollector("[0..1]")
+          case "List" => TargetMultiplicityCollector("*")
+          case _ => TargetMultiplicityCollector("unknown")
+        }
+      }
+      case _ => TargetMultiplicityCollector("unknown")
     }
   }
 }

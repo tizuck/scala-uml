@@ -13,11 +13,14 @@ case class DclDefCollector(override val definedElements: List[UMLElement],
 
 object DclDefCollector {
   def apply(dclDef :Decl.Def)(implicit context:CollectorContext): DclDefCollector = {
+
+    println(dclDef.structure)
     val operationName = dclDef.name.value
     //@todo get template parameter
     val parametersLists = ParamssCollector(dclDef.paramss).parameterLists
 
-    val returnType = TypeNameCollector(dclDef.decltpe).typeRep
+
+    val returnType = if(context.localCon.typeRequired){Some(TypeNameCollector(dclDef.decltpe).typeRep)}else None
 
     val modificators = ModificatorsCollector(dclDef.mods).modificators
 
@@ -28,7 +31,7 @@ object DclDefCollector {
       accessModifiers,
       operationName,
       parametersLists,
-      Some(returnType),
+      returnType,
       None)
 
     new DclDefCollector(List(op),context)

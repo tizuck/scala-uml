@@ -17,12 +17,14 @@ object DefnEnumCollector {
     val mods = ClassModsCollector(defnEnum.mods)
     val enumName = defnEnum.name
 
-    val tempThisPointer = Some(ClassRef(enumName.value))
+    val tempThisPointer = ClassRef(enumName.value)
     val previousThisPointer = context.localCon.thisPointer
-
-    val innerElements = StatsCollector(defnEnum.templ.stats)(context.copy(context.localCon.copy(thisPointer = tempThisPointer)))
+    val previousToplevel = context.localCon.isTopLevel
+    val innerElements = StatsCollector(defnEnum.templ.stats)(context.withThisPointer(tempThisPointer).notToplevel)
     val primaryConstructor = PrimaryConstructorCollector(defnEnum.ctor)(
-      innerElements.resultingContext.copy(innerElements.resultingContext.localCon.copy(cstrOrigin = Some(enumName.value)))
+      innerElements
+        .resultingContext
+        .withCstrOrigin(enumName.value)
     )
 
     val cls = Class(
@@ -37,7 +39,10 @@ object DefnEnumCollector {
 
     DefnEnumCollector(
       cls :: innerElements.definedElements,
-      innerElements.resultingContext.copy(innerElements.resultingContext.localCon.copy(thisPointer = previousThisPointer))
+      innerElements
+        .resultingContext
+        .withOptionalThisPointer(previousThisPointer)
+        .withToplevel(previousToplevel)
     )
   }
 }

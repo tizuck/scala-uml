@@ -15,7 +15,7 @@ object StatsCollector {
     stats.foldLeft(StatsCollector(context,Nil)){
       case (acc,stat) =>
         val statCol = StatCollector(stat)(acc.resultingContext)
-        acc.copy(statCol.resultingContext,definedElements = statCol.definedElements ++ acc.definedElements)
+        acc.copy(statCol.resultingContext,definedElements = acc.definedElements ++ statCol.definedElements)
     }
   }
 }

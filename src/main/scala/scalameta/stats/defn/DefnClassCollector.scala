@@ -19,29 +19,26 @@ object DefnClassCollector {
   def apply(defnClass:Defn.Class)(implicit context : CollectorContext): DefnClassCollector = {
     val mods = ClassModsCollector(defnClass.mods)
     val className = defnClass.name.value
-    println(s"for class:${className} mods: ${mods.modifier} with original modifiers: ${defnClass.mods}")
-    val tempThisPointer = Some(ClassRef(className))
+
+    val tempThisPointer = ClassRef(className)
     val previousThisPointer = context.localCon.thisPointer
     val inheritedElements = InitsCollector(defnClass.templ.inits)(
-      context.copy(context.localCon.copy(thisPointer = tempThisPointer))
+      context.withThisPointer(tempThisPointer)
     )
-    val innerElements = StatsCollector(defnClass.templ.stats)(inheritedElements.resultingContext)
+    val previousToplevel = inheritedElements.resultingContext.localCon.isTopLevel
+    val innerElements = StatsCollector(defnClass.templ.stats)(inheritedElements.resultingContext.notToplevel)
     val operations = innerElements.definedElements.flatMap{
       case o:Operation => Some(o)
       case _ => None
     }
-    val innerWithoutOperations = innerElements.definedElements.flatMap{
-      case _:Operation => None
-      case other => Some(other)
-    }
     val primaryConstructor = PrimaryConstructorCollector(defnClass.ctor)(
-      context.copy(context.localCon.copy(cstrOrigin = Some(className)))
+      context.withCstrOrigin(className)
     )
 
     val cls = Class(
       mods.isAbstract,
       className,
-      innerWithoutOperations.flatMap{case a:Attribute => Some(a) case _ => None},
+      innerElements.attributes,
       primaryConstructor.primaryCstr.map(p => List(p)).getOrElse(Nil) ++ operations,
       if(mods.modifier.nonEmpty) {Compartment(Some("<<ScalaClass>>"),mods.modifier,None) :: Nil} else Nil,
       None,
@@ -54,13 +51,14 @@ object DefnClassCollector {
 
     new DefnClassCollector(
       cls ::
-        innerWithoutOperations ++
+        innerElements.innerElements ++
           inheritedElements.inheritance ++
           innerRelationship.map(r => List(r)).getOrElse(Nil),
-      innerElements.resultingContext.copy( innerElements.resultingContext.localCon.copy(
-        definedTemplates  = cls :: innerElements.resultingContext.localCon.definedTemplates,
-        thisPointer = previousThisPointer
-      ))
+      innerElements
+        .resultingContext
+        .withAdditionalTemplate(cls)
+        .withOptionalThisPointer(previousThisPointer)
+        .withToplevel(previousToplevel)
     )
   }
 

@@ -28,23 +28,15 @@ object DefnTraitCollector {
     val previousThisPointer = context.localCon.thisPointer
 
     val inheritedElements = InitsCollector(defnTrait.templ.inits)(
-      context.copy(context.localCon.copy(thisPointer = Some(tempThisPointer)))
+      context.withThisPointer(tempThisPointer)
     )
 
-    val innerElements = StatsCollector(defnTrait.templ.stats)(inheritedElements.resultingContext)
+    val previousToplevel = inheritedElements.resultingContext.localCon.isTopLevel
 
-    val operations = innerElements.definedElements.flatMap{
-      case o:Operation =>Some(o)
-      case _ => None
-    }
-
-    val innerWithoutOperations = innerElements.definedElements.flatMap{
-      case _:Operation => None
-      case other => Some(other)
-    }
+    val innerElements = StatsCollector(defnTrait.templ.stats)(inheritedElements.resultingContext.notToplevel)
 
     val primaryConstructor = PrimaryConstructorCollector(defnTrait.ctor)(
-      context.copy(context.localCon.copy(cstrOrigin = Some(traitName)))
+      context.withCstrOrigin(traitName)
     )
 
     val cls = Class(
@@ -53,7 +45,7 @@ object DefnTraitCollector {
       List.empty,
       List.empty ++
         primaryConstructor.primaryCstr.map(p => List(p)).getOrElse(Nil) ++
-        operations,
+        innerElements.operations,
       List.empty,
       genericParameter,
       Some("trait"))
@@ -63,12 +55,12 @@ object DefnTraitCollector {
     } else {None}
 
     new DefnTraitCollector(
-      cls :: innerWithoutOperations ++ inheritedElements.inheritance ++ innerRelationship.map(r => List(r)).getOrElse(Nil),
-      innerElements.resultingContext.copy(
-        innerElements.resultingContext.localCon.copy(
-          definedTemplates = cls :: innerElements.resultingContext.localCon.definedTemplates,
-          thisPointer = previousThisPointer)
-      )
+      innerElements.innerElements ++ inheritedElements.inheritance ++ innerRelationship.map(r => List(r)).getOrElse(Nil) ++ List(cls),
+      innerElements
+        .resultingContext
+        .withAdditionalTemplate(cls)
+        .withOptionalThisPointer(previousThisPointer)
+        .withToplevel(previousToplevel)
     )
   }
 }

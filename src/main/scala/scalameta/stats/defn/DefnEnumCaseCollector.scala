@@ -17,14 +17,14 @@ object DefnEnumCaseCollector {
     val mods = ClassModsCollector(defnEnumCase.mods)
     val caseName = defnEnumCase.name.value
 
-    val tempThisPointer = Some(ClassRef(caseName))
+    val tempThisPointer = ClassRef(caseName)
     val previousThisPointer = context.localCon.thisPointer
 
     val inheritedElements = InitsCollector(defnEnumCase.inits)(
-      context.copy(context.localCon.copy(thisPointer=tempThisPointer))
+      context.withThisPointer(tempThisPointer)
     )
     val primaryConstructor = PrimaryConstructorCollector(defnEnumCase.ctor)(
-      inheritedElements.resultingContext.copy(context.localCon.copy(cstrOrigin = Some(caseName)))
+      inheritedElements.resultingContext.withCstrOrigin(caseName)
     )
 
     val cls = Class(

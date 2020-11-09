@@ -25,7 +25,14 @@ object TypeNameCollector {
           TypeNameCollector(arg).typeRep
         }
         new TypeNameCollector(s"$applyType<${argTypes.mkString(",")}>")
-
+      case Type.And(lhs,rhs) =>
+        val lhsRep = this(lhs)
+        val rhsRep = this(rhs)
+        TypeNameCollector(s"&<${lhsRep.typeRep},${rhsRep.typeRep}>")
+      case Type.Or(lhs, rhs) =>
+        val lhsRep = this(lhs)
+        val rhsRep = this(rhs)
+        TypeNameCollector(s"|<${lhsRep.typeRep},${rhsRep.typeRep}>")
     }
   }
 }

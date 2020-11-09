@@ -1,6 +1,6 @@
 package scalameta.stats.util
 
-import scalameta.stateless.{TargetMultiplicityCollector, TypeNameCollector}
+import scalameta.stateless.{TargetMultiplicityCollector, TypeNameAssociationCollector, TypeNameCollector}
 import scalameta.util.context.CollectorContext
 
 import scala.meta.{Pat, Type}
@@ -14,7 +14,7 @@ trait AssociationInformation {
 object AssociationInformation {
   def apply(pats:List[Pat],decltpe:Type)(implicit context: CollectorContext) : AssociationInformation =
     new AssociationInformation {
-    override val pDeclType: String = TypeNameCollector(decltpe).typeRep
+    override val pDeclType: String = TypeNameAssociationCollector(decltpe).typeRep
     override val targetMultiplicity: String = TargetMultiplicityCollector(decltpe).multiplicity
     override val pSources: List[String] = pats.collect { _.syntax }
   }

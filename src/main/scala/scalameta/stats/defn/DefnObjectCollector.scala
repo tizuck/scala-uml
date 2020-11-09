@@ -17,11 +17,12 @@ object DefnObjectCollector {
     val mods = ObjectModsCollector(defnObject.mods)
     val objectName = defnObject.name.value
 
-    val tempThisPointer = Some(ClassRef(objectName))
+    val tempThisPointer = ClassRef(objectName)
     val previousThisPointer = context.localCon.thisPointer
+    val previousToplevel = context.localCon.isTopLevel
 
-    val inheritedElements = InitsCollector(defnObject.templ.inits)(context.copy(context.localCon.copy(thisPointer = tempThisPointer)))
-    val innerElements = StatsCollector(defnObject.templ.stats)(inheritedElements.resultingContext)
+    val inheritedElements = InitsCollector(defnObject.templ.inits)(context.withThisPointer(tempThisPointer))
+    val innerElements = StatsCollector(defnObject.templ.stats)(inheritedElements.resultingContext.notToplevel)
     val operations = innerElements.definedElements.flatMap{
       case o:Operation => Some(o)
       case _ => None
@@ -47,10 +48,11 @@ object DefnObjectCollector {
 
     new DefnObjectCollector(
       cls :: innerWithoutOperations ++ inheritedElements.inheritance ++ innerRelationship.map( List(_)).getOrElse(Nil),
-      innerElements.resultingContext.copy( innerElements.resultingContext.localCon.copy(
-        definedTemplates =  cls :: innerElements.resultingContext.localCon.definedTemplates,
-        thisPointer = previousThisPointer
-      ))
+      innerElements
+        .resultingContext
+        .withAdditionalTemplate(cls)
+        .withOptionalThisPointer(previousThisPointer)
+        .withToplevel(previousToplevel)
     )
   }
 }
