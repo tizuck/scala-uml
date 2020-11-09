@@ -5,12 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/SourcesCollector.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/scalaDefaults.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/ImportCollector.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/PkgCollector.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/StatCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/StatCollector.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/CollectorContext.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/CollectorContext.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/GlobalContext.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/GlobalContext.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/LocalContext.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/LocalContext.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/metatraverser/NamespaceTraverser.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/ClassCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/ClassCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/SourcesCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/SourcesCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/namespaceEntries.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/namespaceEntries.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +201,7 @@
       <workItem from="1604597155311" duration="5002000" />
       <workItem from="1604664108405" duration="13740000" />
       <workItem from="1604829806019" duration="17591000" />
-      <workItem from="1604918678302" duration="8599000" />
+      <workItem from="1604918678302" duration="12964000" />
     </task>
     <servers />
   </component>
@@ -232,42 +238,42 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="915" y="277" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602884588099" />
-    <state width="1877" height="200" key="GridCell.Tab.0.bottom" timestamp="1604928171793">
+    <state width="1877" height="421" key="GridCell.Tab.0.bottom" timestamp="1604941554972">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="200" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604928171793" />
+    <state width="1877" height="421" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604941554972" />
     <state width="915" height="196" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604687542651" />
-    <state width="1877" height="200" key="GridCell.Tab.0.center" timestamp="1604928171793">
+    <state width="1877" height="421" key="GridCell.Tab.0.center" timestamp="1604941554972">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="200" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604928171793" />
+    <state width="1877" height="421" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604941554972" />
     <state width="915" height="196" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604687542651" />
-    <state width="1877" height="200" key="GridCell.Tab.0.left" timestamp="1604928171793">
+    <state width="1877" height="421" key="GridCell.Tab.0.left" timestamp="1604941554972">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="200" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604928171793" />
+    <state width="1877" height="421" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604941554972" />
     <state width="915" height="196" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604687542651" />
-    <state width="1877" height="200" key="GridCell.Tab.0.right" timestamp="1604928171793">
+    <state width="1877" height="421" key="GridCell.Tab.0.right" timestamp="1604941554972">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="200" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604928171793" />
+    <state width="1877" height="421" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604941554972" />
     <state width="915" height="196" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604687542651" />
-    <state width="1877" height="421" key="GridCell.Tab.1.bottom" timestamp="1604926560257">
+    <state width="1877" height="421" key="GridCell.Tab.1.bottom" timestamp="1604941554972">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="421" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604926560257" />
-    <state width="1877" height="421" key="GridCell.Tab.1.center" timestamp="1604926560257">
+    <state width="1877" height="421" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604941554972" />
+    <state width="1877" height="421" key="GridCell.Tab.1.center" timestamp="1604941554972">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="421" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604926560257" />
-    <state width="1877" height="421" key="GridCell.Tab.1.left" timestamp="1604926560257">
+    <state width="1877" height="421" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604941554972" />
+    <state width="1877" height="421" key="GridCell.Tab.1.left" timestamp="1604941554972">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="421" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604926560257" />
-    <state width="1877" height="421" key="GridCell.Tab.1.right" timestamp="1604926560257">
+    <state width="1877" height="421" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604941554972" />
+    <state width="1877" height="421" key="GridCell.Tab.1.right" timestamp="1604941554972">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="421" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604926560257" />
+    <state width="1877" height="421" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604941554972" />
     <state x="440" y="93" key="SettingsEditor" timestamp="1603184757522">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -290,20 +296,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="600" height="440" key="javadoc.popup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602939693611" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1604674635510">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1604934440890">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604674635510" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/scalameta/stats/StatsCollector.scala</url>
-          <line>14</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604934440890" />
   </component>
 </project>

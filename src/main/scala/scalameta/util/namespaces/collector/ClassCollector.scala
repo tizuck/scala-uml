@@ -1,7 +1,7 @@
 package scalameta.util.namespaces.collector
 import scalameta.util.namespaces.{Entry, NamespaceEmpty}
 
-import scala.meta.{Defn, Stat}
+import scala.meta.{Defn, Pkg, Stat}
 
 case class ClassCollector(override val resultingMap: Map[Entry, List[Stat]])
   extends BaseNamespaceCollector

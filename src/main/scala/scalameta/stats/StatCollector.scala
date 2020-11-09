@@ -6,7 +6,7 @@ import scalameta.util.context.CollectorContext
 import scalameta.util.{BaseCollector, StateChangingCollector}
 import uml.UMLElement
 
-import scala.meta.{Decl, Defn, Stat}
+import scala.meta.{Decl, Defn, Import, Pkg, Stat}
 
 case class StatCollector(definedElements : List[UMLElement],
                          override val resultingContext: CollectorContext)
@@ -15,6 +15,7 @@ case class StatCollector(definedElements : List[UMLElement],
 object StatCollector {
   def apply(stat:Stat)(implicit context: CollectorContext): StatCollector = {
     val relBase : BaseCollector = stat match {
+      case pkg:Pkg => PkgCollector(pkg)
       case decl: Decl => DclCollector(decl)
       case defn: Defn => DefnCollector(defn)
       case _ => new BaseCollector {

@@ -14,8 +14,8 @@ object Main extends App {
       |package internal
       |package parsers
       |
-      |import java.lang.reflect.InvocationTargetException
-      |import Absolutize._
+      |//import java.lang.reflect.InvocationTargetException
+      |//import Absolutize._
       |
       |object PlatformInvocationTargetException {
       |  def unapply(e: InvocationTargetException): Option[Throwable] =
@@ -29,12 +29,12 @@ object Main extends App {
   //val input = Input.VirtualFile(path.toString, text)
 
   val source = dialects.Dotty(program).parse[Source].get
-  println(source.structure)
-  val plantUMLUnit = UMLCollector(source,GlobalContext(Map.empty)).plantUMLUnit
+  //println(source.structure)
   val namespaceMap = scalameta.util.namespaces.collector.SourcesCollector(List(source,scalaDefaults.default)).resultingMap
+  val plantUMLUnit = UMLCollector(source,GlobalContext(namespaceMap)).plantUMLUnit
   //println(plantUMLUnit)
   //println(plantUMLUnit.structure)
-  //println(plantUMLUnit.pretty)
+  println(plantUMLUnit.pretty)
   println("-----------------------------------------")
   println(namespaceMap
   .map{

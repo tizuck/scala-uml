@@ -1,5 +1,5 @@
 package scalameta.util.namespaces.collector
-import scalameta.util.namespaces.{Entry, NamespaceEmpty}
+import scalameta.util.namespaces.{DefaultNamespace, Entry, NamespaceEmpty, NamespaceEntry}
 
 import scala.meta.{Source, Stat}
 import cats.implicits._
@@ -13,6 +13,8 @@ object SourcesCollector {
       case (acc,source) =>
         val sourceMap = SourceCollector(source)
         acc |+| sourceMap.resultingMap
-    }.removed(NamespaceEmpty))
+    }.removed(NamespaceEmpty)
+      .map(tp => tp._1 match {case NamespaceEntry(List("default")) => DefaultNamespace -> tp._2 case _ => tp})
+    )
   }
 }

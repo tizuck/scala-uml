@@ -3,6 +3,7 @@ package scalameta.util.namespaces
 trait Entry
 
 case object NamespaceEmpty extends Entry
+case object DefaultNamespace extends Entry
 
 /**
  * Entry of a namespace holding the qualifier in correct order in the
