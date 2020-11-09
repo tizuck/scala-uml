@@ -1,5 +1,6 @@
 import scalameta.UMLCollector
 import scalameta.util.context.GlobalContext
+import scalameta.util.namespaces.scalaDefaults
 import scalameta.util.util.statToString
 
 import scala.meta.Defn.{Class, Object, Trait}
@@ -9,38 +10,28 @@ import scala.meta.dialects
 object Main extends App {
   val program =
     """
-      |package main.scala.uml
+      |package scala.meta
+      |package internal
+      |package parsers
       |
-      |sealed trait UMLElement { self =>
-      |  def pretty : String = SimplePlantUMLPrettyPrinter.format(self).layout
+      |import java.lang.reflect.InvocationTargetException
+      |import Absolutize._
+      |
+      |object PlatformInvocationTargetException {
+      |  def unapply(e: InvocationTargetException): Option[Throwable] =
+      |    Option(new InvocationTargetException(e.getTargetException.absolutize, e.getMessage))
       |}
-      |
-      |trait StereotypeElement extends UMLElement {
-      |  val stereotype: Option[String]
-      |}
-      |
-      |sealed trait TopLevelElement extends UMLElement
-      |package foo {
-      |sealed trait CompartmentElement extends UMLElement
-      |
-      |sealed trait PackageBodyElement extends UMLElement
-      |
-      |sealed trait RelateableElement extends UMLElement
-      |
-      |sealed trait NamedElement extends UMLElement {
-      |  val identifier : String
-      |}
-      |}""".stripMargin
-  val path = java.nio.file.Paths.get("src","main", "scala","uml", "ast.scala")
-  println(path.toAbsolutePath)
-  val bytes = java.nio.file.Files.readAllBytes(path)
-  val text = new String(bytes, "UTF-8")
-  val input = Input.VirtualFile(path.toString, text)
+      |""".stripMargin
+  //val path = java.nio.file.Paths.get("src","main", "scala","uml", "ast.scala")
+  //println(path.toAbsolutePath)
+  //val bytes = java.nio.file.Files.readAllBytes(path)
+  //val text = new String(bytes, "UTF-8")
+  //val input = Input.VirtualFile(path.toString, text)
 
-  val source = dialects.Dotty(input).parse[Source].get
+  val source = dialects.Dotty(program).parse[Source].get
   println(source.structure)
-  //val plantUMLUnit = UMLCollector(source,GlobalContext(Map.empty)).plantUMLUnit
-  val namespaceMap = scalameta.util.namespaces.collector.SourceCollector(source).resultingMap
+  val plantUMLUnit = UMLCollector(source,GlobalContext(Map.empty)).plantUMLUnit
+  val namespaceMap = scalameta.util.namespaces.collector.SourcesCollector(List(source,scalaDefaults.default)).resultingMap
   //println(plantUMLUnit)
   //println(plantUMLUnit.structure)
   //println(plantUMLUnit.pretty)

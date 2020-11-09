@@ -1,13 +1,14 @@
 package scalameta.util.context
 
+import scalameta.util.namespaces.NamespaceEntry
 import uml.types.Namespace
 import uml.{NamedElement, RelateableElement, RelationshipElement}
 
 case class LocalContext(thisPointer: Option[RelationshipElement] = None,
                         definedTemplates: List[NamedElement with RelateableElement] = List.empty,
                         cstrOrigin:Option[String],
-                        currentImports:Option[List[Namespace]],
-                        currentNamespace:Namespace = "default",
+                        currentImports:Option[List[NamespaceEntry]],
+                        currentNamespace:NamespaceEntry = NamespaceEntry(List("default")),
                         typeRequired:Boolean = true,
                         isTopLevel:Boolean = true)
 
