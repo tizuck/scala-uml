@@ -2,6 +2,7 @@ package scalameta.stats
 
 import scalameta.stats.dcl.DclCollector
 import scalameta.stats.defn.DefnCollector
+import scalameta.stats.imports.ImportCollector
 import scalameta.util.context.CollectorContext
 import scalameta.util.{BaseCollector, StateChangingCollector}
 import uml.UMLElement
@@ -16,6 +17,7 @@ object StatCollector {
   def apply(stat:Stat)(implicit context: CollectorContext): StatCollector = {
     val relBase : BaseCollector = stat match {
       case pkg:Pkg => PkgCollector(pkg)
+      case imprt:Import => ImportCollector(imprt)
       case decl: Decl => DclCollector(decl)
       case defn: Defn => DefnCollector(defn)
       case _ => new BaseCollector {

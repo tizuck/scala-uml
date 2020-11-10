@@ -20,7 +20,7 @@ object StatsCollector {
             statMap.foldLeft(acc) {
               case (innerAcc, (NamespaceEmpty -> xs)) =>
                 innerAcc + (upperNamepace.get -> (xs ++ innerAcc(upperNamepace.get)).distinct)
-              case (innerAcc, (n@NamespaceEntry(ns)) -> xs) =>
+              case (innerAcc, (n@NamespaceEntry(ns,_)) -> xs) =>
                 if (innerAcc.contains(n.prepend(upperNamepace.get))) {
                   innerAcc + (n.prepend(upperNamepace.get) -> (xs ++ innerAcc(n.prepend(upperNamepace.get))).distinct)
                   //Tue aktuellen stat mit in den oberen Namespace hinein

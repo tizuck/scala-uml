@@ -17,7 +17,7 @@ object DefnEnumCollector {
     val mods = ClassModsCollector(defnEnum.mods)
     val enumName = defnEnum.name
 
-    val tempThisPointer = ClassRef(enumName.value)
+    val tempThisPointer = ClassRef(enumName.value,namespace = context.localCon.currentNamespace)
     val previousThisPointer = context.localCon.thisPointer
     val previousToplevel = context.localCon.isTopLevel
     val innerElements = StatsCollector(defnEnum.templ.stats)(context.withThisPointer(tempThisPointer).notToplevel)
@@ -34,7 +34,8 @@ object DefnEnumCollector {
       primaryConstructor.primaryCstr.map(List(_)).getOrElse(Nil),
       Nil,
       None,
-      Some("scalaenum")
+      Some("scalaenum"),
+      context.localCon.currentNamespace
     )
 
     DefnEnumCollector(

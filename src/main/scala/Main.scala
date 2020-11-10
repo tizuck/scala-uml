@@ -10,16 +10,16 @@ import scala.meta.dialects
 object Main extends App {
   val program =
     """
-      |package scala.meta
-      |package internal
-      |package parsers
+      |package uml
       |
-      |//import java.lang.reflect.InvocationTargetException
-      |//import Absolutize._
+      |trait A
+      |trait B
+      |trait C
       |
-      |object PlatformInvocationTargetException {
-      |  def unapply(e: InvocationTargetException): Option[Throwable] =
-      |    Option(new InvocationTargetException(e.getTargetException.absolutize, e.getMessage))
+      |class E
+      |
+      |package deep {
+      | trait A extends B
       |}
       |""".stripMargin
   //val path = java.nio.file.Paths.get("src","main", "scala","uml", "ast.scala")

@@ -5,10 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/ImporterCollector.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImportRefCollector.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImporteeNameCollector.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImporteesCollector.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/util/defs.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/ImportCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/ImportCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/plantuml/SimplePlantUMLPrettyPrinter.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/plantuml/SimplePlantUMLPrettyPrinter.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/ImportCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImportCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/ImporterCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImporterCollector.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/PkgCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/PkgCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/StatCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/StatCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnClassCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnClassCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCaseCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCaseCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnObjectCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnObjectCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTraitCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTraitCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/CollectorContext.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/CollectorContext.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/SourcesCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/SourcesCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/StatsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/StatsCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/namespaceEntries.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/namespaceEntries.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +213,7 @@
       <workItem from="1604664108405" duration="13740000" />
       <workItem from="1604829806019" duration="17591000" />
       <workItem from="1604918678302" duration="12964000" />
-      <workItem from="1605001318164" duration="2183000" />
+      <workItem from="1605001318164" duration="10917000" />
     </task>
     <servers />
   </component>
@@ -233,25 +250,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="915" y="277" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602884588099" />
-    <state width="1877" height="421" key="GridCell.Tab.0.bottom" timestamp="1604941554972">
+    <state width="915" height="202" key="GridCell.Tab.0.bottom" timestamp="1605029173397">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="421" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604941554972" />
+    <state width="915" height="202" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605029173397" />
     <state width="915" height="196" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604687542651" />
-    <state width="1877" height="421" key="GridCell.Tab.0.center" timestamp="1604941554972">
+    <state width="915" height="202" key="GridCell.Tab.0.center" timestamp="1605029173397">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="421" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604941554972" />
+    <state width="915" height="202" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605029173397" />
     <state width="915" height="196" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604687542651" />
-    <state width="1877" height="421" key="GridCell.Tab.0.left" timestamp="1604941554972">
+    <state width="915" height="202" key="GridCell.Tab.0.left" timestamp="1605029173397">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="421" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604941554972" />
+    <state width="915" height="202" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605029173397" />
     <state width="915" height="196" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604687542651" />
-    <state width="1877" height="421" key="GridCell.Tab.0.right" timestamp="1604941554972">
+    <state width="915" height="202" key="GridCell.Tab.0.right" timestamp="1605029173397">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="421" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604941554972" />
+    <state width="915" height="202" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605029173397" />
     <state width="915" height="196" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604687542651" />
     <state width="1877" height="421" key="GridCell.Tab.1.bottom" timestamp="1604941554972">
       <screen x="0" y="0" width="1920" height="1040" />

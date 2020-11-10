@@ -28,7 +28,7 @@ object PkgCollector {
     val oldNamespace = context.localCon.currentNamespace
     val newNamespace = oldNamespace match {
       case DefaultNamespace => qualName(pkg.ref)
-      case NamespaceEntry(qualifiers) => NamespaceEntry(qualifiers ++ qualName(pkg.ref).qualifiers)
+      case NamespaceEntry(qualifiers,_) => NamespaceEntry(qualifiers ++ qualName(pkg.ref).qualifiers)
       case _ => throw new IllegalStateException(s"Unexpected empty namespace in pkg: ${pkg.ref}")
     }
     val innerstats = StatsCollector(pkg.stats)(context.withNamespace(newNamespace))

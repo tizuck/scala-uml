@@ -20,7 +20,7 @@ object DefnClassCollector {
     val mods = ClassModsCollector(defnClass.mods)
     val className = defnClass.name.value
 
-    val tempThisPointer = ClassRef(className)
+    val tempThisPointer = ClassRef(className,namespace = context.localCon.currentNamespace)
     val previousThisPointer = context.localCon.thisPointer
     val inheritedElements = InitsCollector(defnClass.templ.inits)(
       context.withThisPointer(tempThisPointer)
@@ -42,7 +42,8 @@ object DefnClassCollector {
       primaryConstructor.primaryCstr.map(p => List(p)).getOrElse(Nil) ++ operations,
       if(mods.modifier.nonEmpty) {Compartment(Some("<<ScalaClass>>"),mods.modifier,None) :: Nil} else Nil,
       None,
-      mods.stereotype
+      mods.stereotype,
+      context.localCon.currentNamespace
     )
 
     val innerRelationship = if(previousThisPointer.isDefined){

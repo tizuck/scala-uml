@@ -27,6 +27,14 @@ case class CollectorContext(localCon:LocalContext, globalCon:GlobalContext) {
   def withNamespace(n:Entry) = this.copy(localCon.copy(currentNamespace = n))
   def withNamespace(n:String): CollectorContext = this.copy(localCon.copy(currentNamespace = NamespaceEntry(List(n))))
   def witAdditionalImport(n:Namespace): CollectorContext = this.copy(localCon.copy(currentImports = localCon.currentImports.map(NamespaceEntry(List(n)) :: _)))
+  def withAdditionalImports(ns:List[NamespaceEntry]) : CollectorContext =
+    this.copy(
+      localCon.copy(currentImports = if(localCon.currentImports.isDefined){
+        Some(ns ++ localCon.currentImports.get)
+      } else {
+        Some(ns)
+      }
+      ))
   def withCstrOrigin(cstrOrigin:String) = this.copy(localCon.copy(cstrOrigin = Some(cstrOrigin)))
   def withAdditionalTemplate(templ:NamedElement with RelateableElement) = {
     this.copy(localCon.copy(definedTemplates = localCon.definedTemplates ++ List(templ)))

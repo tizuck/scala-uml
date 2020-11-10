@@ -3,6 +3,7 @@ package plantuml
 import org.bitbucket.inkytonik.kiama.output.PrettyPrinterTypes.Document
 import java.util.UUID.randomUUID
 
+import scalameta.util.namespaces.DefaultNamespace
 import uml.{Abstract, AccessModifier, Aggregation, Annotation, Association, Attribute, Class, ClassRef, Compartment, Composition, ConcreteClass, Extension, FromTo, GenericParameter, Inner, Modificator, Note, Operation, Package, PackagePrivate, Parameter, Private, Protected, Public, Relationship, RelationshipDirection, RelationshipInfo, RelationshipType, Static, StereotypeElement, ToFrom, UMLElement, UMLUnit, Without}
 
 /**
@@ -31,7 +32,7 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
     packageBodyElements,stereotype,namespace) =>
       "package" <+>
         (namespace match {
-          case "default" => stringWrap(stereotype.map(ns => s"<<$ns>> ").getOrElse(""))
+          case DefaultNamespace => stringWrap(stereotype.map(ns => s"<<$ns>> ").getOrElse(""))
           case ns@_ => stringWrap(s"${stereotype.map(ns => s"<<$ns>> ").getOrElse("")}$ns.$name")
         }) <+>
         enclose("{",nest(line <> vsep(packageBodyElements.map(show))),line <> "}")
@@ -54,7 +55,7 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
     namespace) =>
       (if(isAbstract) {"abstract" <> space } else { emptyDoc }) <>
         "class" <+>
-        (namespace match {case "default" => name case s@_ => stringWrap(s + '.' + name)}) <>
+        (namespace match {case DefaultNamespace => name case s@_ => stringWrap(s + "." + name)}) <>
         opt(genericParameter,  (gps:List[GenericParameter]) => hsep(gps.map(show),sep = ','),l="< ",r=" >" <> space,emptyR = space) <>
         opt(stereotype,text,"<<" <> space,space <> ">>") <>
         (if(attributes.nonEmpty || operations.nonEmpty || additionalCompartements.nonEmpty) {
@@ -123,10 +124,10 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
       })
 
     case ConcreteClass(cls) =>
-      cls.namespace match {case "default" => cls.identifier case s@_ => stringWrap(s + '.' + cls.identifier)}
+      cls.namespace match {case DefaultNamespace => cls.identifier case s@_ => stringWrap(s + "." + cls.identifier)}
 
     case ClassRef(name,namespace) =>
-      namespace match {case "default" => name case s@_ => stringWrap(s + '.' + name)}
+      namespace match {case DefaultNamespace => name case s@_ => stringWrap(s + "." + name)}
 
     case r@Relationship(
     relationshipType,

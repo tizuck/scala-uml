@@ -23,7 +23,7 @@ object DefnTraitCollector {
     val typeParameters = TypeParamsCollector(defnTrait.tparams).typeParams
     val genericParameter = Option.when(typeParameters.nonEmpty)(typeParameters)
 
-    val tempThisPointer = ClassRef(traitName)
+    val tempThisPointer = ClassRef(traitName,namespace = context.localCon.currentNamespace)
     //Collect thisPointer for inner associations
     val previousThisPointer = context.localCon.thisPointer
 
@@ -48,7 +48,9 @@ object DefnTraitCollector {
         innerElements.operations,
       List.empty,
       genericParameter,
-      Some("trait"))
+      Some("trait"),
+      context.localCon.currentNamespace
+    )
 
     val innerRelationship = if(previousThisPointer.isDefined){
       Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,previousThisPointer.get,ConcreteClass(cls),None,Without),None))

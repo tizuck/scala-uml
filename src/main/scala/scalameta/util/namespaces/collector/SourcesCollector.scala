@@ -14,7 +14,7 @@ object SourcesCollector {
         val sourceMap = SourceCollector(source)
         acc |+| sourceMap.resultingMap
     }.removed(NamespaceEmpty)
-      .map(tp => tp._1 match {case NamespaceEntry(List("default")) => DefaultNamespace -> tp._2 case _ => tp})
+      .map(tp => tp._1 match {case NamespaceEntry(List("default"),_) => DefaultNamespace -> tp._2 case _ => tp})
     )
   }
 }

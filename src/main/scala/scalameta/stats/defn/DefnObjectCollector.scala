@@ -3,8 +3,10 @@ package scalameta.stats.defn
 import scalameta.mods.ObjectModsCollector
 import scalameta.stats.StatsCollector
 import scalameta.stats.init.InitsCollector
+import scalameta.stats.util.defs.obtainFurtherNamespace
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
+import scalameta.util.namespaces.DefaultNamespace
 import uml.{Attribute, Class, ClassRef, Compartment, ConcreteClass, Inner, Operation, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
 
 import scala.meta.Defn
@@ -17,11 +19,16 @@ object DefnObjectCollector {
     val mods = ObjectModsCollector(defnObject.mods)
     val objectName = defnObject.name.value
 
-    val tempThisPointer = ClassRef(objectName)
+    val tempThisPointer = ClassRef(objectName,namespace = context.localCon.currentNamespace)
     val previousThisPointer = context.localCon.thisPointer
     val previousToplevel = context.localCon.isTopLevel
+    val previousNamespace = context.localCon.currentNamespace
+    val newNamespace = obtainFurtherNamespace(previousNamespace,defnObject.name.value)
 
-    val inheritedElements = InitsCollector(defnObject.templ.inits)(context.withThisPointer(tempThisPointer))
+    val inheritedElements = InitsCollector(defnObject.templ.inits)(context
+      .withThisPointer(tempThisPointer)
+    .withNamespace(newNamespace))
+
     val innerElements = StatsCollector(defnObject.templ.stats)(inheritedElements.resultingContext.notToplevel)
     val operations = innerElements.definedElements.flatMap{
       case o:Operation => Some(o)
@@ -39,7 +46,8 @@ object DefnObjectCollector {
       operations,
       if(mods.modifiers.nonEmpty) {Compartment(Some("<<ScalaClass>>"),mods.modifiers,None) :: Nil} else Nil,
       None,
-      mods.stereotype.orElse(Some("object"))
+      mods.stereotype.orElse(Some("object")),
+      previousNamespace
     )
 
     val innerRelationship = if(previousThisPointer.isDefined){
@@ -53,6 +61,7 @@ object DefnObjectCollector {
         .withAdditionalTemplate(cls)
         .withOptionalThisPointer(previousThisPointer)
         .withToplevel(previousToplevel)
+        .withNamespace(previousNamespace)
     )
   }
 }

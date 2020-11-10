@@ -17,7 +17,7 @@ object DefnEnumCaseCollector {
     val mods = ClassModsCollector(defnEnumCase.mods)
     val caseName = defnEnumCase.name.value
 
-    val tempThisPointer = ClassRef(caseName)
+    val tempThisPointer = ClassRef(caseName,namespace = context.localCon.currentNamespace)
     val previousThisPointer = context.localCon.thisPointer
 
     val inheritedElements = InitsCollector(defnEnumCase.inits)(
@@ -34,7 +34,8 @@ object DefnEnumCaseCollector {
       primaryConstructor.primaryCstr.map(List(_)).getOrElse(Nil),
       Nil,
       None,
-      Some("case")
+      Some("case"),
+      context.localCon.currentNamespace
     )
 
     new DefnEnumCaseCollector(

@@ -1,18 +1,16 @@
 package uml
 
 import plantuml.SimplePlantUMLPrettyPrinter
-
-object types {
-  type Namespace = String
-  type DefinedTemplates = List[String]
-}
+import scalameta.util.namespaces.{DefaultNamespace, Entry}
 
 /**
  * @todo will be used later to define operations on all nodes
  */
 sealed trait UMLElement { self =>
+
   def pretty : String = SimplePlantUMLPrettyPrinter.format(self).layout
   def structure : String
+
   protected[this] def listStructure[T <: UMLElement](umlElements:List[T]):String =
     s"""List(${umlElements.map(_.structure).mkString(",")})"""
 
@@ -48,7 +46,7 @@ sealed trait RelateableElement extends UMLElement
 
 sealed trait NamedElement extends UMLElement {
   val identifier : String
-  val namespace : types.Namespace = "default"
+  val namespace : Entry = DefaultNamespace
 }
 
 sealed case class UMLUnit(identifier:String,
@@ -63,7 +61,7 @@ sealed case class UMLUnit(identifier:String,
 sealed case class Package(identifier:String,
                           packageBodyElements:List[PackageBodyElement],
                           stereotype:Option[String],
-                          override val namespace:types.Namespace="default") extends
+                          override val namespace:Entry=DefaultNamespace) extends
   TopLevelElement with
   PackageBodyElement with
   StereotypeElement with
@@ -103,7 +101,7 @@ sealed case class Class(isAbstract:Boolean,
                         additionalCompartements:List[Compartment],
                         genericParameters: Option[List[GenericParameter]],
                         stereotype : Option[String],
-                        override val namespace : types.Namespace = "default") extends
+                        override val namespace : Entry = DefaultNamespace) extends
   TopLevelElement with
   StereotypeElement with
   PackageBodyElement with
@@ -213,7 +211,7 @@ sealed trait RelationshipElement extends UMLElement
 sealed case class ConcreteClass(cls:RelateableElement with NamedElement) extends RelationshipElement {
   override def structure: String = ""
 }
-sealed case class ClassRef(name:String,namespace:String="default") extends RelationshipElement {
+sealed case class ClassRef(name:String, namespace:Entry=DefaultNamespace) extends RelationshipElement {
   override def structure: String = ""
 }
 
