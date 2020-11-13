@@ -1,7 +1,6 @@
 package scalameta.util.context
 
 import scalameta.util.namespaces.{DefaultNamespace, Entry, NamespaceEntry}
-import uml.types.Namespace
 import uml.{NamedElement, RelateableElement, RelationshipElement}
 
 case class LocalContext(thisPointer: Option[RelationshipElement] = None,

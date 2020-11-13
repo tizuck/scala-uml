@@ -1,6 +1,13 @@
 package scalameta.util.namespaces
 
-trait Entry
+trait Entry {
+  self =>
+  final def plantUML:String = self match {
+    case DefaultNamespace => ""
+    case NamespaceEmpty => ""
+    case NamespaceEntry(qualifiers, targetType) =>qualifiers.mkString("::") + "."
+  }
+}
 
 case object NamespaceEmpty extends Entry
 case object DefaultNamespace extends Entry
@@ -33,5 +40,5 @@ sealed case class NamespaceEntry(qualifiers: List[String],targetType:TargetType 
   def prepend(qualifier: String): NamespaceEntry =
     NamespaceEntry(qualifier :: qualifiers)
 
-  override def toString: String = qualifiers.mkString("::")
+  override def toString: String = s"{${qualifiers.mkString("::")},target=$targetType}"
 }

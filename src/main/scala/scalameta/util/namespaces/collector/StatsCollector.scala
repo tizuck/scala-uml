@@ -18,7 +18,7 @@ object StatsCollector {
           case (acc, stat) =>
             val statMap = StatCollector(stat).resultingMap
             statMap.foldLeft(acc) {
-              case (innerAcc, (NamespaceEmpty -> xs)) =>
+              case (innerAcc, NamespaceEmpty -> xs) =>
                 innerAcc + (upperNamepace.get -> (xs ++ innerAcc(upperNamepace.get)).distinct)
               case (innerAcc, (n@NamespaceEntry(ns,_)) -> xs) =>
                 if (innerAcc.contains(n.prepend(upperNamepace.get))) {

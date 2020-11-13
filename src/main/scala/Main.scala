@@ -10,16 +10,31 @@ import scala.meta.dialects
 object Main extends App {
   val program =
     """
-      |package uml
+      |package scalameta.util.namespaces.collector
+      |import scalameta.util.namespaces.{DefaultNamespace, Entry, NamespaceEmpty, NamespaceEntry}
       |
-      |trait A
-      |trait B
-      |trait C
+      |import scala.meta.{Pkg, Source, Stat, Term}
+      |import cats.implicits._
       |
-      |class E
+      |case class SourcesCollector(override val resultingMap: Map[Entry, List[Stat]])
+      |  extends BaseNamespaceCollector
       |
-      |package deep {
-      | trait A extends B
+      |object SourcesCollector {
+      |  def apply(sources:List[Source]): SourcesCollector = {
+      |    SourcesCollector(sources.foldLeft(Map.empty[Entry,List[Stat]]){
+      |      case (acc,source) =>
+      |        val sourceMap = SourceCollector(source)
+      |        acc |+| sourceMap.resultingMap
+      |    } //All elements that result with a `NamespaceEmpty` entry on toplevel are positioned in the default package
+      |      .map(tp => tp._1 match {case NamespaceEmpty => DefaultNamespace -> tp._2 case _ => tp})
+      |      //Map the NamespaceEntry(List("default"),_) to the DefaultNamespace that occur due to algorithmic reason
+      |      .map(tp => tp._1 match {case NamespaceEntry(List("default"),_) => DefaultNamespace -> tp._2 case _ => tp})
+      |      //Remove default Pkg that occurs due to algorithmic reason
+      |      .map(tp =>
+      |          (tp._1,tp._2.filterNot(p => p match {case Pkg(Term.Name("default"),_) => true case _ => false}))
+      |      )
+      |    )
+      |  }
       |}
       |""".stripMargin
   //val path = java.nio.file.Paths.get("src","main", "scala","uml", "ast.scala")

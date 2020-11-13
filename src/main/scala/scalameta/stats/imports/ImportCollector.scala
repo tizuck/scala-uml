@@ -21,7 +21,7 @@ object ImportCollector {
     val namespaces = imprt.importers.foldLeft(List.empty[NamespaceEntry]){
       case (acc,importer) => acc ++ ImporterCollector(importer).namespaces
     }
-    println(s"imports: ${context.withAdditionalImports(namespaces).localCon}")
+    //println(s"imports: ${context.withAdditionalImports(namespaces).localCon}")
     ImportCollector(Nil,context.withAdditionalImports(namespaces))
   }
 }

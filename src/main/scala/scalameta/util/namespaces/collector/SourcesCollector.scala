@@ -1,20 +1,44 @@
 package scalameta.util.namespaces.collector
 import scalameta.util.namespaces.{DefaultNamespace, Entry, NamespaceEmpty, NamespaceEntry}
 
-import scala.meta.{Source, Stat}
+import scala.meta.{Pkg, Source, Stat, Term}
 import cats.implicits._
+import scalameta.util.util.statToString
 
 case class SourcesCollector(override val resultingMap: Map[Entry, List[Stat]])
   extends BaseNamespaceCollector
 
 object SourcesCollector {
   def apply(sources:List[Source]): SourcesCollector = {
+    println(s"Sources amount: ${sources.size}")
     SourcesCollector(sources.foldLeft(Map.empty[Entry,List[Stat]]){
       case (acc,source) =>
-        val sourceMap = SourceCollector(source)
-        acc |+| sourceMap.resultingMap
-    }.removed(NamespaceEmpty)
-      .map(tp => tp._1 match {case NamespaceEntry(List("default"),_) => DefaultNamespace -> tp._2 case _ => tp})
+        val sourceCollector = SourceCollector(source)
+        val sourceMap =
+          sourceCollector
+            .resultingMap
+            //All elements that result with a `NamespaceEmpty` entry on toplevel are positioned in the default package
+            .map(tp => tp._1 match {case NamespaceEntry(List("default"),_) => DefaultNamespace -> tp._2 case _ => tp})
+            //Need new map that only contains NamespaceEmpty entries and merge them with a foldleft to a map that only contains
+            //DefaultNamespace -> ...
+        //Get a map with only the element that has key NamespaceEmpty
+        val onlyNamespaceEmpty = sourceMap.filter(pred => pred._1 match {case NamespaceEmpty => true case _ => false})
+        //map that entry to DefaultNamespace
+        val defaultsOfNamespaceEmpty = onlyNamespaceEmpty.foldLeft(Map[Entry,List[Stat]]()){
+          case (acc,entry) => acc |+| Map(entry).map(tp => tp._1 match {case NamespaceEmpty => DefaultNamespace -> tp._2 case _ => tp})
+        }
+        //Filter the old changed key in sourceMap that has key NamespaceEmpty and merge it with the new key
+        val beforeMerge = sourceMap
+          .filterNot(pred => pred._1 match {case NamespaceEmpty => true case _ => false}) |+| defaultsOfNamespaceEmpty
+        //Filter algorithmic redundant entry
+          .map(tp =>
+            (tp._1,tp._2.filterNot(p => p match {case Pkg(Term.Name("default"),_) => true case _ => false})))
+
+        //merge accumulator with new map of current source
+        val after = acc |+| beforeMerge
+        //Filter multiple elements on toplevel (Could occur due to sources that define elements in the same namespace)
+        after.map(tp => (tp._1,tp._2.distinct))
+    }
     )
   }
 }

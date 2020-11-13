@@ -6,6 +6,7 @@ import scalameta.stats.StatsCollector
 import scalameta.stats.init.InitsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
+import scalameta.util.util.statToString
 import uml.{Attribute, Class, ClassRef, Compartment, ConcreteClass, Inner, Operation, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
 
 import scala.meta.Defn
@@ -17,6 +18,9 @@ class DefnClassCollector(override val definedElements: List[UMLElement],
 
 object DefnClassCollector {
   def apply(defnClass:Defn.Class)(implicit context : CollectorContext): DefnClassCollector = {
+    println(s"imports for visit of ${statToString(defnClass)}: " + context.localCon.currentImports + "globalcontext:" + context.globalCon.globalScope.map{
+      case (k,v) => (k,v.map(statToString))
+    })
     val mods = ClassModsCollector(defnClass.mods)
     val className = defnClass.name.value
 
