@@ -1,7 +1,6 @@
 package scalameta.util.context
 
 import scalameta.util.namespaces.{Entry, NamespaceEntry}
-import uml.types.Namespace
 import uml.{NamedElement, Operation, RelateableElement, RelationshipElement}
 
 import scala.meta.Source
@@ -26,7 +25,7 @@ case class CollectorContext(localCon:LocalContext, globalCon:GlobalContext) {
   def notTypeRequired : CollectorContext = this.copy(localCon.copy(typeRequired = false))
   def withNamespace(n:Entry) = this.copy(localCon.copy(currentNamespace = n))
   def withNamespace(n:String): CollectorContext = this.copy(localCon.copy(currentNamespace = NamespaceEntry(List(n))))
-  def witAdditionalImport(n:Namespace): CollectorContext = this.copy(localCon.copy(currentImports = localCon.currentImports.map(NamespaceEntry(List(n)) :: _)))
+  //def witAdditionalImport(n:Namespace): CollectorContext = this.copy(localCon.copy(currentImports = localCon.currentImports.map(NamespaceEntry(List(n)) :: _)))
   def withAdditionalImports(ns:List[NamespaceEntry]) : CollectorContext =
     this.copy(
       localCon.copy(currentImports = if(localCon.currentImports.isDefined){

@@ -11,7 +11,8 @@ lazy val root = (project in file("."))
     libraryDependencies += scalaTest % Test,
     libraryDependencies += "org.scalameta" %% "scalameta" % "4.3.24",
     libraryDependencies += "org.bitbucket.inkytonik.kiama" %% "kiama" % "2.3.0",
-      libraryDependencies += "org.typelevel" %% "cats-core" % "2.1.1"
-   // libraryDependencies += "org.scalameta" %% "common" % "4.3.24+30-63c1bd76-SNAPSHOT"
+      libraryDependencies += "org.typelevel" %% "cats-core" % "2.1.1",
+    libraryDependencies += "net.sourceforge.plantuml" % "plantuml" % "8059"
+    // libraryDependencies += "org.scalameta" %% "common" % "4.3.24+30-63c1bd76-SNAPSHOT"
 
 )

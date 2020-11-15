@@ -19,6 +19,7 @@
     <orderEntry type="library" name="sbt: com.thesamet.scalapb:lenses_2.13:0.10.8:jar" level="project" />
     <orderEntry type="library" name="sbt: com.thesamet.scalapb:scalapb-runtime_2.13:0.10.8:jar" level="project" />
     <orderEntry type="library" name="sbt: net.java.dev.jna:jna:5.3.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: net.sourceforge.plantuml:plantuml:8059:jar" level="project" />
     <orderEntry type="library" name="sbt: org.bitbucket.inkytonik.dsinfo:dsinfo_2.13:0.4.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.bitbucket.inkytonik.dsprofile:dsprofile_2.13:0.4.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.bitbucket.inkytonik.kiama:kiama_2.13:2.3.0:jar" level="project" />
