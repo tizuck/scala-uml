@@ -209,10 +209,10 @@ case object Without extends RelationshipDirection
 
 sealed trait RelationshipElement extends UMLElement
 sealed case class ConcreteClass(cls:RelateableElement with NamedElement) extends RelationshipElement {
-  override def structure: String = ""
+  override def structure: String = s"ConcreteClass(${cls.structure})"
 }
 sealed case class ClassRef(name:String, namespace:Entry=DefaultNamespace) extends RelationshipElement {
-  override def structure: String = ""
+  override def structure: String = s"ClassRef($name,${namespace.plantUML})"
 }
 
 sealed case class RelationshipInfo(sourceMultiplicity:Option[String],

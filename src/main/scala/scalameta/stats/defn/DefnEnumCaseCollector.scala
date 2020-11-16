@@ -39,7 +39,7 @@ object DefnEnumCaseCollector {
     )
 
     new DefnEnumCaseCollector(
-      cls :: inheritedElements.inheritance,
+      cls :: inheritedElements.definedElements,
       inheritedElements.resultingContext.copy(
         context.localCon.copy(thisPointer = previousThisPointer,
         definedTemplates = cls :: inheritedElements.resultingContext.localCon.definedTemplates)

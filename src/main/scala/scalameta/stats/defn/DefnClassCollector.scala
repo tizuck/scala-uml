@@ -57,7 +57,7 @@ object DefnClassCollector {
     new DefnClassCollector(
       cls ::
         innerElements.innerElements ++
-          inheritedElements.inheritance ++
+          inheritedElements.definedElements ++
           innerRelationship.map(r => List(r)).getOrElse(Nil),
       innerElements
         .resultingContext

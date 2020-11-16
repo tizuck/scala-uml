@@ -57,7 +57,7 @@ object DefnTraitCollector {
     } else {None}
 
     new DefnTraitCollector(
-      innerElements.innerElements ++ inheritedElements.inheritance ++ innerRelationship.map(r => List(r)).getOrElse(Nil) ++ List(cls),
+      innerElements.innerElements ++ inheritedElements.definedElements ++ innerRelationship.map(r => List(r)).getOrElse(Nil) ++ List(cls),
       innerElements
         .resultingContext
         .withAdditionalTemplate(cls)

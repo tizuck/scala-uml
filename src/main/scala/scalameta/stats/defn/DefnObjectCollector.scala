@@ -55,7 +55,7 @@ object DefnObjectCollector {
     } else {None}
 
     new DefnObjectCollector(
-      cls :: innerWithoutOperations ++ inheritedElements.inheritance ++ innerRelationship.map( List(_)).getOrElse(Nil),
+      cls :: innerWithoutOperations ++ inheritedElements.definedElements ++ innerRelationship.map( List(_)).getOrElse(Nil),
       innerElements
         .resultingContext
         .withAdditionalTemplate(cls)

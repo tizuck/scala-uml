@@ -14,7 +14,7 @@ object UMLCollector {
     new UMLCollector(
       uml.UMLUnit(
         "need_to_find_id",
-        toplevelElements = topLevelElements.definedElements.asInstanceOf[List[TopLevelElement]]
+        toplevelElements = topLevelElements.definedElements.asInstanceOf[List[TopLevelElement]].distinct
       ),topLevelElements.resultingContext)
   }
 }
