@@ -27,9 +27,14 @@ object DefnObjectCollector {
 
     val inheritedElements = InitsCollector(defnObject.templ.inits)(context
       .withThisPointer(tempThisPointer)
-    .withNamespace(newNamespace))
+    .withNamespace(context.localCon.currentNamespace))
 
-    val innerElements = StatsCollector(defnObject.templ.stats)(inheritedElements.resultingContext.notToplevel)
+    val innerElements = StatsCollector(defnObject.templ.stats)(
+      inheritedElements
+        .resultingContext
+        .notToplevel
+        .withNamespace(newNamespace))
+
     val operations = innerElements.definedElements.flatMap{
       case o:Operation => Some(o)
       case _ => None
@@ -58,7 +63,6 @@ object DefnObjectCollector {
       cls :: innerWithoutOperations ++ inheritedElements.definedElements ++ innerRelationship.map( List(_)).getOrElse(Nil),
       innerElements
         .resultingContext
-        .withAdditionalTemplate(cls)
         .withOptionalThisPointer(previousThisPointer)
         .withToplevel(previousToplevel)
         .withNamespace(previousNamespace)

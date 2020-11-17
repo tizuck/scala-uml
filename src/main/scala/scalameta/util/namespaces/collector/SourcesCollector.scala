@@ -5,15 +5,14 @@ import scala.meta.{Pkg, Source, Stat, Term}
 import cats.implicits._
 import scalameta.util.util.statToString
 
-case class SourcesCollector(override val resultingMap: Map[Entry, List[Stat]])
-  extends BaseNamespaceCollector
+case class SourcesCollector(resultingMap: Map[Entry, List[(Stat,String)]])
 
 object SourcesCollector {
-  def apply(sources:List[Source]): SourcesCollector = {
+  def apply(sources:List[(Source,String)]): SourcesCollector = {
     println(s"Sources amount: ${sources.size}")
-    SourcesCollector(sources.foldLeft(Map.empty[Entry,List[Stat]]){
+    SourcesCollector(sources.foldLeft(Map.empty[Entry,List[(Stat,String)]]){
       case (acc,source) =>
-        val sourceCollector = SourceCollector(source)
+        val sourceCollector = SourceCollector(source._1)(source._2)
         val sourceMap =
           sourceCollector
             .resultingMap
@@ -24,7 +23,7 @@ object SourcesCollector {
         //Get a map with only the element that has key NamespaceEmpty
         val onlyNamespaceEmpty = sourceMap.filter(pred => pred._1 match {case NamespaceEmpty => true case _ => false})
         //map that entry to DefaultNamespace
-        val defaultsOfNamespaceEmpty = onlyNamespaceEmpty.foldLeft(Map[Entry,List[Stat]]()){
+        val defaultsOfNamespaceEmpty = onlyNamespaceEmpty.foldLeft(Map[Entry,List[(Stat,String)]]()){
           case (acc,entry) => acc |+| Map(entry).map(tp => tp._1 match {case NamespaceEmpty => DefaultNamespace -> tp._2 case _ => tp})
         }
         //Filter the old changed key in sourceMap that has key NamespaceEmpty and merge it with the new key
@@ -32,7 +31,7 @@ object SourcesCollector {
           .filterNot(pred => pred._1 match {case NamespaceEmpty => true case _ => false}) |+| defaultsOfNamespaceEmpty
         //Filter algorithmic redundant entry
           .map(tp =>
-            (tp._1,tp._2.filterNot(p => p match {case Pkg(Term.Name("default"),_) => true case _ => false})))
+            (tp._1,tp._2.filterNot(p => p._1 match {case Pkg(Term.Name("default"),_) => true case _ => false})))
 
         //merge accumulator with new map of current source
         val after = acc |+| beforeMerge

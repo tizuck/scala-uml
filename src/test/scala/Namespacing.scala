@@ -21,15 +21,17 @@ class Namespacing extends AnyFreeSpec with Matchers {
         Paths.get("src","test","scala","assets","StatCollector.txt"),
         Paths.get("src","test","scala","assets","StatsCollector.txt")
       )
-    val repository:List[Source] =
+    val repository:List[(Source,String)] =
       paths
         .map(path => (Files.readAllBytes(path),path))
         .map(tp => (new String(tp._1,"UTF-8"),tp._2))
-        .map(tp => Input.VirtualFile(tp._2.toString,tp._1))
-        .map(input => input.parse[Source].get) ++ List(scalaDefaults.default)
+        .map(tp => (Input.VirtualFile(tp._2.toString,tp._1),tp._2))
+        .map(input => (input._1.parse[Source].get,input._2.toAbsolutePath.toString)) ++ List((scalaDefaults.default,"default.scala"))
 
     val globalScope = scalameta.util.namespaces.collector.SourcesCollector(repository)
-    val umlStatsCollector = UMLCollector(repository(3),GlobalContext(globalScope.resultingMap))
+    val umlStatsCollector = UMLCollector(repository(3)._1,GlobalContext(globalScope.resultingMap.map{
+      case (k,v) => (k,v.map(_._1))
+    }))
 
   }
 

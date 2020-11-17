@@ -61,7 +61,6 @@ object DefnClassCollector {
           innerRelationship.map(r => List(r)).getOrElse(Nil),
       innerElements
         .resultingContext
-        .withAdditionalTemplate(cls)
         .withOptionalThisPointer(previousThisPointer)
         .withToplevel(previousToplevel)
     )

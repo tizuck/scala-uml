@@ -11,7 +11,7 @@ case class GlobalContext(globalScope:Map[Entry,List[Stat]]) {
   /**
    * <p>Finds a stat in the global context with the according namespace-`Entry`. if namespace entry is
    * defined in imports but class is positioned in external project, then a namespace entry is returned
-   * but no stat.<p>
+   * but no stat.</p>
    *
    * <p>If for example a reference to a template in code is `types.int.SmallInt` and the current
    * namespace is `DefaultNamespace` and imports contains an Entry `types::int -> List(...,Type("SmallInt"),...)`

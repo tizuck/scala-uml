@@ -3,6 +3,8 @@ package uml
 import plantuml.SimplePlantUMLPrettyPrinter
 import scalameta.util.namespaces.{DefaultNamespace, Entry}
 
+import scala.meta.Stat
+
 /**
  * @todo will be used later to define operations on all nodes
  */
@@ -93,6 +95,27 @@ case object Public extends AccessModifier
 sealed trait Modificator
 case object Static extends Modificator
 case object Abstract extends Modificator
+
+object externalReferences {
+  sealed trait ClassType
+  case object Trait extends ClassType
+  case object Enum extends ClassType
+  case object Object extends ClassType
+  case object CClass extends ClassType
+  case object CCaseClass extends ClassType
+
+  sealed case class ClassDefRef(classtype:ClassType,
+                                name:String,namespace:Entry,
+                                templateParameter:List[String],
+                                oStat:Option[Stat] = None)
+    extends UMLElement {
+    override def structure: String =
+      s"""ClassDefRef($classtype,"$name",$namespace,List(${templateParameter.mkString(",")}))"""
+  }
+
+
+}
+
 
 sealed case class Class(isAbstract:Boolean,
                         identifier:String,

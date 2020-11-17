@@ -3,13 +3,16 @@ import scalameta.util.namespaces.Entry
 
 import scala.meta.{ Source, Stat}
 
-case class SourceCollector(override val resultingMap: Map[Entry, List[Stat]])
-  extends BaseNamespaceCollector
+case class SourceCollector(val resultingMap: Map[Entry, List[(Stat,String)]])
 
 object SourceCollector {
-  def apply(source:Source): SourceCollector = {
-    SourceCollector(
-      StatsCollector(source.stats,None).resultingMap
+  def apply(source:Source)(implicit compilationUnitName : String): SourceCollector = {
+    new SourceCollector(
+      StatsCollector(source.stats,None)
+        .resultingMap
+        .map(
+          entry => (entry._1, entry._2.map(stat => (stat,compilationUnitName)))
+        )
     )
   }
 }

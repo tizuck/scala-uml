@@ -1,5 +1,6 @@
 package scalameta.stats.dcl
 
+import scalameta.stats.StatCollector
 import scalameta.stats.util.AssociationInformation
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
@@ -15,13 +16,20 @@ object DclVarCollector {
   def apply(dclVar:Var)(implicit context:CollectorContext): DclVarCollector = {
     val assocInfo = AssociationInformation(dclVar.pats,dclVar.decltpe)
 
-    val templateIsDefined : Boolean =
-      context
-        .localCon
-        .definedTemplates
-        .exists((n:NamedElement) => n.identifier.equals(assocInfo.pDeclType))
+    val statRep: Option[StatCollector] = assocInfo.pDeclType.oTemplate.map{
+      StatCollector(_)(
+        context
+          .withOptionalThisPointer(None)
+          .withNamespace(assocInfo.pDeclType.namespace)
+      )
+    }
 
-    println(s"Define association for: ${context.localCon.thisPointer.get} to: ${dclVar.decltpe} in context: $context ")
+    val relationshipIdentifier =
+      assocInfo.pDeclType
+        .boundTemplates
+        .map{
+          tbind => s"${tbind._1} -> ${tbind._2}"}
+        .mkString(",")
 
     val relationships = assocInfo.pSources.map{ s =>
         Relationship(
@@ -31,10 +39,8 @@ object DclVarCollector {
             None,
             Some(assocInfo.targetMultiplicity),
             context.localCon.thisPointer.get,
-            if(templateIsDefined){
-              ConcreteClass(context.localCon.definedTemplates.find(_.identifier.equals(assocInfo.pDeclType)).get)
-            }else{ClassRef(assocInfo.pDeclType)},
-            Some(s),
+            ClassRef(assocInfo.pDeclType.target,assocInfo.pDeclType.namespace),
+            Some(s"$s  ${if(relationshipIdentifier.nonEmpty)s"<<bind $relationshipIdentifier >>" else ""}"),
             FromTo),
           Some("var"))
     }

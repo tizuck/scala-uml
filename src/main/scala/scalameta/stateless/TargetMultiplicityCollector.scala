@@ -15,7 +15,7 @@ object TargetMultiplicityCollector {
         case Name(name) => name match {
           case "Option" => TargetMultiplicityCollector("[0..1]")
           case "List" => TargetMultiplicityCollector("*")
-          case _ => TargetMultiplicityCollector("unknown")
+          case _ => TargetMultiplicityCollector("1")
         }
       }
       case _ => TargetMultiplicityCollector("unknown")

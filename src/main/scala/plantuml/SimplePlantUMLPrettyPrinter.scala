@@ -4,7 +4,11 @@ import org.bitbucket.inkytonik.kiama.output.PrettyPrinterTypes.Document
 import java.util.UUID.randomUUID
 
 import scalameta.util.namespaces.DefaultNamespace
-import uml.{Abstract, AccessModifier, Aggregation, Annotation, Association, Attribute, Class, ClassRef, Compartment, Composition, ConcreteClass, Extension, FromTo, GenericParameter, Inner, Modificator, Note, Operation, Package, PackagePrivate, Parameter, Private, Protected, Public, Relationship, RelationshipDirection, RelationshipInfo, RelationshipType, Static, StereotypeElement, ToFrom, UMLElement, UMLUnit, Without}
+import uml.externalReferences.{ClassDefRef, Trait}
+import uml.{Abstract, AccessModifier, Aggregation, Annotation, Association, Attribute, Class, ClassRef, Compartment,
+  Composition, ConcreteClass, Extension, FromTo, GenericParameter, Inner, Modificator, Note, Operation, Package,
+  PackagePrivate, Parameter, Private, Protected, Public, Relationship, RelationshipDirection, RelationshipInfo,
+  RelationshipType, Static, StereotypeElement, ToFrom, UMLElement, UMLUnit, Without}
 
 /**
  * @todo Remove empty string from relationship
@@ -125,6 +129,36 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
 
     case ClassRef(name,namespace) =>
       namespace.plantUML <> name
+
+    case ClassDefRef(classtype, name, namespace, templateParameter, _) =>
+      classtype match {
+        case Trait =>
+          val cls = Class(true, name, Nil, Nil, Nil,
+            Option(templateParameter.map(s => GenericParameter(s,None,None))).filter(_.nonEmpty),
+            Some("trait"), namespace
+          )
+          show(cls)
+        case uml.externalReferences.Enum =>
+          val cls = Class(false, name, Nil, Nil, Nil,
+            Option(templateParameter.map(s => GenericParameter(s,None,None))).filter(_.nonEmpty),
+            Some("enum"), namespace
+          )
+          show(cls)
+        case uml.externalReferences.Object =>
+          val cls = Class(false, name, Nil, Nil, Nil, None, Some("object"), namespace)
+          show(cls)
+        case uml.externalReferences.CClass =>
+          val cls = Class(false, name, Nil, Nil, Nil,
+          Option(templateParameter.map(s => GenericParameter(s,None,None))).filter(_.nonEmpty),
+            None, namespace
+        )
+          show(cls)
+        case uml.externalReferences.CCaseClass =>
+          val cls = Class(false, name, Nil, Nil, Nil,
+          Option(templateParameter.map(s => GenericParameter(s,None,None))).filter(_.nonEmpty),
+            Some("caseclass"), namespace)
+          show(cls)
+      }
 
     case r@Relationship(
     relationshipType,

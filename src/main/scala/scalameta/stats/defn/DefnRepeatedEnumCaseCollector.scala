@@ -28,10 +28,6 @@ object DefnRepeatedEnumCaseCollector {
           )
         acc.copy(
           definedElements = cls :: relationship :: acc.definedElements,
-          resultingContext = acc.resultingContext.copy(
-            acc.resultingContext.localCon.copy(
-              definedTemplates = cls :: acc.resultingContext.localCon.definedTemplates)
-          )
         )
     }
   }

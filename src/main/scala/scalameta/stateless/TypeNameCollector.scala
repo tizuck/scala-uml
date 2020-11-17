@@ -1,8 +1,5 @@
 package scalameta.stateless
 
-import scalameta.util.context.CollectorContext
-import sun.reflect.generics.reflectiveObjects.NotImplementedException
-
 import scala.meta.Type
 
 case class TypeNameCollector(typeRep:String)
@@ -33,6 +30,7 @@ object TypeNameCollector {
         val lhsRep = this(lhs)
         val rhsRep = this(rhs)
         TypeNameCollector(s"|<${lhsRep.typeRep},${rhsRep.typeRep}>")
+      case Type.With(lhs, rhs) => TypeNameCollector(s"&<${this(lhs)},${this(rhs)}>")
     }
   }
 }

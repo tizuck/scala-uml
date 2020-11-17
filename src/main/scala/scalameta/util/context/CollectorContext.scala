@@ -9,7 +9,7 @@ case class CollectorContext(localCon:LocalContext, globalCon:GlobalContext) {
 
   def +(other: CollectorContext): CollectorContext =
     CollectorContext(
-      localCon.copy(definedTemplates = localCon.definedTemplates ++ other.localCon.definedTemplates)
+      localCon
       ,globalCon
     )
 
@@ -35,9 +35,6 @@ case class CollectorContext(localCon:LocalContext, globalCon:GlobalContext) {
       }
       ))
   def withCstrOrigin(cstrOrigin:String) = this.copy(localCon.copy(cstrOrigin = Some(cstrOrigin)))
-  def withAdditionalTemplate(templ:NamedElement with RelateableElement) = {
-    this.copy(localCon.copy(definedTemplates = localCon.definedTemplates ++ List(templ)))
-  }
   def withThisPointer(r:RelationshipElement) = this.copy(localCon.copy(thisPointer = Some(r)))
   def withOptionalThisPointer(r:Option[RelationshipElement]) = this.copy(localCon.copy(thisPointer = r))
 }

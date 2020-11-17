@@ -1,3 +1,6 @@
+import java.io.{File, FileOutputStream}
+
+import net.sourceforge.plantuml.{FileFormat, FileFormatOption, SourceStringReader}
 import scalameta.UMLCollector
 import scalameta.util.context.GlobalContext
 import scalameta.util.namespaces.scalaDefaults
@@ -11,44 +14,79 @@ object Main extends App {
   val foo =
     """
       |package foo
+      |trait B[+T,E] {
+      |  val self:A[Int]
+      |}
       |
-      |trait A {
+      |trait A[T] {
+      | val self:B[Nothing,Nothing]
       | def foo():Unit
       |}
       |""".stripMargin
 
   val bar = """
-    |package bar
+    |package foo
     |
-    |import foo._
-    |
-    |trait B extends A
-    |trait C extends A
-    |""".stripMargin
-  //val path = java.nio.file.Paths.get("src","main", "scala","uml", "ast.scala")
-  //println(path.toAbsolutePath)
-  //val bytes = java.nio.file.Files.readAllBytes(path)
-  //val text = new String(bytes, "UTF-8")
-  //val input = Input.VirtualFile(path.toString, text)
+    |import scala.util._
 
-  val fooSource = dialects.Dotty(foo).parse[Source].get
-  val barSource = dialects.Dotty(bar).parse[Source].get
+    |trait C extends B[Nothing,Nothing]
+    |trait D extends B[Nothing,Nothing]
+    |
+    |""".stripMargin
+  val path = java.nio.file.Paths.get("src","main", "scala","uml", "ast.scala")
+  val bytes = java.nio.file.Files.readAllBytes(path)
+  val text = new String(bytes, "UTF-8")
+  val input = Input.VirtualFile(path.toString, text)
+
+  val astSource = input.parse[Source].get
+  //val fooSource = dialects.Dotty(foo).parse[Source].get
+  //val barSource = dialects.Dotty(bar).parse[Source].get
   //println(source.structure)
   val namespaceMap =
     scalameta.
       util.
       namespaces.
       collector.
-      SourcesCollector(List(fooSource,barSource,scalaDefaults.default)).resultingMap
+      SourcesCollector(List((astSource,"ast.scala"),(scalaDefaults.default,"default.scala"))).resultingMap
 
-  val plantUMLUnit = UMLCollector(barSource,GlobalContext(namespaceMap)).plantUMLUnit
+  val plantUMLUnit = UMLCollector(astSource,GlobalContext(namespaceMap.map(tp => (tp._1,tp._2.map(_._1))))).plantUMLUnit
+
+
   //println(plantUMLUnit)
   //println(plantUMLUnit.structure)
+
+  //hack some skinparams into the files
+
+  val prettyFile = plantUMLUnit
+    .pretty
+    .substring(0,plantUMLUnit.pretty.lastIndexOf("\n"))
+    .appended('\n')
+    .appendedAll(
+      """
+        |skinparam linetype ortho
+        |
+        |skinparam class {
+        | Backgroundcolor white
+        | Bordercolor black
+        | Arrowcolor Black
+        |}
+        |
+        |hide circle
+        |@enduml
+        |""".stripMargin
+    )
+  val reader = new SourceStringReader(prettyFile)
+  val filePath = new File("diaOut")
+
+  filePath.mkdirs()
+
+  val fos = new FileOutputStream(new File(filePath.getPath + "/ast.svg"))
+  val sec = reader.generateImage(fos,new FileFormatOption(FileFormat.SVG))
   println(plantUMLUnit.pretty)
   println("-----------------------------------------")
   println(namespaceMap
   .map{
-    case (k,v) => (k,v.map(statToString))
+    case (k,v) => (k,v.map(entry => (statToString(entry._1),entry._2)))
   })
 }
 
