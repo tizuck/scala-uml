@@ -47,9 +47,9 @@ object Main extends App {
       util.
       namespaces.
       collector.
-      SourcesCollector(List((astSource,"ast.scala"),(scalaDefaults.default,"default.scala"))).resultingMap
+      SourcesCollector(List((astSource,path.toString),(scalaDefaults.default,"default.scala"))).resultingMap
 
-  val plantUMLUnit = UMLCollector(astSource,GlobalContext(namespaceMap.map(tp => (tp._1,tp._2.map(_._1))))).plantUMLUnit
+  val plantUMLUnit = UMLCollector(astSource,GlobalContext(namespaceMap),path.toString).plantUMLUnit
 
 
   //println(plantUMLUnit)

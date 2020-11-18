@@ -11,8 +11,8 @@ case class UMLCollector(plantUMLUnit:UMLUnit,resultingContext:CollectorContext)
 object UMLCollector {
   //@todo Add the name of the file additionally to the source so the find
   //  algorithm can respect current compilation unit
-  def apply(source: Source,pre:GlobalContext): UMLCollector = {
-    val topLevelElements = StatsCollector(source.stats)(CollectorContext(pre))
+  def apply(source: Source,pre:GlobalContext,compilationUnit:String): UMLCollector = {
+    val topLevelElements = StatsCollector(source.stats)(CollectorContext(compilationUnit,pre))
     new UMLCollector(
       uml.UMLUnit(
         "need_to_find_id",

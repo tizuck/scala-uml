@@ -19,7 +19,7 @@ class DefnClassCollector(override val definedElements: List[UMLElement],
 object DefnClassCollector {
   def apply(defnClass:Defn.Class)(implicit context : CollectorContext): DefnClassCollector = {
     println(s"imports for visit of ${statToString(defnClass)}: " + context.localCon.currentImports + "globalcontext:" + context.globalCon.globalScope.map{
-      case (k,v) => (k,v.map(statToString))
+      case (k,v) => (k,v.map(p => statToString(p._1)))
     })
     val mods = ClassModsCollector(defnClass.mods)
     val className = defnClass.name.value

@@ -40,7 +40,7 @@ case class CollectorContext(localCon:LocalContext, globalCon:GlobalContext) {
 }
 
 object CollectorContext {
-  def apply(pre:GlobalContext): CollectorContext = {
-    new CollectorContext(LocalContext(),pre)
+  def apply(compilationUnit:String,pre:GlobalContext): CollectorContext = {
+    new CollectorContext(LocalContext(compilationUnit),pre)
   }
 }

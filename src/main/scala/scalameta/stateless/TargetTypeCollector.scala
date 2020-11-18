@@ -15,7 +15,12 @@ object TargetTypeCollector {
       //Find name respecting current imports and target name
       val lookup = context
         .globalCon
-        .find(name,None,context.localCon.currentNamespace,context.localCon.currentImports)
+        .findSpec(
+          name,
+          None,
+          context.localCon.currentCompilationUnit,
+          context.localCon.currentNamespace,
+          context.localCon.currentImports)
 
       lookup match {
         case Some(oEntry) => oEntry._2 match {
@@ -64,9 +69,10 @@ object TargetTypeCollector {
       val qualResolved = SelectRefCollector(qual)
       val lookup = context
       .globalCon
-      .find(
+      .findSpec(
         name.value,
         Some(qualResolved.namespaceAddition),
+        context.localCon.currentCompilationUnit,
         context.localCon.currentNamespace,
         context.localCon.currentImports
       )

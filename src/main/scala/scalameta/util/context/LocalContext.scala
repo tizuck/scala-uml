@@ -4,6 +4,7 @@ import scalameta.util.namespaces.{DefaultNamespace, Entry, NamespaceEntry}
 import uml.{RelationshipElement}
 
 case class LocalContext(thisPointer: Option[RelationshipElement] = None,
+                        currentCompilationUnit : String,
                         cstrOrigin:Option[String] = None,
                         currentImports:Option[List[NamespaceEntry]] = None,
                         currentNamespace:Entry = DefaultNamespace,
@@ -11,5 +12,5 @@ case class LocalContext(thisPointer: Option[RelationshipElement] = None,
                         isTopLevel:Boolean = true)
 
 object LocalContext {
-  def apply(): LocalContext = new LocalContext()
+  def apply(compilationUnit:String): LocalContext = new LocalContext(currentCompilationUnit = compilationUnit)
 }

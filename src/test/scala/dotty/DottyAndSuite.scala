@@ -23,9 +23,7 @@ class DottyAndSuite extends AnyFreeSpec with Matchers {
     val input = dialects.Dotty(vFile).parse[Source].get
 
     val globalScope = scalameta.util.namespaces.collector.SourcesCollector(List((input,path.toAbsolutePath.toString)))
-    val umlCollector = UMLCollector(input,GlobalContext(globalScope.resultingMap.map{
-      case (k,v) => (k,v.map(_._1))
-    }))
+    val umlCollector = UMLCollector(input,GlobalContext(globalScope.resultingMap),path.toAbsolutePath.toString)
 
     val reader = new SourceStringReader(umlCollector.plantUMLUnit.pretty)
     val filePath = new File("src/test/scala/assets/out/and/")

@@ -97,6 +97,7 @@ case object Static extends Modificator
 case object Abstract extends Modificator
 
 object externalReferences {
+
   sealed trait ClassType
   case object Trait extends ClassType
   case object Enum extends ClassType
