@@ -72,6 +72,7 @@ object Main extends App {
         |}
         |
         |hide circle
+        |hide members
         |@enduml
         |""".stripMargin
     )

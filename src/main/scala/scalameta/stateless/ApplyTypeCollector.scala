@@ -13,7 +13,7 @@ object ApplyTypeCollector {
     case Type.Name(name) =>
       val lookup = context
         .globalCon
-        .findSpec(
+        .find(
           name,
           None,
           context.localCon.currentCompilationUnit,
@@ -30,7 +30,7 @@ object ApplyTypeCollector {
 
       val lookup = context
         .globalCon
-        .findSpec(
+        .find(
           name.value,
           Some(qualResolved.namespaceAddition),
           context.localCon.currentCompilationUnit,

@@ -43,7 +43,7 @@ class Namespacing extends AnyFreeSpec with Matchers {
             val option =
               context
                 .globalCon
-                .findSpec(
+                .find(
                   "UMLElement",
                   None,
                   context.localCon.currentCompilationUnit,
@@ -65,7 +65,7 @@ class Namespacing extends AnyFreeSpec with Matchers {
           val option =
             context
             .globalCon
-            .findSpec("Stat", None,context.localCon.currentCompilationUnit,NamespaceEntry(List("scalameta", "stats")), context.localCon.currentImports)
+            .find("Stat", None,context.localCon.currentCompilationUnit,NamespaceEntry(List("scalameta", "stats")), context.localCon.currentImports)
 
           option.value must have(Symbol("_1")(NamespaceEntry(List("scala","meta"))))
           option.value._2 mustBe (Symbol("isEmpty"))
@@ -74,7 +74,7 @@ class Namespacing extends AnyFreeSpec with Matchers {
           val context = umlStatsCollector.resultingContext
           val option = context
             .globalCon
-            .findSpec("StatsCollector",None,context.localCon.currentCompilationUnit,NamespaceEntry(List("scalameta","stats")), context.localCon.currentImports)
+            .find("StatsCollector",None,context.localCon.currentCompilationUnit,NamespaceEntry(List("scalameta","stats")), context.localCon.currentImports)
 
           option.value must have(Symbol("_1")(NamespaceEntry(List("scalameta","stats"))))
           option.value._2.value mustBe a [Defn.Object]
@@ -84,7 +84,7 @@ class Namespacing extends AnyFreeSpec with Matchers {
           val context = umlStatsCollector.resultingContext
           val option = context
             .globalCon
-            .findSpec("Package",None,context.localCon.currentCompilationUnit,NamespaceEntry(List("scalameta","stats")),context.localCon.currentImports)
+            .find("Package",None,context.localCon.currentCompilationUnit,NamespaceEntry(List("scalameta","stats")),context.localCon.currentImports)
 
           option.value must have(Symbol("_1")(NamespaceEntry(List("uml"))))
           option.value._2.value mustBe a [Defn.Class]
@@ -95,7 +95,7 @@ class Namespacing extends AnyFreeSpec with Matchers {
           val option =
             context
               .globalCon
-              .findSpec("Zero",None,context.localCon.currentCompilationUnit,NamespaceEntry(List("scalameta","stats")),context.localCon.currentImports)
+              .find("Zero",None,context.localCon.currentCompilationUnit,NamespaceEntry(List("scalameta","stats")),context.localCon.currentImports)
 
           option must be (Symbol("isEmpty"))
         }
@@ -105,7 +105,7 @@ class Namespacing extends AnyFreeSpec with Matchers {
           val option =
             context
               .globalCon
-              .findSpec(
+              .find(
                 "Foo",
                 Some(NamespaceEntry(List("UMLElement"),namespaces.Name)),
                 context.localCon.currentCompilationUnit,
@@ -122,7 +122,7 @@ class Namespacing extends AnyFreeSpec with Matchers {
           val option =
             context
               .globalCon
-              .findSpec("Foo",
+              .find("Foo",
                 Some(NamespaceEntry(List("Abstract"),namespaces.Name)),
                 context.localCon.currentCompilationUnit,
                 NamespaceEntry(List("scalameta","stats")),
@@ -137,7 +137,7 @@ class Namespacing extends AnyFreeSpec with Matchers {
           val option =
             context
               .globalCon
-              .findSpec("UMLUnit",
+              .find("UMLUnit",
                 Some(NamespaceEntry(List("uml"),namespaces.Name)),
                 context.localCon.currentCompilationUnit,
                 NamespaceEntry(List("scalameta","stats")),
@@ -151,7 +151,7 @@ class Namespacing extends AnyFreeSpec with Matchers {
           val option =
             context
               .globalCon
-              .findSpec("Option",
+              .find("Option",
                 None,
                 context.localCon.currentCompilationUnit,
                 NamespaceEntry(List("scalameta","stats")),

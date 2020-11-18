@@ -5,20 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/ApplyTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/ApplyTypeCollector.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TargetTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TargetTypeCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnClassCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnClassCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/toplevel/UMLCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/toplevel/UMLCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/CollectorContext.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/CollectorContext.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/GlobalContext.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/GlobalContext.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/LocalContext.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/LocalContext.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/scala/Namespacing.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/Namespacing.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/ast.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/assets/ast.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/DottyAndSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/dotty/DottyAndSuite.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +98,7 @@
       <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\test\scala\assets" />
     </key>
   </component>
-  <component name="RunManager" selected="ScalaTest.Namespacing.Repository when scanned for global scope and used for visiting of ast.scala in namespace uml::externalReferences is able to find UMLUnit from namespace uml in same compilation Unit">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="scala-uml" />
@@ -114,42 +106,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DottyAndSuite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
-      <module name="scala-uml" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="selectedOptions">
-        <set />
-      </option>
-      <option name="testKind" value="Class" />
-      <option name="testClassPath" value="dotty.DottyAndSuite" />
-      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DottyAndSuite.Dotty Reference to Intersectiontypes can be processed to a plantUML png" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
-      <module name="scala-uml" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="selectedOptions">
-        <set />
-      </option>
-      <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="dotty.DottyAndSuite" />
-      <option name="testName" value="Dotty Reference to Intersectiontypes can be processed to a plantUML png" />
-      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -167,7 +130,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Namespacing.Repository when scanned for global scope and used for visiting of ast.scala in namespace uml::externalReferences is able to find UMLUnit from namespace uml in same compilation Unit" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of a namespace that is valid (uml::Abstract) with inner class that is not contained in the namespace should yield the namespace without found stat" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
       <option name="selectedOptions">
@@ -175,7 +138,35 @@
       </option>
       <option name="testKind" value="Test name" />
       <option name="testClassPath" value="Namespacing" />
-      <option name="testName" value="Repository when scanned for global scope and used for visiting of ast.scala in namespace uml::externalReferences is able to find UMLUnit from namespace uml in same compilation Unit" />
+      <option name="testName" value="Repository when scanned for global scope and used for visiting of StatsCollector lookup of a namespace that is valid (uml::Abstract) with inner class that is not contained in the namespace should yield the namespace without found stat" />
+      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of a namespace that is valid (uml::UMLUnit) and fully qualified in the fileshould be found within the global scope" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="scala-uml" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <option name="testKind" value="Test name" />
+      <option name="testClassPath" value="Namespacing" />
+      <option name="testName" value="Repository when scanned for global scope and used for visiting of StatsCollector lookup of a namespace that is valid (uml::UMLUnit) and fully qualified in the fileshould be found within the global scope" />
+      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of class Foo in namespace that is not in global scope (UMLElement) should result in no found stat but namespace" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="scala-uml" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <option name="testKind" value="Test name" />
+      <option name="testClassPath" value="Namespacing" />
+      <option name="testName" value="Repository when scanned for global scope and used for visiting of StatsCollector lookup of class Foo in namespace that is not in global scope (UMLElement) should result in no found stat but namespace" />
       <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -183,11 +174,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="ScalaTest.Namespacing.Repository when scanned for global scope and used for visiting of ast.scala in namespace uml::externalReferences is able to find UMLUnit from namespace uml in same compilation Unit" />
-        <item itemvalue="ScalaTest.Namespacing" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="ScalaTest.DottyAndSuite" />
-        <item itemvalue="ScalaTest.DottyAndSuite.Dotty Reference to Intersectiontypes can be processed to a plantUML png" />
+        <item itemvalue="ScalaTest.Namespacing" />
+        <item itemvalue="ScalaTest.Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of a namespace that is valid (uml::UMLUnit) and fully qualified in the fileshould be found within the global scope" />
+        <item itemvalue="ScalaTest.Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of a namespace that is valid (uml::Abstract) with inner class that is not contained in the namespace should yield the namespace without found stat" />
+        <item itemvalue="ScalaTest.Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of class Foo in namespace that is not in global scope (UMLElement) should result in no found stat but namespace" />
       </list>
     </recent_temporary>
   </component>
@@ -241,7 +232,8 @@
       <workItem from="1605629057662" duration="256000" />
       <workItem from="1605630342660" duration="369000" />
       <workItem from="1605630721003" duration="10644000" />
-      <workItem from="1605695909509" duration="16948000" />
+      <workItem from="1605695909509" duration="23010000" />
+      <workItem from="1605733427853" duration="3597000" />
     </task>
     <servers />
   </component>
@@ -254,10 +246,10 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1605635602571">
+    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1605718842676">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605635602571" />
+    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605718842676" />
     <state x="2610" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604484631120" />
     <state x="49" y="133" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1605262889410">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -295,46 +287,46 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="915" y="277" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602884588099" />
-    <state width="1877" height="218" key="GridCell.Tab.0.bottom" timestamp="1605716458532">
+    <state width="1877" height="218" key="GridCell.Tab.0.bottom" timestamp="1605736924887">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="218" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605716458532" />
+    <state width="1877" height="218" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605736924887" />
     <state width="915" height="196" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604687542651" />
-    <state width="1877" height="218" key="GridCell.Tab.0.center" timestamp="1605716458532">
+    <state width="1877" height="218" key="GridCell.Tab.0.center" timestamp="1605736924887">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="218" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605716458532" />
+    <state width="1877" height="218" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605736924887" />
     <state width="915" height="196" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604687542651" />
-    <state width="1877" height="218" key="GridCell.Tab.0.left" timestamp="1605716458532">
+    <state width="1877" height="218" key="GridCell.Tab.0.left" timestamp="1605736924887">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="218" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605716458532" />
+    <state width="1877" height="218" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605736924887" />
     <state width="915" height="196" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604687542651" />
-    <state width="1877" height="218" key="GridCell.Tab.0.right" timestamp="1605716458532">
+    <state width="1877" height="218" key="GridCell.Tab.0.right" timestamp="1605736924887">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="218" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605716458532" />
+    <state width="1877" height="218" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605736924887" />
     <state width="915" height="196" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604687542651" />
-    <state width="1877" height="421" key="GridCell.Tab.1.bottom" timestamp="1605548718655">
+    <state width="1877" height="430" key="GridCell.Tab.1.bottom" timestamp="1605735822258">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="421" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605548718655" />
-    <state width="1877" height="421" key="GridCell.Tab.1.center" timestamp="1605548718655">
+    <state width="1877" height="430" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605735822258" />
+    <state width="1877" height="430" key="GridCell.Tab.1.center" timestamp="1605735822258">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="421" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605548718655" />
-    <state width="1877" height="421" key="GridCell.Tab.1.left" timestamp="1605548718655">
+    <state width="1877" height="430" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605735822258" />
+    <state width="1877" height="430" key="GridCell.Tab.1.left" timestamp="1605735822258">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="421" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605548718655" />
-    <state width="1877" height="421" key="GridCell.Tab.1.right" timestamp="1605548718655">
+    <state width="1877" height="430" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605735822258" />
+    <state width="1877" height="430" key="GridCell.Tab.1.right" timestamp="1605735822258">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="421" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605548718655" />
-    <state x="681" y="200" key="SettingsEditor" timestamp="1605701687461">
+    <state width="1877" height="430" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605735822258" />
+    <state x="681" y="188" key="SettingsEditor" timestamp="1605720400781">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="681" y="200" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605701687461" />
+    <state x="681" y="188" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605720400781" />
     <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1605282916368">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
