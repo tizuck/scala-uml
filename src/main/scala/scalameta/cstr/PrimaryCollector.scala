@@ -2,7 +2,7 @@ package scalameta.operations
 
 import scalameta.operations.parameters.ParamssCollector
 import scalameta.util.context.CollectorContext
-import uml.Operation
+import uml.{Operation, Stereotype}
 
 import scala.meta.Ctor
 
@@ -21,7 +21,7 @@ object PrimaryConstructorCollector {
         context.localCon.cstrOrigin.get,
         operationParameterLists.parameterLists,
         None,
-        Some("constr"))
+        List(Stereotype("constr",Nil)))
 
       new PrimaryConstructorCollector(Some(cstr))
     } else {

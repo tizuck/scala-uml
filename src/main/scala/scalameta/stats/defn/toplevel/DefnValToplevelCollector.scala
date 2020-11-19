@@ -3,7 +3,7 @@ package scalameta.stats.defn.toplevel
 import scalameta.stateless.TypeNameCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Attribute, Class, UMLElement}
+import uml.{Attribute, Class, Stereotype, UMLElement}
 
 import scala.meta.{Defn, Pat}
 
@@ -28,11 +28,11 @@ object DefnValToplevelCollector {
         acc ++ List(Class(
         false,
         cn.toUpperCase,
-        List(Attribute(None,None,cn,optionRetTypeRep,None)),
+        List(Attribute(None,None,cn,optionRetTypeRep,Nil)),
           Nil,
           Nil,
           None,
-          Some("val")
+          List(Stereotype("val",Nil))
       ))
     }
 

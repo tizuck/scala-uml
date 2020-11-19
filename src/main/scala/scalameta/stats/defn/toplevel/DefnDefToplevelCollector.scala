@@ -4,7 +4,7 @@ import scalameta.relationships.dcl.DclDefCollector
 import scalameta.stats.dcl.DclCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Class, Operation, UMLElement}
+import uml.{Class, Operation, Stereotype, UMLElement}
 
 import scala.meta.{Decl, Defn, Type}
 
@@ -36,7 +36,7 @@ object DefnDefToplevelCollector {
         operation,
         Nil,
         None,
-        Some("def")
+        List(Stereotype("def",Nil))
       )),
       context
     )

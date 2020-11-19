@@ -1,5 +1,6 @@
 package scalameta.util
 
+import uml.externalReferences.ClassDefRef
 import uml.{Attribute, Class, NamedElement, Operation, RelateableElement, Relationship, UMLElement}
 
 trait BaseCollector extends StateChangingCollector {
@@ -18,6 +19,11 @@ trait BaseCollector extends StateChangingCollector {
   def innerElements : List[UMLElement] = definedElements.flatMap{
     case c:Class => Some(c)
     case r:Relationship => Some(r)
+    case _ => None
+  }
+
+  def classDefRefs : List[UMLElement] = definedElements.flatMap{
+    case c:ClassDefRef => Some(c)
     case _ => None
   }
 

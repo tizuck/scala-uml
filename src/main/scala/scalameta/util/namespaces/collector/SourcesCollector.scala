@@ -9,7 +9,6 @@ case class SourcesCollector(resultingMap: Map[Entry, List[(Stat,String)]])
 
 object SourcesCollector {
   def apply(sources:List[(Source,String)]): SourcesCollector = {
-    println(s"Sources amount: ${sources.size}")
     SourcesCollector(sources.foldLeft(Map.empty[Entry,List[(Stat,String)]]){
       case (acc,source) =>
         val sourceCollector = SourceCollector(source._1)(source._2)

@@ -7,7 +7,7 @@ import scalameta.stats.util.defs.obtainFurtherNamespace
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
 import scalameta.util.namespaces.DefaultNamespace
-import uml.{Attribute, Class, ClassRef, Compartment, ConcreteClass, Inner, Operation, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
+import uml.{Attribute, Class, ClassRef, Compartment, ConcreteClass, Inner, Operation, Relationship, RelationshipInfo, Stereotype, ToFrom, UMLElement, Without}
 
 import scala.meta.Defn
 
@@ -49,14 +49,14 @@ object DefnObjectCollector {
       objectName,
       innerWithoutOperations.flatMap{case a:Attribute => Some(a) case _ => None},
       operations,
-      if(mods.modifiers.nonEmpty) {Compartment(Some("<<ScalaClass>>"),mods.modifiers,None) :: Nil} else Nil,
+      if(mods.modifiers.nonEmpty) {Compartment(Some("<<ScalaClass>>"),mods.modifiers,Nil) :: Nil} else Nil,
       None,
-      mods.stereotype.orElse(Some("object")),
+      mods.stereotype ++ List(Stereotype("object",Nil)),
       previousNamespace
     )
 
     val innerRelationship = if(previousThisPointer.isDefined){
-      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,previousThisPointer.get,ConcreteClass(cls),None,Without),None))
+      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,previousThisPointer.get,ConcreteClass(cls),None,Without),Nil))
     } else {None}
 
     new DefnObjectCollector(

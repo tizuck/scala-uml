@@ -26,6 +26,7 @@ object DclCollector {
       override val resultingContext: CollectorContext = context
     })
 
+
     new DclCollector(wrap.definedElements,wrap.resultingContext)
   }
 }

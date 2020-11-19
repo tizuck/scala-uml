@@ -5,7 +5,7 @@ import scalameta.operations.PrimaryConstructorCollector
 import scalameta.stats.init.InitsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Class, ClassRef, UMLElement}
+import uml.{Class, ClassRef, Stereotype, UMLElement}
 
 import scala.meta.Defn
 
@@ -34,7 +34,7 @@ object DefnEnumCaseCollector {
       primaryConstructor.primaryCstr.map(List(_)).getOrElse(Nil),
       Nil,
       None,
-      Some("case"),
+      List(Stereotype("case",Nil)),
       context.localCon.currentNamespace
     )
 

@@ -30,7 +30,9 @@ object TypeNameCollector {
         val lhsRep = this(lhs)
         val rhsRep = this(rhs)
         TypeNameCollector(s"|<${lhsRep.typeRep},${rhsRep.typeRep}>")
-      case Type.With(lhs, rhs) => TypeNameCollector(s"&<${this(lhs)},${this(rhs)}>")
+      case Type.With(lhs, rhs) =>
+        println(lhs.structure + " " + rhs.structure)
+        TypeNameCollector(s"&<${this(lhs).typeRep},${this(rhs).typeRep}>")
     }
   }
 }

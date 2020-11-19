@@ -60,9 +60,9 @@ object DclValCollector {
             ClassRef(name,namespace),
             Some(s"$s ${if(relationshipIdentifier.nonEmpty)s"<<bind $relationshipIdentifier >>" else ""}"),
             FromTo),
-          None)
+          Nil)
     }
 
-    new DclValCollector(relationships ++ List(ClassDefRef(classType,name,namespace,templateParameter,oStat)),context)
+    new DclValCollector(relationships,context.withExternalReference(ClassDefRef(classType,name,namespace,templateParameter,oStat)))
   }
 }

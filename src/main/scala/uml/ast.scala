@@ -34,8 +34,15 @@ sealed trait UMLElement { self =>
   }
 }
 
+sealed case class TaggedValue(name:String,value:String) extends UMLElement {
+  override def structure: String = s"""TaggedValue("$name","$value")"""
+}
+sealed case class Stereotype(name:String,taggedValues:List[TaggedValue]) extends UMLElement {
+  override def structure: String = s"""Stereotype("$name",${listStructure(taggedValues)})"""
+}
+
 trait StereotypeElement extends UMLElement {
-  val stereotype: Option[String]
+  val stereotype: List[Stereotype]
 }
 
 sealed trait TopLevelElement extends UMLElement
@@ -62,7 +69,7 @@ sealed case class UMLUnit(identifier:String,
 
 sealed case class Package(identifier:String,
                           packageBodyElements:List[PackageBodyElement],
-                          stereotype:Option[String],
+                          stereotype:List[Stereotype],
                           override val namespace:Entry=DefaultNamespace) extends
   TopLevelElement with
   PackageBodyElement with
@@ -70,7 +77,7 @@ sealed case class Package(identifier:String,
   NamedElement with
   RelateableElement {
   override def structure: String =
-    s"""Package("$identifier",${listStructure(packageBodyElements)},${optionString(stereotype)}))"""
+    s"""Package("$identifier",${listStructure(packageBodyElements)},${listStructure(stereotype)}))"""
 }
 
 /***************
@@ -79,11 +86,11 @@ sealed case class Package(identifier:String,
 
 sealed case class GenericParameter(identifier:String,
                                    concreteType:Option[String],
-                                   stereotype:Option[String]) extends
+                                   stereotype:List[Stereotype]) extends
   StereotypeElement with
   NamedElement {
   override def structure: String =
-    s"""GenericParameter("$identifier",${optionString(concreteType)},${optionString(stereotype)})"""
+    s"""GenericParameter("$identifier",${optionString(concreteType)},${listStructure(stereotype)})"""
 }
 
 sealed trait AccessModifier
@@ -109,7 +116,7 @@ object externalReferences {
                                 name:String,namespace:Entry,
                                 templateParameter:List[String],
                                 oStat:Option[Stat] = None)
-    extends UMLElement {
+    extends TopLevelElement {
     override def structure: String =
       s"""ClassDefRef($classtype,"$name",$namespace,List(${templateParameter.mkString(",")}))"""
   }
@@ -124,7 +131,7 @@ sealed case class Class(isAbstract:Boolean,
                         operations:List[Operation],
                         additionalCompartements:List[Compartment],
                         genericParameters: Option[List[GenericParameter]],
-                        stereotype : Option[String],
+                        stereotype : List[Stereotype],
                         override val namespace : Entry = DefaultNamespace) extends
   TopLevelElement with
   StereotypeElement with
@@ -139,7 +146,7 @@ sealed case class Class(isAbstract:Boolean,
       if(genericParameters.map(listStructure).isDefined){
         "Some(" + genericParameters.map(listStructure).get + ")"
       } else {"None"}},${
-      optionString(stereotype)
+      listStructure(stereotype)
     })""".stripMargin
 }
 /***************
@@ -150,7 +157,7 @@ sealed case class Attribute(modificators:Option[List[Modificator]],
                             modifier: Option[AccessModifier],
                             identifier:String,
                             attributeType:Option[String],
-                            stereotype:Option[String]) extends
+                            stereotype:List[Stereotype]) extends
   CompartmentElement with
   StereotypeElement with
   NamedElement {
@@ -159,7 +166,7 @@ sealed case class Attribute(modificators:Option[List[Modificator]],
   } else "None"},${
     optionAny(modifier)
   },"$identifier",${
-    optionString(attributeType)},${optionString(stereotype)})"""
+    optionString(attributeType)},${listStructure(stereotype)})"""
 }
 
 /***************
@@ -168,10 +175,10 @@ sealed case class Attribute(modificators:Option[List[Modificator]],
 
 sealed case class Parameter(identifier:String,
                             paramType:String,
-                            stereotype:Option[String]) extends
+                            stereotype:List[Stereotype]) extends
   StereotypeElement with
   NamedElement {
-  override def structure: String = s"""Parameter("$identifier","$paramType",${optionString(stereotype)})"""
+  override def structure: String = s"""Parameter("$identifier","$paramType",${listStructure(stereotype)})"""
 }
 
 
@@ -180,7 +187,8 @@ sealed case class Operation(modificator: Option[List[Modificator]],
                             identifier:String,
                             paramSeq:List[List[Parameter]],
                             returnType:Option[String],
-                            stereotype:Option[String]) extends
+                            stereotype:List[Stereotype],
+                            templateParameter:Option[List[GenericParameter]] = None) extends
   CompartmentElement  with
   StereotypeElement with
   NamedElement {
@@ -188,17 +196,17 @@ sealed case class Operation(modificator: Option[List[Modificator]],
     modificator.map(m => s"""Some(List(${m.toString.mkString(",")}))""").getOrElse("None")
   },${optionAny(accessModifier)},"$identifier",${
     if(paramSeq.isEmpty || paramSeq.head.isEmpty){"List(List())"} else {paramSeq.map(seq => s"""List(${seq.map(_.structure).mkString(",")})""")}
-  },${optionString(returnType)},${optionString(stereotype)})"""
+  },${optionString(returnType)},${listStructure(stereotype)})"""
 }
 
 
 sealed case class Compartment(identifier:Option[String],
                               compartmentElements:List[CompartmentElement],
-                              stereotype:Option[String]) extends
+                              stereotype:List[Stereotype]) extends
   UMLElement with
   StereotypeElement {
   override def structure: String =
-    s"""Compartment("$identifier",${listStructure(compartmentElements)},${optionString(stereotype)}"""
+    s"""Compartment("$identifier",${listStructure(compartmentElements)},${listStructure(stereotype)}"""
 }
 
 /**
@@ -207,11 +215,11 @@ sealed case class Compartment(identifier:Option[String],
  **/
  sealed case class Note(attachedElements:List[NamedElement],
                         text:String,
-                        stereotype:Option[String]) extends
+                        stereotype:List[Stereotype]) extends
   TopLevelElement with
   StereotypeElement with
   PackageBodyElement {
-  override def structure: String = s"""Note(${listStructure(attachedElements)},"$text",${optionString(stereotype)})"""
+  override def structure: String = s"""Note(${listStructure(attachedElements)},"$text",${listStructure(stereotype)})"""
 }
 
 /***************
@@ -253,11 +261,11 @@ sealed case class RelationshipInfo(sourceMultiplicity:Option[String],
 sealed case class Relationship(relationshipType: RelationshipType,
                                relationshipDirection: RelationshipDirection,
                                relationshipInfo: RelationshipInfo,
-                               stereotype:Option[String]) extends
+                               stereotype:List[Stereotype]) extends
   TopLevelElement with
   PackageBodyElement with
   StereotypeElement {
   override def structure: String =
     s"""Relationship(${relationshipType.toString},${relationshipDirection.toString},${
-      relationshipInfo.structure},${optionString(stereotype)})"""
+      relationshipInfo.structure},${listStructure(stereotype)})"""
 }

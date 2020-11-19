@@ -2,7 +2,7 @@ package scalameta.stats.defn
 
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Class, ConcreteClass, Extension, FromTo, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
+import uml.{Class, ConcreteClass, Extension, FromTo, Relationship, RelationshipInfo, Stereotype, ToFrom, UMLElement, Without}
 
 import scala.meta.Defn
 
@@ -14,7 +14,7 @@ object DefnRepeatedEnumCaseCollector {
   DefnRepeatedEnumCaseCollector = {
     val caseAsClasses = repeatedEnumCase.cases.foldLeft(List.empty[Class]){
       case (acc,enumCase) =>
-       Class(false,enumCase.value,Nil,Nil,Nil,None,Some("case")) :: acc
+       Class(false,enumCase.value,Nil,Nil,Nil,None,List(Stereotype("case",Nil))) :: acc
     }
 
     caseAsClasses.foldLeft(DefnRepeatedEnumCaseCollector(Nil,context)){
@@ -24,7 +24,7 @@ object DefnRepeatedEnumCaseCollector {
             Extension,
             ToFrom,
             RelationshipInfo(None,None,context.localCon.thisPointer.get,ConcreteClass(cls),None,Without)
-            ,None
+            ,Nil
           )
         acc.copy(
           definedElements = cls :: relationship :: acc.definedElements,

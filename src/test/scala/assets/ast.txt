@@ -229,7 +229,7 @@ case object ToFrom extends RelationshipDirection
 case object Without extends RelationshipDirection
 
 sealed trait RelationshipElement extends UMLElement
-sealed case class ConcreteClass(cls:RelateableElement with NamedElement) extends RelationshipElement {
+sealed case class ConcreteClass(cls:RelateableElement with NamedElement with Foo) extends RelationshipElement {
   override def structure: String = ""
 }
 sealed case class ClassRef(name:String, namespace:Entry=DefaultNamespace) extends RelationshipElement {

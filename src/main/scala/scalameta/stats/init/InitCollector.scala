@@ -44,20 +44,18 @@ object InitCollector {
         context.localCon.thisPointer.get,
         if(relationshipIdentifier.nonEmpty) Some(s"<<bind $relationshipIdentifier >>") else None,
         Without),
-      None)
+      Nil)
 
+    val classDefRef = ClassDefRef(
+      classType,extendedType.target,
+      extendedType.namespace,
+      extendedType.boundTemplates.map(_._1),
+      extendedType.oTemplate
+    )
     new InitCollector(
-      inheritance ::
-        List(
-          ClassDefRef(classType,
-            extendedType.target,
-            extendedType.namespace,
-            extendedType.boundTemplates.map(_._1),
-            extendedType.oTemplate)
-        ),
-      context
+      inheritance :: Nil,
+      context.withExternalReference(classDefRef)
     )
 
-    //@todo build in the init inheritance
   }
 }

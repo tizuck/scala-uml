@@ -5,10 +5,7 @@ import java.util.UUID.randomUUID
 
 import scalameta.util.namespaces.DefaultNamespace
 import uml.externalReferences.{ClassDefRef, Trait}
-import uml.{Abstract, AccessModifier, Aggregation, Annotation, Association, Attribute, Class, ClassRef, Compartment,
-  Composition, ConcreteClass, Extension, FromTo, GenericParameter, Inner, Modificator, Note, Operation, Package,
-  PackagePrivate, Parameter, Private, Protected, Public, Relationship, RelationshipDirection, RelationshipInfo,
-  RelationshipType, Static, StereotypeElement, ToFrom, UMLElement, UMLUnit, Without}
+import uml.{Abstract, AccessModifier, Aggregation, Annotation, Association, Attribute, Class, ClassRef, Compartment, Composition, ConcreteClass, Extension, FromTo, GenericParameter, Inner, Modificator, Note, Operation, Package, PackagePrivate, Parameter, Private, Protected, Public, Relationship, RelationshipDirection, RelationshipInfo, RelationshipType, Static, Stereotype, StereotypeElement, TaggedValue, ToFrom, UMLElement, UMLUnit, Without}
 
 /**
  * @todo Remove empty string from relationship
@@ -35,13 +32,15 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
     name,
     packageBodyElements,stereotype,namespace) =>
       "package" <+>
-        stringWrap(s"${stereotype.map(ns => s"<<$ns>> ").getOrElse("")}${namespace.plantUML}$name") <+>
+        showStereotype(stereotype) <>
+        namespace.plantUML <>
+        name <+>
         enclose("{",nest(line <> vsep(packageBodyElements.map(show))),line <> "}")
 
     case GenericParameter(
     identifier,
     concreteType,stereotype) =>
-      opt(stereotype,text,r = emptyDoc) <>
+      showStereotype(stereotype) <>
           identifier <>
           opt(concreteType,text,space <> ":" <> space)
 
@@ -58,7 +57,7 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
         "class" <+>
         stringWrap(namespace.plantUML + name) <>
         opt(genericParameter,  (gps:List[GenericParameter]) => hsep(gps.map(show),sep = ','),l="< ",r=" >" <> space,emptyR = space) <>
-        opt(stereotype,text,"<<" <> space,space <> ">>") <>
+        showStereotype(stereotype) <>
         (if(attributes.nonEmpty || operations.nonEmpty || additionalCompartements.nonEmpty) {
           enclose("{",
             nest(line <>
@@ -75,16 +74,16 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
     modificators,
     accessModifier,
     identifier,
-    attributeType, _) =>
+    attributeType, stereotype) =>
       opt(accessModifier,showAccessModifier,r=emptyDoc) <>
-        showStereotype(a) <>
+        showStereotype(stereotype) <>
         opt(modificators,showModificators) <>
         identifier <+> opt(attributeType,text,':' <> space)
 
     case p@Parameter(
     identifier,
-    paramType,_) =>
-      showStereotype(p) <>
+    paramType,stereotype) =>
+      showStereotype(stereotype) <>
         identifier <+>
         ':' <+>
         paramType
@@ -94,15 +93,18 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
     accessModifier,
     identifier,
     paramSeq,
-    returnType,_) =>
-      showStereotype(o) <>
+    returnType,
+    stereotype,
+    templateParameter) =>
+      showStereotype(stereotype) <>
         opt(modificators,showModificators) <>
         opt(accessModifier,showAccessModifier) <>
         identifier <>
+        opt(templateParameter,  (gps:List[GenericParameter]) => hsep(gps.map(show),sep = ','),l="< ",r=" >" <> space,emptyR = space) <>
         hsep(paramSeq.map(params => '(' <> hsep(params.map(show),", ") <> ')')) <+>
         opt(returnType,text,":" <> space,r = emptyDoc)
 
-    case Compartment(identifier, compartmentElements,stereotype) =>
+    case Compartment(identifier, compartmentElements,_) =>
         "--" <>
           opt(identifier,text,l=space,r=space <> "--") <>
           nest (
@@ -124,6 +126,16 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
         emptyDoc
       })
 
+    case Stereotype(name,taggedValues) =>
+      name <>
+        (if(taggedValues.nonEmpty) space <> hsep(taggedValues.map(show),",")else emptyDoc)
+
+
+    case TaggedValue(name, value) =>
+      name <>
+        "=" <>
+        value
+
     case ConcreteClass(cls) =>
       cls.namespace.plantUML <> cls.identifier
 
@@ -134,29 +146,29 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
       classtype match {
         case Trait =>
           val cls = Class(true, name, Nil, Nil, Nil,
-            Option(templateParameter.map(s => GenericParameter(s,None,None))).filter(_.nonEmpty),
-            Some("trait"), namespace
+            Option.when(templateParameter.nonEmpty)(templateParameter.map(s => GenericParameter(s,None,Nil))),
+            List(Stereotype("trait",Nil)), namespace
           )
           show(cls)
         case uml.externalReferences.Enum =>
           val cls = Class(false, name, Nil, Nil, Nil,
-            Option(templateParameter.map(s => GenericParameter(s,None,None))).filter(_.nonEmpty),
-            Some("enum"), namespace
+            Option.when(templateParameter.nonEmpty)(templateParameter.map(s => GenericParameter(s,None,Nil))),
+            List(Stereotype("enum",Nil)), namespace
           )
           show(cls)
         case uml.externalReferences.Object =>
-          val cls = Class(false, name, Nil, Nil, Nil, None, Some("object"), namespace)
+          val cls = Class(false, name, Nil, Nil, Nil, None, List(Stereotype("object",Nil)), namespace)
           show(cls)
         case uml.externalReferences.CClass =>
           val cls = Class(false, name, Nil, Nil, Nil,
-          Option(templateParameter.map(s => GenericParameter(s,None,None))).filter(_.nonEmpty),
-            None, namespace
+            Option.when(templateParameter.nonEmpty)(templateParameter.map(s => GenericParameter(s,None,Nil))),
+            Nil, namespace
         )
           show(cls)
         case uml.externalReferences.CCaseClass =>
           val cls = Class(false, name, Nil, Nil, Nil,
-          Option(templateParameter.map(s => GenericParameter(s,None,None))).filter(_.nonEmpty),
-            Some("caseclass"), namespace)
+            Option.when(templateParameter.nonEmpty)(templateParameter.map(s => GenericParameter(s,None,Nil))),
+            List(Stereotype("caseclass",Nil)), namespace)
           show(cls)
       }
 
@@ -175,20 +187,20 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
       showRelationshipConnector(relationshipType,relationshipDirection) <+>
       opt(targetMultiplicity, (s:String) => surround(text(s),'"')) <>
       show(to) <+>
-        (if(relationshipIdentifier.isDefined || r.stereotype.isDefined) {
+        (if(relationshipIdentifier.isDefined || stereotype.nonEmpty) {
         ":" <+>
           (if (identifierDirection.equals(ToFrom)) {
             "<" <> space
           } else {
             emptyDoc
           }) <>
-          (if (r.stereotype.isDefined) {
+          (if (stereotype.nonEmpty) {
             '"'
           } else {
             emptyDoc
-          }) <> showStereotype(r) <>
+          }) <> showStereotype(stereotype) <>
           opt(relationshipIdentifier, text) <>
-          (if (stereotype.isDefined) {
+          (if (stereotype.nonEmpty) {
             '"'
           } else {
             emptyDoc
@@ -219,8 +231,11 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
    */
   def stringWrap(text:String):Doc = if (text.contains(" ")) surround(text,'"') else text
 
-  def showStereotype(stereotypeElement: StereotypeElement):Doc =
-    opt(stereotypeElement.stereotype,text,"<<" <> space,space <> ">>")
+  def showStereotype(stereotypes:List[Stereotype]): SimplePlantUMLPrettyPrinter.Doc = {
+    if(stereotypes.nonEmpty) {
+      "<<" <+> hsep(stereotypes.map(show),",") <+> ">>"
+    } else emptyDoc
+  }
 
 
   def showAccessModifier(accessModifier: AccessModifier):String = accessModifier match {

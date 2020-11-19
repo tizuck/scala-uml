@@ -1,23 +1,18 @@
 package scalameta.mods
 
+import uml.Stereotype
+
 import scala.meta.Mod
 
-case class ParameterModsCollector(stereotype : Option[String]){
-  def +(other:String):ParameterModsCollector =
-    ParameterModsCollector(
-      stereotype
-      .map(s => s + ", " + other)
-      .orElse(Some(other))
-    )
-}
+case class ParameterModsCollector(stereotype : List[Stereotype],fixme:Boolean = true)
 
 object ParameterModsCollector{
   def apply(mods:List[Mod]): ParameterModsCollector = {
-    mods.foldLeft(ParameterModsCollector(None)){
+    mods.foldLeft(new ParameterModsCollector(Nil)){
       case (acc,Mod.Implicit()) =>
-        acc + "implicit"
+        acc.copy(acc.stereotype ++ List(Stereotype("implicit",Nil)))
       case (acc,Mod.Using()) =>
-        acc + "using"
+        acc.copy(acc.stereotype ++ List(Stereotype("using",Nil)))
       case (acc,_) => acc
     }
   }

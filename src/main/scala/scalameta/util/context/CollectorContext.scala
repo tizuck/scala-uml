@@ -1,6 +1,7 @@
 package scalameta.util.context
 
 import scalameta.util.namespaces.{Entry, NamespaceEntry}
+import uml.externalReferences.ClassDefRef
 import uml.{NamedElement, Operation, RelateableElement, RelationshipElement}
 
 import scala.meta.Source
@@ -25,7 +26,6 @@ case class CollectorContext(localCon:LocalContext, globalCon:GlobalContext) {
   def notTypeRequired : CollectorContext = this.copy(localCon.copy(typeRequired = false))
   def withNamespace(n:Entry) = this.copy(localCon.copy(currentNamespace = n))
   def withNamespace(n:String): CollectorContext = this.copy(localCon.copy(currentNamespace = NamespaceEntry(List(n))))
-  //def witAdditionalImport(n:Namespace): CollectorContext = this.copy(localCon.copy(currentImports = localCon.currentImports.map(NamespaceEntry(List(n)) :: _)))
   def withAdditionalImports(ns:List[NamespaceEntry]) : CollectorContext =
     this.copy(
       localCon.copy(currentImports = if(localCon.currentImports.isDefined){
@@ -37,6 +37,13 @@ case class CollectorContext(localCon:LocalContext, globalCon:GlobalContext) {
   def withCstrOrigin(cstrOrigin:String) = this.copy(localCon.copy(cstrOrigin = Some(cstrOrigin)))
   def withThisPointer(r:RelationshipElement) = this.copy(localCon.copy(thisPointer = Some(r)))
   def withOptionalThisPointer(r:Option[RelationshipElement]) = this.copy(localCon.copy(thisPointer = r))
+  def withExternalReference(e:ClassDefRef) = {
+    if(localCon.externalReferences.contains(e)){
+      this
+    } else {
+      this.copy(localCon.copy(externalReferences = this.localCon.externalReferences.appended(e)))
+    }
+  }
 }
 
 object CollectorContext {

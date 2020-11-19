@@ -18,9 +18,7 @@ class DefnClassCollector(override val definedElements: List[UMLElement],
 
 object DefnClassCollector {
   def apply(defnClass:Defn.Class)(implicit context : CollectorContext): DefnClassCollector = {
-    println(s"imports for visit of ${statToString(defnClass)}: " + context.localCon.currentImports + "globalcontext:" + context.globalCon.globalScope.map{
-      case (k,v) => (k,v.map(p => statToString(p._1)))
-    })
+
     val mods = ClassModsCollector(defnClass.mods)
     val className = defnClass.name.value
 
@@ -44,14 +42,14 @@ object DefnClassCollector {
       className,
       innerElements.attributes,
       primaryConstructor.primaryCstr.map(p => List(p)).getOrElse(Nil) ++ operations,
-      if(mods.modifier.nonEmpty) {Compartment(Some("<<ScalaClass>>"),mods.modifier,None) :: Nil} else Nil,
+      if(mods.modifier.nonEmpty) {Compartment(Some("<<ScalaClass>>"),mods.modifier,Nil) :: Nil} else Nil,
       None,
       mods.stereotype,
       context.localCon.currentNamespace
     )
 
     val innerRelationship = if(previousThisPointer.isDefined){
-      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,previousThisPointer.get,ConcreteClass(cls),None,Without),None))
+      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,previousThisPointer.get,ConcreteClass(cls),None,Without),Nil))
     } else {None}
 
     new DefnClassCollector(

@@ -6,7 +6,7 @@ import scalameta.stats.init.InitsCollector
 import scalameta.typeparams.TypeParamsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Class, ClassRef, ConcreteClass, Inner, Operation, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
+import uml.{Class, ClassRef, ConcreteClass, Inner, Operation, Relationship, RelationshipInfo, Stereotype, ToFrom, UMLElement, Without}
 
 import scala.meta.Defn
 
@@ -29,6 +29,10 @@ object DefnTraitCollector {
     )
     val previousToplevel = inheritedElements.resultingContext.localCon.isTopLevel
     val innerElements = StatsCollector(defnTrait.templ.stats)(inheritedElements.resultingContext.notToplevel)
+
+    if(defnTrait.name.value.equals("StereotypeElement")){
+      println(innerElements.definedElements)
+    }
     val primaryConstructor = PrimaryConstructorCollector(defnTrait.ctor)(
       context.withCstrOrigin(traitName)
     )
@@ -41,16 +45,16 @@ object DefnTraitCollector {
         innerElements.operations,
       List.empty,
       genericParameter,
-      Some("trait"),
+      List(Stereotype("trait",Nil)),
       context.localCon.currentNamespace
     )
 
     val innerRelationship = previousThisPointer.flatMap( r =>
-      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,r,ConcreteClass(cls),None,Without),None))
+      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,r,ConcreteClass(cls),None,Without),Nil))
     )
 
     new DefnTraitCollector(
-      innerElements.innerElements ++ inheritedElements.definedElements ++ innerRelationship.map(r => List(r)).getOrElse(Nil) ++ List(cls),
+      cls :: innerElements.innerElements ++ inheritedElements.definedElements ++ innerRelationship.map(r => List(r)).getOrElse(Nil),
       innerElements
         .resultingContext
         .withOptionalThisPointer(previousThisPointer)

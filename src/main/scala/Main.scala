@@ -49,7 +49,12 @@ object Main extends App {
       collector.
       SourcesCollector(List((astSource,path.toString),(scalaDefaults.default,"default.scala"))).resultingMap
 
-  val plantUMLUnit = UMLCollector(astSource,GlobalContext(namespaceMap),path.toString).plantUMLUnit
+  val umlCollector = UMLCollector(astSource,GlobalContext(namespaceMap),path.toString)
+
+  println(umlCollector.resultingContext.localCon.externalReferences.map(_.structure))
+
+  val plantUMLUnit = umlCollector.plantUMLUnit
+
 
 
   //println(plantUMLUnit)
@@ -72,7 +77,6 @@ object Main extends App {
         |}
         |
         |hide circle
-        |hide members
         |@enduml
         |""".stripMargin
     )
@@ -84,7 +88,8 @@ object Main extends App {
   val fos = new FileOutputStream(new File(filePath.getPath + "/ast.svg"))
   val sec = reader.generateImage(fos,new FileFormatOption(FileFormat.SVG))
   println(plantUMLUnit.pretty)
-  println("-----------------------------------------")
+ // println("-----------------------------------------")
+ // println(plantUMLUnit.pretty)
   println(namespaceMap
   .map{
     case (k,v) => (k,v.map(entry => (statToString(entry._1),entry._2)))

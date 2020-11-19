@@ -5,7 +5,7 @@ import scalameta.operations.PrimaryConstructorCollector
 import scalameta.stats.StatsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Class, ClassRef, UMLElement}
+import uml.{Class, ClassRef, Stereotype, UMLElement}
 
 import scala.meta.Defn
 
@@ -34,7 +34,7 @@ object DefnEnumCollector {
       primaryConstructor.primaryCstr.map(List(_)).getOrElse(Nil),
       Nil,
       None,
-      Some("scalaenum"),
+      List(Stereotype("scalaenum",Nil)),
       context.localCon.currentNamespace
     )
 
