@@ -194,17 +194,8 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
           } else {
             emptyDoc
           }) <>
-          (if (stereotype.nonEmpty) {
-            '"'
-          } else {
-            emptyDoc
-          }) <> showStereotype(stereotype) <>
-          opt(relationshipIdentifier, text) <>
-          (if (stereotype.nonEmpty) {
-            '"'
-          } else {
-            emptyDoc
-          }) <>
+           showStereotype(stereotype) <>
+          opt(relationshipIdentifier, text)  <>
           (if (identifierDirection.equals(FromTo)) {
             space <> ">" <> space
           } else {

@@ -44,6 +44,8 @@ object DefnObjectCollector {
       case other => Some(other)
     }
 
+    val isCaseobject = mods.stereotype.contains(Stereotype("caseobject",Nil))
+
     val cls = Class(
       false,
       objectName,
@@ -51,7 +53,7 @@ object DefnObjectCollector {
       operations,
       if(mods.modifiers.nonEmpty) {Compartment(Some("<<ScalaClass>>"),mods.modifiers,Nil) :: Nil} else Nil,
       None,
-      mods.stereotype ++ List(Stereotype("object",Nil)),
+      mods.stereotype ++ (if(isCaseobject){Nil}else{List(Stereotype("object",Nil))}),
       previousNamespace
     )
 

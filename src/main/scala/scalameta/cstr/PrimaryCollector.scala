@@ -21,7 +21,7 @@ object PrimaryConstructorCollector {
         context.localCon.cstrOrigin.get,
         operationParameterLists.parameterLists,
         None,
-        List(Stereotype("constr",Nil)))
+        List(Stereotype("ctor",Nil)))
 
       new PrimaryConstructorCollector(Some(cstr))
     } else {

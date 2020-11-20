@@ -14,14 +14,12 @@ object Main extends App {
   val foo =
     """
       |package foo
-      |trait B[+T,E] {
-      |  val self:A[Int]
+      |
+      |object foo {
+      |  type Executable[T] = ExecutionContext => T => C
+      |  opaque type WrappedResult[T] = T
       |}
       |
-      |trait A[T] {
-      | val self:B[Nothing,Nothing]
-      | def foo():Unit
-      |}
       |""".stripMargin
 
   val bar = """
@@ -39,7 +37,8 @@ object Main extends App {
   val input = Input.VirtualFile(path.toString, text)
 
   val astSource = input.parse[Source].get
-  //val fooSource = dialects.Dotty(foo).parse[Source].get
+  val fooSource = dialects.Dotty(foo).parse[Source].get
+  println(fooSource.structure)
   //val barSource = dialects.Dotty(bar).parse[Source].get
   //println(source.structure)
   val namespaceMap =
@@ -47,9 +46,9 @@ object Main extends App {
       util.
       namespaces.
       collector.
-      SourcesCollector(List((astSource,path.toString),(scalaDefaults.default,"default.scala"))).resultingMap
+      SourcesCollector(List((fooSource,"foo.scala"),(scalaDefaults.default,"default.scala"))).resultingMap
 
-  val umlCollector = UMLCollector(astSource,GlobalContext(namespaceMap),path.toString)
+  val umlCollector = UMLCollector(fooSource,GlobalContext(namespaceMap),path.toString)
 
   println(umlCollector.resultingContext.localCon.externalReferences.map(_.structure))
 

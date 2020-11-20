@@ -1,6 +1,7 @@
 package scalameta.typeparams
 
 import scalameta.stateless.TypeNameCollector
+import scalameta.util.context.CollectorContext
 import uml.{GenericParameter, Stereotype}
 
 import scala.meta.Type
@@ -8,7 +9,7 @@ import scala.meta.Type
 case class TypeParamCollector(typeParam:GenericParameter)
 
 object TypeParamCollector{
-  def apply(typeParam:Type.Param): TypeParamCollector = {
+  def apply(typeParam:Type.Param)(implicit context:CollectorContext): TypeParamCollector = {
     val tParamMods = TypeParamModCollector(typeParam.mods)
     val parameterName = typeParam.name.value
     val stereotype =

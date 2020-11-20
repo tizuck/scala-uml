@@ -39,11 +39,11 @@ object DefnCollector {
       case d@Defn.Def(mods, name, tparams, paramss, optionType, _) =>
         val dclRels = if(context.localCon.isTopLevel){
           DefnDefToplevelCollector(d)(
-            if(optionType.isEmpty){context.typeRequired} else context
+            if(optionType.isEmpty){context.notTypeRequired} else context.typeRequired
           )
         } else {
           DclCollector(Decl.Def(mods,name,tparams,paramss , optionType.getOrElse(Type.Name("#notype#"))))(
-            if(optionType.isEmpty){context.typeRequired} else context
+            if(optionType.isEmpty){context.notTypeRequired} else context.typeRequired
           )
         }
         val ret = new BaseCollector  {
@@ -51,10 +51,8 @@ object DefnCollector {
           override val resultingContext: CollectorContext = context
         }
         fromDecl(ret)
-      case Defn.Type(mods,pats,typeparams,_) =>
-        //@todo clearance upon what happens with the body of a type definition
-      val dclRels = DclCollector(Decl.Type(mods,pats,typeparams,Type.Bounds(None,None)))
-        fromDecl(dclRels)
+      case t:Defn.Type => DefnTypeCollector(t)
+      case t:Defn.OpaqueTypeAlias => DefnOpaqueTypealiasCollector(t)
       case t : Defn.Trait => DefnTraitCollector(t)
       case c : Defn.Class => DefnClassCollector(c)
       case o : Defn.Object => DefnObjectCollector(o)

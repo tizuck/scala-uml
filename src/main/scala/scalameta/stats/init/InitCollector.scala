@@ -33,6 +33,19 @@ object InitCollector {
           tbind => s"${tbind._1} -> ${tbind._2}"}
         .mkString(",")
 
+    //@todo problem with matching inits argss with entities argss are default values
+    //  this would mean a complete depiction of default values behaviour
+
+    val mappedInitArgs = Option.when(init.argss.nonEmpty && init.argss.head.nonEmpty) {
+      init
+        .argss
+        .flatten
+        .map(_.syntax)
+        .mkString(",")
+        .prepended('[')
+        .appended(']')
+    }
+
 
     val inheritance = Relationship(
       Extension,
@@ -44,7 +57,8 @@ object InitCollector {
         context.localCon.thisPointer.get,
         if(relationshipIdentifier.nonEmpty) Some(s"<<bind $relationshipIdentifier >>") else None,
         Without),
-      Nil)
+      if(mappedInitArgs.nonEmpty)List(Stereotype("ctorBind",List(TaggedValue("vals",mappedInitArgs.get)))) else Nil
+    )
 
     val classDefRef = ClassDefRef(
       classType,extendedType.target,

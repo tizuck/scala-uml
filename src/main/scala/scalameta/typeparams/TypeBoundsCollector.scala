@@ -1,6 +1,7 @@
 package scalameta.typeparams
 
 import scalameta.stateless.TypeNameCollector
+import scalameta.util.context.CollectorContext
 
 import scala.meta.Type
 
@@ -9,7 +10,7 @@ case class TypeBoundsCollector(typeRep:Option[String]) {
 }
 
 object TypeBoundsCollector {
-  def apply(tbounds:Type.Bounds): TypeBoundsCollector = {
+  def apply(tbounds:Type.Bounds)(implicit context:CollectorContext): TypeBoundsCollector = {
       if(tbounds.lo.isEmpty && tbounds.hi.isEmpty){
         new TypeBoundsCollector(None)
       }

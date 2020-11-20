@@ -23,7 +23,7 @@ sealed trait UMLElement { self =>
     }
   }
 
-  protected[this] def optionUMLElement[T <: UMLElement](oElement:Option[UMLElement]):String =  oElement match {
+  protected[this] def optionUMLElement(oElement:Option[UMLElement]):String =  oElement match {
     case Some(value) => s"""Some(${value.structure})"""
     case None => "None"
   }
