@@ -12,7 +12,7 @@ import scalameta.util.context.GlobalContext
 import scala.meta.inputs.Input
 import scala.meta.{Source, dialects}
 
-class DottyAndSuite extends AnyFreeSpec with Matchers {
+class AndSuite extends AnyFreeSpec with Matchers {
 
   val path: Path = Paths.get("src","test","scala","assets","dotty","and","and.txt")
 

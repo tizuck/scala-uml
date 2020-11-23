@@ -5,7 +5,7 @@ import scalameta.stateless.{AccessModifierCollector, ModificatorsCollector, Type
 import scalameta.typeparams.TypeParamsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Operation, Relationship, UMLElement}
+import uml.{Operation, Parameter, Relationship, Stereotype, UMLElement}
 
 import scala.meta.Decl
 
@@ -21,7 +21,7 @@ object DclDefCollector {
 
     val typeParamsCollector = TypeParamsCollector(dclDef.tparams)
     val typeParams = Option.when(typeParamsCollector.typeParams.nonEmpty)(typeParamsCollector.typeParams)
-
+    val typeParamsCBounds = typeParamsCollector.contextBounds
 
     val returnType = if(context.localCon.typeRequired){Some(TypeNameCollector(dclDef.decltpe).typeRep)}else None
 
@@ -33,11 +33,20 @@ object DclDefCollector {
       Option.when(modificators.nonEmpty)(modificators),
       accessModifiers,
       operationName,
-      parametersLists,
+      parametersLists ++ List(interpretCBounds(typeParamsCBounds)),
       returnType,
       Nil,
       typeParams)
 
     new DclDefCollector(List(op),context)
+  }
+
+  private def interpretCBounds(cBounds:Map[String,List[String]]): List[Parameter] = {
+    cBounds.foldLeft(List.empty[Parameter]){
+      case (acc,(k,vs)) =>
+        val templateParam = k
+        val cBounds = vs.map(v => Parameter("_",s"$v<$k>",List(Stereotype("using",Nil))))
+        acc ++ cBounds
+    }
   }
 }

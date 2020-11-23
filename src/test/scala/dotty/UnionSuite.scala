@@ -12,9 +12,9 @@ import scalameta.util.context.GlobalContext
 import scala.meta.{Source, dialects}
 import scala.meta.inputs.Input
 
-class DottyContextFunctionSuite extends AnyFreeSpec with Matchers {
+class UnionSuite extends AnyFreeSpec with Matchers {
 
-  val path: Path = Paths.get("src","test","scala","assets","dotty","contextFuncs","contextFuncs.txt")
+  val path: Path = Paths.get("src","test","scala","assets","dotty","union","union.txt")
 
   "Dotty Reference to Intersectiontypes can be processed to a plantUML png" in {
     val bytes = Files.readAllBytes(path)
@@ -26,11 +26,11 @@ class DottyContextFunctionSuite extends AnyFreeSpec with Matchers {
     val umlCollector = UMLCollector(input,GlobalContext(globalScope.resultingMap),path.toAbsolutePath.toString)
 
     val reader = new SourceStringReader(umlCollector.plantUMLUnit.pretty)
-    val filePath = new File("src/test/scala/assets/out/contextFuncs/")
+    val filePath = new File("src/test/scala/assets/out/union/")
 
     filePath.mkdirs()
 
-    val fos = new FileOutputStream(new File(filePath.getPath + "/contextFuncs.png"))
+    val fos = new FileOutputStream(new File(filePath.getPath + "/dottyUnion.png"))
     val sec = reader.generateImage(fos)
 
     sec must not be null

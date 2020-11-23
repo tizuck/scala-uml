@@ -5,33 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/operators.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnOpaqueTypealiasCollector.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTypeCollector.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/opconfig.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml-build.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeParamContextBoundsCollector.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/scala/assets/dotty/contextBounds.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/scala/dotty/ContextBoundSuite.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/plantuml/SimplePlantUMLPrettyPrinter.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/plantuml/SimplePlantUMLPrettyPrinter.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/cstr/PrimaryCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/cstr/PrimaryCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TypeNameCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TypeNameCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclTypeCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnObjectCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnObjectCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/init/InitCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/init/InitCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeBoundsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeBoundsCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TemplateBindingCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TemplateBindingCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclDefCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclDefCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/toplevel/UMLCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/toplevel/UMLCollector.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeParamCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeParamCollector.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeParamsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeParamsCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/LocalContext.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/LocalContext.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/dotty/contextFuncs/contextFuncs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/assets/dotty/contextFuncs/contextFuncs.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/dotty/traitParams/traitParams.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/assets/dotty/traitParams/traitParams.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/dotty/union/union.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/assets/dotty/union/union.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/DottyContextFunctionSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/dotty/DottyContextFunctionSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/DottyTraitParametersSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/dotty/DottyTraitParametersSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/DottyUnionSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/dotty/DottyUnionSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/DottyAndSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/dotty/AndSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/DottyContextFunctionSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/dotty/ContextFunctionSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/DottyTraitParametersSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/dotty/TraitParametersSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/DottyUnionSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/dotty/UnionSuite.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +107,7 @@
       <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\test\scala\assets" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="ScalaTest.ContextBoundSuite">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="scala-uml" />
@@ -127,25 +115,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DottyAndSuite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="ContextBoundSuite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
       <option name="selectedOptions">
         <set />
       </option>
       <option name="testKind" value="Class" />
-      <option name="testClassPath" value="dotty.DottyAndSuite" />
+      <option name="testClassPath" value="dotty.ContextBoundSuite" />
       <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -192,11 +182,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="ScalaTest.ContextBoundSuite" />
         <item itemvalue="Application.Main" />
         <item itemvalue="ScalaTest.DottyContextFunctionSuite" />
         <item itemvalue="ScalaTest.DottyTraitParametersSuite" />
         <item itemvalue="ScalaTest.DottyUnionSuite" />
-        <item itemvalue="ScalaTest.DottyAndSuite" />
       </list>
     </recent_temporary>
   </component>
@@ -254,7 +244,8 @@
       <workItem from="1605733427853" duration="3689000" />
       <workItem from="1605780335019" duration="18578000" />
       <workItem from="1605868826008" duration="74000" />
-      <workItem from="1605875114418" duration="10200000" />
+      <workItem from="1605875114418" duration="10373000" />
+      <workItem from="1606124927154" duration="6492000" />
     </task>
     <servers />
   </component>
@@ -267,10 +258,10 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1605876319719">
+    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1606129851043">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605876319719" />
+    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606129851043" />
     <state x="2610" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604484631120" />
     <state x="49" y="133" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1605262889410">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -280,10 +271,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="714" y="321" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605803042213" />
-    <state x="724" y="434" key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog" timestamp="1605696189656">
+    <state x="724" y="434" key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog" timestamp="1606125348999">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="724" y="434" key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605696189656" />
+    <state x="724" y="434" key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606125348999" />
     <state x="765" y="208" key="#com.intellij.ide.util.MemberChooser" timestamp="1605888629850">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -316,46 +307,46 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="915" y="277" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605868897680" />
-    <state width="1877" height="222" key="GridCell.Tab.0.bottom" timestamp="1605890008114">
+    <state width="1877" height="223" key="GridCell.Tab.0.bottom" timestamp="1606137077239">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="222" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605890008114" />
+    <state width="1877" height="223" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606137077239" />
     <state width="915" height="196" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604687542651" />
-    <state width="1877" height="222" key="GridCell.Tab.0.center" timestamp="1605890008113">
+    <state width="1877" height="223" key="GridCell.Tab.0.center" timestamp="1606137077239">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="222" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605890008113" />
+    <state width="1877" height="223" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606137077239" />
     <state width="915" height="196" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604687542651" />
-    <state width="1877" height="222" key="GridCell.Tab.0.left" timestamp="1605890008113">
+    <state width="1877" height="223" key="GridCell.Tab.0.left" timestamp="1606137077239">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="222" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605890008113" />
+    <state width="1877" height="223" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606137077239" />
     <state width="915" height="196" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604687542651" />
-    <state width="1877" height="222" key="GridCell.Tab.0.right" timestamp="1605890008113">
+    <state width="1877" height="223" key="GridCell.Tab.0.right" timestamp="1606137077239">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="222" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605890008113" />
+    <state width="1877" height="223" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606137077239" />
     <state width="915" height="196" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604687542651" />
-    <state width="1877" height="430" key="GridCell.Tab.1.bottom" timestamp="1605876829858">
+    <state width="1877" height="430" key="GridCell.Tab.1.bottom" timestamp="1606134621139">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="430" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605876829858" />
-    <state width="1877" height="430" key="GridCell.Tab.1.center" timestamp="1605876829858">
+    <state width="1877" height="430" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606134621139" />
+    <state width="1877" height="430" key="GridCell.Tab.1.center" timestamp="1606134621139">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="430" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605876829858" />
-    <state width="1877" height="430" key="GridCell.Tab.1.left" timestamp="1605876829858">
+    <state width="1877" height="430" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606134621139" />
+    <state width="1877" height="430" key="GridCell.Tab.1.left" timestamp="1606134621139">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="430" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605876829858" />
-    <state width="1877" height="430" key="GridCell.Tab.1.right" timestamp="1605876829858">
+    <state width="1877" height="430" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606134621139" />
+    <state width="1877" height="430" key="GridCell.Tab.1.right" timestamp="1606134621139">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="430" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605876829858" />
-    <state x="681" y="188" key="SettingsEditor" timestamp="1605885843559">
+    <state width="1877" height="430" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606134621139" />
+    <state x="681" y="188" key="SettingsEditor" timestamp="1606135641448">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="681" y="188" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605885843559" />
+    <state x="681" y="188" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606135641448" />
     <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1605282916368">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -369,10 +360,10 @@
     </state>
     <state x="767" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1604598946368" />
     <state x="2687" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604485729498" />
-    <state x="1800" y="-16" width="1561" height="1028" maximized="true" key="dock-window-1" timestamp="1605888990869">
+    <state x="1800" y="-16" width="1561" height="1028" maximized="true" key="dock-window-1" timestamp="1606125340451">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="1800" y="-16" width="1561" height="1028" maximized="true" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605888990869" />
+    <state x="1800" y="-16" width="1561" height="1028" maximized="true" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606125340451" />
     <state x="20" y="-15" width="1485" height="716" maximized="true" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604686832208" />
     <state x="666" y="253" width="587" height="534" key="find.popup" timestamp="1605889619343">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -390,6 +381,17 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605705079254" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnCollector.scala</url>
+          <line>39</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_ast_scala_produces_resulting_context_that_is_able_to_locate_reference_to_classes_in_the_same_namespace_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_StatCollector_should_result_in_a_local_match_in_current_namespace_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Package_yields_the_namespace_uml_since_it_is_imported_with_import_uml___and_it_is_defined_in_the_global_context.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of ast.scala produces resulting context that is able to locate reference to classes in the same namespace&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of StatCollector should result in a local match in current namespace&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of Package yields the namespace uml since it is imported with import uml._ and it is defined in the global context Coverage Results" MODIFIED="1605265552744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

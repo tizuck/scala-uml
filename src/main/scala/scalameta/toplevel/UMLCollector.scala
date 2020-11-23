@@ -18,10 +18,10 @@ object UMLCollector {
     val externals = topLevelElements.resultingContext.localCon.externalReferences
     val externalsToInclude = for {e <- externals} yield {
       val toplevelElements = topLevelElements.definedElements
-      Option.when(toplevelElements.find{
-        case c:uml.Class => c.identifier.equals(e.name) && c.namespace.equals(e.namespace)
+      Option.when(!toplevelElements.exists {
+        case c: uml.Class => c.identifier.equals(e.name) && c.namespace.equals(e.namespace)
         case _ => false
-      }.isEmpty)(e)
+      })(e)
     }
     new UMLCollector(
       uml.UMLUnit(

@@ -16,8 +16,7 @@ object Main extends App {
       |package foo
       |
       |object foo {
-      |  type Executable[T] = ExecutionContext => T => C
-      |  opaque type WrappedResult[T] = T
+      |  def f[T: C1 : C2, U: C3](x: T)(using y: U, z: V): R
       |}
       |
       |""".stripMargin
