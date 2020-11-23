@@ -57,7 +57,7 @@ object InitCollector {
         context.localCon.thisPointer.get,
         if(relationshipIdentifier.nonEmpty) Some(s"<<bind $relationshipIdentifier >>") else None,
         Without),
-      if(mappedInitArgs.nonEmpty)List(Stereotype("ctorBind",List(TaggedValue("vals",mappedInitArgs.get)))) else Nil
+      if(mappedInitArgs.nonEmpty)List(Stereotype("ctorBind",List(TaggedValue("vals",mappedInitArgs)))) else Nil
     )
 
     val classDefRef = ClassDefRef(

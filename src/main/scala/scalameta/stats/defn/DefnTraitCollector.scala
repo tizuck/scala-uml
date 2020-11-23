@@ -1,12 +1,13 @@
 package scalameta.stats.defn
 
+import scalameta.mods.ClassModsCollector
 import scalameta.operations.PrimaryConstructorCollector
 import scalameta.stats.StatsCollector
 import scalameta.stats.init.InitsCollector
 import scalameta.typeparams.TypeParamsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Class, ClassRef, ConcreteClass, Inner, Operation, Relationship, RelationshipInfo, Stereotype, ToFrom, UMLElement, Without}
+import uml.{Class, ClassRef, Compartment, ConcreteClass, Inner, Operation, Relationship, RelationshipInfo, Stereotype, ToFrom, UMLElement, Without}
 
 import scala.meta.Defn
 
@@ -18,7 +19,10 @@ case class DefnTraitCollector(override val definedElements : List[UMLElement],
 object DefnTraitCollector {
   def apply(defnTrait:Defn.Trait)(implicit context:CollectorContext): DefnTraitCollector = {
 
+
     val traitName = defnTrait.name.value
+    val mods = ClassModsCollector(defnTrait.mods)
+    println(s"Trait:$traitName with mods: $mods")
     val typeParameters = TypeParamsCollector(defnTrait.tparams).typeParams
     val genericParameter = Option.when(typeParameters.nonEmpty)(typeParameters)
     val tempThisPointer = ClassRef(traitName,namespace = context.localCon.currentNamespace)
@@ -43,7 +47,7 @@ object DefnTraitCollector {
       List.empty ++
         primaryConstructor.primaryCstr.map(p => List(p)).getOrElse(Nil) ++
         innerElements.operations,
-      List.empty,
+      mods.mods,
       genericParameter,
       List(Stereotype("trait",Nil)),
       context.localCon.currentNamespace

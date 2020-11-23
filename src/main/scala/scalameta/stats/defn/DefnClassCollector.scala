@@ -7,7 +7,7 @@ import scalameta.stats.init.InitsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
 import scalameta.util.util.statToString
-import uml.{Attribute, Class, ClassRef, Compartment, ConcreteClass, Inner, Operation, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
+import uml.{Attribute, Class, ClassRef, Compartment, ConcreteClass, Inner, Operation, Parameter, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
 
 import scala.meta.Defn
 
@@ -42,9 +42,9 @@ object DefnClassCollector {
       className,
       innerElements.attributes,
       primaryConstructor.primaryCstr.map(p => List(p)).getOrElse(Nil) ++ operations,
-      if(mods.modifier.nonEmpty) {Compartment(Some("<<ScalaClass>>"),mods.modifier,Nil) :: Nil} else Nil,
+      mods.mods,
       None,
-      mods.stereotype,
+      mods.classStereotypes,
       context.localCon.currentNamespace
     )
 

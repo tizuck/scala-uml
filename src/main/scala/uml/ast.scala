@@ -34,8 +34,8 @@ sealed trait UMLElement { self =>
   }
 }
 
-sealed case class TaggedValue(name:String,value:String) extends UMLElement {
-  override def structure: String = s"""TaggedValue("$name","$value")"""
+sealed case class TaggedValue(name:String,value:Option[String]) extends UMLElement {
+  override def structure: String = s"""TaggedValue("$name","${optionString(value)}")"""
 }
 sealed case class Stereotype(name:String,taggedValues:List[TaggedValue]) extends UMLElement {
   override def structure: String = s"""Stereotype("$name",${listStructure(taggedValues)})"""
@@ -157,7 +157,8 @@ sealed case class Attribute(modificators:Option[List[Modificator]],
                             modifier: Option[AccessModifier],
                             identifier:String,
                             attributeType:Option[String],
-                            stereotype:List[Stereotype]) extends
+                            stereotype:List[Stereotype],
+                            defaultValue:Option[String] = None) extends
   CompartmentElement with
   StereotypeElement with
   NamedElement {
@@ -201,12 +202,12 @@ sealed case class Operation(modificator: Option[List[Modificator]],
 
 
 sealed case class Compartment(identifier:Option[String],
-                              compartmentElements:List[CompartmentElement],
+                              taggedValues:List[TaggedValue],
                               stereotype:List[Stereotype]) extends
   UMLElement with
   StereotypeElement {
   override def structure: String =
-    s"""Compartment("$identifier",${listStructure(compartmentElements)},${listStructure(stereotype)}"""
+    s"""Compartment("$identifier",${listStructure(taggedValues)},${listStructure(stereotype)}"""
 }
 
 /**

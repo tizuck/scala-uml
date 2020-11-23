@@ -74,11 +74,15 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
     modificators,
     accessModifier,
     identifier,
-    attributeType, stereotype) =>
+    attributeType,
+    stereotype,
+    defaultValue) =>
       opt(accessModifier,showAccessModifier,r=emptyDoc) <>
         showStereotype(stereotype) <>
         opt(modificators,showModificators) <>
-        identifier <+> opt(attributeType,text,':' <> space)
+        identifier <+>
+        opt(attributeType,text,':' <> space) <>
+        opt(defaultValue,text,"=")
 
     case p@Parameter(
     identifier,
@@ -133,8 +137,7 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
 
     case TaggedValue(name, value) =>
       name <>
-        "=" <>
-        value
+        opt(value,text,"=")
 
     case ConcreteClass(cls) =>
       cls.namespace.plantUML <> cls.identifier

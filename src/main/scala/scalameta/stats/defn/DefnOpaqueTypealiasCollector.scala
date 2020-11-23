@@ -2,7 +2,7 @@ package scalameta.stats.defn
 
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Attribute, Relationship, UMLElement}
+import uml.{Attribute, Relationship, TaggedValue, UMLElement}
 
 import scala.meta.Defn
 
@@ -28,7 +28,7 @@ object DefnOpaqueTypealiasCollector {
         .map( c =>
           c.copy(
             additionalCompartements =
-              List(uml.Compartment(Some("<<ScalaClass>>"),List(Attribute(None,None,"isOpaque",None,Nil)),Nil))
+              List(uml.Compartment(Some("<<ScalaClass>>"),List(TaggedValue("isOpaque",None)),Nil))
           )) ++ relationship,
         context
     )
