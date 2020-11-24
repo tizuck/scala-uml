@@ -3,7 +3,7 @@ import java.nio.file.{Files, Path, Paths}
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.OptionValues._
-import scalameta.UMLCollector
+import scalameta.SourceCollector
 import scalameta.util.context.GlobalContext
 import scalameta.util.namespaces.{DefaultNamespace, NamespaceEntry, scalaDefaults}
 import scalameta.util.namespaces
@@ -29,8 +29,8 @@ class Namespacing extends AnyFreeSpec with Matchers {
         .map(input => (input._1.parse[Source].get,input._2.toAbsolutePath.toString)) ++ List((scalaDefaults.default,"default.scala"))
 
     val globalScope = scalameta.util.namespaces.collector.SourcesCollector(repository)
-    val umlStatsCollector = UMLCollector(repository(3)._1,GlobalContext(globalScope.resultingMap),paths(3).toString)
-    val umlAstCollector = UMLCollector(repository(0)._1,GlobalContext(globalScope.resultingMap),paths(0).toString)
+    val umlStatsCollector = SourceCollector(repository(3)._1,GlobalContext(globalScope.resultingMap),paths(3).toString)
+    val umlAstCollector = SourceCollector(repository(0)._1,GlobalContext(globalScope.resultingMap),paths(0).toString)
 
   }
 

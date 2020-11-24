@@ -82,5 +82,28 @@ object TargetTypeCollector {
         name.value,
         Nil,lookup.flatMap(_._2)
       )
+
+    case Type.Function(source, target) =>
+      val lookup = context
+      .globalCon
+      .find(
+        "Function",
+        None,
+        context.localCon.currentCompilationUnit,
+        context.localCon.currentNamespace,
+        context.localCon.currentImports
+      )
+      //@todo hack, should be corrected as soon as actual FunctionN is known due to URL import of scala standard library
+      val functionNumber = source.size
+      new TargetTypeCollector(
+        DefaultNamespace,
+        s"Function$functionNumber",
+        source
+          .zipWithIndex
+          .map(tp => (s"T${tp._2}",TypeNameCollector(tp._1).typeRep))
+          .appended(("R",TypeNameCollector(target).typeRep)),
+        lookup.flatMap(_._2)
+      )
+
   }
 }

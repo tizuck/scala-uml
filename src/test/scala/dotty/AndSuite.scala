@@ -6,7 +6,7 @@ import java.nio.file.{Files, Path, Paths}
 import net.sourceforge.plantuml.SourceStringReader
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
-import scalameta.UMLCollector
+import scalameta.SourceCollector
 import scalameta.util.context.GlobalContext
 
 import scala.meta.inputs.Input
@@ -23,9 +23,9 @@ class AndSuite extends AnyFreeSpec with Matchers {
     val input = dialects.Dotty(vFile).parse[Source].get
 
     val globalScope = scalameta.util.namespaces.collector.SourcesCollector(List((input,path.toAbsolutePath.toString)))
-    val umlCollector = UMLCollector(input,GlobalContext(globalScope.resultingMap),path.toAbsolutePath.toString)
+    val umlCollector = SourceCollector(input,GlobalContext(globalScope.resultingMap),path.toAbsolutePath.toString)
 
-    val reader = new SourceStringReader(umlCollector.plantUMLUnit.pretty)
+    val reader = new SourceStringReader(umlCollector.umlUnit.pretty)
     val filePath = new File("src/test/scala/assets/out/and/")
 
     filePath.mkdirs()

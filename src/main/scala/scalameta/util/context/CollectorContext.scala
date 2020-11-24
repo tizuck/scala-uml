@@ -1,12 +1,12 @@
 package scalameta.util.context
 
-import scalameta.util.namespaces.{Entry, NamespaceEntry}
+import scalameta.util.namespaces.{DefaultNamespace, Entry, NamespaceEntry}
 import uml.externalReferences.ClassDefRef
 import uml.{NamedElement, Operation, RelateableElement, RelationshipElement}
 
 import scala.meta.Source
 
-case class CollectorContext(localCon:LocalContext, globalCon:GlobalContext) {
+case class CollectorContext(localCon:LocalContext, globalCon:GlobalContext){
 
   def +(other: CollectorContext): CollectorContext =
     CollectorContext(
@@ -44,6 +44,7 @@ case class CollectorContext(localCon:LocalContext, globalCon:GlobalContext) {
       this.copy(localCon.copy(externalReferences = this.localCon.externalReferences.appended(e)))
     }
   }
+
 }
 
 object CollectorContext {
