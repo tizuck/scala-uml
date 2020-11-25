@@ -14,6 +14,7 @@ object ImporteesCollector {
     ImporteesCollector(importees.foldLeft(List.empty[String]){
       case (acc,n:Name) => acc ++ List(ImporteeNameCollector(n).name)
       case (acc,Importee.Wildcard()) => acc ++ List("")
+      case (acc,_) => acc
     })
   }
 }

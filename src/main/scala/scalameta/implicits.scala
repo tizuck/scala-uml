@@ -7,6 +7,7 @@ import scalameta.util.namespaces.DefaultNamespace
 import uml.UMLUnit
 
 object implicits {
+
   implicit val sourceCollectorSemiGroup:Semigroup[SourceCollector] = (x: SourceCollector, y: SourceCollector) => {
     val xToplevel = x.umlUnit.toplevelElements
     val yToplevel = y.umlUnit.toplevelElements

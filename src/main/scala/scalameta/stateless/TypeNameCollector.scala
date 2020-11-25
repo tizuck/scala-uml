@@ -7,7 +7,6 @@ import scala.meta.Type
 case class TypeNameCollector(typeRep:String)
 
 object TypeNameCollector {
-  //@todo precedences for type is needed for correct output
   def apply(mtype:scala.meta.Type)(implicit context:CollectorContext): TypeNameCollector = {
     mtype match {
       case Type.Var(name) => new TypeNameCollector(name.syntax)
