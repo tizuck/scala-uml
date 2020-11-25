@@ -51,6 +51,12 @@ object TypeNameCollector {
 
         val resRep = TypeNameCollector(res).typeRep
         TypeNameCollector(s"Func<$paramsRep,$resRep>")
+        //@todo respect path dependent types here
+      case Type.Select(qual,name) =>
+        val resolvedQual = SelectRefCollector(qual).namespaceAddition
+        TypeNameCollector(typeRep = resolvedQual.qualifiers.mkString("::").appendedAll(s"::${name}"))
+
+      case _ => throw new NotImplementedError()
     }
   }
 }

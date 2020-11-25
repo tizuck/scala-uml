@@ -4,13 +4,13 @@ import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.OptionValues._
 import scalameta.SourceCollector
+import scalameta.toplevel.SourcesCollector
 import scalameta.util.context.GlobalContext
 import scalameta.util.namespaces.{DefaultNamespace, NamespaceEntry, scalaDefaults}
 import scalameta.util.namespaces
 
-import scala.meta.Source
+import scala.meta.{Defn, Source, dialects}
 import scala.meta.inputs.Input
-import scala.meta.Defn
 
 class Namespacing extends AnyFreeSpec with Matchers {
   class TestData() {
@@ -34,6 +34,41 @@ class Namespacing extends AnyFreeSpec with Matchers {
 
   }
 
+  "inner definition of object should find outer definition in different compilation Unit" in {
+    val foo =
+      """
+        |package foo
+        |
+        |trait A
+        |""".stripMargin
+
+    val bar = """
+                |package foo
+                |
+                |object foo {
+                |trait B extends A
+                |}
+                |""".stripMargin
+
+    val fooSource = dialects.Dotty(foo).parse[Source].get
+    val barSource = dialects.Dotty(bar).parse[Source].get
+    val namespacing = scalameta.util.namespaces.collector.SourcesCollector(List((fooSource,"foo.scala"),(barSource,"bar.scala")))
+    val umlSourcesCol = SourceCollector(barSource,GlobalContext(namespacing.resultingMap),"foo.scala")
+    val resContext = umlSourcesCol.resultingContext
+    val option = resContext
+      .globalCon
+      .find(
+        "A",
+        None,
+        "bar.scala",
+        NamespaceEntry(List("foo","foo")),
+        resContext.localCon.currentImports
+      )
+    println(option)
+    option.value must have(Symbol("_1")(NamespaceEntry(List("foo"))))
+    option.value._2.value mustBe a [Defn.Trait]
+
+  }
   "Repository" - {
     "when scanned for global scope" - {
       "and used for visiting of ast.scala" - {

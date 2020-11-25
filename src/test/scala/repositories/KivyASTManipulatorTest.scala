@@ -14,7 +14,7 @@ import cats.kernel.Semigroup
 import cats.implicits._
 import github4s.Github
 import github4s.domain.Content
-import net.sourceforge.plantuml.SourceStringReader
+import net.sourceforge.plantuml.{FileFormat, FileFormatOption, SourceStringReader}
 import org.http4s.{DecodeFailure, HttpVersion, Response}
 import org.http4s.client.{Client, JavaNetClientBuilder}
 
@@ -143,9 +143,28 @@ class KivyASTManipulatorTest extends AnyFreeSpec with Matchers {
 
   "KivyASTManip project from github is depicted correctly as uml diagram " in new TestData(){
     val sourcesCol = SourcesCollector(repo.indexedFiles.toList.map(tp => (tp._2.head,tp._1)),"kivy-astmanip-model")
-    val fos = new FileOutputStream(new File("test/scala/assets/kivy-astmanip/structure.png"))
-    val reader = new SourceStringReader(sourcesCol.umlUnit.pretty)
-    val sec = reader.generateImage(fos)
+    val reader = new SourceStringReader(sourcesCol.umlUnit.pretty.substring(0,sourcesCol.umlUnit.pretty.lastIndexOf("\n"))
+      .appended('\n')
+      .appendedAll(
+        """
+          |skinparam linetype ortho
+          |
+          |skinparam class {
+          | Backgroundcolor white
+          | Bordercolor black
+          | Arrowcolor Black
+          |}
+          |
+          |hide circle
+          |@enduml
+          |""".stripMargin
+      ))
+    val filePath = new File("src/test/scala/assets/out/kivy-astmanip")
+
+    filePath.mkdirs()
+
+    val fos = new FileOutputStream(new File(filePath.getPath +  "/structure.svg"))
+    val sec = reader.generateImage(fos,new FileFormatOption(FileFormat.SVG))
     sec must not be null
   }
 

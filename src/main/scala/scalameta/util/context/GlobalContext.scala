@@ -223,7 +223,9 @@ case class GlobalContext(globalScope:Map[Entry,List[(Stat,String)]]) {
         .orElse(wildcardImport.map(tp => (tp._1,Some(tp._2))))
       //(iv) definition is in a different compilation unit of the same namespace
         .orElse(diffCompUnit(currentNamespace).map(tp => (tp._1,Some(tp._2))))
-      //(v) definition is in a DefaultNamespace
+        //@todo definition is in a different compilation unit of an upper namespace
+        //  Clear if things can only be found up to the package definition of the file
+      //(vi) definition is in a DefaultNamespace
         .orElse(diffCompUnit(DefaultNamespace).map(tp => (tp._1,Some(tp._2))))
 
     }

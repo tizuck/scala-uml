@@ -5,18 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/Minimal.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/scala/repositories/KivyASTManipulatorTest.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/scala/repositories/conf.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/scala/repositories/kivy.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml-build.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/playground/Upper.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/playground/deeper/Deeper.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/implicits.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/implicits.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TypeNameCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TypeNameCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImporteesCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImporteesCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/GlobalContext.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/GlobalContext.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/Namespacing.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/Namespacing.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/repositories/KivyASTManipulatorTest.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/repositories/KivyASTManipulatorTest.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,16 +102,9 @@
       <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\test\scala\assets" />
     </key>
   </component>
-  <component name="RunManager" selected="ScalaTest.KivyASTManipulatorTest">
+  <component name="RunManager" selected="ScalaTest.Namespacing.inner definition of object should find outer definition in different compilation Unit">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="scala-uml" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Minimal" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="Minimal" />
+      <option name="MAIN_CLASS_NAME" value="playground.Main" />
       <module name="scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -130,19 +119,6 @@
       <option name="TEST_OBJECT" value="CLASS" />
       <properties />
       <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ContextBoundSuite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
-      <module name="scala-uml" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="selectedOptions">
-        <set />
-      </option>
-      <option name="testKind" value="Class" />
-      <option name="testClassPath" value="dotty.ContextBoundSuite" />
-      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -174,13 +150,40 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Namespacing" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="scala-uml" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <option name="testKind" value="Class" />
+      <option name="testClassPath" value="Namespacing" />
+      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Namespacing.inner definition of object should find outer definition in different compilation Unit" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="scala-uml" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <option name="testKind" value="Test name" />
+      <option name="testClassPath" value="Namespacing" />
+      <option name="testName" value="inner definition of object should find outer definition in different compilation Unit" />
+      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="ScalaTest.Namespacing.inner definition of object should find outer definition in different compilation Unit" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="ScalaTest.Namespacing" />
         <item itemvalue="ScalaTest.KivyASTManipulatorTest" />
         <item itemvalue="ScalaTest.KivyASTManipulatorTest.KivyASTManip project from github is depicted correctly as uml diagram" />
-        <item itemvalue="Application.Minimal" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="ScalaTest.ContextBoundSuite" />
       </list>
     </recent_temporary>
   </component>
@@ -243,7 +246,7 @@
       <workItem from="1606169702085" duration="3047000" />
       <workItem from="1606214659230" duration="52000" />
       <workItem from="1606214726898" duration="18421000" />
-      <workItem from="1606297462568" duration="9456000" />
+      <workItem from="1606297462568" duration="15527000" />
     </task>
     <servers />
   </component>
@@ -256,11 +259,11 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="2610" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1606307137309">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1606313771354">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606234178657" />
-    <state x="2610" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606307137309" />
+    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606313771354" />
+    <state x="2610" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606310405566" />
     <state x="49" y="133" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1605262889410">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -305,26 +308,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="915" y="277" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605868897680" />
-    <state width="1877" height="227" key="GridCell.Tab.0.bottom" timestamp="1606307231391">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="227" key="GridCell.Tab.0.bottom" timestamp="1606314661811">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="227" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606302440039" />
-    <state width="1877" height="227" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606307231391" />
-    <state width="1877" height="227" key="GridCell.Tab.0.center" timestamp="1606307231391">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="227" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606314661811" />
+    <state width="1877" height="227" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606310429190" />
+    <state width="1877" height="227" key="GridCell.Tab.0.center" timestamp="1606314661811">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="227" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606302440039" />
-    <state width="1877" height="227" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606307231391" />
-    <state width="1877" height="227" key="GridCell.Tab.0.left" timestamp="1606307231390">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="227" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606314661811" />
+    <state width="1877" height="227" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606310429190" />
+    <state width="1877" height="227" key="GridCell.Tab.0.left" timestamp="1606314661811">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="227" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606302440039" />
-    <state width="1877" height="227" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606307231390" />
-    <state width="1877" height="227" key="GridCell.Tab.0.right" timestamp="1606307231391">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="227" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606314661811" />
+    <state width="1877" height="227" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606310429190" />
+    <state width="1877" height="227" key="GridCell.Tab.0.right" timestamp="1606314661811">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="227" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606302440039" />
-    <state width="1877" height="227" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606307231391" />
+    <state width="1877" height="227" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606314661811" />
+    <state width="1877" height="227" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606310429190" />
     <state width="1877" height="430" key="GridCell.Tab.1.bottom" timestamp="1606154998527">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -371,10 +374,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="600" height="440" key="javadoc.popup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602939693611" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1605877612696">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2536" y="240" key="run.anything.popup" timestamp="1606310018873">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605877612696" />
+    <state x="2536" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606310018873" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1605705079254">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
