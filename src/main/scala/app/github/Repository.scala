@@ -14,22 +14,12 @@
  * limitations under the License.
  */
 
-package scalameta.mods
+package app.github
 
-import uml.Stereotype
+import scala.meta.Source
 
-import scala.meta.Mod
+case class Repository(indexedFiles: Map[String, List[Source]])
 
-case class ParameterModsCollector(stereotype : List[Stereotype],fixme:Boolean = true)
-
-object ParameterModsCollector{
-  def apply(mods:List[Mod]): ParameterModsCollector = {
-    mods.foldLeft(new ParameterModsCollector(Nil)){
-      case (acc,Mod.Implicit()) =>
-        acc.copy(acc.stereotype ++ List(Stereotype("implicit",Nil)))
-      case (acc,Mod.Using()) =>
-        acc.copy(acc.stereotype ++ List(Stereotype("using",Nil)))
-      case (acc,_) => acc
-    }
-  }
+object Repository {
+  def empty:Repository = Repository(Map.empty)
 }

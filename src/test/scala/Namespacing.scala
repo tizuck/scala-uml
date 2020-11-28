@@ -62,6 +62,7 @@ class Namespacing extends AnyFreeSpec with Matchers {
         None,
         "bar.scala",
         NamespaceEntry(List("foo","foo")),
+        NamespaceEntry(List("foo")),
         resContext.localCon.currentImports
       )
     println(option)
@@ -83,6 +84,7 @@ class Namespacing extends AnyFreeSpec with Matchers {
                   None,
                   context.localCon.currentCompilationUnit,
                   NamespaceEntry(List("uml","externalReferences")),
+                  NamespaceEntry(List("uml","externalReferences")),
                   context.localCon.currentImports)
             option.value must have(Symbol("_1")(NamespaceEntry(List("uml"))))
             option.value._2.value mustBe a [Defn.Trait]
@@ -100,7 +102,14 @@ class Namespacing extends AnyFreeSpec with Matchers {
           val option =
             context
             .globalCon
-            .find("Stat", None,context.localCon.currentCompilationUnit,NamespaceEntry(List("scalameta", "stats")), context.localCon.currentImports)
+            .find(
+              "Stat",
+              None,
+              context.localCon.currentCompilationUnit
+              ,NamespaceEntry(List("scalameta", "stats")),
+              NamespaceEntry(List("scalameta", "stats")),
+              context.localCon.currentImports
+            )
 
           option.value must have(Symbol("_1")(NamespaceEntry(List("scala","meta"))))
           option.value._2 mustBe (Symbol("isEmpty"))
@@ -109,7 +118,13 @@ class Namespacing extends AnyFreeSpec with Matchers {
           val context = umlStatsCollector.resultingContext
           val option = context
             .globalCon
-            .find("StatsCollector",None,context.localCon.currentCompilationUnit,NamespaceEntry(List("scalameta","stats")), context.localCon.currentImports)
+            .find(
+              "StatsCollector",
+              None,
+              context.localCon.currentCompilationUnit,
+              NamespaceEntry(List("scalameta","stats")),
+              NamespaceEntry(List("scalameta","stats")),
+              context.localCon.currentImports)
 
           option.value must have(Symbol("_1")(NamespaceEntry(List("scalameta","stats"))))
           option.value._2.value mustBe a [Defn.Object]
@@ -119,7 +134,14 @@ class Namespacing extends AnyFreeSpec with Matchers {
           val context = umlStatsCollector.resultingContext
           val option = context
             .globalCon
-            .find("Package",None,context.localCon.currentCompilationUnit,NamespaceEntry(List("scalameta","stats")),context.localCon.currentImports)
+            .find(
+              "Package",
+              None,
+              context.localCon.currentCompilationUnit,
+              NamespaceEntry(List("scalameta","stats")),
+              NamespaceEntry(List("scalameta","stats")),
+              context.localCon.currentImports
+            )
 
           option.value must have(Symbol("_1")(NamespaceEntry(List("uml"))))
           option.value._2.value mustBe a [Defn.Class]
@@ -130,7 +152,13 @@ class Namespacing extends AnyFreeSpec with Matchers {
           val option =
             context
               .globalCon
-              .find("Zero",None,context.localCon.currentCompilationUnit,NamespaceEntry(List("scalameta","stats")),context.localCon.currentImports)
+              .find(
+                "CannotBeFound",
+                None,
+                context.localCon.currentCompilationUnit,
+                NamespaceEntry(List("scalameta","stats")),
+                NamespaceEntry(List("scalameta","stats")),
+                context.localCon.currentImports)
 
           option must be (Symbol("isEmpty"))
         }
@@ -144,6 +172,7 @@ class Namespacing extends AnyFreeSpec with Matchers {
                 "Foo",
                 Some(NamespaceEntry(List("UMLElement"),namespaces.Name)),
                 context.localCon.currentCompilationUnit,
+                NamespaceEntry(List("scalameta","stats")),
                 NamespaceEntry(List("scalameta","stats")),
                 context.localCon.currentImports)
 
@@ -161,6 +190,7 @@ class Namespacing extends AnyFreeSpec with Matchers {
                 Some(NamespaceEntry(List("Abstract"),namespaces.Name)),
                 context.localCon.currentCompilationUnit,
                 NamespaceEntry(List("scalameta","stats")),
+                NamespaceEntry(List("scalameta","stats")),
                 context.localCon.currentImports)
 
           option.value must have(Symbol("_1")(NamespaceEntry(List("uml","Abstract"))))
@@ -176,6 +206,7 @@ class Namespacing extends AnyFreeSpec with Matchers {
                 Some(NamespaceEntry(List("uml"),namespaces.Name)),
                 context.localCon.currentCompilationUnit,
                 NamespaceEntry(List("scalameta","stats")),
+                NamespaceEntry(List("scalameta","stats")),
                 context.localCon.currentImports)
 
           option.value must have(Symbol("_1")(NamespaceEntry(List("uml"))))
@@ -189,6 +220,7 @@ class Namespacing extends AnyFreeSpec with Matchers {
               .find("Option",
                 None,
                 context.localCon.currentCompilationUnit,
+                NamespaceEntry(List("scalameta","stats")),
                 NamespaceEntry(List("scalameta","stats")),
                 context.localCon.currentImports)
 
