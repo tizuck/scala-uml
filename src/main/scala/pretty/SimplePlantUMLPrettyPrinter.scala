@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package plantuml
+package pretty
 
 import org.bitbucket.inkytonik.kiama.output.PrettyPrinterTypes.Document
 import java.util.UUID.randomUUID
@@ -45,12 +45,10 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
         "@enduml"
 
     case Package(
-    name,
     packageBodyElements,stereotype,namespace) =>
       "package" <+>
         showStereotype(stereotype) <>
         namespace.plantUML <>
-        name <+>
         enclose("{",nest(line <> vsep(packageBodyElements.map(show))),line <> "}")
 
     case GenericParameter(

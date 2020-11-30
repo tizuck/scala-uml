@@ -18,11 +18,12 @@ package uml
 
 import cats.Eval
 import cats.data.State
+import org.bitbucket.inkytonik.kiama.==>
 import org.bitbucket.inkytonik.kiama.rewriting.Strategy
-import plantuml.SimplePlantUMLPrettyPrinter
-import scalameta.util.namespaces.{DefaultNamespace, Entry}
+import scalameta.util.namespaces.{DefaultNamespace, Entry, NamespaceEntry}
 import org.bitbucket.inkytonik.kiama.rewriting.Rewriter
 import org.bitbucket.inkytonik.kiama.rewriting.Rewriter._
+import pretty.PrettyPrinter
 
 import scala.meta.Stat
 
@@ -31,13 +32,44 @@ import scala.meta.Stat
  */
 sealed trait UMLElement { self =>
 
-  def pretty : String = SimplePlantUMLPrettyPrinter.format(self).layout
+  type T <: UMLElement
+
+  def pretty(implicit pretty:PrettyPrinter[T]) : String
+
   def structure : String
-  def rewrite[T](s:Strategy)(startState:T)(f:(UMLElement,T) => T):Eval[(T,UMLElement)] = {
-    val liftedS = State[T,Strategy](t => (t,s))
+  def rewrite[T](s:T => Strategy)(startState:T)(f:(UMLElement,T) => T):Eval[(T,UMLElement)] = {
+    val liftedS = State[T,Strategy](t => (t,s(t)))
     val liftedF: UMLElement => State[T,Unit] = u =>
       State(t => (f(u,t),()))
     rewrite(liftedS)(liftedF).run(startState)
+  }
+
+  def collect[B](pf:UMLElement ==> B):List[B] = {
+    rewrite({(_:List[Option[B]]) => id})(List.empty[Option[B]])((u,t) => pf.lift(u) :: t ).value._1.flatten
+  }
+
+  def contains[B](elem:UMLElement):Boolean = {
+    rewrite((_:Boolean) => id)(false)((u,t) => t || u.equals(elem)).value._1
+  }
+
+  def count(p:UMLElement => Boolean):Int = {
+    rewrite((_:Int)=>id)(0)((u,amount) => if(p(u)) amount + 1 else amount).value._1
+  }
+
+  def map(f:UMLElement ==> UMLElement):UMLElement = {
+    rewrite((u:()) => rule(f))(())((ue,t) => t).value._2
+  }
+
+  def forall(p:UMLElement => Boolean):Boolean = {
+    rewrite((_:Boolean) => id)(true)((u,t) => p(u) && t).value._1
+  }
+
+  def exists(p:UMLElement => Boolean):Boolean = {
+    rewrite((_:Boolean) => id)(false)((u,t) => p(u) || t).value._1
+  }
+
+  def toList():List[UMLElement] = {
+    rewrite((_:List[UMLElement]) => id)(Nil)((u,t) => t.appended(u)).value._1
   }
 
   protected[this] final def accStart[T,U <: UMLElement] : State[T,List[U]] = State(t => (t,Nil))
@@ -74,7 +106,7 @@ sealed trait UMLElement { self =>
    *
    * This method can thus be used for multiple purposes. It can be used to simply collect
    * values when setting s to `State(_ => (_,id))` and defining the collection function in `f`.
-   * It can be used to soley rewrite this instance by setting f to `(_ => State (_ => (_,())))`
+   * It can be used to solely rewrite this instance by setting f to `(_ => State (_ => (_,())))`
    * or it can be used as a combination of both to create more advanced rewriting strategy.
    *
    * @param s rewriting strategy for the traversal of this ast.
@@ -118,17 +150,17 @@ sealed trait UMLElement { self =>
   }
 
   protected[this] def rewriteOptionList[T](s: State[T, Strategy], f: UMLElement => State[T, Unit],option:Option[List[UMLElement]])
-      : State[T, List[GenericParameter]] = {
+      : State[T, Option[List[UMLElement]]] = {
 
     if (option.isDefined) {
       val genParams = option.get
       for {
         gens <- rewriteList(s, f, genParams)
       } yield {
-        gens.asInstanceOf[List[GenericParameter]]
+        Some(gens.asInstanceOf[List[GenericParameter]])
       }
     } else {
-      accStart[T, GenericParameter]
+      State(t => (t,option))
     }
   }
 
@@ -154,6 +186,9 @@ sealed trait UMLElement { self =>
 }
 
 sealed case class TaggedValue(name:String,value:Option[String]) extends UMLElement {
+
+  override type T = TaggedValue
+
   override def structure: String = s"""TaggedValue("$name","${optionString(value)}")"""
 
   override def rewrite[T](s: State[T,Strategy])(f:UMLElement => State[T,Unit]):State[T,UMLElement] = {
@@ -162,8 +197,13 @@ sealed case class TaggedValue(name:String,value:Option[String]) extends UMLEleme
       _ <- f(this)
     } yield Rewriter.rewrite(thisStrat)(this)
   }
+
+  override def pretty(implicit pretty: PrettyPrinter[TaggedValue]): String = pretty.format(this).layout
 }
 sealed case class Stereotype(name:String,taggedValues:List[TaggedValue]) extends UMLElement {
+
+  override type T = Stereotype
+
   override def structure: String = s"""Stereotype("$name",${listStructure(taggedValues)})"""
 
   override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
@@ -173,12 +213,14 @@ sealed case class Stereotype(name:String,taggedValues:List[TaggedValue]) extends
       thisStrat <- s
     } yield {
       Rewriter.rewrite(
-        thisStrat <* rule[Stereotype](
+        rule[Stereotype](
           {_.copy(taggedValues = taggedRewritten.asInstanceOf[List[TaggedValue]])}
-        )
+        ) <* thisStrat
       )(this)
     }
   }
+
+  override def pretty(implicit pretty: PrettyPrinter[Stereotype]): String = pretty.format(this).layout
 }
 
 sealed trait StereotypeElement extends UMLElement {
@@ -208,6 +250,9 @@ sealed trait NamedElement extends UMLElement {
 
 sealed case class UMLUnit(identifier:String,
                           toplevelElements:List[TopLevelElement]) extends UMLElement {
+
+  override type T = UMLUnit
+
   override def structure: String = s"""UMLUnit("$identifier",${listStructure(toplevelElements)})"""
 
   override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
@@ -217,27 +262,30 @@ sealed case class UMLUnit(identifier:String,
       thisStrat <- s
     } yield {
       Rewriter.rewrite(
-        thisStrat <* rule[UMLUnit](u => u.copy(toplevelElements=rewrittenTopLevel.asInstanceOf[List[TopLevelElement]]))
+        rule[UMLUnit](u => u.copy(toplevelElements=rewrittenTopLevel.asInstanceOf[List[TopLevelElement]])) <* thisStrat
       )(this)
     }
   }
+
+  override def pretty(implicit pretty: PrettyPrinter[UMLUnit]): String = pretty.format(this).layout
 }
 
 /***************
  * Packages
  **************/
 
-sealed case class Package(identifier:String,
-                          packageBodyElements:List[PackageBodyElement],
+sealed case class Package(packageBodyElements:List[PackageBodyElement],
                           stereotype:List[Stereotype],
-                          override val namespace:Entry=DefaultNamespace) extends
+                          namespace:Entry=DefaultNamespace) extends
   TopLevelElement with
   PackageBodyElement with
   StereotypeElement with
-  NamedElement with
   RelateableElement {
+
+  override type T = Package
+
   override def structure: String =
-    s"""Package("$identifier",${listStructure(packageBodyElements)},${listStructure(stereotype)}))"""
+    s"""Package(${listStructure(packageBodyElements)},${listStructure(stereotype)}))"""
 
   override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
     for {
@@ -246,13 +294,15 @@ sealed case class Package(identifier:String,
       _ <- f(this)
       thisStrat <- s
     } yield {
-      Rewriter.rewrite(thisStrat <* rule[Package](p =>
+      Rewriter.rewrite(rule[Package](p =>
         p.copy(
           packageBodyElements = pkgBodyRewritten.asInstanceOf[List[Package]],
           stereotype = stereotypeRewritten.asInstanceOf[List[Stereotype]]
-        )))(this)
+        )) <* thisStrat )(this)
     }
   }
+
+  override def pretty(implicit pretty: PrettyPrinter[Package]): String = pretty.format(this).layout
 }
 
 /***************
@@ -264,6 +314,9 @@ sealed case class GenericParameter(identifier:String,
                                    stereotype:List[Stereotype]) extends
   StereotypeElement with
   NamedElement {
+
+  override type T = GenericParameter
+
   override def structure: String =
     s"""GenericParameter("$identifier",${optionString(concreteType)},${listStructure(stereotype)})"""
 
@@ -273,10 +326,12 @@ sealed case class GenericParameter(identifier:String,
       stereotypeRewritten <- rewriteList(s,f,stereotype)
       _ <- f(this)
       thisStrat <- s
-    } yield  Rewriter.rewrite(thisStrat <* rule[GenericParameter](g =>
+    } yield  Rewriter.rewrite(rule[GenericParameter](g =>
       g.copy(stereotype = stereotypeRewritten.asInstanceOf[List[Stereotype]])
-    ))(this)
+    ) <* thisStrat )(this)
   }
+
+  override def pretty(implicit pretty: PrettyPrinter[GenericParameter]): String = pretty.format(this).layout
 }
 
 sealed trait AccessModifier
@@ -303,6 +358,9 @@ object externalReferences {
                                 templateParameter:List[String],
                                 oStat:Option[Stat] = None)
     extends TopLevelElement {
+
+    override type T = ClassDefRef
+
     override def structure: String =
       s"""ClassDefRef($classtype,"$name",$namespace,List(${templateParameter.mkString(",")}))"""
 
@@ -312,6 +370,8 @@ object externalReferences {
         thisStrat <- s
       } yield Rewriter.rewrite(thisStrat)(this)
     }
+
+    override def pretty(implicit pretty: PrettyPrinter[ClassDefRef]): String = pretty.format(this).layout
   }
 
 
@@ -331,6 +391,9 @@ sealed case class Class(isAbstract:Boolean,
   PackageBodyElement with
   RelateableElement with
   NamedElement {
+
+  override type T = Class
+
   override def structure: String =
     s"""Class($isAbstract,"$identifier",${
       listStructure(attributes)},${
@@ -353,19 +416,20 @@ sealed case class Class(isAbstract:Boolean,
       thisStrat <- s
     } yield {
       Rewriter.rewrite(
-        thisStrat <* rule[Class](c =>
+        rule[Class](c =>
           c.copy(
             attributes = attributesRewritten.asInstanceOf[List[Attribute]],
             operations = operationsRewritten.asInstanceOf[List[Operation]],
             additionalCompartements = additionalCompartementsRewritten.asInstanceOf[List[Compartment]],
-            genericParameters =
-              Option.when(genericParametersRewritten.nonEmpty)(genericParametersRewritten),
+            genericParameters = genericParametersRewritten.asInstanceOf[Option[List[GenericParameter]]],
             stereotype = stereotypeRewritten.asInstanceOf[List[Stereotype]]
           )
-        )
+        ) <* thisStrat
       )(this)
     }
   }
+
+  override def pretty(implicit pretty: PrettyPrinter[Class]): String = pretty.format(this).layout
 }
 /***************
  * Attributes
@@ -380,6 +444,9 @@ sealed case class Attribute(modificators:Option[List[Modificator]],
   CompartmentElement with
   StereotypeElement with
   NamedElement {
+
+  override type T = Attribute
+
   override def structure: String = s"""Attribute(${if(modificators.isDefined){
     s"""Some(${modificators.get.map(_.toString).mkString(",")})"""
   } else "None"},${
@@ -394,14 +461,16 @@ sealed case class Attribute(modificators:Option[List[Modificator]],
       thisStrat <- s
     } yield {
       Rewriter.rewrite(
-        thisStrat <* rule[Attribute]( a =>
+        rule[Attribute]( a =>
           a.copy(
             stereotype = stereotypeRew.asInstanceOf[List[Stereotype]]
           )
-        )
+        ) <* thisStrat
       )(this)
     }
   }
+
+  override def pretty(implicit pretty: PrettyPrinter[Attribute]): String = pretty.format(this).layout
 }
 
 /***************
@@ -414,6 +483,9 @@ sealed case class Parameter(identifier:String,
                             stereotype:List[Stereotype]) extends
   StereotypeElement with
   NamedElement {
+
+  override type T = Parameter
+
   override def structure: String = s"""Parameter("$identifier","$paramType",${listStructure(stereotype)})"""
 
   override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
@@ -423,12 +495,14 @@ sealed case class Parameter(identifier:String,
       thisStrat <- s
     } yield {
       Rewriter.rewrite(
-        thisStrat <* rule[Parameter](p =>
+        rule[Parameter](p =>
           p.copy(stereotype = stereotypeRewritten.asInstanceOf[List[Stereotype]])
-        )
+        ) <* thisStrat
       )(this)
     }
   }
+
+  override def pretty(implicit pretty: PrettyPrinter[Parameter]): String = pretty.format(this).layout
 }
 
 
@@ -442,6 +516,8 @@ sealed case class Operation(modificator: Option[List[Modificator]],
   CompartmentElement  with
   StereotypeElement with
   NamedElement {
+  override type T = Operation
+
   override def structure: String = s"""Operation(${
     modificator.map(m => s"""Some(List(${m.toString.mkString(",")}))""").getOrElse("None")
   },${optionAny(accessModifier)},"$identifier",${
@@ -456,15 +532,17 @@ sealed case class Operation(modificator: Option[List[Modificator]],
       _ <- f(this)
       thisStrat <- s
     } yield {
-      Rewriter.rewrite(thisStrat <* rule[Operation]( o =>
+      Rewriter.rewrite(rule[Operation]( o =>
         o.copy(
           paramSeq = rewrittenParameter.asInstanceOf[List[List[Parameter]]],
           stereotype = rewrittenStereotype.asInstanceOf[List[Stereotype]],
           templateParameter = rewirrtenGenericParams.asInstanceOf[Option[List[GenericParameter]]]
         )
-      ))(this)
+      ) <* thisStrat)(this)
     }
   }
+
+  override def pretty(implicit pretty: PrettyPrinter[Operation]): String = pretty.format(this).layout
 }
 
 
@@ -473,6 +551,8 @@ sealed case class Compartment(identifier:Option[String],
                               stereotype:List[Stereotype]) extends
   UMLElement with
   StereotypeElement {
+
+  override type T = Compartment
   override def structure: String =
     s"""Compartment("$identifier",${listStructure(taggedValues)},${listStructure(stereotype)}"""
 
@@ -483,13 +563,15 @@ sealed case class Compartment(identifier:Option[String],
       _ <- f(this)
       thisStrat <- s
     } yield {
-      Rewriter.rewrite(thisStrat <* rule[Compartment](c =>
+      Rewriter.rewrite(rule[Compartment](c =>
         c.copy(
           taggedValues = rewTaggedVals.asInstanceOf[List[TaggedValue]],
           stereotype = rewStereotypes.asInstanceOf[List[Stereotype]])
-      ))(this)
+      ) <* thisStrat)(this)
     }
   }
+
+  override def pretty(implicit pretty: PrettyPrinter[Compartment]): String = pretty.format(this).layout
 }
 
 /**
@@ -502,6 +584,9 @@ sealed case class Compartment(identifier:Option[String],
   TopLevelElement with
   StereotypeElement with
   PackageBodyElement {
+
+  override type T = Note
+
   override def structure: String = s"""Note(${listStructure(attachedElements)},"$text",${listStructure(stereotype)})"""
 
   override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
@@ -512,15 +597,17 @@ sealed case class Compartment(identifier:Option[String],
       thisStrat <- s
     } yield {
       Rewriter.rewrite(
-        thisStrat <* rule[Note](n =>
+        rule[Note](n =>
           n.copy(
             attachedElements = rewAttachedElements.asInstanceOf[List[NamedElement]],
             stereotype = rewStereotype.asInstanceOf[List[Stereotype]]
           )
-        )
+        ) <* thisStrat
       )(this)
     }
   }
+
+  override def pretty(implicit pretty: PrettyPrinter[Note]): String = pretty.format(this).layout
 }
 
 /***************
@@ -541,7 +628,11 @@ case object ToFrom extends RelationshipDirection
 case object Without extends RelationshipDirection
 
 sealed trait RelationshipElement extends UMLElement
+
 sealed case class ConcreteClass(cls:RelateableElement with NamedElement) extends RelationshipElement {
+
+  override type T = ConcreteClass
+
   override def structure: String = s"ConcreteClass(${cls.structure})"
 
   override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
@@ -551,17 +642,21 @@ sealed case class ConcreteClass(cls:RelateableElement with NamedElement) extends
       thisStrat <- s
     } yield {
       Rewriter.rewrite(
-        thisStrat <*
-          rule[ConcreteClass](c =>
-            c.copy(
-              rewCls.asInstanceOf[Class]
-            )
+        rule[ConcreteClass](c =>
+          c.copy(
+            rewCls.asInstanceOf[Class]
           )
+        ) <* thisStrat
       )(this)
     }
   }
+
+  override def pretty(implicit pretty: PrettyPrinter[ConcreteClass]): String = pretty.format(this).layout
 }
 sealed case class ClassRef(name:String, namespace:Entry=DefaultNamespace) extends RelationshipElement {
+
+  override type T = ClassRef
+
   override def structure: String = s"ClassRef($name,${namespace.plantUML})"
 
   override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
@@ -572,6 +667,27 @@ sealed case class ClassRef(name:String, namespace:Entry=DefaultNamespace) extend
       Rewriter.rewrite(thisStrat)(this)
     }
   }
+
+  override def pretty(implicit pretty: PrettyPrinter[ClassRef]): String = pretty.format(this).layout
+}
+
+sealed case class PackageRef(namespace: NamespaceEntry) extends RelationshipElement {
+
+  override type T = PackageRef
+
+  override def structure: String =
+    s"PackageRef(${namespace.plantUML})"
+
+  override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
+    for {
+      _ <- f(this)
+      thisStrat <- s
+    } yield {
+      Rewriter.rewrite(thisStrat)(this)
+    }
+  }
+
+  override def pretty(implicit pretty: PrettyPrinter[PackageRef]): String = pretty.format(this).layout
 }
 
 sealed case class RelationshipInfo(sourceMultiplicity:Option[String],
@@ -580,6 +696,8 @@ sealed case class RelationshipInfo(sourceMultiplicity:Option[String],
                                    to: RelationshipElement,
                                    relationshipIdentifier:Option[String],
                                    identifierDirection:RelationshipDirection) extends UMLElement {
+
+  override type T = RelationshipInfo
   def structure : String =
     s"""RelationshipInfo(${optionString(sourceMultiplicity)},${optionString(targetMultiplicity)},${
       from.structure},${to.structure},${optionString(relationshipIdentifier)},${identifierDirection.toString})"""
@@ -587,18 +705,20 @@ sealed case class RelationshipInfo(sourceMultiplicity:Option[String],
   override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
     for {
       fromRew <- from.rewrite(s)(f)
-      toRew <- from.rewrite(s)(f)
+      toRew <- to.rewrite(s)(f)
       _ <- f(this)
       thisStrat <- s
     } yield {
-      Rewriter.rewrite(thisStrat <* rule[RelationshipInfo](ri =>
+      Rewriter.rewrite(rule[RelationshipInfo](ri =>
         ri.copy(
           from = fromRew.asInstanceOf[RelationshipElement],
           to = toRew.asInstanceOf[RelationshipElement]
         )
-      ))(this)
+      ) <* thisStrat)(this)
     }
   }
+
+  override def pretty(implicit pretty: PrettyPrinter[RelationshipInfo]): String = pretty.format(this).layout
 }
 
 sealed case class Relationship(relationshipType: RelationshipType,
@@ -608,6 +728,9 @@ sealed case class Relationship(relationshipType: RelationshipType,
   TopLevelElement with
   PackageBodyElement with
   StereotypeElement {
+
+  override type T = Relationship
+
   override def structure: String =
     s"""Relationship(${relationshipType.toString},${relationshipDirection.toString},${
       relationshipInfo.structure},${listStructure(stereotype)})"""
@@ -620,13 +743,15 @@ sealed case class Relationship(relationshipType: RelationshipType,
       thisStrat <- s
     } yield {
       Rewriter.rewrite(
-        thisStrat <* rule[Relationship]( r =>
+        rule[Relationship]( r =>
           r.copy(
             relationshipInfo = relationshipInfoRew.asInstanceOf[RelationshipInfo],
             stereotype = stereotypesRew.asInstanceOf[List[Stereotype]]
           )
-        )
+        ) <* thisStrat
       )(this)
     }
   }
+
+  override def pretty(implicit pretty: PrettyPrinter[Relationship]): String = pretty.format(this).layout
 }

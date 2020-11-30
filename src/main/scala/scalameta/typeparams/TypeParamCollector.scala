@@ -16,6 +16,8 @@
 
 package scalameta.typeparams
 
+import pretty.config.PlantUMLConfig
+import pretty.plantuml.GenericParameterPretty
 import scalameta.stateless.TypeNameCollector
 import scalameta.util.context.CollectorContext
 import uml.{GenericParameter, Stereotype}
@@ -40,6 +42,10 @@ object TypeParamCollector{
     val metaBound:Type.Bounds = typeParam.tbounds
     val bounds = TypeBoundsCollector(metaBound).typeRep
     val tparams = TypeParamsCollector(typeParam.tparams).typeParams
+
+    //@todo fix me
+    implicit val pretty = GenericParameterPretty()(PlantUMLConfig())
+
     val tparamsStringRep = if(tparams.nonEmpty){ s"<${tparams.map(_.pretty).mkString(",")}>"} else ""
 
     new TypeParamCollector(GenericParameter(parameterName + tparamsStringRep,bounds,stereotype),cbounds)

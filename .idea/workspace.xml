@@ -5,94 +5,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/project/plugins.sbt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/github.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/app/github/GithubLoader.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/app/github/Repository.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/scala/RewritingSuite.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/scala/repositories/kivy-astmanip/conf.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml-build.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/PrettyPrinter.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/config/PrettyConfig.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/AttributePretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ClassDefRefPretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ClassPretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ClassRefPretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/CompartmentPretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ConcreteClassPretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/GenericParameterPretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/NamedElementPretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/NotePretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/OperationPretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PackageBodyPretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PackagePretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PackageRefPretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ParameterPretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PlantUMLPrettyPrinter.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/RelationshipElementPretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/RelationshipPretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/StereotypePretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/TaggedValuePretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/TopLevelPretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/UMLUnitPretty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/collecting/CollectNamespaceObjectsStrat.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/collecting/CollectStrategy.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/predef/Id.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/predef/NonCollect.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/DeleteInnerAssocStrat.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/InsertNamespaceObjectRelsStrat.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/RewriteStrategy.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/scala/rewriting/RewritingSuite.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/scala/rewriting/collectingStrats/CollectingSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/plantuml/SimplePlantUMLPrettyPrinter.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/plantuml/SimplePlantUMLPrettyPrinter.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/cstr/PrimaryCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/cstr/PrimaryCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/implicits.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/implicits.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/mods/ClassModsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/mods/ClassModsCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/mods/ObjectModsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/mods/ObjectModsCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/mods/ParameterModsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/mods/ParameterModsCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/parameters/ParamCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/parameters/ParamCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/parameters/ParamsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/parameters/ParamsCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/parameters/ParamssCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/parameters/ParamssCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/AccessModifierCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/AccessModifierCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/ApplyTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/ApplyTypeCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/BoundsNameCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/BoundsNameCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/ModificatorsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/ModificatorsCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/SelectRefCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/SelectRefCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TargetMultiplicityCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TargetMultiplicityCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TargetTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TargetTypeCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TemplateBindingCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TemplateBindingCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TypeNameAssociationCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TypeNameAssociationCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/plantuml/SimplePlantUMLPrettyPrinter.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/SimplePlantUMLPrettyPrinter.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TypeNameCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TypeNameCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/PkgCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/PkgCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/StatCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/StatCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/StatsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/StatsCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclDefCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclDefCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclTypeCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclValCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclValCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclVarCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclVarCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnClassCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnClassCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCaseCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCaseCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnObjectCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnObjectCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnOpaqueTypealiasCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnOpaqueTypealiasCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnRepeatedEnumCaseCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnRepeatedEnumCaseCollector.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTraitCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTraitCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTypeCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/toplevel/DefnDefToplevelCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/toplevel/DefnDefToplevelCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/toplevel/DefnValToplevelCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/toplevel/DefnValToplevelCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImportCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImportCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImportRefCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImportRefCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImporteeNameCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImporteeNameCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImporteesCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImporteesCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImporterCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImporterCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/init/InitCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/init/InitCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/init/InitsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/init/InitsCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/util/AssociationInformation.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/util/AssociationInformation.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/util/defs.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/util/defs.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/toplevel/SourceCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/toplevel/SourceCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/toplevel/SourcesCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/toplevel/SourcesCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeBoundsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeBoundsCollector.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeParamCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeParamCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeParamContextBoundsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeParamContextBoundsCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeParamModCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeParamModCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeParamsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeParamsCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/BaseCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/BaseCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/StateChangingCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/StateChangingCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/CollectorContext.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/CollectorContext.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/GlobalContext.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/GlobalContext.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/LocalContext.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/LocalContext.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/opconfig.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/opconfig.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/BaseNamespaceCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/BaseNamespaceCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/ClassCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/ClassCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/EnumCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/EnumCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/ObjectCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/ObjectCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/PkgCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/PkgCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/SourceCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/SourceCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/SourcesCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/SourcesCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/StatCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/StatCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/StatsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/StatsCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/TraitCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/TraitCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/TypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/collector/TypeCollector.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/namespaceEntries.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/namespaceEntries.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/scalaDefaults.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/scalaDefaults.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/partial/partial.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/partial/partial.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/util.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/util.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/scala/Namespacing.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/Namespacing.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/repositories/conf.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/github/conf.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/repositories/kivy.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/repositories/kivy-astmanip/kivy.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/RewritingSuite.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/AndSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/dotty/AndSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/ContextBoundSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/dotty/ContextBoundSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/ContextFunctionSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/dotty/ContextFunctionSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/TraitParametersSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/dotty/TraitParametersSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/UnionSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/dotty/UnionSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/repositories/KivyASTManipulatorTest.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/repositories/KivyASTManipulatorTest.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,6 +101,7 @@
         <option value="Package Object" />
         <option value="Scala Object" />
         <option value="Scala Class" />
+        <option value="Scala Trait" />
       </list>
     </option>
   </component>
@@ -172,90 +133,95 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\test\scala\repositories\kivy-astmanip" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="uml.strategies" />
       <recent name="plantuml" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="assets" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\main\scala\app" />
       <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\test\scala\assets" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="assets" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\test\scala\repositories\kivy-astmanip" />
+    </key>
   </component>
-  <component name="RunManager" selected="ScalaTest.RewritingSuite">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="playground.Main" />
       <module name="scala-uml" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="playground.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="KivyASTManipulatorTest" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="CollectingSuite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
       <option name="selectedOptions">
         <set />
       </option>
       <option name="testKind" value="Class" />
-      <option name="testClassPath" value="repositories.KivyASTManipulatorTest" />
+      <option name="testClassPath" value="rewriting.collectingStrats.CollectingSuite" />
       <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Namespacing.inner definition of object should find outer definition in different compilation Unit" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="CollectingSuite.Collecting the namespace objects of fooAst yields 2 object entries" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
       <option name="selectedOptions">
         <set />
       </option>
       <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="Namespacing" />
-      <option name="testName" value="inner definition of object should find outer definition in different compilation Unit" />
+      <option name="testClassPath" value="rewriting.collectingStrats.CollectingSuite" />
+      <option name="testName" value="Collecting the namespace objects of fooAst yields 2 object entries" />
       <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RewritingSuite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="CollectingSuite.Rewriting the ast by inserting new relationships" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="scala-uml" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <option name="testKind" value="Test name" />
+      <option name="testClassPath" value="rewriting.collectingStrats.CollectingSuite" />
+      <option name="testName" value="Rewriting the ast by inserting new relationships" />
+      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RewritingSuite (1)" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
       <option name="selectedOptions">
         <set />
       </option>
       <option name="testKind" value="Class" />
-      <option name="testClassPath" value="RewritingSuite" />
-      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RewritingSuite.Rewriting the fooAst without intended changes doesn't change the fooAst" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
-      <module name="scala-uml" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="selectedOptions">
-        <set />
-      </option>
-      <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="RewritingSuite" />
-      <option name="testName" value="Rewriting the fooAst without intended changes doesn't change the fooAst" />
+      <option name="testClassPath" value="rewriting.RewritingSuite" />
       <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -263,11 +229,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="ScalaTest.RewritingSuite" />
-        <item itemvalue="ScalaTest.RewritingSuite.Rewriting the fooAst without intended changes doesn't change the fooAst" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="ScalaTest.Namespacing.inner definition of object should find outer definition in different compilation Unit" />
-        <item itemvalue="ScalaTest.KivyASTManipulatorTest" />
+        <item itemvalue="ScalaTest.CollectingSuite" />
+        <item itemvalue="ScalaTest.CollectingSuite.Rewriting the ast by inserting new relationships" />
+        <item itemvalue="ScalaTest.RewritingSuite (1)" />
+        <item itemvalue="ScalaTest.CollectingSuite.Collecting the namespace objects of fooAst yields 2 object entries" />
       </list>
     </recent_temporary>
   </component>
@@ -339,6 +305,11 @@
       <workItem from="1606489093472" duration="48000" />
       <workItem from="1606489284295" duration="10365000" />
       <workItem from="1606505092731" duration="15884000" />
+      <workItem from="1606558881011" duration="16218000" />
+      <workItem from="1606653296390" duration="845000" />
+      <workItem from="1606672128373" duration="1670000" />
+      <workItem from="1606728796729" duration="26404000" />
+      <workItem from="1606765249050" duration="789000" />
     </task>
     <servers />
   </component>
@@ -355,10 +326,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="160" key="#Plugins/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606489393614" />
-    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1606520396346">
+    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1606765545961">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606520396346" />
+    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606765545961" />
     <state x="2610" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606310405566" />
     <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606348947682" />
     <state x="49" y="133" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1605262889410">
@@ -369,20 +340,20 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="714" y="321" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605803042213" />
-    <state x="724" y="434" key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog" timestamp="1606125348999">
+    <state x="724" y="434" key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog" timestamp="1606730083443">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="724" y="434" key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606125348999" />
-    <state x="765" y="208" key="#com.intellij.ide.util.MemberChooser" timestamp="1606519954723">
+    <state x="724" y="434" key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606730083443" />
+    <state x="765" y="208" key="#com.intellij.ide.util.MemberChooser" timestamp="1606765411238">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="208" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606519954723" />
+    <state x="765" y="208" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606765411238" />
     <state x="2685" y="208" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606501423195" />
     <state x="765" y="208" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606505122650" />
-    <state x="690" y="319" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1606383374608">
+    <state x="690" y="319" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1606732719155">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="319" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606383374608" />
+    <state x="690" y="319" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606732719155" />
     <state x="689" y="353" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1605614791702">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -391,14 +362,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="640" y="255" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606489103884" />
-    <state x="551" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1605803442143">
+    <state x="551" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1606732714482">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="551" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605803442143" />
+    <state x="551" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606732714482" />
     <state x="725" y="379" width="561" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606383394578">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="725" y="379" width="561" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606383394578" />
+    <state x="756" y="401" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1606732721861">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="756" y="401" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606732721861" />
     <state x="564" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606382344099">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -416,42 +391,50 @@
     </state>
     <state x="915" y="277" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605868897680" />
     <state x="915" y="277" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606348521556" />
-    <state width="1877" height="231" key="GridCell.Tab.0.bottom" timestamp="1606524592760">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="938" height="237" key="GridCell.Tab.0.bottom" timestamp="1606766038298">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="231" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606523810589" />
+    <state width="938" height="237" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606766038298" />
     <state width="1877" height="231" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606524592760" />
-    <state width="1877" height="231" key="GridCell.Tab.0.center" timestamp="1606524592760">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="430" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
+    <state width="938" height="237" key="GridCell.Tab.0.center" timestamp="1606766038298">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="231" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606523810588" />
+    <state width="938" height="237" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606766038298" />
     <state width="1877" height="231" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606524592760" />
-    <state width="1877" height="231" key="GridCell.Tab.0.left" timestamp="1606524592759">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="430" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
+    <state width="938" height="237" key="GridCell.Tab.0.left" timestamp="1606766038297">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="231" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606523810588" />
+    <state width="938" height="237" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606766038297" />
     <state width="1877" height="231" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606524592759" />
-    <state width="1877" height="231" key="GridCell.Tab.0.right" timestamp="1606524592760">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="430" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
+    <state width="938" height="237" key="GridCell.Tab.0.right" timestamp="1606766038298">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="231" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606523810589" />
+    <state width="938" height="237" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606766038298" />
     <state width="1877" height="231" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606524592760" />
-    <state width="1877" height="430" key="GridCell.Tab.1.bottom" timestamp="1606400334117">
+    <state width="1877" height="430" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
+    <state width="1877" height="430" key="GridCell.Tab.1.bottom" timestamp="1606587435886">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="430" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606400334117" />
-    <state width="1877" height="430" key="GridCell.Tab.1.center" timestamp="1606400334117">
+    <state width="1877" height="430" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606563234222" />
+    <state width="1877" height="430" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
+    <state width="1877" height="430" key="GridCell.Tab.1.center" timestamp="1606587435886">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="430" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606400334117" />
-    <state width="1877" height="430" key="GridCell.Tab.1.left" timestamp="1606400334116">
+    <state width="1877" height="430" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606563234222" />
+    <state width="1877" height="430" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
+    <state width="1877" height="430" key="GridCell.Tab.1.left" timestamp="1606587435886">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="430" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606400334116" />
-    <state width="1877" height="430" key="GridCell.Tab.1.right" timestamp="1606400334117">
+    <state width="1877" height="430" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606563234222" />
+    <state width="1877" height="430" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
+    <state width="1877" height="430" key="GridCell.Tab.1.right" timestamp="1606587435886">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="430" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606400334117" />
+    <state width="1877" height="430" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606563234222" />
+    <state width="1877" height="430" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
     <state x="681" y="188" key="SettingsEditor" timestamp="1606393617178">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -470,19 +453,23 @@
     <state x="767" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606234376818" />
     <state x="2687" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604485729498" />
     <state x="767" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606351364460" />
-    <state x="-1678" y="131" width="1490" height="771" maximized="true" key="dock-window-1" timestamp="1606400241317">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state x="1906" y="-25" width="1284" height="712" maximized="true" key="dock-window-1" timestamp="1606750357532">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1678" y="131" width="1490" height="771" maximized="true" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606400241317" />
+    <state x="1906" y="-25" width="1284" height="712" maximized="true" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606750357532" />
     <state x="20" y="-15" width="1485" height="716" maximized="true" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604686832208" />
-    <state x="666" y="253" width="587" height="534" key="find.popup" timestamp="1605889619343">
+    <state x="666" y="253" width="587" height="534" key="find.popup" timestamp="1606579957055">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="666" y="253" width="587" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605889619343" />
+    <state x="666" y="253" width="587" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606579957055" />
     <state width="600" height="440" key="javadoc.popup" timestamp="1602939693611">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="600" height="440" key="javadoc.popup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602939693611" />
+    <state x="664" y="250" key="refactoring.ChangeSignatureDialog" timestamp="1606756228317">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="664" y="250" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606756228317" />
     <state x="2536" y="240" key="run.anything.popup" timestamp="1606310018873">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -494,10 +481,12 @@
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606522616322" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__scala_.ic" NAME="ScalaTests in 'scala' Coverage Results" MODIFIED="1606583146914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_ast_scala_produces_resulting_context_that_is_able_to_locate_reference_to_classes_in_the_same_namespace_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_StatCollector_should_result_in_a_local_match_in_current_namespace_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Package_yields_the_namespace_uml_since_it_is_imported_with_import_uml___and_it_is_defined_in_the_global_context.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of ast.scala produces resulting context that is able to locate reference to classes in the same namespace&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of StatCollector should result in a local match in current namespace&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of Package yields the namespace uml since it is imported with import uml._ and it is defined in the global context Coverage Results" MODIFIED="1605265552744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$Namespacing.ic" NAME="Namespacing Coverage Results" MODIFIED="1605286159348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition Coverage Results" MODIFIED="1605264077135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$DottyAndSuite.ic" NAME="DottyAndSuite Coverage Results" MODIFIED="1605482730279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_StatCollector_should_result_in_a_local_match_in_current_namespace.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of StatCollector should result in a local match in current namespace Coverage Results" MODIFIED="1605264065214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$RewritingSuite.ic" NAME="RewritingSuite Coverage Results" MODIFIED="1606582804268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

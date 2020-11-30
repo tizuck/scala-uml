@@ -84,5 +84,6 @@
     <orderEntry type="library" name="sbt: org.typelevel:cats-effect_2.13:2.2.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.typelevel:cats-kernel_2.13:2.2.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.typelevel:jawn-parser_2.13:1.0.0:jar" level="project" />
+    <orderEntry type="library" name="scala-sdk-2.12.8" level="application" />
   </component>
 </module>

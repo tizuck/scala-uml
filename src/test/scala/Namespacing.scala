@@ -65,7 +65,6 @@ class Namespacing extends AnyFreeSpec with Matchers {
         NamespaceEntry(List("foo")),
         resContext.localCon.currentImports
       )
-    println(option)
     option.value must have(Symbol("_1")(NamespaceEntry(List("foo"))))
     option.value._2.value mustBe a [Defn.Trait]
 

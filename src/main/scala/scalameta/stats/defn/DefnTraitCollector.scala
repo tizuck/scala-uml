@@ -38,7 +38,6 @@ object DefnTraitCollector {
 
     val traitName = defnTrait.name.value
     val mods = ClassModsCollector(defnTrait.mods)
-    println(s"Trait:$traitName with mods: $mods")
     val typeParameters = TypeParamsCollector(defnTrait.tparams).typeParams
     val genericParameter = Option.when(typeParameters.nonEmpty)(typeParameters)
     val tempThisPointer = ClassRef(traitName,namespace = context.localCon.currentNamespace)
@@ -51,7 +50,6 @@ object DefnTraitCollector {
     val innerElements = StatsCollector(defnTrait.templ.stats)(inheritedElements.resultingContext.notToplevel)
 
     if(defnTrait.name.value.equals("StereotypeElement")){
-      println(innerElements.definedElements)
     }
     val primaryConstructor = PrimaryConstructorCollector(defnTrait.ctor)(
       context.withCstrOrigin(traitName)

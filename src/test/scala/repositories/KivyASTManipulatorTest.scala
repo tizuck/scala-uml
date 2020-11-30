@@ -17,6 +17,8 @@ import github4s.domain.Content
 import net.sourceforge.plantuml.{FileFormat, FileFormatOption, SourceStringReader}
 import org.http4s.{DecodeFailure, HttpVersion, Response}
 import org.http4s.client.{Client, JavaNetClientBuilder}
+import pretty.config.PlantUMLConfig
+import pretty.plantuml.UMLUnitPretty
 
 import scala.concurrent.ExecutionContext.global
 import pureconfig._
@@ -56,7 +58,7 @@ class KivyASTManipulatorTest extends AnyFreeSpec with Matchers {
         Repository(x.indexedFiles |+| y.indexedFiles)
     }
 
-    val conf = ConfigSource.file("src/test/scala/repositories/kivy.conf").load[Directories]
+    val conf = ConfigSource.file("src/test/scala/repositories/kivy-astmanip/kivy.conf").load[Directories]
     val directories = conf match {
       case Left(value) => throw new IllegalStateException(value.toString())
       case Right(dirs) => dirs
@@ -140,6 +142,8 @@ class KivyASTManipulatorTest extends AnyFreeSpec with Matchers {
       }
     }
   }
+
+  implicit val umlUnit = UMLUnitPretty()(PlantUMLConfig())
 
   "KivyASTManip project from github is depicted correctly as uml diagram " in new TestData(){
     val sourcesCol = SourcesCollector(repo.indexedFiles.toList.map(tp => (tp._2.head,tp._1)),"kivy-astmanip-model")

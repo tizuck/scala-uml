@@ -23,14 +23,27 @@ sealed trait Entry {
     case NamespaceEmpty => ""
     case NamespaceEntry(qualifiers, targetType) =>qualifiers.mkString("::") + "."
   }
+  def appended(other:Entry) : Entry
   def upperNamespace : Entry
 }
 
 case object NamespaceEmpty extends Entry {
   override def upperNamespace: Entry = this
+
+  override def appended(other: Entry): Entry = other match {
+    case NamespaceEmpty => NamespaceEmpty
+    case DefaultNamespace => DefaultNamespace
+    case n:NamespaceEntry => n
+  }
 }
 case object DefaultNamespace extends Entry {
   override def upperNamespace: Entry = this
+
+  override def appended(other: Entry): Entry = other match {
+    case NamespaceEmpty => DefaultNamespace
+    case DefaultNamespace => DefaultNamespace
+    case n:NamespaceEntry => n
+  }
 }
 
 sealed trait TargetType
@@ -69,5 +82,11 @@ sealed case class NamespaceEntry(qualifiers: List[String],targetType:TargetType 
     } else {
       DefaultNamespace
     }
+  }
+
+  override def appended(other: Entry): Entry = other match {
+    case NamespaceEmpty => this
+    case DefaultNamespace => this
+    case NamespaceEntry(qualifiers, targetType) => this.copy(qualifiers = this.qualifiers ++ qualifiers)
   }
 }

@@ -49,7 +49,6 @@ object TypeNameCollector {
         val rhsRep = this(rhs)
         TypeNameCollector(s"|<${lhsRep.typeRep},${rhsRep.typeRep}>")
       case Type.With(lhs, rhs) =>
-        println(lhs.structure + " " + rhs.structure)
         TypeNameCollector(s"&<${this(lhs).typeRep},${this(rhs).typeRep}>")
       case Type.ApplyInfix(lhs,op,rhs) =>
         val lhsRep = this(lhs).typeRep
