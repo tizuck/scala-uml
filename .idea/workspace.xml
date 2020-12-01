@@ -5,54 +5,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/PrettyPrinter.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/config/PrettyConfig.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/AttributePretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ClassDefRefPretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ClassPretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ClassRefPretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/CompartmentPretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ConcreteClassPretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/GenericParameterPretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/NamedElementPretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/NotePretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/OperationPretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PackageBodyPretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PackagePretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PackageRefPretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ParameterPretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PlantUMLPrettyPrinter.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/RelationshipElementPretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/RelationshipPretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/StereotypePretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/TaggedValuePretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/TopLevelPretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/UMLUnitPretty.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/collecting/CollectNamespaceObjectsStrat.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/collecting/CollectStrategy.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/predef/Id.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/predef/NonCollect.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/DeleteInnerAssocStrat.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/InsertNamespaceObjectRelsStrat.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/RewriteStrategy.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/scala/rewriting/RewritingSuite.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/scala/rewriting/collectingStrats/CollectingSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/collecting/packagerep/CollectAllClassesStrat.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/collecting/packagerep/CollectAllNamespacesStrat.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/collecting/packagerep/CollectNamespaceObjectsStrat.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/DeleteAllClassesOnToplevel.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/DeleteEmptyPackages.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/DeleteInnerAssocStrat.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/InsertClassesInPackageStrat.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/InsertInnerNamespaceRelsStrat.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/InsertPackagesFromNamespacesStrat.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/scala/rewriting/collectingStrats/PackageRepresentationSuite.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/plantuml/SimplePlantUMLPrettyPrinter.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/SimplePlantUMLPrettyPrinter.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TypeNameCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TypeNameCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTraitCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTraitCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeParamCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/typeparams/TypeParamCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/namespaceEntries.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/namespaceEntries.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/Pretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/KiamaPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/PrettyPrinter.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/PrettyPrinter.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/AttributePretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/AttributePretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ClassDefRefPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ClassDefRefPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ClassPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ClassPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ClassRefPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ClassRefPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/CompartmentPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/CompartmentPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ConcreteClassPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ConcreteClassPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/GenericParameterPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/GenericParameterPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/NamedElementPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/NamedElementPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/NotePretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/NotePretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/OperationPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/OperationPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PackageBodyPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PackageBodyPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PackagePretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PackagePretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PackageRefPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PackageRefPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ParameterPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ParameterPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PlantUMLPrettyPrinter.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PlantUMLPrettyPrinter.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/RelationshipElementPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/RelationshipElementPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/RelationshipPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/RelationshipPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/StereotypePretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/StereotypePretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/TaggedValuePretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/TaggedValuePretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/TopLevelPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/TopLevelPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/UMLUnitPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/UMLUnitPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/collecting/CollectNamespaceObjectsStrat.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/DeleteInnerAssocStrat.scala" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/scala/Namespacing.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/Namespacing.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/RewritingSuite.scala" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/AndSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/dotty/AndSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/ContextBoundSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/dotty/ContextBoundSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/ContextFunctionSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/dotty/ContextFunctionSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/TraitParametersSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/dotty/TraitParametersSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/UnionSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/dotty/UnionSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/repositories/KivyASTManipulatorTest.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/repositories/KivyASTManipulatorTest.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/rewriting/collectingStrats/CollectingSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/rewriting/collectingStrats/CollectingSuite.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,9 +89,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Package Object" />
-        <option value="Scala Object" />
         <option value="Scala Class" />
         <option value="Scala Trait" />
+        <option value="Scala Object" />
       </list>
     </option>
   </component>
@@ -133,19 +123,19 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\test\scala\repositories\kivy-astmanip" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="uml.strategies" />
       <recent name="plantuml" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\main\scala\app" />
-      <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\test\scala\assets" />
-    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="assets" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\test\scala\repositories\kivy-astmanip" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\main\scala\app" />
+      <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\test\scala\assets" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -173,55 +163,55 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CollectingSuite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="Namespacing" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
       <option name="selectedOptions">
         <set />
       </option>
       <option name="testKind" value="Class" />
-      <option name="testClassPath" value="rewriting.collectingStrats.CollectingSuite" />
+      <option name="testClassPath" value="Namespacing" />
       <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CollectingSuite.Collecting the namespace objects of fooAst yields 2 object entries" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
-      <module name="scala-uml" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="selectedOptions">
-        <set />
-      </option>
-      <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="rewriting.collectingStrats.CollectingSuite" />
-      <option name="testName" value="Collecting the namespace objects of fooAst yields 2 object entries" />
-      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CollectingSuite.Rewriting the ast by inserting new relationships" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
-      <module name="scala-uml" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="selectedOptions">
-        <set />
-      </option>
-      <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="rewriting.collectingStrats.CollectingSuite" />
-      <option name="testName" value="Rewriting the ast by inserting new relationships" />
-      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RewritingSuite (1)" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="PackageRepresentationSuite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
       <option name="selectedOptions">
         <set />
       </option>
       <option name="testKind" value="Class" />
-      <option name="testClassPath" value="rewriting.RewritingSuite" />
+      <option name="testClassPath" value="rewriting.collectingStrats.PackageRepresentationSuite" />
+      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PackageRepresentationSuite.during the transformation-step from toplevel-representation to package-representation the last step inserts an inner relationship with stereotype objectdef to every object that defines elementsin a namespace" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="scala-uml" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <option name="testKind" value="Test name" />
+      <option name="testClassPath" value="rewriting.collectingStrats.PackageRepresentationSuite" />
+      <option name="testName" value="during the transformation-step from toplevel-representation to package-representation the last step inserts an inner relationship with stereotype objectdef to every object that defines elementsin a namespace" />
+      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PackageRepresentationSuite.during the transformation-step from toplevel-representation to package-representation the third step shifts all classes from the toplevel into the packages, so that there is no class or relationship without a package except for the definitions indefault namespace" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="scala-uml" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <option name="testKind" value="Test name" />
+      <option name="testClassPath" value="rewriting.collectingStrats.PackageRepresentationSuite" />
+      <option name="testName" value="during the transformation-step from toplevel-representation to package-representation the third step shifts all classes from the toplevel into the packages, so that there is no class or relationship without a package except for the definitions indefault namespace" />
       <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -230,10 +220,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="ScalaTest.CollectingSuite" />
-        <item itemvalue="ScalaTest.CollectingSuite.Rewriting the ast by inserting new relationships" />
-        <item itemvalue="ScalaTest.RewritingSuite (1)" />
-        <item itemvalue="ScalaTest.CollectingSuite.Collecting the namespace objects of fooAst yields 2 object entries" />
+        <item itemvalue="ScalaTest.PackageRepresentationSuite.during the transformation-step from toplevel-representation to package-representation the last step inserts an inner relationship with stereotype objectdef to every object that defines elementsin a namespace" />
+        <item itemvalue="ScalaTest.PackageRepresentationSuite" />
+        <item itemvalue="ScalaTest.PackageRepresentationSuite.during the transformation-step from toplevel-representation to package-representation the third step shifts all classes from the toplevel into the packages, so that there is no class or relationship without a package except for the definitions indefault namespace" />
+        <item itemvalue="ScalaTest.Namespacing" />
       </list>
     </recent_temporary>
   </component>
@@ -310,6 +300,8 @@
       <workItem from="1606672128373" duration="1670000" />
       <workItem from="1606728796729" duration="26404000" />
       <workItem from="1606765249050" duration="789000" />
+      <workItem from="1606818208115" duration="15521000" />
+      <workItem from="1606857770047" duration="3463000" />
     </task>
     <servers />
   </component>
@@ -326,10 +318,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="160" key="#Plugins/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606489393614" />
-    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1606765545961">
+    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1606821722415">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606765545961" />
+    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606821722415" />
     <state x="2610" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606310405566" />
     <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606348947682" />
     <state x="49" y="133" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1605262889410">
@@ -344,10 +336,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="724" y="434" key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606730083443" />
-    <state x="765" y="208" key="#com.intellij.ide.util.MemberChooser" timestamp="1606765411238">
+    <state x="765" y="208" key="#com.intellij.ide.util.MemberChooser" timestamp="1606841570454">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="208" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606765411238" />
+    <state x="765" y="208" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606841570454" />
     <state x="2685" y="208" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606501423195" />
     <state x="765" y="208" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606505122650" />
     <state x="690" y="319" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1606732719155">
@@ -366,10 +358,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="551" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606732714482" />
-    <state x="725" y="379" width="561" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606383394578">
+    <state x="725" y="379" width="561" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606840839818">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="725" y="379" width="561" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606383394578" />
+    <state x="725" y="379" width="561" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606840839818" />
     <state x="756" y="401" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1606732721861">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -391,28 +383,28 @@
     </state>
     <state x="915" y="277" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605868897680" />
     <state x="915" y="277" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606348521556" />
-    <state width="938" height="237" key="GridCell.Tab.0.bottom" timestamp="1606766038298">
+    <state width="937" height="239" key="GridCell.Tab.0.bottom" timestamp="1606860790369">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="938" height="237" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606766038298" />
+    <state width="937" height="239" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606860790369" />
     <state width="1877" height="231" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606524592760" />
     <state width="1877" height="430" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
-    <state width="938" height="237" key="GridCell.Tab.0.center" timestamp="1606766038298">
+    <state width="937" height="239" key="GridCell.Tab.0.center" timestamp="1606860790369">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="938" height="237" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606766038298" />
+    <state width="937" height="239" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606860790369" />
     <state width="1877" height="231" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606524592760" />
     <state width="1877" height="430" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
-    <state width="938" height="237" key="GridCell.Tab.0.left" timestamp="1606766038297">
+    <state width="937" height="239" key="GridCell.Tab.0.left" timestamp="1606860790368">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="938" height="237" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606766038297" />
+    <state width="937" height="239" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606860790368" />
     <state width="1877" height="231" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606524592759" />
     <state width="1877" height="430" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
-    <state width="938" height="237" key="GridCell.Tab.0.right" timestamp="1606766038298">
+    <state width="937" height="239" key="GridCell.Tab.0.right" timestamp="1606860790369">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="938" height="237" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606766038298" />
+    <state width="937" height="239" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606860790369" />
     <state width="1877" height="231" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606524592760" />
     <state width="1877" height="430" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
     <state width="1877" height="430" key="GridCell.Tab.1.bottom" timestamp="1606587435886">
@@ -466,10 +458,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="600" height="440" key="javadoc.popup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602939693611" />
-    <state x="664" y="250" key="refactoring.ChangeSignatureDialog" timestamp="1606756228317">
+    <state x="664" y="250" key="refactoring.ChangeSignatureDialog" timestamp="1606818285988">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="664" y="250" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606756228317" />
+    <state x="664" y="250" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606818285988" />
     <state x="2536" y="240" key="run.anything.popup" timestamp="1606310018873">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>

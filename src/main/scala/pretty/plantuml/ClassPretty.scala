@@ -1,13 +1,13 @@
 package pretty.plantuml
 
-import pretty.{Pretty, PrettyPrinter}
+import pretty.{KiamaPretty, PrettyPrinter}
 import pretty.config.PrettyConfig
-import pretty.Pretty._
+import pretty.KiamaPretty._
 import scalameta.util.namespaces.NamespaceEntry
 import uml.GenericParameter
 
 case class ClassPretty()(override implicit val config: PrettyConfig) extends PlantUMLPrettyPrinter[uml.Class] {
-  override def toDoc(umlElement: uml.Class): Pretty.Doc = umlElement match {
+  override def toDoc(umlElement: uml.Class): KiamaPretty.Doc = umlElement match {
     case uml.Class(
     isAbstract,
     identifier,

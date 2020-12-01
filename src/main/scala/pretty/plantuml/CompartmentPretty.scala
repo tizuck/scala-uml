@@ -1,12 +1,12 @@
 package pretty.plantuml
 
-import pretty.Pretty
+import pretty.KiamaPretty
 import pretty.config.PrettyConfig
 import uml.Compartment
-import pretty.Pretty._
+import pretty.KiamaPretty._
 
 case class CompartmentPretty()(override implicit val config: PrettyConfig) extends PlantUMLPrettyPrinter[Compartment] {
-  override def toDoc(umlElement: Compartment): Pretty.Doc = umlElement match {
+  override def toDoc(umlElement: Compartment): KiamaPretty.Doc = umlElement match {
     case Compartment(identifier, taggedValues, stereotype) =>
       "--" <>
         opt(identifier,text,l=space,r=space <> "--") <>

@@ -1,11 +1,13 @@
-package uml.strategies.rewriting
+package uml.strategies.rewriting.packagerep
+
 import org.bitbucket.inkytonik.kiama.rewriting.PositionedRewriter.rulef
 import org.bitbucket.inkytonik.kiama.rewriting.Strategy
-import uml.{ClassRef, ConcreteClass, FromTo, Inner, Relationship, UMLElement, UMLUnit}
+import uml.strategies.rewriting.RewriteStrategy
+import uml._
 
-object DeleteInnerAssocStrat extends RewriteStrategy[List[uml.Class]]{
+object DeleteInnerAssocStrat extends RewriteStrategy[List[uml.Class]] {
 
-  private def deleteRel[T <: UMLElement](elements: List[T], v1:List[uml.Class]) : List[T] = {
+  private def deleteRel[T <: UMLElement](elements: List[T], v1: List[uml.Class]): List[T] = {
     elements.filterNot {
       case Relationship(Inner, _, relationshipInfo, _) =>
         relationshipInfo.from match {

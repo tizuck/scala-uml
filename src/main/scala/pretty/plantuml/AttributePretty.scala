@@ -1,12 +1,12 @@
 package pretty.plantuml
 
-import pretty.Pretty
+import pretty.KiamaPretty
 import pretty.config.PrettyConfig
 import uml.Attribute
-import pretty.Pretty._
+import pretty.KiamaPretty._
 
 case class AttributePretty()(override implicit val config: PrettyConfig) extends PlantUMLPrettyPrinter[Attribute] {
-  override def toDoc(umlElement: Attribute): Pretty.Doc = umlElement match {
+  override def toDoc(umlElement: Attribute): KiamaPretty.Doc = umlElement match {
     case Attribute(
     modificators,
     accessModifier,

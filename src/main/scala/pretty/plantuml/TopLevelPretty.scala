@@ -4,7 +4,7 @@ import pretty.PrettyPrinter
 import pretty.config.PrettyConfig
 import uml.externalReferences.ClassDefRef
 import uml.{Note, Relationship, TopLevelElement, externalReferences}
-import pretty.Pretty._
+import pretty.KiamaPretty._
 
 case class TopLevelPretty()(override implicit val config: PrettyConfig) extends PlantUMLPrettyPrinter[TopLevelElement] {
 

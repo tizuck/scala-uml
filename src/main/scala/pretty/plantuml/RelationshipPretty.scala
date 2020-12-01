@@ -1,12 +1,12 @@
 package pretty.plantuml
 
-import pretty.Pretty
+import pretty.KiamaPretty
 import pretty.config.PrettyConfig
 import uml.{FromTo, Relationship, RelationshipInfo, ToFrom}
-import pretty.Pretty._
+import pretty.KiamaPretty._
 
 case class RelationshipPretty()(override implicit val config: PrettyConfig) extends PlantUMLPrettyPrinter[Relationship] {
-  override def toDoc(umlElement: Relationship): Pretty.Doc = umlElement match {
+  override def toDoc(umlElement: Relationship): KiamaPretty.Doc = umlElement match {
     case Relationship(
     relationshipType,
     relationshipDirection,

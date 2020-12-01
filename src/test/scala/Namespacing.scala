@@ -69,6 +69,40 @@ class Namespacing extends AnyFreeSpec with Matchers {
     option.value._2.value mustBe a [Defn.Trait]
 
   }
+
+  "definition should find imported members of the same package (consider to put currentPackage namespace together with find)" in {
+    val bar = """
+                |package foo
+                |
+                |import model._
+                |trait A
+                |trait Y extends B
+                |trait Z extends U
+                |
+                |object model {
+                |trait B extends A
+                |trait U
+                |}
+                |""".stripMargin
+    val barSource = dialects.Dotty(bar).parse[Source].get
+    val namespacing = scalameta.util.namespaces.collector.SourcesCollector(List((barSource,"bar.scala")))
+    val umlSourcesCol = SourceCollector(barSource,GlobalContext(namespacing.resultingMap),"bar.scala")
+    val resContext = umlSourcesCol.resultingContext
+
+    val option = resContext
+      .globalCon
+      .find(
+        "B",
+        None,
+        "bar.scala",
+        NamespaceEntry(List("foo")),
+        resContext.localCon.lastPackageNamespace,
+        resContext.localCon.currentImports
+      )
+
+    option.value._1 must have(Symbol("_1")(NamespaceEntry(List("foo","model"))))
+    option.value._2.value mustBe a [Defn.Trait]
+  }
   "Repository" - {
     "when scanned for global scope" - {
       "and used for visiting of ast.scala" - {

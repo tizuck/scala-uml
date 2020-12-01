@@ -2,13 +2,13 @@ package pretty.plantuml
 
 import java.util.UUID.randomUUID
 
-import pretty.Pretty
+import pretty.KiamaPretty
 import pretty.config.PrettyConfig
 import uml.Note
-import pretty.Pretty._
+import pretty.KiamaPretty._
 
 case class NotePretty()(override implicit val config: PrettyConfig) extends PlantUMLPrettyPrinter[Note] {
-  override def toDoc(umlElement: Note): Pretty.Doc = umlElement match {
+  override def toDoc(umlElement: Note): KiamaPretty.Doc = umlElement match {
     case Note(attachedElements, nText, stereotype) =>
       val noteId = randomUUID().toString
 

@@ -1,12 +1,12 @@
 package pretty.plantuml
 
-import pretty.{Pretty, PrettyPrinter}
+import pretty.{KiamaPretty, PrettyPrinter}
 import pretty.config.PrettyConfig
 import uml.{GenericParameter, Stereotype}
 import uml.externalReferences.ClassDefRef
 
 case class ClassDefRefPretty()(override implicit val config: PrettyConfig) extends PlantUMLPrettyPrinter[ClassDefRef] {
-  override def toDoc(umlElement: ClassDefRef): Pretty.Doc = umlElement.classtype match {
+  override def toDoc(umlElement: ClassDefRef): KiamaPretty.Doc = umlElement.classtype match {
     case uml.externalReferences.Trait =>
       val cls = uml.Class(true, umlElement.name, Nil, Nil, Nil,
         Option.when(umlElement.templateParameter.nonEmpty)(umlElement.templateParameter.map(s => uml.GenericParameter(s,None,Nil))),

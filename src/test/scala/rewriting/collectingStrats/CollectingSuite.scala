@@ -6,9 +6,11 @@ import pretty.config.PlantUMLConfig
 import pretty.plantuml.{ClassPretty, UMLUnitPretty}
 import scalameta.toplevel.SourcesCollector
 import uml.UMLElement
-import uml.strategies.collecting.{CollectNamespaceObjectsStrat, CollectStrategy}
+import uml.strategies.collecting.CollectStrategy
+import uml.strategies.collecting.packagerep.CollectNamespaceObjectsStrat
 import uml.strategies.predef.{Id, NonCollect}
-import uml.strategies.rewriting.{DeleteInnerAssocStrat, InsertNamespaceObjectRelsStrat}
+import uml.strategies.rewriting.InsertNamespaceObjectRelsStrat
+import uml.strategies.rewriting.packagerep.DeleteInnerAssocStrat
 
 import scala.meta.{Source, dialects}
 
@@ -56,14 +58,13 @@ class CollectingSuite extends AnyFreeSpec with Matchers {
       //Test: All elements except the
     }
     "by inserting new relationships " in new TestData(fooAst,"foo.scala") {
+      implicit val plant = UMLUnitPretty()(PlantUMLConfig())
+      println(umlUnit.pretty)
       val collectedNamespaceObjects = umlUnit
         .rewrite(Id[List[uml.Class]])(Nil)(CollectNamespaceObjectsStrat).value._1
 
       val delInner = umlUnit
         .rewrite(DeleteInnerAssocStrat)(collectedNamespaceObjects)((v1: UMLElement, v2: List[uml.Class]) => v2).value._2
-
-      val insertNewInner = delInner
-        .rewrite(InsertNamespaceObjectRelsStrat)(collectedNamespaceObjects)((v1: UMLElement, v2: List[uml.Class]) => v2)
 
     }
   }

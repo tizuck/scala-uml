@@ -1,11 +1,11 @@
 package pretty.plantuml
-import pretty.Pretty
+import pretty.KiamaPretty
 import pretty.config.PrettyConfig
 import uml.{GenericParameter, Operation}
-import pretty.Pretty._
+import pretty.KiamaPretty._
 
 case class OperationPretty()(override implicit val config: PrettyConfig) extends PlantUMLPrettyPrinter[Operation] {
-  override def toDoc(umlElement: Operation): Pretty.Doc = umlElement match {
+  override def toDoc(umlElement: Operation): KiamaPretty.Doc = umlElement match {
     case Operation(
     modificators,
     accessModifier,

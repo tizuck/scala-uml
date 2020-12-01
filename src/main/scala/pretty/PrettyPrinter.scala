@@ -5,7 +5,7 @@ import org.bitbucket.inkytonik.kiama.output.PrettyPrinterTypes.Document
 import pretty.config.PrettyConfig
 import uml.{AccessModifier, Note, Relationship, TopLevelElement, UMLElement, externalReferences}
 import scalameta.util.namespaces.Entry
-import pretty.Pretty._
+import pretty.KiamaPretty._
 
 trait PrettyPrinter[T <: UMLElement] {
 

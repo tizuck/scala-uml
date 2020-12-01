@@ -2,7 +2,7 @@ package pretty.plantuml
 
 import pretty.PrettyPrinter
 import pretty.config.PrettyConfig
-import pretty.Pretty._
+import pretty.KiamaPretty._
 
 case class PackagePretty()(override implicit val config: PrettyConfig) extends PlantUMLPrettyPrinter[uml.Package] {
 
@@ -10,7 +10,7 @@ case class PackagePretty()(override implicit val config: PrettyConfig) extends P
     case uml.Package(packageBodyElements, stereotype, namespace) =>
       "package" <+>
         showStereotype(stereotype) <>
-        namespace.plantUML <>
+        showNamespace(namespace) <>
         enclose("{",nest(line <> vsep(packageBodyElements.map(PackageBodyPretty().toDoc))),line <> "}")
   }
 }
