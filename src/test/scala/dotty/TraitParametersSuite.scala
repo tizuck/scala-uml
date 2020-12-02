@@ -29,7 +29,6 @@ class TraitParametersSuite extends AnyFreeSpec with Matchers {
 
     implicit val umlUnit = UMLUnitPretty()(PlantUMLConfig())
 
-    println(umlCollector.umlUnit.pretty)
     val reader = new SourceStringReader(umlCollector.umlUnit.pretty)
     val filePath = new File("src/test/scala/assets/out/traitParams/")
 

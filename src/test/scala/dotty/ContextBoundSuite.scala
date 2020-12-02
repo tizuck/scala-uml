@@ -32,8 +32,6 @@ class ContextBoundSuite extends AnyFreeSpec with Matchers {
     val reader = new SourceStringReader(umlCollector.umlUnit.pretty)
     val filePath = new File("src/test/scala/assets/out/")
 
-    println(umlCollector.umlUnit.pretty)
-
     filePath.mkdirs()
 
     val fos = new FileOutputStream(new File(filePath.getPath + "/contextBounds.png"))

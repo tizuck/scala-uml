@@ -1,14 +1,18 @@
 package rewriting.collectingStrats
 
+import cats.data.State
+import org.bitbucket.inkytonik.kiama.rewriting.Strategy
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
 import pretty.config.PlantUMLConfig
 import pretty.plantuml.UMLUnitPretty
 import scalameta.toplevel.SourcesCollector
 import scalameta.util.namespaces.{Entry, NamespaceEntry}
-import uml.{Relationship, UMLElement, UMLUnit}
+import uml.strategies.collecting.{CollectStrategy, ComposedStrategy}
+import uml.{Inner, Relationship, UMLElement, UMLUnit}
 import uml.strategies.collecting.packagerep.{CollectAllClassesStrat, CollectAllNamespacesStrat, CollectNamespaceObjectsStrat}
 import uml.strategies.predef.Id
+import uml.strategies.rewriting.RewriteStrategy
 import uml.strategies.rewriting.packagerep.{DeleteAllClassesOnToplevel, DeleteEmptyPackages, DeleteInnerAssocStrat, InsertClassesInPackageStrat, InsertInnerNamespaceRelsStrat, InsertPackagesFromNamespacesStrat}
 
 import scala.meta.{Source, dialects}
@@ -125,7 +129,6 @@ class PackageRepresentationSuite extends AnyFreeSpec with Matchers {
         ._1
 
       allClassesCollected must have size 6
-      println(allClassesCollected)
       allClassesCollected.forall{
         c => c.identifier.equals("Model") ||
           c.identifier.equals("AST") ||
@@ -146,7 +149,6 @@ class PackageRepresentationSuite extends AnyFreeSpec with Matchers {
         ._2.asInstanceOf[UMLUnit]
 
       implicit val pretty = UMLUnitPretty()(PlantUMLConfig())
-      println(deletedClasses.pretty)
       //There are only packages and relationships now on toplevel, since no definition of an entity is on default level
       deletedClasses.forall({
         case u@UMLUnit(identifier, toplevelElements) =>
@@ -162,7 +164,68 @@ class PackageRepresentationSuite extends AnyFreeSpec with Matchers {
       "in a namespace" in {
       implicit val pretty = UMLUnitPretty()(PlantUMLConfig())
 
-      val collectedNamespaceObjects = umlUnit
+      def startState[T](start:T):State[UMLElement,T] = State(
+        umlElem => (umlElem,start)
+      )
+
+      def nextRewriteState[T](start:T)(rewriteStrategy: RewriteStrategy[T]):State[UMLElement,T] = State(
+        umlElem => (umlElem.rewrite(rewriteStrategy)(start)((_,t) => t).value._2,start)
+      )
+
+      import org.bitbucket.inkytonik.kiama.rewriting.Rewriter._
+
+      def nextCollectState[T](start:T)(collectStrategy: CollectStrategy[T]):State[UMLElement,T] = State(
+        umlElem => (umlElem,umlElem.rewrite((_:T) => id)(start)(collectStrategy).value._1)
+      )
+
+      val transferToPackageRep : State[UMLElement,List[uml.Class]] =
+        for {
+          start <- startState(List.empty[uml.Class])
+          collected <- nextCollectState(start)(CollectNamespaceObjectsStrat)
+          _ <- nextRewriteState(collected)(DeleteInnerAssocStrat)
+          namespace <- nextCollectState(List.empty[Entry])(CollectAllNamespacesStrat)
+          _ <- nextRewriteState(namespace)(InsertPackagesFromNamespacesStrat)
+          allClasses <- nextCollectState(List.empty[uml.Class])(CollectAllClassesStrat)
+          _ <- nextRewriteState(allClasses)(InsertClassesInPackageStrat)
+          _ <- nextRewriteState(allClasses)(DeleteAllClassesOnToplevel)
+          _ <- nextRewriteState(())(DeleteEmptyPackages)
+          res <- nextRewriteState(collected)(InsertInnerNamespaceRelsStrat)
+        } yield {
+          res
+        }
+
+      val rewrittenUmlUnit = transferToPackageRep.run(umlUnit).value._1.asInstanceOf[UMLUnit]
+      println(rewrittenUmlUnit.pretty)
+
+      //There must be an inner definition on toplevel from foo.model to foo::model
+      rewrittenUmlUnit.count{
+        case UMLUnit(_, toplevelElements) =>
+          toplevelElements.exists({case Relationship(Inner,_,_,_) => true case _ => false})
+        case _ => false
+      } must be (1)
+
+     /* import ComposedStrategy._
+
+      val compose = for {
+        collectedNamespaceObjects <- CollectNamespaceObjectsStrat
+
+        pkgs <- DeleteInnerAssocStrat
+          .composeLifted(CollectAllNamespacesStrat
+            .composeId(InsertPackagesFromNamespacesStrat))(_ => List.empty[Entry])
+
+        fin <- CollectAllClassesStrat
+          .composeId(InsertClassesInPackageStrat)
+          .composeId(DeleteAllClassesOnToplevel)
+          .composeLifted(DeleteEmptyPackages)(_ => ())
+          .composeLifted(InsertInnerNamespaceRelsStrat)(_ => collectedNamespaceObjects)
+      } yield {
+        pkgs
+      }
+
+      val tp = compose.run(umlUnit,List.empty[uml.Class])
+      println(tp._1.asInstanceOf[UMLUnit].pretty,tp._2)
+      */
+     /* val collectedNamespaceObjects = umlUnit
         .rewrite(Id[List[uml.Class]])(List.empty[uml.Class])(CollectNamespaceObjectsStrat)
         .value
         ._1
@@ -170,7 +233,11 @@ class PackageRepresentationSuite extends AnyFreeSpec with Matchers {
       val deletedInner = umlUnit
         .rewrite(DeleteInnerAssocStrat)(collectedNamespaceObjects)((v1: UMLElement, v2: List[uml.Class]) => v2)
         .value
-        ._2
+        ._2.asInstanceOf[UMLUnit]
+
+
+      */
+      /*
 
       val allNamespaces = deletedInner
         .rewrite(Id[List[Entry]])(List.empty[Entry])(CollectAllNamespacesStrat)
@@ -209,7 +276,7 @@ class PackageRepresentationSuite extends AnyFreeSpec with Matchers {
         .value
         ._2.asInstanceOf[UMLUnit]
 
-      println(insertedInner.pretty)
+      println(insertedInner.pretty)*/
     }
   }
 }
