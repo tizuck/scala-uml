@@ -20,7 +20,7 @@ import java.io.IOException
 import java.util.concurrent.Executors
 
 import cats.data.NonEmptyList
-import cats.effect.{Blocker, ContextShift, IO}
+import cats.effect.{Blocker, ContextShift, IO, Resource}
 import cats.implicits._
 import cats.kernel.Semigroup
 import github4s.Github
@@ -31,7 +31,7 @@ import scala.concurrent.ExecutionContext.global
 import scala.concurrent.duration.Duration
 import scala.meta.{Source, dialects}
 import scala.meta.parsers.Parsed
-import scala.concurrent.duration
+import scala.concurrent.{ExecutionContext, duration}
 
 case class GithubLoader(repo:Repository)
 
@@ -44,6 +44,11 @@ object GithubLoader {
 
   private val AMOUNT_SECONDS = 1
   private val TIMEOUT_DURATION = Duration(AMOUNT_SECONDS,duration.SECONDS)
+
+  //val executionContext: ExecutionContext =
+   // scala.concurrent.ExecutionContext.Implicits.global
+
+  //val clientResource: Resource[IO, Client[IO]] = BlazeClientBuilder[IO](executionContext).resource
 
   private val httpClient: Client[IO] = {
     val N_THREADS = 5

@@ -29,8 +29,8 @@ class PackageRepresentationSuite extends AnyFreeSpec with Matchers {
       |
       |object model {
       | trait AST[T]
-      | sealed case class ASTNode(nodes:List[AST[T]],entry:T) extends AST[T]
-      | sealed case class ASTLeave(entry:T) extends AST[T]
+      | sealed case class ASTNode[T](nodes:List[AST[T]],entry:T) extends AST[T]
+      | sealed case class ASTLeave[T](entry:T) extends AST[T]
       |}
       |
       |object ops {
@@ -178,7 +178,8 @@ class PackageRepresentationSuite extends AnyFreeSpec with Matchers {
         umlElem => (umlElem,umlElem.rewrite((_:T) => id)(start)(collectStrategy).value._1)
       )
 
-      val transferToPackageRep : State[UMLElement,List[uml.Class]] =
+      println(umlUnit.pretty)
+       val transferToPackageRep: State[UMLElement,List[uml.Class]] =
         for {
           start <- startState(List.empty[uml.Class])
           collected <- nextCollectState(start)(CollectNamespaceObjectsStrat)
