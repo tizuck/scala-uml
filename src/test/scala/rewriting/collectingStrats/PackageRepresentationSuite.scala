@@ -8,7 +8,7 @@ import pretty.config.PlantUMLConfig
 import pretty.plantuml.UMLUnitPretty
 import scalameta.toplevel.SourcesCollector
 import scalameta.util.namespaces.{Entry, NamespaceEntry}
-import uml.strategies.collecting.{CollectStrategy, ComposedStrategy}
+import uml.strategies.collecting.CollectStrategy
 import uml.{Inner, Relationship, UMLElement, UMLUnit}
 import uml.strategies.collecting.packagerep.{CollectAllClassesStrat, CollectAllNamespacesStrat, CollectNamespaceObjectsStrat}
 import uml.strategies.predef.Id

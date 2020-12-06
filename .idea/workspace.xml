@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Checker.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Loader.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/model.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/Loader.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Loader.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/rewriting/collectingStrats/PackageRepresentationSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/rewriting/collectingStrats/PackageRepresentationSuite.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,12 +111,7 @@
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="app.frontend.Main" />
       <module name="scala-uml" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="app.frontend.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <option name="PROGRAM_PARAMETERS" value="--verbose --github tilman/github.conf --github tuk/github.conf" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -124,12 +119,6 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="playground.Main" />
       <module name="scala-uml" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="playground.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -149,7 +138,7 @@
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <option name="testKind" value="Class" />
       <option name="testClassPath" value="rewriting.collectingStrats.PackageRepresentationSuite" />
@@ -162,7 +151,7 @@
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <option name="testKind" value="Test name" />
       <option name="testClassPath" value="rewriting.collectingStrats.PackageRepresentationSuite" />
@@ -176,7 +165,7 @@
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <option name="testKind" value="Test name" />
       <option name="testClassPath" value="rewriting.collectingStrats.PackageRepresentationSuite" />
@@ -186,6 +175,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Main (1)" />
+      <item itemvalue="ScalaTest.PackageRepresentationSuite" />
+      <item itemvalue="ScalaTest.PackageRepresentationSuite.during the transformation-step from toplevel-representation to package-representation the last step inserts an inner relationship with stereotype objectdef to every object that defines elementsin a namespace" />
+      <item itemvalue="ScalaTest.PackageRepresentationSuite.during the transformation-step from toplevel-representation to package-representation the third step shifts all classes from the toplevel into the packages, so that there is no class or relationship without a package except for the definitions indefault namespace" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main (1)" />
@@ -275,7 +271,9 @@
       <workItem from="1606989754300" duration="8964000" />
       <workItem from="1607072486765" duration="144000" />
       <workItem from="1607080092202" duration="607000" />
-      <workItem from="1607170128721" duration="11050000" />
+      <workItem from="1607170128721" duration="11147000" />
+      <workItem from="1607254013131" duration="2803000" />
+      <workItem from="1607256903834" duration="8085000" />
     </task>
     <servers />
   </component>
@@ -287,178 +285,13 @@
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
   </component>
-  <component name="WindowStateProjectService">
-    <state x="552" y="160" key="#Plugins" timestamp="1606489393614">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="160" key="#Plugins/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606489393614" />
-    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1607189788092">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607189788092" />
-    <state x="2610" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606310405566" />
-    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606348947682" />
-    <state x="49" y="133" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1605262889410">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="49" y="133" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605262889410" />
-    <state x="714" y="321" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1605803042213">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="714" y="321" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605803042213" />
-    <state x="724" y="434" key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog" timestamp="1606730083443">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="724" y="434" key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606730083443" />
-    <state x="765" y="208" key="#com.intellij.ide.util.MemberChooser" timestamp="1606841570454">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="765" y="208" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606841570454" />
-    <state x="2685" y="208" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606501423195" />
-    <state x="765" y="208" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606505122650" />
-    <state x="690" y="319" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1607186522399">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="690" y="319" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607186522399" />
-    <state x="689" y="353" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1605614791702">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="689" y="353" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605614791702" />
-    <state x="640" y="255" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1606489103884">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="640" y="255" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606489103884" />
-    <state x="551" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1607186518655">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="551" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607186518655" />
-    <state x="725" y="379" width="561" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606840839818">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="725" y="379" width="561" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606840839818" />
-    <state x="756" y="401" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1607186523954">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="756" y="401" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607186523954" />
-    <state x="564" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606382344099">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="564" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606382344099" />
-    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603882821288">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603882821288" />
-    <state x="707" y="340" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1603198151364">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="707" y="340" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603198151363" />
-    <state x="915" y="277" key="FileChooserDialogImpl" timestamp="1607072628586">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="915" y="277" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607072628586" />
-    <state x="915" y="277" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606348521556" />
-    <state width="936" height="241" key="GridCell.Tab.0.bottom" timestamp="1607191101476">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="936" height="241" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1607015443762" />
-    <state width="936" height="241" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607191101476" />
-    <state width="1877" height="231" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606524592760" />
-    <state width="1877" height="430" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
-    <state width="936" height="241" key="GridCell.Tab.0.center" timestamp="1607191101475">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="936" height="241" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1607015443762" />
-    <state width="936" height="241" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607191101475" />
-    <state width="1877" height="231" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606524592760" />
-    <state width="1877" height="430" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
-    <state width="936" height="241" key="GridCell.Tab.0.left" timestamp="1607191101475">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="936" height="241" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1607015443762" />
-    <state width="936" height="241" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607191101475" />
-    <state width="1877" height="231" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606524592759" />
-    <state width="1877" height="430" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
-    <state width="936" height="241" key="GridCell.Tab.0.right" timestamp="1607191101475">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="936" height="241" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1607015443762" />
-    <state width="936" height="241" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607191101475" />
-    <state width="1877" height="231" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606524592760" />
-    <state width="1877" height="430" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
-    <state width="1877" height="430" key="GridCell.Tab.1.bottom" timestamp="1606587435886">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="430" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606563234222" />
-    <state width="1877" height="430" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
-    <state width="1877" height="430" key="GridCell.Tab.1.center" timestamp="1606587435886">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="430" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606563234222" />
-    <state width="1877" height="430" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
-    <state width="1877" height="430" key="GridCell.Tab.1.left" timestamp="1606587435886">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="430" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606563234222" />
-    <state width="1877" height="430" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
-    <state width="1877" height="430" key="GridCell.Tab.1.right" timestamp="1606587435886">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="430" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606563234222" />
-    <state width="1877" height="430" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
-    <state x="2601" y="188" key="SettingsEditor" timestamp="1607170297155">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="-1239" y="188" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1607170140471" />
-    <state x="681" y="188" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606393617178" />
-    <state x="2601" y="188" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1607170297155" />
-    <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1605282916368">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605282916368" />
-    <state x="708" y="173" key="com.intellij.ide.util.TipDialog" timestamp="1603138034249">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="708" y="173" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603138034249" />
-    <state x="767" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606351364460">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="767" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606234376818" />
-    <state x="2687" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604485729498" />
-    <state x="767" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606351364460" />
-    <state x="1906" y="-25" width="1284" height="712" maximized="true" key="dock-window-1" timestamp="1606750357532">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="1906" y="-25" width="1284" height="712" maximized="true" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606750357532" />
-    <state x="20" y="-15" width="1485" height="716" maximized="true" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1604686832208" />
-    <state x="666" y="253" width="587" height="534" key="find.popup" timestamp="1606925319379">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="666" y="253" width="587" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606925319379" />
-    <state width="600" height="440" key="javadoc.popup" timestamp="1602939693611">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="600" height="440" key="javadoc.popup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602939693611" />
-    <state x="664" y="250" key="refactoring.ChangeSignatureDialog" timestamp="1606818285988">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="664" y="250" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606818285988" />
-    <state x="2536" y="240" key="run.anything.popup" timestamp="1606310018873">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605877612696" />
-    <state x="2536" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606310018873" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1606905663761">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606905663761" />
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__scala_.ic" NAME="ScalaTests in 'scala' Coverage Results" MODIFIED="1606583146914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_ast_scala_produces_resulting_context_that_is_able_to_locate_reference_to_classes_in_the_same_namespace_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_StatCollector_should_result_in_a_local_match_in_current_namespace_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Package_yields_the_namespace_uml_since_it_is_imported_with_import_uml___and_it_is_defined_in_the_global_context.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of ast.scala produces resulting context that is able to locate reference to classes in the same namespace&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of StatCollector should result in a local match in current namespace&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of Package yields the namespace uml since it is imported with import uml._ and it is defined in the global context Coverage Results" MODIFIED="1605265552744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$Namespacing.ic" NAME="Namespacing Coverage Results" MODIFIED="1605286159348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_StatCollector_should_result_in_a_local_match_in_current_namespace.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of StatCollector should result in a local match in current namespace Coverage Results" MODIFIED="1605264065214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition Coverage Results" MODIFIED="1605264077135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$DottyAndSuite.ic" NAME="DottyAndSuite Coverage Results" MODIFIED="1605482730279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_StatCollector_should_result_in_a_local_match_in_current_namespace.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of StatCollector should result in a local match in current namespace Coverage Results" MODIFIED="1605264065214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$RewritingSuite.ic" NAME="RewritingSuite Coverage Results" MODIFIED="1606582804268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
