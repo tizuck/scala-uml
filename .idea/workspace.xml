@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Checker.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Loader.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/model.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/github/GithubLoader.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/github/GithubLoader.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/rewriting/collectingStrats/PackageRepresentationSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/rewriting/collectingStrats/PackageRepresentationSuite.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,9 +57,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Package Object" />
-        <option value="Scala Class" />
         <option value="Scala Trait" />
         <option value="Scala Object" />
+        <option value="Scala Class" />
       </list>
     </option>
   </component>
@@ -77,7 +80,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/scala/app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -88,22 +91,36 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\test\scala\repositories\kivy-astmanip" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="app" />
       <recent name="uml.strategies" />
       <recent name="plantuml" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="assets" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\main\scala\app" />
       <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\test\scala\assets" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="assets" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\test\scala\repositories\kivy-astmanip" />
+    </key>
   </component>
-  <component name="RunManager" selected="ScalaTest.PackageRepresentationSuite.during the transformation-step from toplevel-representation to package-representation the last step inserts an inner relationship with stereotype objectdef to every object that defines elementsin a namespace">
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="app.frontend.Main" />
+      <module name="scala-uml" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.frontend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="playground.Main" />
       <module name="scala-uml" />
@@ -124,19 +141,6 @@
         </value>
       </option>
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Namespacing" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
-      <module name="scala-uml" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="selectedOptions">
-        <set />
-      </option>
-      <option name="testKind" value="Class" />
-      <option name="testClassPath" value="Namespacing" />
-      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -184,11 +188,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="ScalaTest.PackageRepresentationSuite.during the transformation-step from toplevel-representation to package-representation the last step inserts an inner relationship with stereotype objectdef to every object that defines elementsin a namespace" />
         <item itemvalue="ScalaTest.PackageRepresentationSuite" />
         <item itemvalue="Application.Main" />
         <item itemvalue="ScalaTest.PackageRepresentationSuite.during the transformation-step from toplevel-representation to package-representation the third step shifts all classes from the toplevel into the packages, so that there is no class or relationship without a package except for the definitions indefault namespace" />
-        <item itemvalue="ScalaTest.Namespacing" />
       </list>
     </recent_temporary>
   </component>
@@ -269,6 +273,9 @@
       <workItem from="1606857770047" duration="3525000" />
       <workItem from="1606903349515" duration="16832000" />
       <workItem from="1606989754300" duration="8964000" />
+      <workItem from="1607072486765" duration="144000" />
+      <workItem from="1607080092202" duration="607000" />
+      <workItem from="1607170128721" duration="11050000" />
     </task>
     <servers />
   </component>
@@ -285,10 +292,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="160" key="#Plugins/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606489393614" />
-    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1606905555022">
+    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1607189788092">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606905555022" />
+    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607189788092" />
     <state x="2610" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606310405566" />
     <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606348947682" />
     <state x="49" y="133" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1605262889410">
@@ -309,10 +316,10 @@
     <state x="765" y="208" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606841570454" />
     <state x="2685" y="208" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606501423195" />
     <state x="765" y="208" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606505122650" />
-    <state x="690" y="319" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1606732719155">
+    <state x="690" y="319" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1607186522399">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="319" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606732719155" />
+    <state x="690" y="319" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607186522399" />
     <state x="689" y="353" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1605614791702">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -321,18 +328,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="640" y="255" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606489103884" />
-    <state x="551" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1606732714482">
+    <state x="551" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1607186518655">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="551" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606732714482" />
+    <state x="551" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607186518655" />
     <state x="725" y="379" width="561" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606840839818">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="725" y="379" width="561" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606840839818" />
-    <state x="756" y="401" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1606732721861">
+    <state x="756" y="401" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1607186523954">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="756" y="401" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606732721861" />
+    <state x="756" y="401" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607186523954" />
     <state x="564" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606382344099">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -345,37 +352,37 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="707" y="340" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1603198151363" />
-    <state x="915" y="277" key="FileChooserDialogImpl" timestamp="1606348521556">
+    <state x="915" y="277" key="FileChooserDialogImpl" timestamp="1607072628586">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="915" y="277" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605868897680" />
+    <state x="915" y="277" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607072628586" />
     <state x="915" y="277" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606348521556" />
-    <state width="936" height="241" key="GridCell.Tab.0.bottom" timestamp="1607015443762">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state width="936" height="241" key="GridCell.Tab.0.bottom" timestamp="1607191101476">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="936" height="241" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1607015443762" />
-    <state width="936" height="241" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606990040790" />
+    <state width="936" height="241" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607191101476" />
     <state width="1877" height="231" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606524592760" />
     <state width="1877" height="430" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
-    <state width="936" height="241" key="GridCell.Tab.0.center" timestamp="1607015443762">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state width="936" height="241" key="GridCell.Tab.0.center" timestamp="1607191101475">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="936" height="241" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1607015443762" />
-    <state width="936" height="241" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606990040790" />
+    <state width="936" height="241" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607191101475" />
     <state width="1877" height="231" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606524592760" />
     <state width="1877" height="430" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
-    <state width="936" height="241" key="GridCell.Tab.0.left" timestamp="1607015443762">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state width="936" height="241" key="GridCell.Tab.0.left" timestamp="1607191101475">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="936" height="241" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1607015443762" />
-    <state width="936" height="241" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606990040790" />
+    <state width="936" height="241" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607191101475" />
     <state width="1877" height="231" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606524592759" />
     <state width="1877" height="430" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
-    <state width="936" height="241" key="GridCell.Tab.0.right" timestamp="1607015443762">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state width="936" height="241" key="GridCell.Tab.0.right" timestamp="1607191101475">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="936" height="241" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1607015443762" />
-    <state width="936" height="241" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606990040790" />
+    <state width="936" height="241" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607191101475" />
     <state width="1877" height="231" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1606524592760" />
     <state width="1877" height="430" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
     <state width="1877" height="430" key="GridCell.Tab.1.bottom" timestamp="1606587435886">
@@ -398,10 +405,12 @@
     </state>
     <state width="1877" height="430" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606563234222" />
     <state width="1877" height="430" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606587435886" />
-    <state x="681" y="188" key="SettingsEditor" timestamp="1606393617178">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2601" y="188" key="SettingsEditor" timestamp="1607170297155">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
+    <state x="-1239" y="188" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1607170140471" />
     <state x="681" y="188" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606393617178" />
+    <state x="2601" y="188" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1607170297155" />
     <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1605282916368">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
