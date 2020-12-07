@@ -17,7 +17,8 @@ libraryDependencies ++= Seq(
     "net.sourceforge.plantuml" % "plantuml" % "8059",
     "com.github.marklister" %% "base64" % "0.2.10",
     "com.github.pureconfig" %% "pureconfig" % "0.14.0",
-    "com.47deg" %% "github4s" % "0.27.1"
+    "com.47deg" %% "github4s" % "0.27.1",
+    "ch.qos.logback" % "logback-classic" % "1.2.3"
 )
 
 lazy val root = (project in file("."))

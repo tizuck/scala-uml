@@ -14,14 +14,14 @@ class Rules(positions:Positions) extends ListParsers(positions) {
     (commandPre ~> (
       help(ins)
       | verbose(ins)
+      | name(ins)
       | github(ins)
       | directory(ins)
       | filesPath(ins)
-      | name(ins)
       )) ^^ { c =>
       if(ins.commands.exists(cOther => cOther.getClass.equals(c.getClass))){
         throw new IllegalArgumentException(
-          s"[error] Same command: $c may not be used twice. Try removing one of the commands."
+          s"Same command: $c may not be used twice. Try removing one of the commands."
         )
       } else {
         c
@@ -76,7 +76,7 @@ class Rules(positions:Positions) extends ListParsers(positions) {
     """([a-zA-Z0-9]+[\\/]?)+""".r
   }
 
-  lazy val identifier : Parser[String] = """[_a-zA-Z][_a-zA-Z0-9]+""".r
+  lazy val identifier : Parser[String] = """[_a-zA-Z][_a-zA-Z0-9]*""".r
 
 
   lazy val helpPre : Parser[String] = "help"|"h"
@@ -84,6 +84,6 @@ class Rules(positions:Positions) extends ListParsers(positions) {
   lazy val verbosePre : Parser[String] = "verbose"|"v"
   lazy val directoryPre : Parser[String] = "directory"|"d"
   lazy val filespathPre : Parser[String] = "filespath"|"fp"
-  lazy val namePre : Parser[String] = "name|n"
+  lazy val namePre : Parser[String] = "name"|"n"
 
 }

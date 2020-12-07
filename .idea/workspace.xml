@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/cmds.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/EmptyProcessor.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/HelpProcessor.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/Processor.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/Checker.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/Loader.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Loader.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/model.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/model.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/DeleteEmptyPackages.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/DeleteEmptyPackages.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +113,7 @@
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="app.frontend.Main" />
       <module name="scala-uml" />
-      <option name="PROGRAM_PARAMETERS" value="--fp src/main/scala/uml/strategies/collecting/packagerep" />
+      <option name="PROGRAM_PARAMETERS" value="--fp src/main/scala/uml/strategies/rewriting/packagerep --name foo" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -129,15 +125,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -283,6 +277,7 @@
       <workItem from="1607254013131" duration="2803000" />
       <workItem from="1607256903834" duration="8226000" />
       <workItem from="1607294673312" duration="7578000" />
+      <workItem from="1607360445127" duration="6411000" />
     </task>
     <servers />
   </component>

@@ -12,6 +12,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="sbt: ch.qos.logback:logback-classic:1.2.3:jar" level="project" />
+    <orderEntry type="library" name="sbt: ch.qos.logback:logback-core:1.2.3:jar" level="project" />
     <orderEntry type="library" name="sbt: co.fs2:fs2-core_2.13:2.4.4:jar" level="project" />
     <orderEntry type="library" name="sbt: co.fs2:fs2-io_2.13:2.4.4:jar" level="project" />
     <orderEntry type="library" name="sbt: com.47deg:github4s_2.13:0.27.1:jar" level="project" />

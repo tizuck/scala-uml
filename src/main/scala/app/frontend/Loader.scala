@@ -45,6 +45,7 @@ object Loader {
       val (parseRes,next) = parse match {
         case Success(result, next) => (result,next)
         case success: NoSuccess =>
+          println(success)
           throw new IllegalArgumentException(s"input: ${inputSource.content} could not be processed." +
             s" Try --help to get a list of available commands.")
       }
