@@ -1,0 +1,14 @@
+case class UserName(name: String)
+case class Password(hash: Hash)
+
+val password: Password = Password(123)
+val name: UserName = UserName(Eve)
+val res2: Object & Product = UserName(Eve)
+val either: Password | UserName = if (true) name else password
+
+def help(id: UserName | Password) = {
+  val user = id match {
+    case UserName(name) => lookupName(name)
+    case Password(hash) => lookupPassword(hash)
+  }
+}

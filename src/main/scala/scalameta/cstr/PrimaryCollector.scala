@@ -1,8 +1,24 @@
+/*
+ * Copyright 2015 Tilman Zuckmantel
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package scalameta.operations
 
 import scalameta.operations.parameters.ParamssCollector
 import scalameta.util.context.CollectorContext
-import uml.Operation
+import uml.{Operation, Stereotype}
 
 import scala.meta.Ctor
 
@@ -12,16 +28,16 @@ object PrimaryConstructorCollector {
   def apply(prim:Ctor.Primary)(implicit context: CollectorContext): PrimaryConstructorCollector = {
     if(prim.paramss.nonEmpty) {
       val operationParameterLists = ParamssCollector(prim.paramss)
-      if (context.cstrOrigin.isEmpty) {
+      if (context.localCon.cstrOrigin.isEmpty) {
         throw new IllegalStateException("context Constructor Origin is empty unexpectedly")
       }
       val cstr = uml.Operation(
         None,
         None,
-        context.cstrOrigin.get,
+        context.localCon.cstrOrigin.get,
         operationParameterLists.parameterLists,
         None,
-        Some("constr"))
+        List(Stereotype("ctor",Nil)))
 
       new PrimaryConstructorCollector(Some(cstr))
     } else {

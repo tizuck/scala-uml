@@ -1,0 +1,47 @@
+/*
+ * Copyright 2015 Tilman Zuckmantel
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package scalameta.typeparams
+
+import scalameta.stateless.TypeNameCollector
+import scalameta.util.context.CollectorContext
+
+import scala.meta.Type
+
+case class TypeBoundsCollector(typeRep:Option[String]) {
+
+}
+
+object TypeBoundsCollector {
+  def apply(tbounds:Type.Bounds)(implicit context:CollectorContext): TypeBoundsCollector = {
+      if(tbounds.lo.isEmpty && tbounds.hi.isEmpty){
+        new TypeBoundsCollector(None)
+      }
+      else if(tbounds.lo.isDefined && tbounds.hi.isEmpty){
+        new TypeBoundsCollector(
+          Some(s"LowerBound<${TypeNameCollector(tbounds.lo.get).typeRep}>")
+        )
+      }
+      else if(tbounds.lo.isEmpty && tbounds.hi.isDefined){
+        new TypeBoundsCollector(
+          Some(s"HigherBound<${TypeNameCollector(tbounds.hi.get).typeRep}>")
+        )
+      }
+      else TypeBoundsCollector(
+        Some(s"Bound<${TypeNameCollector(tbounds.lo.get).typeRep},${TypeNameCollector(tbounds.hi.get).typeRep}>")
+      )
+  }
+}

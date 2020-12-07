@@ -1,3 +1,19 @@
+/*
+ * Copyright 2015 Tilman Zuckmantel
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package scalameta.stats.defn
 
 import scalameta.mods.ClassModsCollector
@@ -5,7 +21,7 @@ import scalameta.operations.PrimaryConstructorCollector
 import scalameta.stats.StatsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Class, UMLElement}
+import uml.{Class, ClassRef, Stereotype, UMLElement}
 
 import scala.meta.Defn
 
@@ -17,12 +33,14 @@ object DefnEnumCollector {
     val mods = ClassModsCollector(defnEnum.mods)
     val enumName = defnEnum.name
 
-    val tempThisPointer = Some(Class(true,enumName.value,Nil,Nil,Nil,None,None))
-    val previousThisPointer = context.thisPointer
-
-    val innerElements = StatsCollector(defnEnum.templ.stats)(context.copy(thisPointer = tempThisPointer))
+    val tempThisPointer = ClassRef(enumName.value,namespace = context.localCon.currentNamespace)
+    val previousThisPointer = context.localCon.thisPointer
+    val previousToplevel = context.localCon.isTopLevel
+    val innerElements = StatsCollector(defnEnum.templ.stats)(context.withThisPointer(tempThisPointer).notToplevel)
     val primaryConstructor = PrimaryConstructorCollector(defnEnum.ctor)(
-      innerElements.resultingContext.copy(cstrOrigin = Some(enumName.value))
+      innerElements
+        .resultingContext
+        .withCstrOrigin(enumName.value)
     )
 
     val cls = Class(
@@ -32,12 +50,16 @@ object DefnEnumCollector {
       primaryConstructor.primaryCstr.map(List(_)).getOrElse(Nil),
       Nil,
       None,
-      Some("scalaenum")
+      List(Stereotype("scalaenum",Nil)),
+      context.localCon.currentNamespace
     )
 
     DefnEnumCollector(
       cls :: innerElements.definedElements,
-      innerElements.resultingContext.copy(thisPointer = previousThisPointer)
+      innerElements
+        .resultingContext
+        .withOptionalThisPointer(previousThisPointer)
+        .withToplevel(previousToplevel)
     )
   }
 }

@@ -1,7 +1,25 @@
+/*
+ * Copyright 2015 Tilman Zuckmantel
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package scalameta.stats.dcl
+import scalameta.stateless.TypeNameCollector
+import scalameta.typeparams.TypeParamsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Association, Class, FromTo, Inner, Operation, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
+import uml.{Association, Class, ClassRef, ConcreteClass, FromTo, Inner, Operation, Relationship, RelationshipInfo, Stereotype, ToFrom, UMLElement, Without}
 
 import scala.meta.Decl
 
@@ -12,12 +30,27 @@ case class DclTypeCollector(override val definedElements: List[UMLElement]
 
 object DclTypeCollector {
   def apply(dclType:Decl.Type)(implicit context : CollectorContext): DclTypeCollector = {
-    //@todo types can have generic parameters and a type may bound parameters to Lowerbound or to Bounds
-    val typeClass = Class(true,dclType.name.value,Nil,Nil,Nil,None,Some("type"))
-    //@todo problems if two classes have the same name for a type
-    val newContext = context.copy(definedTemplates = typeClass :: context.definedTemplates)
-    val relationshipInfo = RelationshipInfo(None,None,context.thisPointer.get,typeClass,None,Without)
-    val relationship = Relationship(Inner,ToFrom,relationshipInfo,None)
-    new DclTypeCollector(relationship :: typeClass :: Nil,newContext)
+    //@todo types can have generic parameters
+    val generics = TypeParamsCollector(dclType.tparams)
+
+    val typeClass = Class(
+      true,
+      dclType.name.value,
+      Nil,
+      Nil,
+      Nil,
+      Option.when(generics.typeParams.nonEmpty)(generics.typeParams),
+      List(Stereotype("type",Nil)),
+      context.localCon.currentNamespace)
+
+    //If the type is defined within another entity
+    if(context.localCon.thisPointer.isDefined){
+      val relationshipInfo = RelationshipInfo(None,None,context.localCon.thisPointer.get,ConcreteClass(typeClass),None,Without)
+      val relationship = Relationship(Inner,ToFrom,relationshipInfo,Nil)
+      new DclTypeCollector(relationship :: typeClass :: Nil,context)
+    }//if type is defined on toplevel
+    else {
+      new DclTypeCollector(typeClass :: Nil,context)
+    }
   }
 }

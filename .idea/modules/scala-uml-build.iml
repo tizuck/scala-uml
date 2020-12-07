@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id="scala-uml-build" external.linked.project.path="$MODULE_DIR$/../../project" external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" sbt.imports="SUB:DOLLAR91c308e10d26556bde76.`root`, _root_.sbt.Keys._, _root_.sbt.ScriptedPlugin.autoImport._, _root_.sbt._, _root_.sbt.nio.Keys._, _root_.sbt.plugins.IvyPlugin, _root_.sbt.plugins.JvmPlugin, _root_.sbt.plugins.CorePlugin, _root_.sbt.ScriptedPlugin, _root_.sbt.plugins.SbtPlugin, _root_.sbt.plugins.SemanticdbPlugin, _root_.sbt.plugins.JUnitXmlReportPlugin, _root_.sbt.plugins.Giter8TemplatePlugin, _root_.scala.xml.{TopScope=&amp;gt;SUB:DOLLARscope}" sbt.resolvers="C:\Users\Tilman\.ivy2\cache|ivy|Local cache, https://repo1.maven.org/maven2/|maven|public, file:/C:/Users/Tilman/.sbt/preloaded/|maven|local-preloaded" type="SBT_MODULE" version="4">
+<module external.linked.project.id="scala-uml-build" external.linked.project.path="$MODULE_DIR$/../../project" external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" sbt.imports="SUB:DOLLARedbc102fe0538fe0f562.`root`, _root_.sbt.Keys._, _root_.sbt.ScriptedPlugin.autoImport._, _root_.org.scalastyle.sbt.ScalastylePlugin.autoImport._, _root_.de.heikoseeberger.sbtheader.AutomateHeaderPlugin.autoImport._, _root_.de.heikoseeberger.sbtheader.HeaderPlugin.autoImport._, _root_.sbt._, _root_.sbt.nio.Keys._, _root_.sbt.plugins.IvyPlugin, _root_.sbt.plugins.JvmPlugin, _root_.sbt.plugins.CorePlugin, _root_.sbt.ScriptedPlugin, _root_.sbt.plugins.SbtPlugin, _root_.sbt.plugins.SemanticdbPlugin, _root_.sbt.plugins.JUnitXmlReportPlugin, _root_.sbt.plugins.Giter8TemplatePlugin, _root_.org.scalastyle.sbt.ScalastylePlugin, _root_.de.heikoseeberger.sbtheader.AutomateHeaderPlugin, _root_.de.heikoseeberger.sbtheader.HeaderPlugin, _root_.scala.xml.{TopScope=&amp;gt;SUB:DOLLARscope}" sbt.resolvers="C:\Users\Tilman\.ivy2\cache|ivy|Local cache, https://repo1.maven.org/maven2/|maven|public, file:/C:/Users/Tilman/.sbt/preloaded/|maven|local-preloaded" type="SBT_MODULE" version="4">
   <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/../../project/target/idea-classes" />
     <output-test url="file://$MODULE_DIR$/../../project/target/idea-test-classes" />
@@ -101,6 +101,13 @@
           <root url="jar://$USER_HOME$/.sbt/boot/scala-2.12.10/org.scala-sbt/sbt/1.3.13/zinc-lm-integration_2.12-1.3.13.jar!/" />
           <root url="jar://$USER_HOME$/.sbt/boot/scala-2.12.10/org.scala-sbt/sbt/1.3.13/zinc-persist_2.12-1.3.5.jar!/" />
           <root url="jar://$USER_HOME$/.sbt/boot/scala-2.12.10/org.scala-sbt/sbt/1.3.13/zinc_2.12-1.3.5.jar!/" />
+          <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo.scala-sbt.org/scalasbt/sbt-plugin-releases/de.heikoseeberger/sbt-header/scala_2.12/sbt_1.0/5.6.0/jars/sbt-header.jar!/" />
+          <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/com/typesafe/config/1.3.3/config-1.3.3.jar!/" />
+          <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/org/scala-lang/modules/scala-parser-combinators_2.12/1.1.2/scala-parser-combinators_2.12-1.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.12/1.3.0/scala-xml_2.12-1.3.0.jar!/" />
+          <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/org/scalariform/scalariform_2.12/0.2.0/scalariform_2.12-0.2.0.jar!/" />
+          <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/org/scalastyle/scalastyle-sbt-plugin_2.12_1.0/1.0.0/scalastyle-sbt-plugin-1.0.0.jar!/" />
+          <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/org/scalastyle/scalastyle_2.12/1.0.0/scalastyle_2.12-1.0.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -109,6 +116,6 @@
   </component>
   <component name="SbtModule">
     <option name="buildForURI" value="file:/$MODULE_DIR$/../../" />
-    <option name="imports" value="SUB:DOLLAR91c308e10d26556bde76.`root`, _root_.sbt.Keys._, _root_.sbt.ScriptedPlugin.autoImport._, _root_.sbt._, _root_.sbt.nio.Keys._, _root_.sbt.plugins.IvyPlugin, _root_.sbt.plugins.JvmPlugin, _root_.sbt.plugins.CorePlugin, _root_.sbt.ScriptedPlugin, _root_.sbt.plugins.SbtPlugin, _root_.sbt.plugins.SemanticdbPlugin, _root_.sbt.plugins.JUnitXmlReportPlugin, _root_.sbt.plugins.Giter8TemplatePlugin, _root_.scala.xml.{TopScope=&gt;SUB:DOLLARscope}" />
+    <option name="imports" value="SUB:DOLLARedbc102fe0538fe0f562.`root`, _root_.sbt.Keys._, _root_.sbt.ScriptedPlugin.autoImport._, _root_.org.scalastyle.sbt.ScalastylePlugin.autoImport._, _root_.de.heikoseeberger.sbtheader.AutomateHeaderPlugin.autoImport._, _root_.de.heikoseeberger.sbtheader.HeaderPlugin.autoImport._, _root_.sbt._, _root_.sbt.nio.Keys._, _root_.sbt.plugins.IvyPlugin, _root_.sbt.plugins.JvmPlugin, _root_.sbt.plugins.CorePlugin, _root_.sbt.ScriptedPlugin, _root_.sbt.plugins.SbtPlugin, _root_.sbt.plugins.SemanticdbPlugin, _root_.sbt.plugins.JUnitXmlReportPlugin, _root_.sbt.plugins.Giter8TemplatePlugin, _root_.org.scalastyle.sbt.ScalastylePlugin, _root_.de.heikoseeberger.sbtheader.AutomateHeaderPlugin, _root_.de.heikoseeberger.sbtheader.HeaderPlugin, _root_.scala.xml.{TopScope=&gt;SUB:DOLLARscope}" />
   </component>
 </module>

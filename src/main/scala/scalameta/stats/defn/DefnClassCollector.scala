@@ -1,3 +1,19 @@
+/*
+ * Copyright 2015 Tilman Zuckmantel
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package scalameta.stats.defn
 
 import scalameta.mods.ClassModsCollector
@@ -6,7 +22,8 @@ import scalameta.stats.StatsCollector
 import scalameta.stats.init.InitsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Attribute, Class, Compartment, Inner, Operation, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
+import scalameta.util.util.statToString
+import uml.{Attribute, Class, ClassRef, Compartment, ConcreteClass, Inner, Operation, Parameter, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
 
 import scala.meta.Defn
 
@@ -17,47 +34,50 @@ class DefnClassCollector(override val definedElements: List[UMLElement],
 
 object DefnClassCollector {
   def apply(defnClass:Defn.Class)(implicit context : CollectorContext): DefnClassCollector = {
+
     val mods = ClassModsCollector(defnClass.mods)
     val className = defnClass.name.value
-    println(s"for class:${className} mods: ${mods.modifier} with original modifiers: ${defnClass.mods}")
-    val tempThisPointer = Some(Class(true,className,Nil,Nil,Nil,None,None))
-    val previousThisPointer = context.thisPointer
-    val inheritedElements = InitsCollector(defnClass.templ.inits)(context.copy(thisPointer = tempThisPointer))
-    val innerElements = StatsCollector(defnClass.templ.stats)(inheritedElements.resultingContext)
+
+    val tempThisPointer = ClassRef(className,namespace = context.localCon.currentNamespace)
+    val previousThisPointer = context.localCon.thisPointer
+    val inheritedElements = InitsCollector(defnClass.templ.inits)(
+      context.withThisPointer(tempThisPointer)
+    )
+    val previousToplevel = inheritedElements.resultingContext.localCon.isTopLevel
+    val innerElements = StatsCollector(defnClass.templ.stats)(inheritedElements.resultingContext.notToplevel)
     val operations = innerElements.definedElements.flatMap{
       case o:Operation => Some(o)
       case _ => None
     }
-    val innerWithoutOperations = innerElements.definedElements.flatMap{
-      case _:Operation => None
-      case other => Some(other)
-    }
-    val primaryConstructor = PrimaryConstructorCollector(defnClass.ctor)(context.copy(cstrOrigin = Some(className)))
-
+    val primaryConstructor = PrimaryConstructorCollector(defnClass.ctor)(
+      context.withCstrOrigin(className)
+    )
 
     val cls = Class(
       mods.isAbstract,
       className,
-      innerWithoutOperations.flatMap{case a:Attribute => Some(a) case _ => None},
+      innerElements.attributes,
       primaryConstructor.primaryCstr.map(p => List(p)).getOrElse(Nil) ++ operations,
-      if(mods.modifier.nonEmpty) {Compartment(Some("<<ScalaClass>>"),mods.modifier,None) :: Nil} else Nil,
+      mods.mods,
       None,
-      mods.stereotype
+      mods.classStereotypes,
+      context.localCon.currentNamespace
     )
 
     val innerRelationship = if(previousThisPointer.isDefined){
-      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,previousThisPointer.get,cls,None,Without),None))
+      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,previousThisPointer.get,ConcreteClass(cls),None,Without),Nil))
     } else {None}
 
     new DefnClassCollector(
       cls ::
-        innerWithoutOperations ++
-          inheritedElements.inheritance ++
+        innerElements.innerElements ++
+          inheritedElements.definedElements ++
           innerRelationship.map(r => List(r)).getOrElse(Nil),
-      innerElements.resultingContext.copy(
-        definedTemplates  = cls :: innerElements.resultingContext.definedTemplates,
-        thisPointer = previousThisPointer
-      ))
+      innerElements
+        .resultingContext
+        .withOptionalThisPointer(previousThisPointer)
+        .withToplevel(previousToplevel)
+    )
   }
 
 

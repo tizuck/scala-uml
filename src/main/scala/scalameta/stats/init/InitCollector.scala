@@ -1,42 +1,91 @@
+/*
+ * Copyright 2015 Tilman Zuckmantel
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package scalameta.stats.init
 
 
-import scalameta.stateless.TypeNameCollector
-import scalameta.util.StateChangingCollector
+import scalameta.stateless.{TargetTypeCollector, TypeNameCollector}
+import scalameta.util.{BaseCollector, StateChangingCollector}
 import scalameta.util.context.CollectorContext
+import scalameta.stats.StatCollector
 import uml._
+import uml.externalReferences.{CClass, ClassDefRef, ClassType}
 
-import scala.meta.{Defn, Init, Term}
+import scala.meta.{Case, Defn, Init, Term}
 
-case class InitCollector(inheritance:Relationship,
-                         initValues:List[Attribute],
-                         override val resultingContext: CollectorContext) extends StateChangingCollector
+case class InitCollector(override val definedElements: List[UMLElement],
+                         override val resultingContext: CollectorContext) extends BaseCollector
 
 object InitCollector {
   def apply(init:Init)(implicit context:CollectorContext): InitCollector = {
-    val extendedType = TypeNameCollector(init.tpe)
+    val extendedType = TargetTypeCollector(init.tpe)
 
-    //Define Template for inner call in case it has not been defined before
-    val newContext = if(context.definedTemplates.forall( (n:NamedElement) => !n.identifier.equals(extendedType.typeRep) )) {
-      context.copy(definedTemplates =  Class(false,extendedType.typeRep,List.empty,List.empty,List.empty,None,None) :: context.definedTemplates)
-    } else {context}
+    val classType:ClassType = extendedType.oTemplate.map {
+      case _: Defn.Object => uml.externalReferences.Object
+      case c: Defn.Class if c.mods.contains(Case) => uml.externalReferences.CCaseClass
+      case _: Defn.Class => uml.externalReferences.CClass
+      case _: Defn.Enum => uml.externalReferences.Enum
+      case _: Defn.Trait => uml.externalReferences.Trait
+      case _ => CClass
+    }.getOrElse(CClass)
 
-    val initAttrs = init.argss.foldLeft((0,List.empty[Attribute])){
-      case (acc,args) =>
-        val attr = args.foldLeft((acc._1,List.empty[Attribute])){
-          case (acc2,arg) =>
-            (acc2._1 + 1,Attribute(None,None,s"initid_${acc2._1} = ${arg.syntax}",None,Some("cstrinit")) :: acc2._2)
-        }
+    val relationshipIdentifier =
+      extendedType
+        .boundTemplates
+        .map{
+          tbind => s"${tbind._1} -> ${tbind._2}"}
+        .mkString(",")
 
-        (attr._1,acc._2 ++ attr._2)
+    //@todo problem with matching inits argss with entities argss are default values
+    //  this would mean a complete depiction of default values behaviour
+
+    val mappedInitArgs = Option.when(init.argss.nonEmpty && init.argss.head.nonEmpty) {
+      init
+        .argss
+        .flatten
+        .map(_.syntax)
+        .mkString(",")
+        .prepended('[')
+        .appended(']')
     }
+
 
     val inheritance = Relationship(
       Extension,
       ToFrom,
-      RelationshipInfo(None,None, newContext.definedTemplates.find((n:NamedElement) => n.identifier.equals(extendedType.typeRep)).get,context.thisPointer.get,None,Without),None)
-    new InitCollector(inheritance,initAttrs._2,newContext)
+      RelationshipInfo(
+        None,
+        None,
+        ClassRef(extendedType.target,extendedType.namespace),
+        context.localCon.thisPointer.get,
+        if(relationshipIdentifier.nonEmpty) Some(s"<<bind $relationshipIdentifier >>") else None,
+        Without),
+      if(mappedInitArgs.nonEmpty)List(Stereotype("ctorBind",List(TaggedValue("vals",mappedInitArgs)))) else Nil
+    )
 
-    //@todo build in the init inheritance
+    val classDefRef = ClassDefRef(
+      classType,extendedType.target,
+      extendedType.namespace,
+      extendedType.boundTemplates.map(_._1),
+      extendedType.oTemplate
+    )
+    new InitCollector(
+      inheritance :: Nil,
+      context.withExternalReference(classDefRef)
+    )
+
   }
 }
