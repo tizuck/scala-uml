@@ -1,6 +1,8 @@
 package app.frontend
 
+import app.frontend.processor.Processor
+
 object Main extends App {
   val loader = Loader(args)
-  println(loader.commands)
+  Processor(loader.commands).execute()
 }

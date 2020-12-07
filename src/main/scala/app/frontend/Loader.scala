@@ -18,7 +18,7 @@ object Loader {
       Loader(res)
     } catch {
       case i:IllegalArgumentException =>
-        println(s"[error]${ i.getMessage}")
+        println(i.getMessage)
         Loader(Nil)
     }
   }
@@ -41,14 +41,12 @@ object Loader {
    *                                            in message of exception.
    */
   private def parseInputSeq(inputSource:Source, inputState:InputState, parserRules:Rules) : List[Command] = {
-    println(inputSource)
-    if(inputSource.charCount == 0){
-      Nil
-    } else {
       val parse = parserRules.parse(parserRules.command(inputState),inputSource)
       val (parseRes,next) = parse match {
         case Success(result, next) => (result,next)
-        case success: NoSuccess => println(success.message);throw new IllegalArgumentException()
+        case success: NoSuccess =>
+          throw new IllegalArgumentException(s"input: ${inputSource.content} could not be processed." +
+            s" Try --help to get a list of available commands.")
       }
       val newInputState = inputState.copy(commands = inputState.commands.appended(parseRes))
       if(next.found.equals("end of source")){
@@ -57,6 +55,5 @@ object Loader {
         val nextString = next.nextPosition.source.content.substring(next.nextPosition.column - 1)
         parseRes :: parseInputSeq(StringSource(nextString),newInputState,parserRules)
       }
-    }
   }
 }

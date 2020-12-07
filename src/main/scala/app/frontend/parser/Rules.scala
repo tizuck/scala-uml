@@ -1,7 +1,6 @@
 package app.frontend.parser
 
-import app.frontend.{Command, Github, GithubType, Help, HelpType, Verbose, VerboseType}
-import cats.data.State
+import app.frontend.{Command, Directory, FilesPath, Github, GithubType, Help, HelpType, Name, Verbose, VerboseType}
 import org.bitbucket.inkytonik.kiama.parsing.ListParsers
 import org.bitbucket.inkytonik.kiama.util.Positions
 
@@ -12,9 +11,13 @@ class Rules(positions:Positions) extends ListParsers(positions) {
   override def whitespace: Parser[Any] = regex("[\\s]*".r)
 
   lazy val command:InputState => Parser[Command] = ins => (
-    (commandPre ~> (help(ins)
-    | verbose(ins)
-    | github(ins)
+    (commandPre ~> (
+      help(ins)
+      | verbose(ins)
+      | github(ins)
+      | directory(ins)
+      | filesPath(ins)
+      | name(ins)
       )) ^^ { c =>
       if(ins.commands.exists(cOther => cOther.getClass.equals(c.getClass))){
         throw new IllegalArgumentException(
@@ -38,6 +41,10 @@ class Rules(positions:Positions) extends ListParsers(positions) {
       )
   )
 
+  lazy val directory : InputState => Parser[Directory] = _ =>
+    directoryPre ~> path ^^ Directory
+
+
   lazy val help : InputState => Parser[Help] = ins => {
     println("HereinHelp")
       helpPre ~> helpCommand.? ^^ {
@@ -52,16 +59,31 @@ class Rules(positions:Positions) extends ListParsers(positions) {
     }
   }
 
-  lazy val github : InputState => Parser[Github] = ins =>
+  lazy val github : InputState => Parser[Github] = _ =>
     githubPre ~> confPathGithub ^^ { p => Github(p)}
 
-  lazy val verbose : InputState => Parser[Verbose] = ins => verbosePre ^^ { _ => Verbose()}
+  lazy val verbose : InputState => Parser[Verbose] = _ => verbosePre ^^ { _ => Verbose()}
 
-  lazy val confPathGithub : Parser[String] =
-  """([a-zA-Z0-9](([^\s\\/])*)[\\/]?)+([a-zA-Z0-9](([^\s\\/])*)[\\/]?).conf""".r
+  lazy val filesPath : InputState => Parser[FilesPath] = _ => filespathPre ~> path ^^ FilesPath
 
-  lazy val helpPre : Parser[String] = "help"
+  lazy val name : InputState => Parser[Name] = _ => namePre ~> identifier ^^ Name
+
+  lazy val confPathGithub : Parser[String] = {
+    """([a-zA-Z0-9](([^\s\\/])*)[\\/]?)+([a-zA-Z0-9](([^\s\\/])*)[\\/]?).conf""".r
+  }
+
+  lazy val path : Parser[String] = {
+    """([a-zA-Z0-9]+[\\/]?)+""".r
+  }
+
+  lazy val identifier : Parser[String] = """[_a-zA-Z][_a-zA-Z0-9]+""".r
+
+
+  lazy val helpPre : Parser[String] = "help"|"h"
   lazy val githubPre : Parser[String] = "github"
-  lazy val verbosePre : Parser[String] = "verbose"
+  lazy val verbosePre : Parser[String] = "verbose"|"v"
+  lazy val directoryPre : Parser[String] = "directory"|"d"
+  lazy val filespathPre : Parser[String] = "filespath"|"fp"
+  lazy val namePre : Parser[String] = "name|n"
 
 }
