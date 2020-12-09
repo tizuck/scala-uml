@@ -1,4 +1,4 @@
-package rewriting.collectingStrats
+package processors.repositories.rewriting.collectingStrats
 
 import cats.data.State
 import org.bitbucket.inkytonik.kiama.rewriting.Strategy

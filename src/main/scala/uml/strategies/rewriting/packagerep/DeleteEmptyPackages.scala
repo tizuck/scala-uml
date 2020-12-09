@@ -5,8 +5,8 @@ import org.bitbucket.inkytonik.kiama.rewriting.Strategy
 import uml.UMLUnit
 import uml.strategies.rewriting.RewriteStrategy
 
-object DeleteEmptyPackages extends RewriteStrategy[Unit] {
-  override def apply(v1: Unit): Strategy = {
+object DeleteEmptyPackages extends RewriteStrategy[()] {
+  override def apply(v1: ()): Strategy = {
     rulef {
       case u@UMLUnit(_,toplevelElements) =>
         val filtered = toplevelElements.filter( tp => tp match {

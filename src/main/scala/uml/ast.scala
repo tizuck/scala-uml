@@ -82,9 +82,9 @@ sealed trait UMLElement { self =>
    * Allows to change the structure of a `UMLElement` while at
    * the same time update and consider a state of Type `T`.
    *
-   * Strategy `s` that is wrapped inside a state monad is the core rewriting strategy
+   * Strategy `s` that is wrapped inside a state monad is the core processors.repositories.rewriting strategy
    * that defines how terms are rewritten. For example the following
-   * strategy would define a term rewriting `Class.identifier` depending on
+   * strategy would define a term processors.repositories.rewriting `Class.identifier` depending on
    * the current state:
    * {{{
    *   val s:State[String,Strategy] =
@@ -107,9 +107,9 @@ sealed trait UMLElement { self =>
    * This method can thus be used for multiple purposes. It can be used to simply collect
    * values when setting s to `State(_ => (_,id))` and defining the collection function in `f`.
    * It can be used to solely rewrite this instance by setting f to `(_ => State (_ => (_,())))`
-   * or it can be used as a combination of both to create more advanced rewriting strategy.
+   * or it can be used as a combination of both to create more advanced processors.repositories.rewriting strategy.
    *
-   * @param s rewriting strategy for the traversal of this ast.
+   * @param s processors.repositories.rewriting strategy for the traversal of this ast.
    * @param f update state at each node of this ast in the traversal.
    * @tparam T Type of the state.
    * @return A Strategy that combines the functionalities of `s` and `f`.

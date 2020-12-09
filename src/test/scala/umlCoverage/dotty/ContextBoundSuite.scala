@@ -1,4 +1,4 @@
-package dotty
+package umlCoverage.dotty
 
 import java.io.{File, FileOutputStream}
 import java.nio.file.{Files, Path, Paths}
@@ -11,12 +11,12 @@ import pretty.plantuml.UMLUnitPretty
 import scalameta.SourceCollector
 import scalameta.util.context.GlobalContext
 
-import scala.meta.inputs.Input
 import scala.meta.{Source, dialects}
+import scala.meta.inputs.Input
 
-class AndSuite extends AnyFreeSpec with Matchers {
+class ContextBoundSuite extends AnyFreeSpec with Matchers {
 
-  val path: Path = Paths.get("src","test","scala","assets","dotty","and","and.txt")
+  val path: Path = Paths.get("src","test","scala","assets","umlCoverage.dotty","contextBounds.txt")
 
   "Dotty Reference to Intersectiontypes can be processed to a plantUML png" in {
     val bytes = Files.readAllBytes(path)
@@ -28,12 +28,13 @@ class AndSuite extends AnyFreeSpec with Matchers {
     val umlCollector = SourceCollector(input,GlobalContext(globalScope.resultingMap),path.toAbsolutePath.toString)
 
     implicit val umlUnit = UMLUnitPretty()(PlantUMLConfig())
+
     val reader = new SourceStringReader(umlCollector.umlUnit.pretty)
-    val filePath = new File("src/test/scala/assets/out/and/")
+    val filePath = new File("src/test/scala/assets/out/")
 
     filePath.mkdirs()
 
-    val fos = new FileOutputStream(new File(filePath.getPath + "/dottyAnd.png"))
+    val fos = new FileOutputStream(new File(filePath.getPath + "/contextBounds.png"))
     val sec = reader.generateImage(fos)
 
     sec must not be null

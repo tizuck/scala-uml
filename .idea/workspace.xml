@@ -5,13 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/BadInputPathException.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/BadOutputPathException.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/InvalidParameterException.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/UMLConversionException.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/scala/processors/umlprocessor/UMLProcessorSuite.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/Loader.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Loader.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/model.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/model.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/EmptyProcessor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/EmptyProcessor.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/Processor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/Processor.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/DeleteEmptyPackages.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/DeleteEmptyPackages.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/Namespacing.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/preprocessing/Namespacing.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/AndSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/AndSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/ContextBoundSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/ContextBoundSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/ContextFunctionSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/ContextFunctionSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/TraitParametersSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/TraitParametersSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/dotty/UnionSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/UnionSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/repositories/KivyASTManipulatorTest.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/processors/repositories/KivyASTManipulatorTest.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/repositories/kivy-astmanip/conf.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/processors/repositories/kivy-astmanip/conf.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/repositories/kivy-astmanip/kivy.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/processors/repositories/kivy-astmanip/kivy.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/rewriting/RewritingSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/processors/repositories/rewriting/RewritingSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/rewriting/collectingStrats/CollectingSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/processors/repositories/rewriting/collectingStrats/CollectingSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/rewriting/collectingStrats/PackageRepresentationSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/processors/repositories/rewriting/collectingStrats/PackageRepresentationSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/~foo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/~foo.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,14 +135,7 @@
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="app.frontend.Main" />
       <module name="scala-uml" />
-      <option name="PROGRAM_PARAMETERS" value="--fp src/main/scala/uml/strategies/rewriting/packagerep --name foo" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="playground.Main" />
-      <module name="scala-uml" />
+      <option name="PROGRAM_PARAMETERS" value="--fp src/main/scala/app/frontend/processor" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -136,61 +151,75 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PackageRepresentationSuite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="UMLProcessorSuite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
       <option name="selectedOptions">
         <list />
       </option>
       <option name="testKind" value="Class" />
-      <option name="testClassPath" value="rewriting.collectingStrats.PackageRepresentationSuite" />
+      <option name="testClassPath" value="processors.umlprocessor.UMLProcessorSuite" />
       <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PackageRepresentationSuite.during the transformation-step from toplevel-representation to package-representation the last step inserts an inner relationship with stereotype objectdef to every object that defines elementsin a namespace" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="UMLProcessorSuite.starting the console application with a non-valid input path" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
       <option name="selectedOptions">
         <list />
       </option>
       <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="rewriting.collectingStrats.PackageRepresentationSuite" />
-      <option name="testName" value="during the transformation-step from toplevel-representation to package-representation the last step inserts an inner relationship with stereotype objectdef to every object that defines elementsin a namespace" />
+      <option name="testClassPath" value="processors.umlprocessor.UMLProcessorSuite" />
+      <option name="testName" value="starting the console application with a non-valid input path" />
       <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PackageRepresentationSuite.during the transformation-step from toplevel-representation to package-representation the third step shifts all classes from the toplevel into the packages, so that there is no class or relationship without a package except for the definitions indefault namespace" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="UMLProcessorSuite.starting the console application without a given files path without a given output path without github parameter without a given name or with a given name processes nothing" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
       <option name="selectedOptions">
         <list />
       </option>
       <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="rewriting.collectingStrats.PackageRepresentationSuite" />
-      <option name="testName" value="during the transformation-step from toplevel-representation to package-representation the third step shifts all classes from the toplevel into the packages, so that there is no class or relationship without a package except for the definitions indefault namespace" />
+      <option name="testClassPath" value="processors.umlprocessor.UMLProcessorSuite" />
+      <option name="testName" value="starting the console application without a given files path without a given output path without github parameter without a given name or with a given name processes nothing" />
+      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UMLProcessorSuite.starting the console application without a given files path without a given output path without github parameter without a given name or with a given name processes nothing&#10;starting the console application without a given files path with a given non-valid output path&#10;starting the console application with a non-valid input path" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="scala-uml" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="Test name" />
+      <option name="testClassPath" value="processors.umlprocessor.UMLProcessorSuite" />
+      <option name="testName" value="starting the console application without a given files path without a given output path without github parameter without a given name or with a given name processes nothing&#10;starting the console application without a given files path with a given non-valid output path&#10;starting the console application with a non-valid input path" />
       <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
       <item itemvalue="Application.Main (1)" />
-      <item itemvalue="ScalaTest.PackageRepresentationSuite" />
-      <item itemvalue="ScalaTest.PackageRepresentationSuite.during the transformation-step from toplevel-representation to package-representation the last step inserts an inner relationship with stereotype objectdef to every object that defines elementsin a namespace" />
-      <item itemvalue="ScalaTest.PackageRepresentationSuite.during the transformation-step from toplevel-representation to package-representation the third step shifts all classes from the toplevel into the packages, so that there is no class or relationship without a package except for the definitions indefault namespace" />
+      <item itemvalue="ScalaTest.UMLProcessorSuite" />
+      <item itemvalue="ScalaTest.UMLProcessorSuite.starting the console application without a given files path without a given output path without github parameter without a given name or with a given name processes nothing" />
+      <item itemvalue="ScalaTest.UMLProcessorSuite.starting the console application with a non-valid input path" />
+      <item itemvalue="ScalaTest.UMLProcessorSuite.starting the console application without a given files path without a given output path without github parameter without a given name or with a given name processes nothing&#10;starting the console application without a given files path with a given non-valid output path&#10;starting the console application with a non-valid input path" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main (1)" />
-        <item itemvalue="ScalaTest.PackageRepresentationSuite.during the transformation-step from toplevel-representation to package-representation the last step inserts an inner relationship with stereotype objectdef to every object that defines elementsin a namespace" />
-        <item itemvalue="ScalaTest.PackageRepresentationSuite" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="ScalaTest.PackageRepresentationSuite.during the transformation-step from toplevel-representation to package-representation the third step shifts all classes from the toplevel into the packages, so that there is no class or relationship without a package except for the definitions indefault namespace" />
+        <item itemvalue="ScalaTest.UMLProcessorSuite.starting the console application without a given files path without a given output path without github parameter without a given name or with a given name processes nothing&#10;starting the console application without a given files path with a given non-valid output path&#10;starting the console application with a non-valid input path" />
+        <item itemvalue="ScalaTest.UMLProcessorSuite.starting the console application with a non-valid input path" />
+        <item itemvalue="ScalaTest.UMLProcessorSuite.starting the console application without a given files path without a given output path without github parameter without a given name or with a given name processes nothing" />
+        <item itemvalue="ScalaTest.UMLProcessorSuite" />
       </list>
     </recent_temporary>
   </component>
@@ -278,6 +307,10 @@
       <workItem from="1607256903834" duration="8226000" />
       <workItem from="1607294673312" duration="7578000" />
       <workItem from="1607360445127" duration="6411000" />
+      <workItem from="1607384722702" duration="107000" />
+      <workItem from="1607427144125" duration="1077000" />
+      <workItem from="1607443463716" duration="6325000" />
+      <workItem from="1607520802452" duration="12094000" />
     </task>
     <servers />
   </component>

@@ -1,16 +1,16 @@
-import java.nio.file.{Files, Path, Paths}
+package preprocessing
 
+import org.scalatest.OptionValues._
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
-import org.scalatest.OptionValues._
 import scalameta.SourceCollector
-import scalameta.toplevel.SourcesCollector
 import scalameta.util.context.GlobalContext
-import scalameta.util.namespaces.{DefaultNamespace, NamespaceEntry, scalaDefaults}
 import scalameta.util.namespaces
+import scalameta.util.namespaces.{DefaultNamespace, NamespaceEntry, scalaDefaults}
 
-import scala.meta.{Defn, Source, dialects}
+import java.nio.file.{Files, Path, Paths}
 import scala.meta.inputs.Input
+import scala.meta.{Defn, Source, dialects}
 
 class Namespacing extends AnyFreeSpec with Matchers {
   class TestData() {

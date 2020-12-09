@@ -1,9 +1,12 @@
 package app.frontend
 
+import app.frontend.exceptions.InvalidParameterException
+
 import java.io.Reader
 import app.frontend.parser.{InputState, Rules}
 import org.bitbucket.inkytonik.kiama.parsing.{NoSuccess, Success}
 import org.bitbucket.inkytonik.kiama.util.{Positions, Source, StringSource}
+import org.slf4j.LoggerFactory
 
 import scala.annotation.tailrec
 
@@ -12,14 +15,12 @@ case class Loader(commands:List[Command])
 object Loader {
 
   def apply(args:Array[String]):Loader = {
-    val fullParams = args.mkString(" ")
-    try {
+    if(args.isEmpty){
+      new Loader(List.empty[Command])
+    } else {
+      val fullParams = args.mkString(" ")
       val res = parseInputSeq(StringSource(fullParams), InputState(Nil), new Rules(new Positions))
       Loader(res)
-    } catch {
-      case i:IllegalArgumentException =>
-        println(i.getMessage)
-        Loader(Nil)
     }
   }
 
@@ -45,9 +46,9 @@ object Loader {
       val (parseRes,next) = parse match {
         case Success(result, next) => (result,next)
         case success: NoSuccess =>
-          println(success)
-          throw new IllegalArgumentException(s"input: ${inputSource.content} could not be processed." +
-            s" Try --help to get a list of available commands.")
+          val logger = LoggerFactory.getLogger("execution")
+          throw new InvalidParameterException(s"input: ${inputSource.content} could not be processed." +
+            s" Try --help to get a list of available commands.",success)
       }
       val newInputState = inputState.copy(commands = inputState.commands.appended(parseRes))
       if(next.found.equals("end of source")){

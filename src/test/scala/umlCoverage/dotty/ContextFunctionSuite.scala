@@ -1,4 +1,4 @@
-package dotty
+package umlCoverage.dotty
 
 import java.io.{File, FileOutputStream}
 import java.nio.file.{Files, Path, Paths}
@@ -16,7 +16,7 @@ import scala.meta.inputs.Input
 
 class ContextFunctionSuite extends AnyFreeSpec with Matchers {
 
-  val path: Path = Paths.get("src","test","scala","assets","dotty","contextFuncs","contextFuncs.txt")
+  val path: Path = Paths.get("src","test","scala","assets","umlCoverage.dotty","contextFuncs","contextFuncs.txt")
 
   "Dotty Reference to Intersectiontypes can be processed to a plantUML png" in {
     val bytes = Files.readAllBytes(path)

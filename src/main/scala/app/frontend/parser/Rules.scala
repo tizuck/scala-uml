@@ -1,6 +1,6 @@
 package app.frontend.parser
 
-import app.frontend.{Command, Directory, FilesPath, Github, GithubType, Help, HelpType, Name, Verbose, VerboseType}
+import app.frontend.{Command, OutputPath, InputPath, Github, GithubType, Help, HelpType, Name, Verbose, VerboseType}
 import org.bitbucket.inkytonik.kiama.parsing.ListParsers
 import org.bitbucket.inkytonik.kiama.util.Positions
 
@@ -41,8 +41,8 @@ class Rules(positions:Positions) extends ListParsers(positions) {
       )
   )
 
-  lazy val directory : InputState => Parser[Directory] = _ =>
-    directoryPre ~> path ^^ Directory
+  lazy val directory : InputState => Parser[OutputPath] = _ =>
+    directoryPre ~> path ^^ OutputPath
 
 
   lazy val help : InputState => Parser[Help] = ins => {
@@ -64,7 +64,7 @@ class Rules(positions:Positions) extends ListParsers(positions) {
 
   lazy val verbose : InputState => Parser[Verbose] = _ => verbosePre ^^ { _ => Verbose()}
 
-  lazy val filesPath : InputState => Parser[FilesPath] = _ => filespathPre ~> path ^^ FilesPath
+  lazy val filesPath : InputState => Parser[InputPath] = _ => filespathPre ~> path ^^ InputPath
 
   lazy val name : InputState => Parser[Name] = _ => namePre ~> identifier ^^ Name
 

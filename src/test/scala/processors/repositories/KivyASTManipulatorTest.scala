@@ -1,4 +1,4 @@
-package repositories
+package processors.repositories
 
 
 
@@ -58,7 +58,7 @@ class KivyASTManipulatorTest extends AnyFreeSpec with Matchers {
         Repository(x.indexedFiles |+| y.indexedFiles)
     }
 
-    val conf = ConfigSource.file("src/test/scala/repositories/kivy-astmanip/kivy.conf").load[Directories]
+    val conf = ConfigSource.file("src/test/scala/processors.repositories/kivy-astmanip/kivy.conf").load[Directories]
     val directories = conf match {
       case Left(value) => throw new IllegalStateException(value.toString())
       case Right(dirs) => dirs
