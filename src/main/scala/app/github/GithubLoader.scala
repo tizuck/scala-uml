@@ -79,7 +79,7 @@ object GithubLoader {
 
   private def processRec(directory:Content)(implicit config:Config):Repository = {
 
-    (directory.`type`,directory.encoding) match {
+    (directory.`type`,directory.content) match {
 
       case ("file",None) =>
         val parsedFile = processFile(directory)

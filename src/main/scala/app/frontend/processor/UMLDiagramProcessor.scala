@@ -15,7 +15,13 @@ import java.io.{File, FileNotFoundException, FileOutputStream, IOException}
 import scala.meta.parsers.Parsed
 import scala.meta.{Source, dialects}
 
-sealed case class UMLDiagramProcessor(outputPath: String, filesPath: String, isVerbose: Boolean, name:String="default") extends Processor {
+sealed case class UMLDiagramProcessor(
+                                       outputPath: String,
+                                       filesPath: String,
+                                       isVerbose: Boolean,
+                                       name:String="default")
+  extends Processor {
+
   override def execute(): Unit = {
 
     val logger = LoggerFactory.getLogger("execution")

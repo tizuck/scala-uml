@@ -26,14 +26,14 @@ class UMLProcessorSuite extends AnyFreeSpec with Matchers {
         Processor(List(OutputPath("path/foo/foo/foo/foo/foo")))
       ){
         proc mustBe a[UMLDiagramProcessor]
-        an [BadOutputPathException] must be thrownBy proc.execute()
+        a [BadOutputPathException] must be thrownBy proc.execute()
       }
     }
     "with a non-valid input path" in new TestData(
       Processor(List(InputPath("path/foo/foo/foo/foo/foo")))
     ) {
       proc mustBe a[UMLDiagramProcessor]
-      an [BadInputPathException] must be thrownBy proc.execute()
+      a [BadInputPathException] must be thrownBy proc.execute()
     }
   }
 }

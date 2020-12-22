@@ -16,6 +16,7 @@
 
 package scalameta.stateless
 
+import org.slf4j.LoggerFactory
 import scalameta.util.context.CollectorContext
 
 import scala.meta.Type
@@ -71,7 +72,18 @@ object TypeNameCollector {
         val resolvedQual = SelectRefCollector(qual).namespaceAddition
         TypeNameCollector(typeRep = resolvedQual.qualifiers.mkString("::").appendedAll(s"::${name}"))
 
-      case _ => throw new NotImplementedError()
+      case Type.Repeated(s) => TypeNameCollector(s"VarArgs<$s>")
+
+      case Type.Tuple(args) =>
+        TypeNameCollector(s"Tuple${args.size}<${
+          args
+            .map(arg => TypeNameCollector(arg))
+            .mkString(",")}>")
+
+      case other =>
+        LoggerFactory.getLogger("uml-construction")
+          .debug(s"found type representation that is not yet supported: ${other.structure}")
+        TypeNameCollector("")
     }
   }
 }

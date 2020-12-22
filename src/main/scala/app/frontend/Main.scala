@@ -7,9 +7,6 @@ import org.slf4j.LoggerFactory
 import scala.util.Failure
 
 object Main extends App {
-
-
-
   try {
     val loader = Loader(args)
     println(loader.commands)
@@ -28,7 +25,7 @@ object Main extends App {
   def logException(e:Exception):Unit = {
     val log = LoggerFactory.getLogger("execution")
     log.error(e.getMessage)
-    log.debug(s"${e.getMessage} with cause: ${e.getCause}" +
-      s" and stacktrace: ${e.getStackTrace.mkString("Array(", ", ", ")")}")
+    log.debug(s"${e.getMessage} and cause: ${e.getCause.getStackTrace.mkString("Array(", ", ", ")")}" +
+      s" and \n stacktrace: ${e.getStackTrace.mkString("Array(", ", ", ")")}")
   }
 }
