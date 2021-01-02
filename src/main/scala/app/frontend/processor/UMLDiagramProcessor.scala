@@ -12,6 +12,8 @@ import uml.UMLUnit
 import uml.umlMethods.toPackageRep
 
 import java.io.{File, FileNotFoundException, FileOutputStream, IOException}
+import java.nio.charset.StandardCharsets
+import java.nio.file.{Files, Paths}
 import scala.meta.parsers.Parsed
 import scala.meta.{Source, dialects}
 
@@ -19,6 +21,7 @@ sealed case class UMLDiagramProcessor(
                                        outputPath: String,
                                        filesPath: String,
                                        isVerbose: Boolean,
+                                       isTextual : Boolean,
                                        name:String="default")
   extends Processor {
 
@@ -67,7 +70,7 @@ sealed case class UMLDiagramProcessor(
       for {
         umlCol <- umlProcess
       } yield {
-        val path = if(outputPath.isEmpty){
+        val path = if (outputPath.isEmpty) {
           logger.info(s"No output path specified. Assuming:" +
             s" ${ClassLoader.getSystemClassLoader.getResource(".").getPath} as output path." +
             s" Try --d <path> to define output path.")
@@ -81,28 +84,40 @@ sealed case class UMLDiagramProcessor(
         val packageRep = try {
           toPackageRep(umlCol.umlUnit).value.asInstanceOf[UMLUnit]
         } catch {
-          case e:Exception => throw e
+          case e: Exception => throw e
         }
 
-        val reader = new SourceStringReader(packageRep.pretty)
-        val filePath = new File(path)
+        if (!isTextual) {
+          val reader = new SourceStringReader(packageRep.pretty)
+          val filePath = new File(path)
 
-        val fos = try {
-          new FileOutputStream(new File(filePath.getPath + name + ".svg"))
-        } catch {
-          case fnf:FileNotFoundException => throw new BadOutputPathException(
-            s"specified output path: [${filePath.getPath}] is invalid. Try --d <path> with a valid path.",
-            fnf
-          )
-        }
-        try {
-          reader.generateImage(fos, new FileFormatOption(FileFormat.SVG))
-          logger.info(s"Successfully exported image to location: ${filePath.getPath + name + ".svg"}")
-        } catch {
-          case i:IOException =>
-            logger.error(s"Unable to export image: ${filePath.getPath + name + ".svg"}." +
-              s" Try --verbose to get debug information.")
-            logger.debug(s"${i.getStackTrace.mkString("Array(", ", ", ")")}")
+          val fos = try {
+            new FileOutputStream(new File(filePath.getPath + name + ".svg"))
+          } catch {
+            case fnf: FileNotFoundException => throw new BadOutputPathException(
+              s"specified output path: [${filePath.getPath}] is invalid. Try --d <path> with a valid path.",
+              fnf
+            )
+          }
+          try {
+            reader.generateImage(fos, new FileFormatOption(FileFormat.SVG))
+            logger.info(s"Successfully exported image to location: ${filePath.getPath + name + ".svg"}")
+          } catch {
+            case i: IOException =>
+              logger.error(s"Unable to export image: ${filePath.getPath + name + ".svg"}." +
+                s" Try --verbose to get debug information.")
+              logger.debug(s"${i.getStackTrace.mkString("Array(", ", ", ")")}")
+          }
+        } else {
+          try {
+            Files.write(Paths.get(path + name + ".txt"), packageRep.pretty.getBytes(StandardCharsets.UTF_8))
+          } catch {
+            case i:IOException =>
+              logger.error(s"Unable to export image: ${path + name + ".txt"}." +
+                s" Try --verbose to get debug information.")
+              logger.debug(s"${i.getStackTrace.mkString("Array(", ", ", ")")}")
+
+          }
         }
       }
 

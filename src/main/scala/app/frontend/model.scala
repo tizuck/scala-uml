@@ -17,3 +17,5 @@ sealed case class OutputPath(path:String) extends Command
 sealed case class Name(name:String) extends Command
 
 sealed case class InputPath(path:String) extends Command
+
+sealed case class Textual() extends Command

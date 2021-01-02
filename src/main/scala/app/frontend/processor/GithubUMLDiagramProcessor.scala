@@ -14,11 +14,14 @@ import pureconfig._
 import pureconfig.generic.auto._
 
 import java.io.{File, FileNotFoundException, FileOutputStream, IOException}
+import java.nio.charset.StandardCharsets
+import java.nio.file.{Files, Paths}
 
 case class GithubUMLDiagramProcessor(
                                       outputPath:String,
                                       githubConfigPath:String,
                                       isVerbose:Boolean,
+                                      isTextual : Boolean,
                                       name:String="default")
   extends Processor {
 
@@ -80,29 +83,41 @@ case class GithubUMLDiagramProcessor(
       val reader = new SourceStringReader(packageRep.pretty)
       val filePath = new File(path)
 
-    val fos = try {
-      println(filePath.isFile)
-      if(filePath.isDirectory) {
-        new FileOutputStream(new File(filePath.getPath + "/" + name + ".svg"))
-      } else {
-        println("Here")
-        new FileOutputStream(new File(filePath.getPath + name + ".svg"))
+    if(!isTextual) {
+      val fos = try {
+        println(filePath.isFile)
+        if (filePath.isDirectory) {
+          new FileOutputStream(new File(filePath.getPath + "/" + name + ".svg"))
+        } else {
+          println("Here")
+          new FileOutputStream(new File(filePath.getPath + name + ".svg"))
+        }
+      } catch {
+        case fnf: FileNotFoundException => throw new BadOutputPathException(
+          s"specified output path: [${filePath.getPath}] is invalid. Try --d <path> with a valid path.",
+          fnf
+        )
       }
-    } catch {
-      case fnf:FileNotFoundException => throw new BadOutputPathException(
-        s"specified output path: [${filePath.getPath}] is invalid. Try --d <path> with a valid path.",
-        fnf
-      )
-    }
 
-    try {
-      reader.generateImage(fos, new FileFormatOption(FileFormat.SVG))
-      logger.info(s"Successfully exported image to location: ${filePath.getPath + name + ".svg"}")
-    } catch {
-      case i:IOException =>
-        logger.error(s"Unable to export image: ${filePath.getPath + name + ".svg"}." +
-          s" Try --verbose to get debug information.")
-        logger.debug(s"${i.getStackTrace.mkString("Array(", ", ", ")")}")
+      try {
+        reader.generateImage(fos, new FileFormatOption(FileFormat.SVG))
+        logger.info(s"Successfully exported image to location: ${filePath.getPath + name + ".svg"}")
+      } catch {
+        case i: IOException =>
+          logger.error(s"Unable to export image: ${filePath.getPath + name + ".svg"}." +
+            s" Try --verbose to get debug information.")
+          logger.debug(s"${i.getStackTrace.mkString("Array(", ", ", ")")}")
+      }
+    }  else {
+      try {
+        Files.write(Paths.get(path + name + ".txt"), packageRep.pretty.getBytes(StandardCharsets.UTF_8))
+      } catch {
+        case i:IOException =>
+          logger.error(s"Unable to export image: ${path + name + ".txt"}." +
+            s" Try --verbose to get debug information.")
+          logger.debug(s"${i.getStackTrace.mkString("Array(", ", ", ")")}")
+
+      }
     }
   }
 

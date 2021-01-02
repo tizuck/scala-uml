@@ -1,6 +1,6 @@
 package app.frontend.parser
 
-import app.frontend.{Command, OutputPath, InputPath, Github, GithubType, Help, HelpType, Name, Verbose, VerboseType}
+import app.frontend.{Command, Github, GithubType, Help, HelpType, InputPath, Name, OutputPath, Textual, Verbose, VerboseType}
 import org.bitbucket.inkytonik.kiama.parsing.ListParsers
 import org.bitbucket.inkytonik.kiama.util.Positions
 
@@ -18,6 +18,7 @@ class Rules(positions:Positions) extends ListParsers(positions) {
       | github(ins)
       | directory(ins)
       | filesPath(ins)
+      | textualPre ^^ {_ => Textual()}
       )) ^^ { c =>
       if(ins.commands.exists(cOther => cOther.getClass.equals(c.getClass))){
         throw new IllegalArgumentException(
@@ -73,7 +74,7 @@ class Rules(positions:Positions) extends ListParsers(positions) {
   }
 
   lazy val path : Parser[String] = {
-    """([A-Z][:][\\/]).?([~a-zA-Z0-9]+[\\/]?)+""".r
+    """([A-Z][:][\\/])?([~a-zA-Z0-9]+[\\/]?)+""".r
   }
 
   lazy val identifier : Parser[String] = """[_a-zA-Z][_a-zA-Z0-9]*""".r
@@ -85,5 +86,6 @@ class Rules(positions:Positions) extends ListParsers(positions) {
   lazy val directoryPre : Parser[String] = "directory"|"d"
   lazy val filespathPre : Parser[String] = "filespath"|"fp"
   lazy val namePre : Parser[String] = "name"|"n"
+  lazy val textualPre: Parser[String] = "textual"|"t"
 
 }

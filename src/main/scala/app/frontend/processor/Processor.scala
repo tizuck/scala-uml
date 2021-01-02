@@ -16,25 +16,35 @@ object Processor {
     commands.foldLeft[Processor](EmptyProcessor){
       case (_,h:Help)                                       => HelpProcessor(h)
 
-      case (EmptyProcessor,OutputPath(path))                => UMLDiagramProcessor(outputPath = path,"",false)
+      case (EmptyProcessor,OutputPath(path))                => UMLDiagramProcessor(outputPath = path,"",false,false)
       case (u:UMLDiagramProcessor,OutputPath(path))         => u.copy(outputPath = path)
       case (g:GithubUMLDiagramProcessor,OutputPath(path))   => g.copy(outputPath = path)
 
-      case (EmptyProcessor,InputPath(path))                 => UMLDiagramProcessor(outputPath = "",filesPath = path,false)
+      case (EmptyProcessor,InputPath(path))                 => UMLDiagramProcessor(outputPath = "",filesPath = path,false,false)
       case (u:UMLDiagramProcessor,InputPath(path))          => u.copy(filesPath = path)
       case (g:GithubUMLDiagramProcessor,InputPath(path))    => g
 
-      case (EmptyProcessor,Verbose())                       => UMLDiagramProcessor("","",true)
+      case (EmptyProcessor,Verbose())                       => UMLDiagramProcessor("","",true,false)
       case (u:UMLDiagramProcessor,Verbose())                => u.copy(isVerbose = true)
       case (g:GithubUMLDiagramProcessor,Verbose())          => g.copy(isVerbose = true)
 
-      case (EmptyProcessor,Name(name))                      => UMLDiagramProcessor("","",false,name)
+      case (EmptyProcessor,Name(name))                      => UMLDiagramProcessor("","",false,false,name)
       case (u:UMLDiagramProcessor,Name(name))               => u.copy(name = name)
       case (g:GithubUMLDiagramProcessor,Name(name))         => g.copy(name = name)
 
-      case (EmptyProcessor,Github(path))                    => GithubUMLDiagramProcessor("",path,false)
-      case (u:UMLDiagramProcessor,Github(path))             => GithubUMLDiagramProcessor(u.outputPath,path,u.isVerbose,u.name)
+      case (EmptyProcessor,Github(path))                    => GithubUMLDiagramProcessor("",path,false,false)
+      case (u:UMLDiagramProcessor,Github(path))             =>
+        GithubUMLDiagramProcessor(u.outputPath,
+          path,
+          u.isVerbose,
+          u.isTextual,
+          u.name)
+
       case (g:GithubUMLDiagramProcessor,Github(path))       => g
+
+      case (EmptyProcessor,Textual())                       => UMLDiagramProcessor("","",false,true)
+      case (u:UMLDiagramProcessor,Textual())                => u.copy(isTextual = true)
+      case (g:GithubUMLDiagramProcessor,Textual())          => g.copy(isTextual = true)
     }
   }
 }
