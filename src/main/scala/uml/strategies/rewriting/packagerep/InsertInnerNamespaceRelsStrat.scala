@@ -13,7 +13,7 @@ object InsertInnerNamespaceRelsStrat extends RewriteStrategy[List[uml.Class]] {
         val insertedInner = toplevelElements.foldLeft(List.empty[Relationship]){
           case (acc,elem) => elem match {
             case uml.Package(_, _, namespace) =>
-              if(v1.exists(c => c.namespace.appended(NamespaceEntry(List(c.identifier))).equals(namespace))){
+              if(v1.exists(c => c.namespace.appended(NamespaceEntry(List(c.name))).equals(namespace))){
                 acc.appended(Relationship(
                   Inner,
                   ToFrom,

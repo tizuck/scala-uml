@@ -17,7 +17,7 @@
 package scalameta.util
 
 import uml.externalReferences.ClassDefRef
-import uml.{Attribute, Class, NamedElement, Operation, RelateableElement, Relationship, UMLElement}
+import uml.{Attribute, Class, NamedElement, Operation, Relationship, UMLElement}
 
 trait BaseCollector extends StateChangingCollector {
   val definedElements:List[UMLElement]
@@ -27,7 +27,7 @@ trait BaseCollector extends StateChangingCollector {
     case _ => None 
   }
 
-  def templates : List[NamedElement with RelateableElement] = definedElements.flatMap{
+  def templates : List[NamedElement] = definedElements.flatMap{
     case c:Class => Some(c)
     case _ => None
   }

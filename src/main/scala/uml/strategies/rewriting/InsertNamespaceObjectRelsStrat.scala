@@ -12,8 +12,8 @@ object InsertNamespaceObjectRelsStrat extends RewriteStrategy[List[uml.Class]] {
           v1
             .foldLeft(List.empty[Relationship]){
               case (acc,cls) =>
-                val source = ClassRef(cls.identifier,cls.namespace)
-                val target = PackageRef(cls.namespace.appended(NamespaceEntry(List(cls.identifier))).asInstanceOf[NamespaceEntry])
+                val source = ClassRef(cls.name,cls.namespace)
+                val target = PackageRef(cls.namespace.appended(NamespaceEntry(List(cls.name))).asInstanceOf[NamespaceEntry])
                 acc
                 .appended(Relationship(Inner,ToFrom,RelationshipInfo(None,None,source,target,None,ToFrom),Nil))
             }

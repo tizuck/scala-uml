@@ -55,7 +55,7 @@ class RewritingSuite extends AnyFreeSpec with Matchers {
 
     "by collecting the trait instances yields exactly one trait Foo " in new TestData() {
       val f : UMLElement ==> String = ue => ue match {
-        case c:uml.Class if c.stereotype.contains(Stereotype("trait",Nil)) => c.identifier
+        case c:uml.Class if c.stereotype.contains(Stereotype("trait",Nil)) => c.name
       }
       val res = collectedUml.umlUnit.collect(f)
 
@@ -82,7 +82,7 @@ class RewritingSuite extends AnyFreeSpec with Matchers {
 
   "by mapping the implicit parameter c to a new implicit parameter c' returns the mapped UMLELement" in new TestData() {
     val f : UMLElement ==> UMLElement = ue => ue match {
-      case p@Parameter("c","Context",List(Stereotype("using",List()))) => p.copy(identifier = "c'")
+      case p@Parameter("c","Context",List(Stereotype("using",List()))) => p.copy(name = "c'")
       case elem@_ => elem
     }
 
@@ -111,7 +111,7 @@ class RewritingSuite extends AnyFreeSpec with Matchers {
 
   "exists yields true when searching for the existence of a class named Foo" in new TestData {
     val p:UMLElement => Boolean = u => u match {
-      case c:uml.Class if c.identifier.equals("Foo") => true
+      case c:uml.Class if c.name.equals("Foo") => true
       case _ => false
     }
     val res = collectedUml.umlUnit.exists(p)

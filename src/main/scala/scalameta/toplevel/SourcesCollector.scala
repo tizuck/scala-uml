@@ -56,7 +56,7 @@ object SourcesCollector {
         val externalsToInclude = for {e <- externals} yield {
           val topLevelElement = finalS.umlUnit.toplevelElements
           Option.when(!topLevelElement.exists{
-            case c: uml.Class => c.identifier.equals(e.name) && c.namespace.equals(e.namespace)
+            case c: uml.Class => c.name.equals(e.name) && c.namespace.equals(e.namespace)
             case _ => false
           })(e)
         }

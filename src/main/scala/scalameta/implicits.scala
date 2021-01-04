@@ -31,7 +31,7 @@ object implicits {
     val xResultingExternals = x.resultingContext.localCon.externalReferences
     val yResultingExternals = y.resultingContext.localCon.externalReferences
 
-    SourceCollector(UMLUnit(x.umlUnit.identifier, xToplevel |+| yToplevel), x.resultingContext |+| y.resultingContext)
+    SourceCollector(UMLUnit(x.umlUnit.name, xToplevel |+| yToplevel), x.resultingContext |+| y.resultingContext)
   }
 
   /**

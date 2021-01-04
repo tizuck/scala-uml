@@ -154,7 +154,7 @@ object SimplePlantUMLPrettyPrinter extends org.bitbucket.inkytonik.kiama.output.
         opt(value,text,"=")
 
     case ConcreteClass(cls) =>
-      cls.namespace.plantUML <> cls.identifier
+      cls.namespace.plantUML <> cls.name
 
     case ClassRef(name,namespace) =>
       namespace.plantUML <> name

@@ -31,7 +31,7 @@ object TypeParamsCollector {
         val generic = typeParamCol.typeParam
         val cBounds = typeParamCol.contextBounds
 
-        acc.copy(acc.typeParams ++ List(generic),contextBounds = acc.contextBounds + (generic.identifier -> cBounds ))
+        acc.copy(acc.typeParams ++ List(generic),contextBounds = acc.contextBounds + (generic.name -> cBounds ))
     }
   }
 }

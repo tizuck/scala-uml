@@ -110,10 +110,11 @@ sealed case class UMLDiagramProcessor(
           }
         } else {
           try {
-            Files.write(Paths.get(path + name + ".txt"), packageRep.pretty.getBytes(StandardCharsets.UTF_8))
+            Files.write(Paths.get(path + "/" + name + ".txt"), packageRep.pretty.getBytes(StandardCharsets.UTF_8))
+            logger.info(s"Successfully exported text file to: ${path + "/" + name + ".txt"}")
           } catch {
             case i:IOException =>
-              logger.error(s"Unable to export image: ${path + name + ".txt"}." +
+              logger.error(s"Unable to export image: ${path + "/" + name + ".txt"}." +
                 s" Try --verbose to get debug information.")
               logger.debug(s"${i.getStackTrace.mkString("Array(", ", ", ")")}")
 

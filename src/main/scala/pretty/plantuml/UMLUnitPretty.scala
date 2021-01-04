@@ -10,7 +10,7 @@ case class UMLUnitPretty()(override implicit val config: PrettyConfig)
 
   override def toDoc(umlElement: UMLUnit): Doc = {
     "@startuml" <+>
-      umlElement.identifier <@>
+      umlElement.name <@>
       vsep(umlElement.toplevelElements.map(TopLevelPretty().toDoc)) <@>
       "@enduml"
   }

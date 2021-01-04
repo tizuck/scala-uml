@@ -51,8 +51,8 @@ class PackageRepresentationSuite extends AnyFreeSpec with Matchers {
       val res = umlUnit.rewrite(Id[List[uml.Class]])(List.empty[uml.Class])(CollectNamespaceObjectsStrat).value._1
 
       res must have size 2
-      res.exists(c => c.identifier.equals("model")) must be(true)
-      res.exists(c => c.identifier.equals("ops")) must be(true)
+      res.exists(c => c.name.equals("model")) must be(true)
+      res.exists(c => c.name.equals("ops")) must be(true)
 
       val res2 = umlUnit.rewrite(DeleteInnerAssocStrat)(res)((v1: UMLElement, v2: List[uml.Class]) => v2).value._2
 
@@ -130,12 +130,12 @@ class PackageRepresentationSuite extends AnyFreeSpec with Matchers {
 
       allClassesCollected must have size 6
       allClassesCollected.forall{
-        c => c.identifier.equals("Model") ||
-          c.identifier.equals("AST") ||
-          c.identifier.equals("ASTNode") ||
-          c.identifier.equals("ASTLeave") ||
-          c.identifier.equals("ops") ||
-          c.identifier.equals("model")
+        c => c.name.equals("Model") ||
+          c.name.equals("AST") ||
+          c.name.equals("ASTNode") ||
+          c.name.equals("ASTLeave") ||
+          c.name.equals("ops") ||
+          c.name.equals("model")
       }
 
       val sortInClasses = withNewPackages

@@ -2,7 +2,7 @@ package pretty.plantuml
 
 import pretty.KiamaPretty
 import pretty.config.PrettyConfig
-import uml.{ConcreteClass, NamedElement, RelateableElement}
+import uml.{ConcreteClass, NamedElement}
 import pretty.KiamaPretty._
 import scalameta.util.namespaces.{DefaultNamespace, NamespaceEntry}
 
@@ -11,6 +11,6 @@ case class ConcreteClassPretty()(override implicit val config: PrettyConfig) ext
     case ConcreteClass(cls) =>
       showNamespace(cls.namespace) <>
         (showNamespaceDot(cls.namespace)) <>
-        cls.identifier
+        cls.name
   }
 }

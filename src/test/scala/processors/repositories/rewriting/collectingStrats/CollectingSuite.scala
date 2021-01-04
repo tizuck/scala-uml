@@ -47,8 +47,8 @@ class CollectingSuite extends AnyFreeSpec with Matchers {
       "the namespace objects of fooAst yields 2 object entries" in new TestData(fooAst, "foo.scala") {
         val res = umlUnit.rewrite(Id[List[uml.Class]])(Nil)(CollectNamespaceObjectsStrat).value._1
         res must have size 2
-        res.exists(c => c.identifier.equals("model")) must be(true)
-        res.exists(c => c.identifier.equals("ops")) must be(true)
+        res.exists(c => c.name.equals("model")) must be(true)
+        res.exists(c => c.name.equals("ops")) must be(true)
       }
     }
     "by deleting all inner relationships of inner objects deletes all inner relationships" in new TestData(fooAst,"foo.scala") {

@@ -57,7 +57,7 @@ sealed trait UMLElement { self =>
   }
 
   def map(f:UMLElement ==> UMLElement):UMLElement = {
-    rewrite((u:()) => rule(f))(())((ue,t) => t).value._2
+    rewrite((u:Unit) => rule(f))(())((ue,t) => t).value._2
   }
 
   def forall(p:UMLElement => Boolean):Boolean = {
@@ -185,7 +185,27 @@ sealed trait UMLElement { self =>
   }
 }
 
-sealed case class TaggedValue(name:String,value:Option[String]) extends UMLElement {
+sealed trait StereotypeElement extends UMLElement {
+  val stereotype: List[Stereotype]
+}
+
+sealed trait TopLevelElement extends UMLElement {
+  val namespace : Entry = DefaultNamespace
+}
+
+sealed trait CompartmentElement extends UMLElement {
+
+}
+
+sealed trait PackageBodyElement extends UMLElement {
+
+}
+
+sealed trait NamedElement extends UMLElement {
+  val name : String
+}
+
+sealed case class TaggedValue(name:String,value:Option[String]) extends NamedElement {
 
   override type T = TaggedValue
 
@@ -200,7 +220,7 @@ sealed case class TaggedValue(name:String,value:Option[String]) extends UMLEleme
 
   override def pretty(implicit pretty: PrettyPrinter[TaggedValue]): String = pretty.format(this).layout
 }
-sealed case class Stereotype(name:String,taggedValues:List[TaggedValue]) extends UMLElement {
+sealed case class Stereotype(name:String,taggedValues:List[TaggedValue]) extends NamedElement {
 
   override type T = Stereotype
 
@@ -223,37 +243,12 @@ sealed case class Stereotype(name:String,taggedValues:List[TaggedValue]) extends
   override def pretty(implicit pretty: PrettyPrinter[Stereotype]): String = pretty.format(this).layout
 }
 
-sealed trait StereotypeElement extends UMLElement {
-  val stereotype: List[Stereotype]
-}
-
-sealed trait TopLevelElement extends UMLElement {
-
-}
-
-sealed trait CompartmentElement extends UMLElement {
-
-}
-
-sealed trait PackageBodyElement extends UMLElement {
-
-}
-
-sealed trait RelateableElement extends UMLElement {
-
-}
-
-sealed trait NamedElement extends UMLElement {
-  val identifier : String
-  val namespace : Entry = DefaultNamespace
-}
-
-sealed case class UMLUnit(identifier:String,
-                          toplevelElements:List[TopLevelElement]) extends UMLElement {
+sealed case class UMLUnit(name:String,
+                          toplevelElements:List[TopLevelElement]) extends NamedElement {
 
   override type T = UMLUnit
 
-  override def structure: String = s"""UMLUnit("$identifier",${listStructure(toplevelElements)})"""
+  override def structure: String = s"""UMLUnit("$name",${listStructure(toplevelElements)})"""
 
   override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
     for {
@@ -276,11 +271,10 @@ sealed case class UMLUnit(identifier:String,
 
 sealed case class Package(packageBodyElements:List[PackageBodyElement],
                           stereotype:List[Stereotype],
-                          namespace:Entry=DefaultNamespace) extends
+                          override val namespace:Entry=DefaultNamespace) extends
   TopLevelElement with
   PackageBodyElement with
-  StereotypeElement with
-  RelateableElement {
+  StereotypeElement {
 
   override type T = Package
 
@@ -309,7 +303,7 @@ sealed case class Package(packageBodyElements:List[PackageBodyElement],
  * Classes
  **************/
 
-sealed case class GenericParameter(identifier:String,
+sealed case class GenericParameter(name:String,
                                    concreteType:Option[String],
                                    stereotype:List[Stereotype]) extends
   StereotypeElement with
@@ -318,7 +312,7 @@ sealed case class GenericParameter(identifier:String,
   override type T = GenericParameter
 
   override def structure: String =
-    s"""GenericParameter("$identifier",${optionString(concreteType)},${listStructure(stereotype)})"""
+    s"""GenericParameter("$name",${optionString(concreteType)},${listStructure(stereotype)})"""
 
 
   override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
@@ -354,10 +348,10 @@ object externalReferences {
   case object CCaseClass extends ClassType
 
   sealed case class ClassDefRef(classtype:ClassType,
-                                name:String,namespace:Entry,
+                                name:String, override val namespace:Entry,
                                 templateParameter:List[String],
                                 oStat:Option[Stat] = None)
-    extends TopLevelElement {
+    extends TopLevelElement with NamedElement {
 
     override type T = ClassDefRef
 
@@ -379,7 +373,7 @@ object externalReferences {
 
 
 sealed case class Class(isAbstract:Boolean,
-                        identifier:String,
+                        name:String,
                         attributes:List[Attribute],
                         operations:List[Operation],
                         additionalCompartements:List[Compartment],
@@ -389,13 +383,12 @@ sealed case class Class(isAbstract:Boolean,
   TopLevelElement with
   StereotypeElement with
   PackageBodyElement with
-  RelateableElement with
   NamedElement {
 
   override type T = Class
 
   override def structure: String =
-    s"""Class($isAbstract,"$identifier",${
+    s"""Class($isAbstract,"$name",${
       listStructure(attributes)},${
       listStructure(operations)},${
       listStructure(additionalCompartements)},${
@@ -437,7 +430,7 @@ sealed case class Class(isAbstract:Boolean,
 
 sealed case class Attribute(modificators:Option[List[Modificator]],
                             modifier: Option[AccessModifier],
-                            identifier:String,
+                            name:String,
                             attributeType:Option[String],
                             stereotype:List[Stereotype],
                             defaultValue:Option[String] = None) extends
@@ -451,7 +444,7 @@ sealed case class Attribute(modificators:Option[List[Modificator]],
     s"""Some(${modificators.get.map(_.toString).mkString(",")})"""
   } else "None"},${
     optionAny(modifier)
-  },"$identifier",${
+  },"$name",${
     optionString(attributeType)},${listStructure(stereotype)})"""
 
   override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
@@ -478,7 +471,7 @@ sealed case class Attribute(modificators:Option[List[Modificator]],
  **************/
 
 //todo:
-sealed case class Parameter(identifier:String,
+sealed case class Parameter(name:String,
                             paramType:String,
                             stereotype:List[Stereotype]) extends
   StereotypeElement with
@@ -486,7 +479,7 @@ sealed case class Parameter(identifier:String,
 
   override type T = Parameter
 
-  override def structure: String = s"""Parameter("$identifier","$paramType",${listStructure(stereotype)})"""
+  override def structure: String = s"""Parameter("$name","$paramType",${listStructure(stereotype)})"""
 
   override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
     for {
@@ -508,7 +501,7 @@ sealed case class Parameter(identifier:String,
 
 sealed case class Operation(modificator: Option[List[Modificator]],
                             accessModifier: Option[AccessModifier],
-                            identifier:String,
+                            name:String,
                             paramSeq:List[List[Parameter]],
                             returnType:Option[String],
                             stereotype:List[Stereotype],
@@ -520,7 +513,7 @@ sealed case class Operation(modificator: Option[List[Modificator]],
 
   override def structure: String = s"""Operation(${
     modificator.map(m => s"""Some(List(${m.toString.mkString(",")}))""").getOrElse("None")
-  },${optionAny(accessModifier)},"$identifier",${
+  },${optionAny(accessModifier)},"$name",${
     if(paramSeq.isEmpty || paramSeq.head.isEmpty){"List(List())"} else {paramSeq.map(seq => s"""List(${seq.map(_.structure).mkString(",")})""")}
   },${optionString(returnType)},${listStructure(stereotype)})"""
 
@@ -629,7 +622,7 @@ case object Without extends RelationshipDirection
 
 sealed trait RelationshipElement extends UMLElement
 
-sealed case class ConcreteClass(cls:RelateableElement with NamedElement) extends RelationshipElement {
+sealed case class ConcreteClass(cls:Class) extends RelationshipElement {
 
   override type T = ConcreteClass
 

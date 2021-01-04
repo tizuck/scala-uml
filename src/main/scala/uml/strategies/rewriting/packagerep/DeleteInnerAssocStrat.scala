@@ -12,9 +12,9 @@ object DeleteInnerAssocStrat extends RewriteStrategy[List[uml.Class]] {
       case Relationship(Inner, _, relationshipInfo, _) =>
         relationshipInfo.from match {
           case ConcreteClass(cls) =>
-            v1.exists(c => c.identifier.equals(cls.identifier) && c.namespace.equals(cls.namespace))
+            v1.exists(c => c.name.equals(cls.name) && c.namespace.equals(cls.namespace))
           case ClassRef(name, namespace) =>
-            v1.exists(c => c.identifier.equals(name) && c.namespace.equals(namespace))
+            v1.exists(c => c.name.equals(name) && c.namespace.equals(namespace))
         }
       case _ => false
     }
