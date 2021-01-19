@@ -18,7 +18,7 @@ package scalameta.util.context
 
 import scalameta.util.namespaces.{DefaultNamespace, Entry, NamespaceEntry}
 import uml.externalReferences.ClassDefRef
-import uml.{NamedElement, Operation, RelateableElement, RelationshipElement}
+import uml.{NamedElement, Operation, RelationshipElement}
 
 import scala.meta.Source
 

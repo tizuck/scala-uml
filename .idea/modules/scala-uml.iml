@@ -29,8 +29,8 @@
     <orderEntry type="library" name="sbt: com.lihaoyi:fastparse_2.13:2.3.0:jar" level="project" />
     <orderEntry type="library" name="sbt: com.lihaoyi:geny_2.13:0.6.0:jar" level="project" />
     <orderEntry type="library" name="sbt: com.lihaoyi:sourcecode_2.13:0.2.1:jar" level="project" />
-    <orderEntry type="library" name="sbt: com.thesamet.scalapb:lenses_2.13:0.10.8:jar" level="project" />
-    <orderEntry type="library" name="sbt: com.thesamet.scalapb:scalapb-runtime_2.13:0.10.8:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.thesamet.scalapb:lenses_2.13:0.10.9:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.thesamet.scalapb:scalapb-runtime_2.13:0.10.9:jar" level="project" />
     <orderEntry type="library" name="sbt: com.typesafe:config:1.4.0:jar" level="project" />
     <orderEntry type="library" name="sbt: io.chrisdavenport:unique_2.13:2.0.0:jar" level="project" />
     <orderEntry type="library" name="sbt: io.chrisdavenport:vault_2.13:2.0.0:jar" level="project" />
@@ -59,12 +59,12 @@
     <orderEntry type="library" name="sbt: org.scala-lang:scala-reflect:2.13.3:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scala-lang:scalap:2.13.3:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.scalactic:scalactic_2.13:3.2.2:jar" level="project" />
-    <orderEntry type="library" name="sbt: org.scalameta:common_2.13:4.3.24:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalameta:common_2.13:4.4.6:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scalameta:fastparse-utils_2.13:1.0.1:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scalameta:fastparse_2.13:1.0.1:jar" level="project" />
-    <orderEntry type="library" name="sbt: org.scalameta:parsers_2.13:4.3.24:jar" level="project" />
-    <orderEntry type="library" name="sbt: org.scalameta:scalameta_2.13:4.3.24:jar" level="project" />
-    <orderEntry type="library" name="sbt: org.scalameta:trees_2.13:4.3.24:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalameta:parsers_2.13:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalameta:scalameta_2.13:4.4.6:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalameta:trees_2.13:4.4.6:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.scalatest:scalatest-compatible:3.2.2:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.scalatest:scalatest-core_2.13:3.2.2:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.scalatest:scalatest-diagrams_2.13:3.2.2:jar" level="project" />

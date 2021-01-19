@@ -1,0 +1,16 @@
+case class Circle(x: Double, y: Double, radius: Double)
+
+extension (c: Circle)
+   def circumference: Double = c.radius * math.Pi * 2
+
+extension [T](xs: List[T])
+   def second = xs.tail.head
+
+extension (ss: Seq[String]){
+
+   def longestStrings: Seq[String] =
+      val maxLength = ss.map(_.length).max
+      ss.filter(_.length == maxLength)
+
+   def longestString: String = longestStrings.head
+}

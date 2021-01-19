@@ -1,0 +1,11 @@
+open class Writer[T]:
+
+   /** Sends to stdout, can be overridden */
+   def send(x: T) = println(x)
+
+   /** Sends all arguments using `send` */
+   def sendAll(xs: T*) = xs.foreach(send)
+end Writer
+
+class EncryptedWriter[T: Encryptable] extends Writer[T]:
+   override def send(x: T) = super.send(encrypt(x))

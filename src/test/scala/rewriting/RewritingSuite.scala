@@ -1,4 +1,4 @@
-package processors.repositories.rewriting
+package rewriting
 
 import org.bitbucket.inkytonik.kiama.==>
 import org.bitbucket.inkytonik.kiama.rewriting.Rewriter._

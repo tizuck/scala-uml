@@ -64,7 +64,7 @@ sealed case class UMLDiagramProcessor(
       case ni:NotImplementedError =>
         throw new UMLConversionException(s"Files contain features that are not yet supported: ${ni.getMessage}",ni)
       case e:Exception =>
-        throw new UMLConversionException(s"Unknown error when processing. try --verbose to get debug information.")
+        throw new UMLConversionException(s"Unknown error when processing. try --verbose to get debug information.",e)
     }
 
       for {
@@ -74,7 +74,8 @@ sealed case class UMLDiagramProcessor(
           logger.info(s"No output path specified. Assuming:" +
             s" ${ClassLoader.getSystemClassLoader.getResource(".").getPath} as output path." +
             s" Try --d <path> to define output path.")
-          ClassLoader.getSystemClassLoader().getResource(".").getPath
+          val path = ClassLoader.getSystemClassLoader().getResource(".").getPath
+          path.replaceFirst("/","")
         } else {
           outputPath
         }
@@ -110,7 +111,8 @@ sealed case class UMLDiagramProcessor(
           }
         } else {
           try {
-            Files.write(Paths.get(path + "/" + name + ".txt"), packageRep.pretty.getBytes(StandardCharsets.UTF_8))
+            println(path)
+            Files.write(Paths.get(path + (if(path.last.equals('/')){""}else{"/"}) + name + ".txt"), packageRep.pretty.getBytes(StandardCharsets.UTF_8))
             logger.info(s"Successfully exported text file to: ${path + "/" + name + ".txt"}")
           } catch {
             case i:IOException =>
@@ -127,14 +129,19 @@ sealed case class UMLDiagramProcessor(
   private def parseTry(s: String):Option[Source] = {
     val logger: Logger = LoggerFactory.getLogger("execution")
     try {
-      dialects.Dotty(new File(s)).parse[Source] match {
+      dialects.Scala3(new File(s)).parse[Source] match {
         case Parsed.Success(t) =>
           Some(t)
         case p: Parsed.Error =>
-          logger.warn(s"File: [$s] could not be processed as a Scala Source. Continuing with other files.")
-          logger.debug(s"File: [$s] could not be processed as a Scala Source. Continuing with other files." +
-            s" Caused by: ${p.message} with stacktrace: ${p.details.getStackTrace.mkString("Array(", ", ", ")")}")
-          None
+          dialects.Scala213(new File(s)).parse[Source] match {
+            case Parsed.Success(t) =>
+              Some(t)
+            case p: Parsed.Error =>
+              logger.warn(s"File: [$s] could not be processed as a Scala Source. Continuing with other files.")
+              logger.debug(s"File: [$s] could not be processed as a Scala Source. Continuing with other files." +
+                s" Caused by: ${p.message} with stacktrace: ${p.details.getStackTrace.mkString("Array(", ", ", ")")}")
+              None
+          }
       }
     } catch {
       case u:UnreachableError =>

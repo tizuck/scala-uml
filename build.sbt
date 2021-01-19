@@ -11,7 +11,7 @@ licenses += ("Apache-2.0", new URL("https://www.apache.org/licenses/LICENSE-2.0.
 
 libraryDependencies ++= Seq(
     scalaTest % Test,
-    "org.scalameta" %% "scalameta" % "4.3.24",
+    "org.scalameta" %% "scalameta" % "4.4.6",
     "org.bitbucket.inkytonik.kiama" %% "kiama" % "2.3.0",
     "org.typelevel" %% "cats-core" % "2.1.1",
     "net.sourceforge.plantuml" % "plantuml" % "8059",

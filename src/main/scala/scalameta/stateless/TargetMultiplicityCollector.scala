@@ -33,6 +33,7 @@ object TargetMultiplicityCollector {
           case "List" => TargetMultiplicityCollector("*")
           case _ => TargetMultiplicityCollector("1")
         }
+        case _ => TargetMultiplicityCollector("unknown")
       }
       case _ => TargetMultiplicityCollector("unknown")
     }

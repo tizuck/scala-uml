@@ -45,11 +45,12 @@ object DclDefCollector {
 
     val accessModifiers = AccessModifierCollector(dclDef.mods).accessModifier
 
+    val interpretedCBounds = interpretCBounds(typeParamsCBounds)
     val op = uml.Operation(
       Option.when(modificators.nonEmpty)(modificators),
       accessModifiers,
       operationName,
-      parametersLists ++ List(interpretCBounds(typeParamsCBounds)),
+      if(interpretedCBounds.isEmpty) parametersLists else parametersLists ++ List(interpretedCBounds),
       returnType,
       Nil,
       typeParams)

@@ -3,7 +3,7 @@ package pretty
 
 import org.bitbucket.inkytonik.kiama.output.PrettyPrinterTypes.Document
 import pretty.config.PrettyConfig
-import uml.{AccessModifier, Note, Relationship, TopLevelElement, UMLElement, externalReferences}
+import uml.{AccessModifier, Relationship, TopLevelElement, UMLElement, externalReferences}
 import scalameta.util.namespaces.Entry
 import pretty.KiamaPretty._
 

@@ -68,8 +68,7 @@ object DefnCollector {
         }
         fromDecl(ret)
       case t:Defn.Type => DefnTypeCollector(t)
-      case t:Defn.OpaqueTypeAlias => DefnOpaqueTypealiasCollector(t)
-      case t : Defn.Trait => DefnTraitCollector(t)
+      case t : Defn.Trait => TraitCollector(t)
       case c : Defn.Class => DefnClassCollector(c)
       case o : Defn.Object => DefnObjectCollector(o)
       case e : Defn.Enum => DefnEnumCollector(e)

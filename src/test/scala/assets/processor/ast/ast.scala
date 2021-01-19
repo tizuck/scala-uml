@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-package uml
+package assets.processor.ast
 
 import cats.Eval
 import cats.data.State
 import org.bitbucket.inkytonik.kiama.==>
-import org.bitbucket.inkytonik.kiama.rewriting.Strategy
-import scalameta.util.namespaces.{DefaultNamespace, Entry, NamespaceEntry}
-import org.bitbucket.inkytonik.kiama.rewriting.Rewriter
 import org.bitbucket.inkytonik.kiama.rewriting.Rewriter._
+import org.bitbucket.inkytonik.kiama.rewriting.{Rewriter, Strategy}
 import pretty.PrettyPrinter
+import scalameta.util.namespaces.{DefaultNamespace, Entry, NamespaceEntry}
 
 import scala.meta.Stat
 
@@ -514,8 +513,6 @@ sealed case class Operation(modificator: Option[List[Modificator]],
   override def structure: String = s"""Operation(${
     modificator.map(m => s"""Some(List(${m.toString.mkString(",")}))""").getOrElse("None")
   },${optionAny(accessModifier)},"$name",${
-    templateParameter.map(g => "Some(" + g.map(_.structure).mkString(",") + ")").getOrElse(None)
-  },${
     if(paramSeq.isEmpty || paramSeq.head.isEmpty){"List(List())"} else {paramSeq.map(seq => s"""List(${seq.map(_.structure).mkString(",")})""")}
   },${optionString(returnType)},${listStructure(stereotype)})"""
 
@@ -569,13 +566,48 @@ sealed case class Compartment(identifier:Option[String],
   override def pretty(implicit pretty: PrettyPrinter[Compartment]): String = pretty.format(this).layout
 }
 
+/**
+ * Corresponds to a UML Note.
+ *
+ **/
+ sealed case class Note(attachedElements:List[NamedElement],
+                        text:String,
+                        stereotype:List[Stereotype]) extends
+  TopLevelElement with
+  StereotypeElement with
+  PackageBodyElement {
+
+  override type T = Note
+
+  override def structure: String = s"""Note(${listStructure(attachedElements)},"$text",${listStructure(stereotype)})"""
+
+  override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
+    for {
+      rewAttachedElements <- rewriteList(s,f,attachedElements)
+      rewStereotype <- rewriteList(s,f,stereotype)
+      _ <- f(this)
+      thisStrat <- s
+    } yield {
+      Rewriter.rewrite(
+        rule[Note](n =>
+          n.copy(
+            attachedElements = rewAttachedElements.asInstanceOf[List[NamedElement]],
+            stereotype = rewStereotype.asInstanceOf[List[Stereotype]]
+          )
+        ) <* thisStrat
+      )(this)
+    }
+  }
+
+  override def pretty(implicit pretty: PrettyPrinter[Note]): String = pretty.format(this).layout
+}
+
 /***************
  * Relationships
  **************/
 
 sealed trait RelationshipType
 case object Extension extends RelationshipType
-case object Realization extends RelationshipType
 case object Composition extends RelationshipType
 case object Aggregation extends RelationshipType
 case object Annotation extends RelationshipType

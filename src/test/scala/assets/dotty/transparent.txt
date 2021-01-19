@@ -1,0 +1,4 @@
+transparent trait S
+trait Kind
+object Var extends Kind, S
+object Val extends Kind, S

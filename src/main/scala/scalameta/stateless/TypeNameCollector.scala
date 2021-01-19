@@ -77,9 +77,15 @@ object TypeNameCollector {
       case Type.Tuple(args) =>
         TypeNameCollector(s"Tuple${args.size}<${
           args
-            .map(arg => TypeNameCollector(arg))
+            .map(arg => TypeNameCollector(arg).typeRep)
             .mkString(",")}>")
-
+      case Type.ContextFunction(params,res) =>
+        TypeNameCollector(
+          s"ContextFunction${params.size}<${
+            params
+              .map(TypeNameCollector(_).typeRep)
+              .mkString(",")
+          },${TypeNameCollector(res).typeRep}>")
       case other =>
         LoggerFactory.getLogger("uml-construction")
           .debug(s"found type representation that is not yet supported: ${other.structure}")

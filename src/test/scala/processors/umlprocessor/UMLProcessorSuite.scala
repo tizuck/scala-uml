@@ -1,8 +1,8 @@
 package processors.umlprocessor
 
-import app.frontend.{Command, InputPath, OutputPath}
+import app.frontend.{Command, Github, Help, InputPath, Name, OutputPath, Textual}
 import app.frontend.exceptions.{BadInputPathException, BadOutputPathException}
-import app.frontend.processor.{EmptyProcessor, Processor, UMLDiagramProcessor}
+import app.frontend.processor.{EmptyProcessor, GithubUMLDiagramProcessor, HelpProcessor, Processor, UMLDiagramProcessor}
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
 import org.slf4j.{Logger, LoggerFactory}
@@ -12,6 +12,12 @@ class UMLProcessorSuite extends AnyFreeSpec with Matchers {
   case class TestData(proc:Processor)
 
   "starting the console application" - {
+    "with the help command triggers the help processor" in new TestData(Processor(
+      List(Help(None))
+    )) {
+      proc mustBe a[HelpProcessor]
+      proc.execute()
+    }
     "without a given files path" - {
       "without a given output path" - {
         "without github parameter" - {
@@ -34,6 +40,90 @@ class UMLProcessorSuite extends AnyFreeSpec with Matchers {
     ) {
       proc mustBe a[UMLDiagramProcessor]
       a [BadInputPathException] must be thrownBy proc.execute()
+    }
+    "with a valid input path" - {
+      "and a valid output path" - {
+        "without github parameter" - {
+          "with a given name" - {
+            "processes an UML diagram" in new TestData(
+              Processor(
+                List(
+                  OutputPath("src/test/scala/assets/out/processor"),
+                  InputPath("src/test/scala/assets/processor/ast"),
+                  Name("ast")
+                )
+              )) {
+              proc mustBe a[UMLDiagramProcessor]
+              proc.execute()
+            }
+          }
+        }
+        "with a github repository" - {
+          "with a given name" - {
+            "processes a github repository as an UML diagram" in  new TestData(
+              Processor(
+                List(
+                  OutputPath("src/test/scala/assets/out/processor/"),
+                  Github("src/test/scala/assets/processor/github/github.conf"),
+                  Name("ast")
+                )
+              )
+            ) {
+              proc mustBe a[GithubUMLDiagramProcessor]
+              proc.execute()
+            }
+            "with a textual representation" in new TestData(
+              Processor(
+                List(
+                  OutputPath("src/test/scala/assets/out/processor/"),
+                  Github("src/test/scala/assets/processor/github/github.conf"),
+                  Name("ast"),
+                  Textual()
+                )
+              )
+            ) {
+              proc mustBe a[GithubUMLDiagramProcessor]
+              proc.execute()
+            }
+          }
+        }
+      }
+      "without an output path" - {
+        "without a github path" - {
+          "with a given name" - {
+            "processes a UML diagram" in  new TestData(Processor(List(
+              InputPath("src/test/scala/assets/processor/ast"),
+              Name("ast")
+            ))) {
+              proc mustBe a[UMLDiagramProcessor]
+              proc.execute()
+            }
+            "with a textual representation request" - {
+              "processes a UML diagram" in new TestData(Processor(List(
+                InputPath("src/test/scala/assets/processor"),
+                Name("ast"),
+                Textual()
+              ))) {
+                proc mustBe a[UMLDiagramProcessor]
+                proc.execute()
+              }
+            }
+          }
+        }
+      }
+      "with an output path to an illegal Scala file" - {
+        "without a github path" - {
+          "with a given name" - {
+            "processes a UML diagram" in new TestData(Processor(List(
+              InputPath("src/test/scala/assets/processor/fail"),
+              Name("ast")
+            ))) {
+              proc mustBe a[UMLDiagramProcessor]
+              proc.execute()
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -37,6 +37,8 @@ object DefnEnumCollector {
     val previousThisPointer = context.localCon.thisPointer
     val previousToplevel = context.localCon.isTopLevel
     val innerElements = StatsCollector(defnEnum.templ.stats)(context.withThisPointer(tempThisPointer).notToplevel)
+    val innerOperations = innerElements.operations
+    val innerAttributes = innerElements.attributes
     val primaryConstructor = PrimaryConstructorCollector(defnEnum.ctor)(
       innerElements
         .resultingContext
@@ -46,8 +48,8 @@ object DefnEnumCollector {
     val cls = Class(
       true,
       enumName.value,
-      Nil,
-      primaryConstructor.primaryCstr.map(List(_)).getOrElse(Nil),
+      innerAttributes,
+      primaryConstructor.primaryCstr.map(List(_)).getOrElse(Nil) ++ innerOperations,
       Nil,
       None,
       List(Stereotype("scalaenum",Nil)),
@@ -55,7 +57,7 @@ object DefnEnumCollector {
     )
 
     DefnEnumCollector(
-      cls :: innerElements.definedElements,
+      cls :: innerElements.toplevel,
       innerElements
         .resultingContext
         .withOptionalThisPointer(previousThisPointer)

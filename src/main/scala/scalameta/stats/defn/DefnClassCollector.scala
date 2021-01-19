@@ -20,6 +20,7 @@ import scalameta.mods.ClassModsCollector
 import scalameta.operations.PrimaryConstructorCollector
 import scalameta.stats.StatsCollector
 import scalameta.stats.init.InitsCollector
+import scalameta.typeparams.TypeParamsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
 import scalameta.util.util.statToString
@@ -37,6 +38,9 @@ object DefnClassCollector {
 
     val mods = ClassModsCollector(defnClass.mods)
     val className = defnClass.name.value
+
+    val typeParameters = TypeParamsCollector(defnClass.tparams).typeParams
+    val genericParameter = Option.when(typeParameters.nonEmpty)(typeParameters)
 
     val tempThisPointer = ClassRef(className,namespace = context.localCon.currentNamespace)
     val previousThisPointer = context.localCon.thisPointer
@@ -59,7 +63,7 @@ object DefnClassCollector {
       innerElements.attributes,
       primaryConstructor.primaryCstr.map(p => List(p)).getOrElse(Nil) ++ operations,
       mods.mods,
-      None,
+      genericParameter,
       mods.classStereotypes,
       context.localCon.currentNamespace
     )

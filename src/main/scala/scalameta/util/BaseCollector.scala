@@ -17,7 +17,7 @@
 package scalameta.util
 
 import uml.externalReferences.ClassDefRef
-import uml.{Attribute, Class, NamedElement, Operation, Relationship, UMLElement}
+import uml.{Attribute, Class, NamedElement, Operation, Relationship, TopLevelElement, UMLElement}
 
 trait BaseCollector extends StateChangingCollector {
   val definedElements:List[UMLElement]
@@ -45,5 +45,9 @@ trait BaseCollector extends StateChangingCollector {
 
   def attributes : List[Attribute] = definedElements.flatMap{
     case a:Attribute => Some(a) case _ => None
+  }
+
+  def toplevel : List[TopLevelElement] = definedElements.flatMap{
+    case t:TopLevelElement => Some(t) case _ => None
   }
 }

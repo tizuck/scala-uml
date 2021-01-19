@@ -46,7 +46,7 @@ object SourceCollector {
   //  algorithm can respect current compilation unit
   def apply(source: Source,pre:GlobalContext,compilationUnit:String): SourceCollector = {
     val topLevelElements = StatsCollector(source.stats)(CollectorContext(compilationUnit,pre))
-
+    println(topLevelElements.definedElements.map(_.structure))
     new SourceCollector(
       uml.UMLUnit(
         "need_to_find_id",

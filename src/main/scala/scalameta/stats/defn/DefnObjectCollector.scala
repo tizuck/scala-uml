@@ -51,21 +51,16 @@ object DefnObjectCollector {
         .notToplevel
         .withNamespace(newNamespace))
 
-    val operations = innerElements.definedElements.flatMap{
-      case o:Operation => Some(o)
-      case _ => None
-    }
-    val innerWithoutOperations = innerElements.definedElements.flatMap{
-      case _:Operation => None
-      case other => Some(other)
-    }
+    val operations = innerElements.operations
+    val innerattributes = innerElements.attributes
+    val innerDefs = innerElements.toplevel
 
     val isCaseobject = mods.objectStereotypes.contains(Stereotype("caseobject",Nil))
 
     val cls = Class(
       false,
       objectName,
-      innerWithoutOperations.flatMap{case a:Attribute => Some(a) case _ => None},
+      innerattributes,
       operations,
       mods.modifiers,
       None,
@@ -78,7 +73,7 @@ object DefnObjectCollector {
     } else {None}
 
     new DefnObjectCollector(
-      cls :: innerWithoutOperations ++ inheritedElements.definedElements ++ innerRelationship.map( List(_)).getOrElse(Nil),
+      cls :: innerDefs ++ inheritedElements.definedElements ++ innerRelationship.map( List(_)).getOrElse(Nil),
       innerElements
         .resultingContext
         .withOptionalThisPointer(previousThisPointer)

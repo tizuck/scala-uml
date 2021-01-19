@@ -27,13 +27,13 @@ import uml.{Class, ClassRef, Compartment, ConcreteClass, Inner, Operation, Relat
 
 import scala.meta.Defn
 
-case class DefnTraitCollector(override val definedElements : List[UMLElement],
-                              override val resultingContext: CollectorContext
+case class TraitCollector(override val definedElements : List[UMLElement],
+                          override val resultingContext: CollectorContext
                                      )
   extends BaseCollector
 
-object DefnTraitCollector {
-  def apply(defnTrait:Defn.Trait)(implicit context:CollectorContext): DefnTraitCollector = {
+object TraitCollector {
+  def apply(defnTrait:Defn.Trait)(implicit context:CollectorContext): TraitCollector = {
 
 
     val traitName = defnTrait.name.value
@@ -54,6 +54,7 @@ object DefnTraitCollector {
     val primaryConstructor = PrimaryConstructorCollector(defnTrait.ctor)(
       context.withCstrOrigin(traitName)
     )
+    println(mods.mods)
     val cls = Class(
       true,
       traitName,
@@ -70,7 +71,7 @@ object DefnTraitCollector {
       Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,r,ConcreteClass(cls),None,Without),Nil))
     )
 
-    new DefnTraitCollector(
+    new TraitCollector(
       cls :: innerElements.innerElements ++ inheritedElements.definedElements ++ innerRelationship.map(r => List(r)).getOrElse(Nil),
       innerElements
         .resultingContext

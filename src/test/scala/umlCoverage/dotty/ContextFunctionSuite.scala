@@ -16,18 +16,49 @@ import scala.meta.inputs.Input
 
 class ContextFunctionSuite extends AnyFreeSpec with Matchers {
 
-  val path: Path = Paths.get("src","test","scala","assets","umlCoverage.dotty","contextFuncs","contextFuncs.txt")
+  val path: Path = Paths.get("src","test","scala","assets","dotty","contextFuncs","contextFuncs.txt")
 
   "Dotty Reference to Intersectiontypes can be processed to a plantUML png" in {
     val bytes = Files.readAllBytes(path)
     val fileString  = new String(bytes,"UTF-8")
     val vFile = Input.VirtualFile(path.toString,fileString)
-    val input = dialects.Dotty(vFile).parse[Source].get
+    val input = dialects.Scala3(vFile).parse[Source].get
 
     val globalScope = scalameta.util.namespaces.collector.SourcesCollector(List((input,path.toAbsolutePath.toString)))
     val umlCollector = SourceCollector(input,GlobalContext(globalScope.resultingMap),path.toAbsolutePath.toString)
 
-    implicit val umlUnit = UMLUnitPretty()(PlantUMLConfig())
+    val umlUnit = umlCollector.umlUnit
+
+    umlUnit.count{
+      case c:uml.Class =>
+       c.name.equals("Executable") &&
+        c.genericParameters.isDefined &&
+        c.genericParameters.get.size == 1 &&
+        c.attributes.size == 1 &&
+        c.attributes.head.attributeType.isDefined &&
+        c.attributes.head.attributeType.get.equals("ContextFunction1<ExecutionContext,T>")
+      case _ => false
+    } must be(1)
+
+    umlUnit.count{
+      case o:uml.Operation =>
+        o.name.equals("row") &&
+        o.paramSeq.size == 2 &&
+        o.paramSeq.head.size == 1 &&
+        o.paramSeq.head.exists(p => p.name.equals("init") && p.paramType.equals("ContextFunction1<Row,Unit>"))
+      case _ => false
+    } must be(1)
+
+    umlUnit.count{
+      case o:uml.Operation =>
+        o.name.equals("table") &&
+          o.paramSeq.size == 1 &&
+          o.paramSeq.head.size == 1 &&
+          o.paramSeq.head.exists(p => p.name.equals("init") && p.paramType.equals("ContextFunction1<Table,Unit>"))
+      case _ => false
+    } must be(1)
+
+    implicit val umlUnitPretty = UMLUnitPretty()(PlantUMLConfig())
 
     val reader = new SourceStringReader(umlCollector.umlUnit.pretty)
     val filePath = new File("src/test/scala/assets/out/contextFuncs/")

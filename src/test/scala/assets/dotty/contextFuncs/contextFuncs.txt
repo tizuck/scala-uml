@@ -15,30 +15,11 @@ class Table {
   case class Cell(elem: String)
 
   def table(init: Table ?=> Unit) = {
-      given t as Table // note the use of a creator application; same as: given t as Table = new Table
       init
       t
     }
 
     def row(init: Row ?=> Unit)(using t: Table) = {
-      given r as Row
       init
       t.add(r)
     }
-
-    def cell(str: String)(using r: Row) =
-      r.add(new Cell(str))
-
-object PostConditions {
-  opaque type WrappedResult[T] = T
-
-  def result[T](using r: WrappedResult[T]): T = r
-
-  extension [T](x: T) def ensuring(condition: WrappedResult[T] ?=> Boolean): T = {
-    assert(condition(using x))
-    x
-  }
-}
-import PostConditions.{ensuring, result}
-
-val s = List(1, 2, 3).sum.ensuring(result == 6)

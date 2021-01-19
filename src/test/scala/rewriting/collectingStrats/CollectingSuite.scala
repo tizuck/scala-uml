@@ -1,4 +1,4 @@
-package processors.repositories.rewriting.collectingStrats
+package rewriting.collectingStrats
 
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers

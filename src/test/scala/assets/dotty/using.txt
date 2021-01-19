@@ -1,0 +1,11 @@
+def max[T](x: T, y: T)(using ord: Ord[T]): T =
+   if ord.compare(x, y) < 0 then y else x
+
+def maximum[T](xs: List[T])(using Ord[T]): T =
+   xs.reduceLeft(max)
+
+def descending[T](using asc: Ord[T]): Ord[T] = new Ord[T]:
+   def compare(x: T, y: T) = asc.compare(y, x)
+
+def minimum[T](xs: List[T])(using Ord[T]) =
+   maximum(xs)(using descending)

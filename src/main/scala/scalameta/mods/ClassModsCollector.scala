@@ -23,20 +23,25 @@ import uml.{Attribute, Compartment, Stereotype, TaggedValue}
 import scala.meta.{Mod, Term}
 
 case class ClassModsCollector(mods:List[Compartment], isAbstract:Boolean, classStereotypes:List[Stereotype] = Nil){
-
+  self =>
   def appendScalaClass(other:TaggedValue):ClassModsCollector = {
-    val updated = mods.map(c =>
-      if(c.identifier.exists(s => s.equals("scalaclass"))){
-        c.copy(taggedValues = c.taggedValues.appended(other))
-      } else {
-        c
-      })
-    this.copy(mods=updated)
+    if(mods.exists(c => c.identifier.exists(s => s.equals("<<scalaclass>>")))){
+      val updated = mods.map(c =>
+        if(c.identifier.exists(s => s.equals("<<scalaclass>>"))){
+          c.copy(taggedValues = c.taggedValues.appended(other))
+        } else {
+          c
+        })
+      self.copy(mods=updated)
+    } else {
+      val comp = Compartment(Some("<<scalaclass>>"),List(other),Nil)
+      self.copy(mods = self.mods ++ List(comp))
+    }
   }
   def appendAnnotation(annotation:String):ClassModsCollector = {
-    val updated = if(mods.exists(c => c.identifier.exists(_.equals("annotated")))) {
+    val updated = if(mods.exists(c => c.identifier.exists(_.equals("<<annotated>>")))) {
       mods
-        .map{c => (c,c.identifier.exists(_.equals("annotated")))}
+        .map{c => (c,c.identifier.exists(_.equals("<<annotated>>")))}
         .map{tp => if(tp._2){
           //Annotations should always have a value on tagged values
           tp._1.copy(
@@ -45,7 +50,7 @@ case class ClassModsCollector(mods:List[Compartment], isAbstract:Boolean, classS
         } else tp._1}
     } else {
       mods
-        .appended(Compartment(Some("annotated"),List(TaggedValue("annotations",Some(annotation))),Nil))
+        .appended(Compartment(Some("<<annotated>>"),List(TaggedValue("annotations",Some(annotation))),Nil))
     }
     this.copy(mods=updated)
   }
@@ -62,7 +67,6 @@ object ClassModsCollector {
 
   def apply(mods:List[Mod])(implicit context: CollectorContext): ClassModsCollector = {
     mods.foldLeft(ClassModsCollector(Nil,false)){
-
       case (acc,Mod.Final()) =>
         acc.appendScalaClass(TaggedValue("isFinal",None))
       case (acc,Mod.Private(ref)) =>
@@ -89,6 +93,7 @@ object ClassModsCollector {
               a.argss.map(_.map(_.syntax).mkString(",")).mkString("(",")(",")")
             ).getOrElse(""))
         )
+      case (acc,Mod.Transparent()) => acc.appendScalaClass(TaggedValue("isTransparent",None))
     }
   }
 }

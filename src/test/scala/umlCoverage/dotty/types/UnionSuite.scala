@@ -1,7 +1,4 @@
-package umlCoverage.dotty
-
-import java.io.{File, FileOutputStream}
-import java.nio.file.{Files, Path, Paths}
+package umlCoverage.dotty.types
 
 import net.sourceforge.plantuml.SourceStringReader
 import org.scalatest.freespec.AnyFreeSpec
@@ -11,12 +8,14 @@ import pretty.plantuml.UMLUnitPretty
 import scalameta.SourceCollector
 import scalameta.util.context.GlobalContext
 
-import scala.meta.{Source, dialects}
+import java.io.{File, FileOutputStream}
+import java.nio.file.{Files, Path, Paths}
 import scala.meta.inputs.Input
+import scala.meta.{Source, dialects}
 
-class TraitParametersSuite extends AnyFreeSpec with Matchers {
+class UnionSuite extends AnyFreeSpec with Matchers {
 
-  val path: Path = Paths.get("src","test","scala","assets","dotty","traitParams","traitParams.txt")
+  val path: Path = Paths.get("src","test","scala","assets","dotty","union","union.txt")
 
   "Dotty Reference to Intersectiontypes can be processed to a plantUML png" in {
     val bytes = Files.readAllBytes(path)
@@ -30,11 +29,11 @@ class TraitParametersSuite extends AnyFreeSpec with Matchers {
     implicit val umlUnit = UMLUnitPretty()(PlantUMLConfig())
 
     val reader = new SourceStringReader(umlCollector.umlUnit.pretty)
-    val filePath = new File("src/test/scala/assets/out/traitParams/")
+    val filePath = new File("src/test/scala/assets/out/union/")
 
     filePath.mkdirs()
 
-    val fos = new FileOutputStream(new File(filePath.getPath + "/traitParams.png"))
+    val fos = new FileOutputStream(new File(filePath.getPath + "/dottyUnion.png"))
     val sec = reader.generateImage(fos)
 
     sec must not be null

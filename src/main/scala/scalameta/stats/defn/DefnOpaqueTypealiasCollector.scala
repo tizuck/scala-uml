@@ -27,7 +27,7 @@ case class DefnOpaqueTypealiasCollector(override val definedElements: List[UMLEl
   extends BaseCollector
 
 object DefnOpaqueTypealiasCollector {
-  def apply(opType:Defn.OpaqueTypeAlias)(implicit context:CollectorContext):DefnOpaqueTypealiasCollector = {
+  /*def apply(opType:Defn.OpaqueTypeAlias)(implicit context:CollectorContext):DefnOpaqueTypealiasCollector = {
     val defnType = DefnTypeCollector(Defn.Type(opType.mods,opType.name,opType.tparams,opType.body))
     val typeFromCollector: List[uml.Class] = defnType.definedElements.flatMap{
       case c:uml.Class => Some(c)
@@ -48,5 +48,5 @@ object DefnOpaqueTypealiasCollector {
           )) ++ relationship,
         context
     )
-  }
+  }*/
 }
