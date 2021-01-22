@@ -76,7 +76,8 @@ object DclValCollector {
               context.localCon.thisPointer.get,
               ClassRef(name, namespace),
               Some(s"$s ${if (relationshipIdentifier.nonEmpty) s"<<bind $relationshipIdentifier >>" else ""}"),
-              FromTo),
+              FromTo,
+              originType = context.localCon.thisOriginType),
             Nil)
         }
 

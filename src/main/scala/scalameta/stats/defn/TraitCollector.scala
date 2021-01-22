@@ -43,8 +43,10 @@ object TraitCollector {
     val tempThisPointer = ClassRef(traitName,namespace = context.localCon.currentNamespace)
     //Collect thisPointer for inner associations
     val previousThisPointer = context.localCon.thisPointer
+    val previousOriginType = context.localCon.thisOriginType
+
     val inheritedElements = InitsCollector(defnTrait.templ.inits)(
-      context.withThisPointer(tempThisPointer)
+      context.withThisPointer(tempThisPointer).withThisOrigin(uml.externalReferences.Trait)
     )
     val previousToplevel = inheritedElements.resultingContext.localCon.isTopLevel
     val innerElements = StatsCollector(defnTrait.templ.stats)(inheritedElements.resultingContext.notToplevel)
@@ -77,6 +79,7 @@ object TraitCollector {
         .resultingContext
         .withOptionalThisPointer(previousThisPointer)
         .withToplevel(previousToplevel)
+        .withThisOrigin(previousOriginType)
     )
   }
 }

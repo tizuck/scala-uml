@@ -18,7 +18,7 @@ class TraitParametersSuite extends AnyFreeSpec with Matchers {
 
   val path: Path = Paths.get("src","test","scala","assets","dotty","traitParams","traitParams.txt")
 
-  "Dotty Reference to Intersectiontypes can be processed to a plantUML png" in {
+  "Scala 3 Reference to Intersectiontypes can be processed to a plantUML png" in {
     val bytes = Files.readAllBytes(path)
     val fileString  = new String(bytes,"UTF-8")
     val vFile = Input.VirtualFile(path.toString,fileString)

@@ -18,7 +18,7 @@ class ContextFunctionSuite extends AnyFreeSpec with Matchers {
 
   val path: Path = Paths.get("src","test","scala","assets","dotty","contextFuncs","contextFuncs.txt")
 
-  "Dotty Reference to Intersectiontypes can be processed to a plantUML png" in {
+  "Scala 3 Reference to Intersectiontypes can be processed to a plantUML png" in {
     val bytes = Files.readAllBytes(path)
     val fileString  = new String(bytes,"UTF-8")
     val vFile = Input.VirtualFile(path.toString,fileString)
@@ -29,7 +29,7 @@ class ContextFunctionSuite extends AnyFreeSpec with Matchers {
 
     val umlUnit = umlCollector.umlUnit
 
-    umlUnit.count{
+    umlUnit.exists{
       case c:uml.Class =>
        c.name.equals("Executable") &&
         c.genericParameters.isDefined &&
@@ -38,7 +38,7 @@ class ContextFunctionSuite extends AnyFreeSpec with Matchers {
         c.attributes.head.attributeType.isDefined &&
         c.attributes.head.attributeType.get.equals("ContextFunction1<ExecutionContext,T>")
       case _ => false
-    } must be(1)
+    } must be(true)
 
     umlUnit.count{
       case o:uml.Operation =>

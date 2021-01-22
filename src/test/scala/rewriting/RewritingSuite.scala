@@ -34,8 +34,8 @@ class RewritingSuite extends AnyFreeSpec with Matchers {
         |trait Foo()
         |""".stripMargin
 
-    val parsedProgram = dialects.Dotty(program).parse[Source].get
-    val parsedTempProgram = dialects.Dotty(tempProgram).parse[Source].get
+    val parsedProgram = dialects.Scala3(program).parse[Source].get
+    val parsedTempProgram = dialects.Scala3(tempProgram).parse[Source].get
 
     val collectedUml = SourcesCollector(List((parsedProgram,"fooAst.scala")),"foo-ast")
     val collectedTempUml = SourcesCollector(List((parsedTempProgram,"fooAst.scala")),"foo-ast")

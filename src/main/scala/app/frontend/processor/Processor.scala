@@ -1,14 +1,14 @@
 package app.frontend.processor
 
 import app.frontend._
+import uml.UMLUnit
 
 import java.io.{FileNotFoundException, IOException}
 
 trait Processor {
-
   @throws[IOException]()
   @throws[FileNotFoundException]()
-  def execute():Unit
+  def execute():UMLUnit
 }
 
 object Processor {

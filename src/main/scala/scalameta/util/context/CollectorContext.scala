@@ -64,6 +64,7 @@ case class CollectorContext(localCon:LocalContext, globalCon:GlobalContext){
     this.copy(
       localCon = localCon.copy(lastPackageNamespace = pkgNamespace)
     )
+  def withThisOrigin(classType:uml.externalReferences.ClassType) = this.copy(localCon.copy(thisOriginType = classType))
 
 }
 

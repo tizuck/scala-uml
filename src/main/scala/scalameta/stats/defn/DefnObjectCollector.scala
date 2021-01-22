@@ -37,13 +37,17 @@ object DefnObjectCollector {
 
     val tempThisPointer = ClassRef(objectName,namespace = context.localCon.currentNamespace)
     val previousThisPointer = context.localCon.thisPointer
+    val previousOrigin = context.localCon.thisOriginType
+
     val previousToplevel = context.localCon.isTopLevel
     val previousNamespace = context.localCon.currentNamespace
     val newNamespace = obtainFurtherNamespace(previousNamespace,defnObject.name.value)
 
     val inheritedElements = InitsCollector(defnObject.templ.inits)(context
       .withThisPointer(tempThisPointer)
-    .withNamespace(context.localCon.currentNamespace))
+      .withNamespace(context.localCon.currentNamespace)
+      .withThisOrigin(uml.externalReferences.Object)
+    )
 
     val innerElements = StatsCollector(defnObject.templ.stats)(
       inheritedElements
@@ -79,6 +83,7 @@ object DefnObjectCollector {
         .withOptionalThisPointer(previousThisPointer)
         .withToplevel(previousToplevel)
         .withNamespace(previousNamespace)
+        .withThisOrigin(previousOrigin)
     )
   }
 }

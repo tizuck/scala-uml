@@ -44,8 +44,10 @@ object DefnClassCollector {
 
     val tempThisPointer = ClassRef(className,namespace = context.localCon.currentNamespace)
     val previousThisPointer = context.localCon.thisPointer
+    val previousThisOrigin = context.localCon.thisOriginType
+
     val inheritedElements = InitsCollector(defnClass.templ.inits)(
-      context.withThisPointer(tempThisPointer)
+      context.withThisPointer(tempThisPointer).withThisOrigin(uml.externalReferences.CClass)
     )
     val previousToplevel = inheritedElements.resultingContext.localCon.isTopLevel
     val innerElements = StatsCollector(defnClass.templ.stats)(inheritedElements.resultingContext.notToplevel)
@@ -81,6 +83,7 @@ object DefnClassCollector {
         .resultingContext
         .withOptionalThisPointer(previousThisPointer)
         .withToplevel(previousToplevel)
+        .withThisOrigin(previousThisOrigin)
     )
   }
 

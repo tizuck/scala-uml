@@ -24,6 +24,7 @@ import scalameta.util.namespaces.{DefaultNamespace, Entry, NamespaceEntry}
 import org.bitbucket.inkytonik.kiama.rewriting.Rewriter
 import org.bitbucket.inkytonik.kiama.rewriting.Rewriter._
 import pretty.PrettyPrinter
+import uml.externalReferences.ClassType
 
 import scala.meta.Stat
 
@@ -655,7 +656,8 @@ sealed case class RelationshipInfo(sourceMultiplicity:Option[String],
                                    from: RelationshipElement,
                                    to: RelationshipElement,
                                    relationshipIdentifier:Option[String],
-                                   identifierDirection:RelationshipDirection) extends UMLElement {
+                                   identifierDirection:RelationshipDirection,
+                                   originType:ClassType=externalReferences.Trait) extends UMLElement {
 
   override type T = RelationshipInfo
   def structure : String =

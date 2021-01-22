@@ -35,8 +35,12 @@ object DefnEnumCollector {
 
     val tempThisPointer = ClassRef(enumName.value,namespace = context.localCon.currentNamespace)
     val previousThisPointer = context.localCon.thisPointer
+    val previousThisOrigin = context.localCon.thisOriginType
+
     val previousToplevel = context.localCon.isTopLevel
-    val innerElements = StatsCollector(defnEnum.templ.stats)(context.withThisPointer(tempThisPointer).notToplevel)
+    val innerElements = StatsCollector(defnEnum.templ.stats)(
+      context.withThisPointer(tempThisPointer).notToplevel.withThisOrigin(uml.externalReferences.Enum)
+    )
     val innerOperations = innerElements.operations
     val innerAttributes = innerElements.attributes
     val primaryConstructor = PrimaryConstructorCollector(defnEnum.ctor)(
@@ -62,6 +66,7 @@ object DefnEnumCollector {
         .resultingContext
         .withOptionalThisPointer(previousThisPointer)
         .withToplevel(previousToplevel)
+        .withThisOrigin(previousThisOrigin)
     )
   }
 }

@@ -72,7 +72,9 @@ object InitCollector {
         ClassRef(extendedType.target,extendedType.namespace),
         context.localCon.thisPointer.get,
         if(relationshipIdentifier.nonEmpty) Some(s"<<bind $relationshipIdentifier >>") else None,
-        Without),
+        Without,
+        originType = context.localCon.thisOriginType
+      ),
       if(mappedInitArgs.nonEmpty)List(Stereotype("ctorBind",List(TaggedValue("vals",mappedInitArgs)))) else Nil
     )
 

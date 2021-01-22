@@ -8,7 +8,7 @@ import pretty.config.PlantUMLConfig
 import pretty.plantuml.UMLUnitPretty
 import pureconfig.ConfigSource
 import scalameta.toplevel.SourcesCollector
-import uml.UMLUnit
+import uml.{UMLUnit, umlMethods}
 import uml.umlMethods.toPackageRep
 import pureconfig._
 import pureconfig.generic.auto._
@@ -25,7 +25,7 @@ case class GithubUMLDiagramProcessor(
                                       name:String="default")
   extends Processor {
 
-  override def execute(): Unit = {
+  override def execute(): UMLUnit = {
     val logger = LoggerFactory.getLogger("execution")
 
     val githubRepoLoaded = ConfigSource.file(githubConfigPath).load[PublicGithub]
@@ -72,16 +72,17 @@ case class GithubUMLDiagramProcessor(
         outputPath
       }
 
-      implicit val prettyPrinter: UMLUnitPretty = UMLUnitPretty()(PlantUMLConfig())
+    implicit val prettyPrinter: UMLUnitPretty = UMLUnitPretty()(PlantUMLConfig())
 
-      val packageRep = try {
-        toPackageRep(umlProcess.umlUnit).value.asInstanceOf[UMLUnit]
-      } catch {
-        case e:Exception => throw e
-      }
-      println(packageRep.pretty)
-      val reader = new SourceStringReader(packageRep.pretty)
-      val filePath = new File(path)
+    val rewritten = try {
+      val pRep = toPackageRep(umlProcess.umlUnit).value.asInstanceOf[UMLUnit]
+      umlMethods.insertCompanionObjects(pRep).value
+    } catch {
+      case e: Exception => throw e
+    }
+
+    val reader = new SourceStringReader(rewritten.pretty)
+    val filePath = new File(path)
 
     if(!isTextual) {
       val fos = try {
@@ -102,20 +103,24 @@ case class GithubUMLDiagramProcessor(
       try {
         reader.generateImage(fos, new FileFormatOption(FileFormat.SVG))
         logger.info(s"Successfully exported image to location: ${filePath.getPath + name + ".svg"}")
+        rewritten
       } catch {
         case i: IOException =>
           logger.error(s"Unable to export image: ${filePath.getPath + name + ".svg"}." +
             s" Try --verbose to get debug information.")
           logger.debug(s"${i.getStackTrace.mkString("Array(", ", ", ")")}")
+          rewritten
       }
     }  else {
       try {
-        Files.write(Paths.get(path + name + ".txt"), packageRep.pretty.getBytes(StandardCharsets.UTF_8))
+        Files.write(Paths.get(path + name + ".txt"), rewritten.pretty.getBytes(StandardCharsets.UTF_8))
+        rewritten
       } catch {
         case i:IOException =>
           logger.error(s"Unable to export image: ${path + name + ".txt"}." +
             s" Try --verbose to get debug information.")
           logger.debug(s"${i.getStackTrace.mkString("Array(", ", ", ")")}")
+          rewritten
 
       }
     }

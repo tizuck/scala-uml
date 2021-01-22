@@ -17,11 +17,10 @@
 package scalameta.util.context
 
 import java.io.IOException
-
 import pureconfig.ConfigSource
 import scalameta.util.namespaces.{DefaultNamespace, Entry, NamespaceEntry}
 import uml.RelationshipElement
-import uml.externalReferences.ClassDefRef
+import uml.externalReferences.{ClassDefRef, Trait}
 import pureconfig._
 import pureconfig.generic.auto._
 
@@ -36,7 +35,8 @@ case class LocalContext(thisPointer: Option[RelationshipElement] = None,
                         isTopLevel:Boolean = true,
                         externalReferences:List[ClassDefRef] = Nil,
                         opReps:Ops,
-                        lastPackageNamespace:Entry = DefaultNamespace)
+                        lastPackageNamespace:Entry = DefaultNamespace,
+                        thisOriginType:uml.externalReferences.ClassType = Trait)
 
 object LocalContext {
   def apply(compilationUnit:String): LocalContext = {

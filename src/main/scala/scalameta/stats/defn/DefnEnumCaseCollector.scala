@@ -35,9 +35,10 @@ object DefnEnumCaseCollector {
 
     val tempThisPointer = ClassRef(caseName,namespace = context.localCon.currentNamespace)
     val previousThisPointer = context.localCon.thisPointer
+    val previousThisOrigin = context.localCon.thisOriginType
 
     val inheritedElements = InitsCollector(defnEnumCase.inits)(
-      context.withThisPointer(tempThisPointer)
+      context.withThisPointer(tempThisPointer).withThisOrigin(uml.externalReferences.Enum)
     )
     val primaryConstructor = PrimaryConstructorCollector(defnEnumCase.ctor)(
       inheritedElements.resultingContext.withCstrOrigin(caseName)
@@ -56,7 +57,9 @@ object DefnEnumCaseCollector {
 
     new DefnEnumCaseCollector(
       cls :: inheritedElements.definedElements,
-      inheritedElements.resultingContext.withOptionalThisPointer(previousThisPointer)
+      inheritedElements.resultingContext
+        .withOptionalThisPointer(previousThisPointer)
+        .withThisOrigin(previousThisOrigin)
     )
   }
 }

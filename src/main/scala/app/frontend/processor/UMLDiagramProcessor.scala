@@ -8,7 +8,7 @@ import org.slf4j.{Logger, LoggerFactory}
 import pretty.config.PlantUMLConfig
 import pretty.plantuml.UMLUnitPretty
 import scalameta.toplevel.SourcesCollector
-import uml.UMLUnit
+import uml.{UMLUnit, umlMethods}
 import uml.umlMethods.toPackageRep
 
 import java.io.{File, FileNotFoundException, FileOutputStream, IOException}
@@ -25,7 +25,7 @@ sealed case class UMLDiagramProcessor(
                                        name:String="default")
   extends Processor {
 
-  override def execute(): Unit = {
+  override def execute(): UMLUnit = {
 
     val logger = LoggerFactory.getLogger("execution")
 
@@ -67,7 +67,7 @@ sealed case class UMLDiagramProcessor(
         throw new UMLConversionException(s"Unknown error when processing. try --verbose to get debug information.",e)
     }
 
-      for {
+     val res = for {
         umlCol <- umlProcess
       } yield {
         val path = if (outputPath.isEmpty) {
@@ -82,14 +82,15 @@ sealed case class UMLDiagramProcessor(
 
         implicit val prettyPrinter = UMLUnitPretty()(PlantUMLConfig())
 
-        val packageRep = try {
-          toPackageRep(umlCol.umlUnit).value.asInstanceOf[UMLUnit]
+        val rewritten = try {
+          val pRep = toPackageRep(umlCol.umlUnit).value.asInstanceOf[UMLUnit]
+          umlMethods.insertCompanionObjects(pRep).value
         } catch {
           case e: Exception => throw e
         }
 
         if (!isTextual) {
-          val reader = new SourceStringReader(packageRep.pretty)
+          val reader = new SourceStringReader(rewritten.pretty)
           val filePath = new File(path)
 
           val fos = try {
@@ -103,27 +104,31 @@ sealed case class UMLDiagramProcessor(
           try {
             reader.generateImage(fos, new FileFormatOption(FileFormat.SVG))
             logger.info(s"Successfully exported image to location: ${filePath.getPath + name + ".svg"}")
+            rewritten
           } catch {
             case i: IOException =>
               logger.error(s"Unable to export image: ${filePath.getPath + name + ".svg"}." +
                 s" Try --verbose to get debug information.")
               logger.debug(s"${i.getStackTrace.mkString("Array(", ", ", ")")}")
+              rewritten
           }
         } else {
           try {
             println(path)
-            Files.write(Paths.get(path + (if(path.last.equals('/')){""}else{"/"}) + name + ".txt"), packageRep.pretty.getBytes(StandardCharsets.UTF_8))
+            Files.write(Paths.get(path + (if(path.last.equals('/')){""}else{"/"}) + name + ".txt"), rewritten.pretty.getBytes(StandardCharsets.UTF_8))
             logger.info(s"Successfully exported text file to: ${path + "/" + name + ".txt"}")
+            rewritten
           } catch {
             case i:IOException =>
               logger.error(s"Unable to export image: ${path + "/" + name + ".txt"}." +
                 s" Try --verbose to get debug information.")
               logger.debug(s"${i.getStackTrace.mkString("Array(", ", ", ")")}")
+              rewritten
 
           }
         }
       }
-
+    res.get
   }
 
   private def parseTry(s: String):Option[Source] = {
