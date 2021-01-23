@@ -1,4 +1,4 @@
-package processors.umlprocessor
+package integration.umlprocessor
 
 import app.frontend.{Command, Github, Help, InputPath, Name, OutputPath, Textual}
 import app.frontend.exceptions.{BadInputPathException, BadOutputPathException}

@@ -53,13 +53,11 @@ class CollectingSuite extends AnyFreeSpec with Matchers {
     }
     "by deleting all inner relationships of inner objects deletes all inner relationships" in new TestData(fooAst,"foo.scala") {
       val collectedNamespaceObjects = umlUnit.rewrite(Id[List[uml.Class]])(Nil)(CollectNamespaceObjectsStrat).value._1
-      println(collectedNamespaceObjects)
       val res = umlUnit.rewrite(DeleteInnerAssocStrat)(collectedNamespaceObjects)((v1: UMLElement, v2: List[uml.Class]) => v2)
       //Test: All elements except the
     }
     "by inserting new relationships " in new TestData(fooAst,"foo.scala") {
       implicit val plant = UMLUnitPretty()(PlantUMLConfig())
-      println(umlUnit.pretty)
       val collectedNamespaceObjects = umlUnit
         .rewrite(Id[List[uml.Class]])(Nil)(CollectNamespaceObjectsStrat).value._1
 

@@ -178,7 +178,7 @@ class PackageRepresentationSuite extends AnyFreeSpec with Matchers {
         umlElem => (umlElem,umlElem.rewrite((_:T) => id)(start)(collectStrategy).value._1)
       )
 
-      println(umlUnit.pretty)
+
        val transferToPackageRep: State[UMLElement,List[uml.Class]] =
         for {
           start <- startState(List.empty[uml.Class])
@@ -196,7 +196,7 @@ class PackageRepresentationSuite extends AnyFreeSpec with Matchers {
         }
 
       val rewrittenUmlUnit = transferToPackageRep.run(umlUnit).value._1.asInstanceOf[UMLUnit]
-      println(rewrittenUmlUnit.pretty)
+      //println(rewrittenUmlUnit.pretty)
 
       //There must be an inner definition on toplevel from foo.model to foo::model
       rewrittenUmlUnit.count{

@@ -35,8 +35,6 @@ case class DclValCollector(override val definedElements : List[UMLElement],
 object DclValCollector {
   def apply(dclVal:Decl.Val)(implicit context:CollectorContext): DclValCollector = {
     val assocInfo = AssociationInformation(dclVal.pats, dclVal.decltpe)
-    println("Type: " + dclVal.decltpe.structure)
-    println(dclVal.decltpe.equals(Type.Name("#notype#")))
     dclVal.decltpe match {
       case Type.Name("#notype#") =>
         val attributes = assocInfo.pSources.foldLeft(List.empty[Attribute]) {

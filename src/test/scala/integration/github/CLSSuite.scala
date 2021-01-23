@@ -1,4 +1,4 @@
-package processors.github
+package integration.github
 
 import app.frontend.processor.Processor
 import app.frontend.{Github, Name, OutputPath, Textual}

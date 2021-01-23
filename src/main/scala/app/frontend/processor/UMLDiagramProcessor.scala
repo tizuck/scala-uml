@@ -114,7 +114,6 @@ sealed case class UMLDiagramProcessor(
           }
         } else {
           try {
-            println(path)
             Files.write(Paths.get(path + (if(path.last.equals('/')){""}else{"/"}) + name + ".txt"), rewritten.pretty.getBytes(StandardCharsets.UTF_8))
             logger.info(s"Successfully exported text file to: ${path + "/" + name + ".txt"}")
             rewritten

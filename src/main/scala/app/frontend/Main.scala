@@ -9,9 +9,7 @@ import scala.util.Failure
 object Main extends App {
   try {
     val loader = Loader(args)
-    println(loader.commands)
     val proc = Processor(loader.commands)
-    println(proc.toString)
     proc.execute()
   } catch {
      case i:InvalidParameterException =>

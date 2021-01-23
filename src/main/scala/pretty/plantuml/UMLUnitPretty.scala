@@ -9,7 +9,6 @@ case class UMLUnitPretty()(override implicit val config: PrettyConfig)
   extends PlantUMLPrettyPrinter[UMLUnit] {
 
   override def toDoc(umlElement: UMLUnit): Doc = {
-    println(umlElement.toplevelElements.map(_.structure))
     "@startuml" <+>
       umlElement.name <@>
       vsep(umlElement.toplevelElements.map(TopLevelPretty().toDoc)) <@>

@@ -71,7 +71,7 @@ object DefnClassCollector {
     )
 
     val innerRelationship = if(previousThisPointer.isDefined){
-      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,previousThisPointer.get,ConcreteClass(cls),None,Without),Nil))
+      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,previousThisPointer.get,ClassRef(className,context.localCon.currentNamespace),None,Without),Nil))
     } else {None}
 
     new DefnClassCollector(

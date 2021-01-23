@@ -4,9 +4,12 @@ import cats.Eval
 import cats.data.State
 import scalameta.util.namespaces.Entry
 import uml.UMLElement
+import uml.externalReferences.ClassDefRef
 import uml.strategies.collecting.CollectStrategy
+import uml.strategies.collecting.assoc.{CollectAllAssociationsBasedOn, CollectAllClassDefRefs}
 import uml.strategies.collecting.packagerep.{CollectAllClassesStrat, CollectAllNamespacesStrat, CollectNamespaceObjectsStrat}
-import uml.strategies.rewriting.RewriteStrategy
+import uml.strategies.rewriting.assoc.TransformAssociations
+import uml.strategies.rewriting.{DistinctionStrat, RewriteStrategy}
 import uml.strategies.rewriting.packagerep.{DeleteAllClassesOnToplevel, DeleteEmptyPackages, DeleteInnerAssocStrat, InsertClassesInPackageStrat, InsertInnerNamespaceRelsStrat, InsertPackagesFromNamespacesStrat}
 import uml.strategies.rewriting.companion.{InsertCompanionDependency, RenameAllAffectedRelationships, RenameCompanionObject}
 object umlMethods {
@@ -24,6 +27,22 @@ object umlMethods {
   private def nextCollectState[T](start:T)(collectStrategy: CollectStrategy[T]):State[UMLElement,T] = State(
     umlElem => (umlElem,umlElem.rewrite((_:T) => id)(start)(collectStrategy).value._1)
   )
+
+  private val distinctRep : State[UMLElement,Unit] =
+    for {
+      res <- nextRewriteState(())(DistinctionStrat)
+    } yield {
+      res
+    }
+
+  private val toExternalAssociationsRep : State[UMLElement,List[Relationship]] =
+    for {
+      allClassDefRefs <- nextCollectState(List.empty[ClassDefRef])(CollectAllClassDefRefs)
+      allAffectedAssocs <- nextCollectState(List.empty[Relationship])(CollectAllAssociationsBasedOn(allClassDefRefs))
+      res <- nextRewriteState(allAffectedAssocs)(TransformAssociations)
+    } yield {
+      res
+    }
 
   private val transferToPackageRep: State[UMLElement,List[uml.Class]] =
     for {
@@ -71,4 +90,10 @@ object umlMethods {
 
   def insertCompanionObjects(umlUnit:UMLUnit) : Eval[UMLUnit] =
     addCompanionObjects.runS(umlUnit).asInstanceOf[Eval[UMLUnit]]
+
+  def toDistinctRep(umlElement: UMLElement) : Eval[UMLElement] =
+    distinctRep.runS(umlElement)
+
+  def toAssocRep(umlElement: UMLElement) : Eval[UMLElement] =
+    toExternalAssociationsRep.runS(umlElement)
 }

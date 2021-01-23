@@ -9,9 +9,10 @@ import pretty.plantuml.UMLUnitPretty
 import pureconfig.ConfigSource
 import scalameta.toplevel.SourcesCollector
 import uml.{UMLUnit, umlMethods}
-import uml.umlMethods.toPackageRep
+import uml.umlMethods.{toDistinctRep, toPackageRep}
 import pureconfig._
 import pureconfig.generic.auto._
+import uml.externalReferences.ClassDefRef
 
 import java.io.{File, FileNotFoundException, FileOutputStream, IOException}
 import java.nio.charset.StandardCharsets
@@ -73,24 +74,26 @@ case class GithubUMLDiagramProcessor(
       }
 
     implicit val prettyPrinter: UMLUnitPretty = UMLUnitPretty()(PlantUMLConfig())
-
     val rewritten = try {
-      val pRep = toPackageRep(umlProcess.umlUnit).value.asInstanceOf[UMLUnit]
+      val dRep = toDistinctRep(umlProcess.umlUnit).value
+      val pRep = toPackageRep(dRep).value.asInstanceOf[UMLUnit]
       umlMethods.insertCompanionObjects(pRep).value
     } catch {
       case e: Exception => throw e
     }
+
+    println(rewritten.collect{
+      case c:ClassDefRef => c
+    }.map(_.structure).mkString("\n"))
 
     val reader = new SourceStringReader(rewritten.pretty)
     val filePath = new File(path)
 
     if(!isTextual) {
       val fos = try {
-        println(filePath.isFile)
         if (filePath.isDirectory) {
           new FileOutputStream(new File(filePath.getPath + "/" + name + ".svg"))
         } else {
-          println("Here")
           new FileOutputStream(new File(filePath.getPath + name + ".svg"))
         }
       } catch {

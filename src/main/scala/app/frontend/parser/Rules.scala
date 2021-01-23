@@ -47,7 +47,6 @@ class Rules(positions:Positions) extends ListParsers(positions) {
 
 
   lazy val help : InputState => Parser[Help] = ins => {
-    println("HereinHelp")
       helpPre ~> helpCommand.? ^^ {
         optHC =>
           if(!ins.commands.exists{case _:Help => true case _ => false}) {

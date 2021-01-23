@@ -56,7 +56,6 @@ object TraitCollector {
     val primaryConstructor = PrimaryConstructorCollector(defnTrait.ctor)(
       context.withCstrOrigin(traitName)
     )
-    println(mods.mods)
     val cls = Class(
       true,
       traitName,
@@ -70,7 +69,7 @@ object TraitCollector {
     )
 
     val innerRelationship = previousThisPointer.flatMap( r =>
-      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,r,ConcreteClass(cls),None,Without),Nil))
+      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,r,ClassRef(traitName,context.localCon.currentNamespace),None,Without),Nil))
     )
 
     new TraitCollector(
