@@ -6,9 +6,9 @@ import scalameta.util.namespaces.Entry
 import uml.UMLElement
 import uml.externalReferences.ClassDefRef
 import uml.strategies.collecting.CollectStrategy
-import uml.strategies.collecting.assoc.{CollectAllAssociationsBasedOn, CollectAllClassDefRefs}
+import uml.strategies.collecting.assoc.{CollectAllAssociationsBasedOn, CollectAllClassDefRefs, CollectClassRelationshipHits}
 import uml.strategies.collecting.packagerep.{CollectAllClassesStrat, CollectAllNamespacesStrat, CollectNamespaceObjectsStrat}
-import uml.strategies.rewriting.assoc.TransformAssociations
+import uml.strategies.rewriting.assoc.{DeleteAssocs, DeleteUnTargetedExternalClasses, TransformAssociations}
 import uml.strategies.rewriting.{DistinctionStrat, RewriteStrategy}
 import uml.strategies.rewriting.packagerep.{DeleteAllClassesOnToplevel, DeleteEmptyPackages, DeleteInnerAssocStrat, InsertClassesInPackageStrat, InsertInnerNamespaceRelsStrat, InsertPackagesFromNamespacesStrat}
 import uml.strategies.rewriting.companion.{InsertCompanionDependency, RenameAllAffectedRelationships, RenameCompanionObject}
@@ -35,11 +35,20 @@ object umlMethods {
       res
     }
 
-  private val toExternalAssociationsRep : State[UMLElement,List[Relationship]] =
+  private val toExternalAssociationsRep : State[UMLElement,(List[RelationshipElement],List[RelationshipElement])] =
     for {
       allClassDefRefs <- nextCollectState(List.empty[ClassDefRef])(CollectAllClassDefRefs)
       allAffectedAssocs <- nextCollectState(List.empty[Relationship])(CollectAllAssociationsBasedOn(allClassDefRefs))
-      res <- nextRewriteState(allAffectedAssocs)(TransformAssociations)
+      _ <- nextRewriteState(allAffectedAssocs)(TransformAssociations)
+      _ <- nextRewriteState(allAffectedAssocs)(DeleteAssocs)
+      possiblyToEliminate = allAffectedAssocs.map(r =>
+        r.relationshipDirection match {
+          case FromTo => r.relationshipInfo.to
+          case ToFrom => r.relationshipInfo.from
+        }
+      ).distinct
+      relHitMap <- nextCollectState(List.empty[RelationshipElement])(CollectClassRelationshipHits)
+      res <- nextRewriteState((possiblyToEliminate,relHitMap))(DeleteUnTargetedExternalClasses)
     } yield {
       res
     }

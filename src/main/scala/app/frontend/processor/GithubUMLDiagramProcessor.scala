@@ -9,7 +9,7 @@ import pretty.plantuml.UMLUnitPretty
 import pureconfig.ConfigSource
 import scalameta.toplevel.SourcesCollector
 import uml.{UMLUnit, umlMethods}
-import uml.umlMethods.{toDistinctRep, toPackageRep}
+import uml.umlMethods.{toAssocRep, toDistinctRep, toPackageRep}
 import pureconfig._
 import pureconfig.generic.auto._
 import uml.externalReferences.ClassDefRef
@@ -77,14 +77,11 @@ case class GithubUMLDiagramProcessor(
     val rewritten = try {
       val dRep = toDistinctRep(umlProcess.umlUnit).value
       val pRep = toPackageRep(dRep).value.asInstanceOf[UMLUnit]
-      umlMethods.insertCompanionObjects(pRep).value
+      val cRep = umlMethods.insertCompanionObjects(pRep).value
+      toAssocRep(cRep).value.asInstanceOf[UMLUnit]
     } catch {
       case e: Exception => throw e
     }
-
-    println(rewritten.collect{
-      case c:ClassDefRef => c
-    }.map(_.structure).mkString("\n"))
 
     val reader = new SourceStringReader(rewritten.pretty)
     val filePath = new File(path)
