@@ -1,8 +1,10 @@
 package app.frontend.parser
 
-import app.frontend.{Command, Github, GithubType, Help, HelpType, InputPath, Name, OutputPath, Textual, Verbose, VerboseType}
+import app.frontend.{Command, Exclude, Github, GithubType, Help, HelpType, InputPath, Name, OutputPath, Textual, Verbose, VerboseType}
 import org.bitbucket.inkytonik.kiama.parsing.ListParsers
 import org.bitbucket.inkytonik.kiama.util.Positions
+
+import scala.util.matching.Regex
 
 case class InputState(commands:List[Command])
 
@@ -19,6 +21,7 @@ class Rules(positions:Positions) extends ListParsers(positions) {
       | directory(ins)
       | filesPath(ins)
       | textualPre ^^ {_ => Textual()}
+      | exclude(ins)
       )) ^^ { c =>
       if(ins.commands.exists(cOther => cOther.getClass.equals(c.getClass))){
         throw new IllegalArgumentException(
@@ -59,6 +62,10 @@ class Rules(positions:Positions) extends ListParsers(positions) {
     }
   }
 
+  lazy val exclude : InputState => Parser[Exclude] = _ => {
+    excludePre ~> """([^\s]*)""".r ^^ {r => Exclude(r.replaceAll("""\*""","([^\\s]*)").r)}
+  }
+
   lazy val github : InputState => Parser[Github] = _ =>
     githubPre ~> confPathGithub ^^ { p => Github(p)}
 
@@ -86,5 +93,6 @@ class Rules(positions:Positions) extends ListParsers(positions) {
   lazy val filespathPre : Parser[String] = "filespath"|"fp"
   lazy val namePre : Parser[String] = "name"|"n"
   lazy val textualPre: Parser[String] = "textual"|"t"
+  lazy val excludePre: Parser[String] = "exclude"|"e"
 
 }

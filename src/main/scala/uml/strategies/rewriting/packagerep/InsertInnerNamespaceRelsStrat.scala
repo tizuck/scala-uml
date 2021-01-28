@@ -26,7 +26,8 @@ object InsertInnerNamespaceRelsStrat extends RewriteStrategy[List[uml.Class]] {
                     ),
                     PackageRef(namespace.asInstanceOf[NamespaceEntry]),
                     None,
-                    Without
+                    Without,
+                    originType = uml.externalReferences.Object
                   ),
                   List(Stereotype("objectdef",Nil))
                 ))

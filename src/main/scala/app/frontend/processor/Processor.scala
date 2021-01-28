@@ -40,11 +40,15 @@ object Processor {
           u.isTextual,
           u.name)
 
-      case (g:GithubUMLDiagramProcessor,Github(path))       => g
+      case (g:GithubUMLDiagramProcessor,Github(_))       => g
 
       case (EmptyProcessor,Textual())                       => UMLDiagramProcessor("","",false,true)
       case (u:UMLDiagramProcessor,Textual())                => u.copy(isTextual = true)
       case (g:GithubUMLDiagramProcessor,Textual())          => g.copy(isTextual = true)
+
+      case (EmptyProcessor,Exclude(regex))                  => UMLDiagramProcessor("","",false,false,exclude = Some(regex))
+      case (u:UMLDiagramProcessor,Exclude(regex))           => u.copy(exclude = Some(regex))
+      case (g:GithubUMLDiagramProcessor,Exclude(regex))     => g.copy(exclude = Some(regex))
     }
   }
 }

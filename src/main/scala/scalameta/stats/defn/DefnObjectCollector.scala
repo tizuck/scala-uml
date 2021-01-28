@@ -23,7 +23,7 @@ import scalameta.stats.util.defs.obtainFurtherNamespace
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
 import scalameta.util.namespaces.DefaultNamespace
-import uml.{Attribute, Class, ClassRef, Compartment, ConcreteClass, Inner, Operation, Relationship, RelationshipInfo, Stereotype, ToFrom, UMLElement, Without}
+import uml.{Attribute, Class, ClassRef, Compartment, ConcreteClass, Inner, Operation, PackageRef, Relationship, RelationshipInfo, Stereotype, ToFrom, UMLElement, Without}
 
 import scala.meta.Defn
 
@@ -73,7 +73,20 @@ object DefnObjectCollector {
     )
 
     val innerRelationship = if(previousThisPointer.isDefined){
-      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,previousThisPointer.get,ClassRef(objectName,previousNamespace),None,Without),Nil))
+      Some(Relationship(
+        Inner,
+        ToFrom,
+        RelationshipInfo(
+          None,
+          None,
+          previousThisPointer.get,
+          ClassRef(objectName,previousNamespace),
+          None,
+          Without,
+          originType = previousOrigin
+        ),
+        Nil)
+      )
     } else {None}
 
     new DefnObjectCollector(

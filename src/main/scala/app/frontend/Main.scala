@@ -22,7 +22,7 @@ object Main extends App {
 
   def logException(e:Exception):Unit = {
     val log = LoggerFactory.getLogger("execution")
-    log.error(e.getMessage)
+    log.error(e.getMessage + e.getStackTrace.mkString("Array(", ", ", ")"))
     log.debug(s"${e.getMessage} and cause: ${e.getCause.getStackTrace.mkString("Array(", ", ", ")")}" +
       s" and \n stacktrace: ${e.getStackTrace.mkString("Array(", ", ", ")")}")
   }

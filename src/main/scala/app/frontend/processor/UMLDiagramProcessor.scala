@@ -16,13 +16,15 @@ import java.nio.charset.StandardCharsets
 import java.nio.file.{Files, Paths}
 import scala.meta.parsers.Parsed
 import scala.meta.{Source, dialects}
+import scala.util.matching.Regex
 
 sealed case class UMLDiagramProcessor(
                                        outputPath: String,
                                        filesPath: String,
                                        isVerbose: Boolean,
                                        isTextual : Boolean,
-                                       name:String="default")
+                                       name:String="default",
+                                       exclude:Option[Regex]=None)
   extends Processor {
 
   override def execute(): UMLUnit = {

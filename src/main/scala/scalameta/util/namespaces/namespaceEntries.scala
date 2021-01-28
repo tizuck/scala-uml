@@ -18,7 +18,7 @@ package scalameta.util.namespaces
 
 sealed trait Entry {
   self =>
-  final def plantUML:String = self match {
+  override def toString:String = self match {
     case DefaultNamespace => ""
     case NamespaceEmpty => ""
     case NamespaceEntry(qualifiers, targetType) =>qualifiers.mkString("::") + "."
@@ -73,8 +73,6 @@ sealed case class NamespaceEntry(qualifiers: List[String],targetType:TargetType 
 
   def prepend(qualifier: String): NamespaceEntry =
     NamespaceEntry(qualifier :: qualifiers)
-
-  override def toString: String = s"{${qualifiers.mkString("::")},target=$targetType}"
 
   override def upperNamespace: Entry = {
     if(qualifiers.size > 1){

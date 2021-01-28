@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package scalameta.operations
+package scalameta.cstr
 
 import scalameta.operations.parameters.ParamssCollector
 import scalameta.util.context.CollectorContext

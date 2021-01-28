@@ -9,9 +9,11 @@ import uml.strategies.collecting.CollectStrategy
 import uml.strategies.collecting.assoc.{CollectAllAssociationsBasedOn, CollectAllClassDefRefs, CollectClassRelationshipHits}
 import uml.strategies.collecting.packagerep.{CollectAllClassesStrat, CollectAllNamespacesStrat, CollectNamespaceObjectsStrat}
 import uml.strategies.rewriting.assoc.{DeleteAssocs, DeleteUnTargetedExternalClasses, TransformAssociations}
-import uml.strategies.rewriting.{DistinctionStrat, RewriteStrategy}
+import uml.strategies.rewriting.{DistinctionStrat, ExcludeStrategy, RewriteStrategy}
 import uml.strategies.rewriting.packagerep.{DeleteAllClassesOnToplevel, DeleteEmptyPackages, DeleteInnerAssocStrat, InsertClassesInPackageStrat, InsertInnerNamespaceRelsStrat, InsertPackagesFromNamespacesStrat}
 import uml.strategies.rewriting.companion.{InsertCompanionDependency, RenameAllAffectedRelationships, RenameCompanionObject}
+
+import scala.util.matching.Regex
 object umlMethods {
 
   private def startState[T](start:T):State[UMLElement,T] = State(
@@ -92,6 +94,15 @@ object umlMethods {
         )
         )
     }
+  }
+
+  def exclude(umlElement: UMLElement,regex:Regex): Eval[UMLElement] = {
+    val excl = for {
+      res <- nextRewriteState(regex)(ExcludeStrategy)
+    } yield {
+      res
+    }
+    excl.runS(umlElement)
   }
 
   def toPackageRep(umlElement: UMLElement): Eval[UMLElement] =

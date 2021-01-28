@@ -47,7 +47,7 @@ object DefnTypeCollector {
 
     //If the type is defined within another entity
     if(context.localCon.thisPointer.isDefined){
-      val relationshipInfo = RelationshipInfo(None,None,context.localCon.thisPointer.get,ConcreteClass(typeClass),None,Without)
+      val relationshipInfo = RelationshipInfo(None,None,context.localCon.thisPointer.get,ConcreteClass(typeClass),None,Without,originType = context.localCon.thisOriginType)
       val relationship = Relationship(Inner,ToFrom,relationshipInfo,Nil)
       new DefnTypeCollector(relationship :: typeClass :: Nil,context)
     }//if type is defined on toplevel

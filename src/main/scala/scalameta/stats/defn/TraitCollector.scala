@@ -16,8 +16,8 @@
 
 package scalameta.stats.defn
 
+import scalameta.cstr.PrimaryConstructorCollector
 import scalameta.mods.ClassModsCollector
-import scalameta.operations.PrimaryConstructorCollector
 import scalameta.stats.StatsCollector
 import scalameta.stats.init.InitsCollector
 import scalameta.typeparams.TypeParamsCollector
@@ -69,7 +69,15 @@ object TraitCollector {
     )
 
     val innerRelationship = previousThisPointer.flatMap( r =>
-      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,r,ClassRef(traitName,context.localCon.currentNamespace),None,Without),Nil))
+      Some(Relationship(
+        Inner,
+        ToFrom,
+        RelationshipInfo(None,None,r,ClassRef(traitName,context.localCon.currentNamespace),
+          None,
+          Without,
+          originType = previousOriginType),
+        Nil)
+      )
     )
 
     new TraitCollector(

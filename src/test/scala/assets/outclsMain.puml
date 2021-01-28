@@ -1,0 +1,237 @@
+@startuml need_to_find_id
+package org::combinators::cls::types{
+    class org::combinators::cls::types.Variable << caseclass >>{
+        isOmega : Boolean 
+        isClosed : Boolean 
+        size : Int 
+        << ctor >>Variable (name : String) 
+        toStringPrec (prec : Int) : String 
+    
+    }
+    class org::combinators::cls::types.Arrow << caseclass >>{
+        isOmega : Boolean 
+        isClosed : Boolean 
+        size : Int 
+        << ctor >>Arrow (source : Type,  target : Type) 
+        toStringPrec (prec : Int) : String 
+    
+    }
+    class org::combinators::cls::types.Omega << caseobject >>{
+        toStringPrec (prec : Int) : String 
+    
+    }
+    class org::combinators::cls::types.Intersection << caseclass >>{
+        isOmega : Boolean 
+        isClosed : Boolean 
+        size : Int 
+        << ctor >>Intersection (sigma : Type,  tau : Type) 
+        toStringPrec (prec : Int) : String 
+    
+    }
+    class org::combinators::cls::types.Product << caseclass >>{
+        isOmega : Boolean 
+        isClosed : Boolean 
+        size : Int 
+        << ctor >>Product (sigma : Type,  tau : Type) 
+        toStringPrec (prec : Int) : String 
+    
+    }
+    class org::combinators::cls::types.$Constructor << object >>{
+        apply (name : String,  argument : Type,  arguments : VarArgs<Type>) : Constructor 
+    
+    }
+    class org::combinators::cls::types.Constructor << caseclass >>{
+        isOmega : Boolean 
+        isClosed : Boolean 
+        size : Int 
+        << ctor >>Constructor (name : String,  argument : Type) 
+        this (name : String,  argument : Type,  arguments : VarArgs<Type>) 
+        toStringPrec (prec : Int) : String 
+    
+    }
+    class org::combinators::cls::types.$Type << object >>{
+        intersect (types : Seq<Type>) : Type 
+    
+    }
+    abstract class org::combinators::cls::types.Type << trait >>{
+        isOmega : Boolean 
+        isClosed : Boolean 
+        size : Int 
+        parens (s : String) 
+        toStringPrec (prec : Int) : String
+        toString  : String 
+    -- <<scalaclass>> --
+        isSealed
+    }
+    class org::combinators::cls::types.syntax << object >>
+    abstract class org::combinators::cls::types.ToConstructorSyntax << trait >>{
+        toConstructor (name : Symbol) : Constructor
+        toTypeSyntax (name : Symbol) : TypeSyntax
+        toConstructorSyntax (fromName : Symbol) : ConstructorSyntax 
+    
+    }
+    abstract class org::combinators::cls::types.ConstructorSyntax << trait >>{
+        name : Symbol 
+        apply (arg : Type,  args : VarArgs<Type>) : Constructor 
+    
+    }
+    abstract class org::combinators::cls::types.ToTypeSyntax << trait >>{
+        toTypeSyntax (fromTy : Type) : TypeSyntax 
+    
+    }
+    abstract class org::combinators::cls::types.TypeSyntax << trait >>{
+        :&: (other : Type) : Type
+        <*> (other : Type) : Type
+        =>: (other : Type) : Type 
+    
+    }
+    class org::combinators::cls::types.$Kinding << object >>{
+        apply (v : Variable) : NonEmptyKinding
+        empty  : Kinding 
+    
+    }
+    abstract class org::combinators::cls::types.NonEmptyKinding << trait >>{
+        addOptions (options : Finite<Type>) 
+        addOption (ty : Type) : NonEmptyKinding
+        merge (other : Kinding) : NonEmptyKinding
+        merge (other : NonEmptyKinding) : NonEmptyKinding 
+    -- <<scalaclass>> --
+        isSealed
+    }
+    abstract class org::combinators::cls::types.Kinding << trait >>{
+        underlyingMap : Map<Variable,Finite<Type>> 
+        merge (other : Kinding) : Kinding
+        merge (other : NonEmptyKinding) : NonEmptyKinding
+        apply (v : Variable) : Finite<Type> 
+    -- <<scalaclass>> --
+        isSealed
+    }
+    abstract class org::combinators::cls::types.FiniteSubstitutionSpace << trait >>{
+        allowedSubstitutions  : Finite<PartialFunction<Variable,Type>>
+        addOption (substitution : PartialFunction<Variable,Type>) : FiniteSubstitutionSpace 
+    
+    }
+    class org::combinators::cls::types.$Taxonomy << object >>{
+        apply (superType : String) : NonEmptyTaxonomy
+        empty  : Taxonomy 
+    
+    }
+    abstract class org::combinators::cls::types.NonEmptyTaxonomy << trait >>{
+        head : String 
+        addSubtype (entry : String) : NonEmptyTaxonomy
+        addSubtypes (entries : NonEmptyTaxonomy) : NonEmptyTaxonomy
+        merge (entries : Taxonomy) : NonEmptyTaxonomy
+        merge (entries : NonEmptyTaxonomy) : NonEmptyTaxonomy 
+    -- <<scalaclass>> --
+        isSealed
+    }
+    abstract class org::combinators::cls::types.Taxonomy << trait >>{
+        underlyingMap : Map<String,Set<String>> 
+        merge (other : Taxonomy) : Taxonomy
+        merge (other : NonEmptyTaxonomy) : NonEmptyTaxonomy
+        apply (s : String) : Set<String> 
+    -- <<scalaclass>> --
+        isSealed
+    }
+    abstract class org::combinators::cls::types.T << type >>{
+        << typeDef >>_type_ : &<Type,Path> 
+         
+    }
+    abstract class org::combinators::cls::types.T << type >>{
+        << typeDef >>_type_ : &<Type,Path> 
+         
+    }
+    class org::combinators::cls::types.MinimalPathSet {
+        << ctor >>MinimalPathSet (tys : Seq<Type>) 
+         {static} minimize  : Seq<T> 
+    -- <<scalaclass>> --
+        isImplicit
+    }
+    class org::combinators::cls::types.$Minimizable << object >>
+    class org::combinators::cls::types.toTypeRelationOf {
+        << ctor >>toTypeRelationOf (sigma : Type) 
+        isSubtypeOf (tau : Type) : Boolean
+        isSupertypeOf (tau : Type) : Boolean 
+    -- <<scalaclass>> --
+        isImplicit
+    }
+    class org::combinators::cls::types.cast << object >>{
+        apply (to : ,  from : Type) : Seq<Type>
+        apply (to : Arrow,  from : Type) : Seq<Tuple2<Type,Type>>
+        apply (to : Constructor,  from : Type) : Seq<Type>
+        apply (to : Product,  from : Type) : Seq<Tuple2<Type,Type>> 
+    
+    }
+    abstract class org::combinators::cls::types.TypeRelationOf << trait >>{
+        isSupertypeOf (tau : Type) : Boolean
+        isSubtypeOf (tau : Type) : Boolean 
+    -- <<scalaclass>> --
+        isSealed
+    }
+    class org::combinators::cls::types.SubtypeEnvironment << caseclass >>{
+        closedEnvironment : Map<String,Set<String>> 
+        transitiveReflexiveTaxonomicSubtypesOf : Function1<String,Set<String>> 
+        << ctor >>SubtypeEnvironment (taxonomicSubtypesOf : Map<String,Set<String>>) 
+         {static} - transitiveClosureStep (state : Map<String,Set<String>>) : Tuple2<Boolean,Map<String,Set<String>>>
+         {static} - reflexiveClosure (state : Map<String,Set<String>>) : Map<String,Set<String>>
+         {static} - checkSubtypes (subType : Type,  superType : Type) : Boolean 
+    
+    }
+    class org::combinators::cls::types.$Organized << object >>{
+         {static} addPaths (xs : Seq<&<Type,Path>>,  ys : Seq<&<Type,Path>>) : Seq<&<Type,Path>>
+         {static} apply (t : Type) : &<Type,Organized>
+         {static} intersect (pathss : VarArgs<Seq[Type with Organized with Path]>) : &<Type,Organized>
+        intersectPiecewise (xs : Seq<&<Type,Organized>>,  ys : Seq<&<Type,Organized>>) : Seq<&<Type,Organized>> 
+    
+    }
+    class org::combinators::cls::types.$Path << object >>{
+         {static} apply (args : Seq<Type>,  target : &<Type,Path>) : &<Type,Path>
+         {static} unapply (t : Type) : Option<Tuple2<Seq<Type>,&<Type,Path>>> 
+    
+    }
+    abstract class org::combinators::cls::types.Organized << trait >>{
+        paths : Seq<&<Type,Path>> 
+         
+    }
+    abstract class org::combinators::cls::types.T << type >>
+    abstract class org::combinators::cls::types.Minimizable << trait >>{
+        minimize  : Seq<T> 
+    
+    }
+    abstract class org::combinators::cls::types.Path << trait >>{
+        paths : Seq<&<Type,Path>> 
+         -- <<scalaclass>> --
+        isSealed
+    }
+}
+org::combinators::cls::types.Organized <|-- org::combinators::cls::types.Path 
+org::combinators::cls::types.SubtypeEnvironment +-- org::combinators::cls::types.TypeRelationOf 
+org::combinators::cls::types.SubtypeEnvironment +-- org::combinators::cls::types.cast 
+org::combinators::cls::types.TypeRelationOf <|-- org::combinators::cls::types.toTypeRelationOf 
+org::combinators::cls::types.SubtypeEnvironment +-- org::combinators::cls::types.toTypeRelationOf 
+org::combinators::cls::types.SubtypeEnvironment +-- org::combinators::cls::types.Minimizable 
+org::combinators::cls::types.MinimalPathSet +-- org::combinators::cls::types.T 
+org::combinators::cls::types.Minimizable <|-- org::combinators::cls::types.MinimalPathSet 
+org::combinators::cls::types.SubtypeEnvironment +-- org::combinators::cls::types.MinimalPathSet 
+org::combinators::cls::types.Taxonomy <|-- org::combinators::cls::types.NonEmptyTaxonomy 
+org::combinators::cls::types.FiniteSubstitutionSpace <|-- org::combinators::cls::types.Kinding 
+org::combinators::cls::types.NonEmptyKinding --> "1" org::combinators::cls::types.Variable : head   > 
+org::combinators::cls::types.Kinding <|-- org::combinators::cls::types.NonEmptyKinding 
+org::combinators::cls::types.TypeSyntax --> "1" org::combinators::cls::types.Type : ty   > 
+org::combinators::cls::types.ToTypeSyntax <|-- org::combinators::cls::types.ToConstructorSyntax 
+org::combinators::cls::types.ToConstructorSyntax <|-- org::combinators::cls::types.syntax 
+org::combinators::cls::types.Type <|-- org::combinators::cls::types.Constructor 
+org::combinators::cls::types.Type <|-- org::combinators::cls::types.Product 
+org::combinators::cls::types.Type <|-- org::combinators::cls::types.Intersection 
+org::combinators::cls::types.Type <|-- org::combinators::cls::types.Omega 
+org::combinators::cls::types.Organized <|-- org::combinators::cls::types.Omega 
+org::combinators::cls::types.Type <|-- org::combinators::cls::types.Arrow 
+org::combinators::cls::types.Type <|-- org::combinators::cls::types.Variable 
+org::combinators::cls::types.Path .. org::combinators::cls::types.$Path : << companion >>
+org::combinators::cls::types.Minimizable .. org::combinators::cls::types.$Minimizable : << companion >>
+org::combinators::cls::types.Organized .. org::combinators::cls::types.$Organized : << companion >>
+org::combinators::cls::types.Taxonomy .. org::combinators::cls::types.$Taxonomy : << companion >>
+org::combinators::cls::types.Kinding .. org::combinators::cls::types.$Kinding : << companion >>
+org::combinators::cls::types.Type .. org::combinators::cls::types.$Type : << companion >>
+org::combinators::cls::types.Constructor .. org::combinators::cls::types.$Constructor : << companion >>
+@enduml

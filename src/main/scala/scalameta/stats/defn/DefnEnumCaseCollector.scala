@@ -16,8 +16,8 @@
 
 package scalameta.stats.defn
 
+import scalameta.cstr.PrimaryConstructorCollector
 import scalameta.mods.ClassModsCollector
-import scalameta.operations.PrimaryConstructorCollector
 import scalameta.stats.init.InitsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext

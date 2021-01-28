@@ -5,7 +5,7 @@ import org.scalatest.matchers.must.Matchers
 import pretty.config.PlantUMLConfig
 import pretty.plantuml.UMLUnitPretty
 import scalameta.toplevel.SourcesCollector
-import uml.{Annotation, Association, ClassRef, ConcreteClass, FromTo, Relationship, umlMethods}
+import uml.{Annotation, Association, ClassRef, ConcreteClass, FromTo, Relationship, Without, umlMethods}
 
 import scala.meta.{Source, dialects}
 
@@ -30,7 +30,6 @@ class CompanionObjectSuite extends AnyFreeSpec with Matchers {
     val rewritten = umlMethods.insertCompanionObjects(umlUnit)
 
     implicit val pretty = UMLUnitPretty()(PlantUMLConfig())
-    println(rewritten.value.pretty)
 
     //Test if companion object is correctly created
     rewritten.value.exists{
@@ -54,7 +53,7 @@ class CompanionObjectSuite extends AnyFreeSpec with Matchers {
           case ClassRef("$Foo",_) => true
           case _ => false
         }
-        r.relationshipDirection.equals(FromTo)
+        r.relationshipDirection.equals(Without)
       case _ => false
     } must be(true)
     //Test if association to FooExpr is outgoing from companion object

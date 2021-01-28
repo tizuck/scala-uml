@@ -23,6 +23,7 @@ object RenameAllAffectedRelationships extends RewriteStrategy[List[(uml.Class,Bo
         case r: Relationship =>
           //If object is found, see if this object is a companion object
           //and if so, update the name of the from identifier in the relationship
+          println(r.structure)
           if (r.relationshipDirection.equals(FromTo) &&
             r.relationshipInfo.originType.equals(uml.externalReferences.Object)) {
             updateRelationship(v1, r, r.relationshipInfo.from)

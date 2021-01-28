@@ -1,5 +1,7 @@
 package app.frontend
 
+import scala.util.matching.Regex
+
 sealed trait Command
 
 sealed case class Github(path:String) extends Command
@@ -19,3 +21,5 @@ sealed case class Name(name:String) extends Command
 sealed case class InputPath(path:String) extends Command
 
 sealed case class Textual() extends Command
+
+sealed case class Exclude(regex:Regex) extends Command

@@ -8,7 +8,7 @@ import pretty.config.PlantUMLConfig
 import pretty.plantuml.UMLUnitPretty
 import pureconfig.ConfigSource
 import scalameta.toplevel.SourcesCollector
-import uml.{UMLUnit, umlMethods}
+import uml.{ClassRef, Inner, Relationship, RelationshipInfo, UMLUnit, umlMethods}
 import uml.umlMethods.{toAssocRep, toDistinctRep, toPackageRep}
 import pureconfig._
 import pureconfig.generic.auto._
@@ -17,13 +17,15 @@ import uml.externalReferences.ClassDefRef
 import java.io.{File, FileNotFoundException, FileOutputStream, IOException}
 import java.nio.charset.StandardCharsets
 import java.nio.file.{Files, Paths}
+import scala.util.matching.Regex
 
 case class GithubUMLDiagramProcessor(
                                       outputPath:String,
                                       githubConfigPath:String,
                                       isVerbose:Boolean,
                                       isTextual : Boolean,
-                                      name:String="default")
+                                      name:String="default",
+                                      exclude:Option[Regex]=None)
   extends Processor {
 
   override def execute(): UMLUnit = {
@@ -78,7 +80,13 @@ case class GithubUMLDiagramProcessor(
       val dRep = toDistinctRep(umlProcess.umlUnit).value
       val pRep = toPackageRep(dRep).value.asInstanceOf[UMLUnit]
       val cRep = umlMethods.insertCompanionObjects(pRep).value
-      toAssocRep(cRep).value.asInstanceOf[UMLUnit]
+      val aRep = toAssocRep(cRep).value.asInstanceOf[UMLUnit]
+      val exRep = exclude.map(r => umlMethods.exclude(aRep,r).value).getOrElse(aRep).asInstanceOf[UMLUnit]
+      println(exRep.toplevelElements.exists{
+        case Relationship(Inner, _, RelationshipInfo(_, _, ClassRef("Minimizable", _), _, _, _, dir), _) => println(dir);true
+        case _ => false
+      })
+      exRep
     } catch {
       case e: Exception => throw e
     }
@@ -113,7 +121,8 @@ case class GithubUMLDiagramProcessor(
       }
     }  else {
       try {
-        Files.write(Paths.get(path + name + ".txt"), rewritten.pretty.getBytes(StandardCharsets.UTF_8))
+        Files.write(Paths.get(path + name + ".puml"), rewritten.pretty.getBytes(StandardCharsets.UTF_8))
+        logger.info(s"Successfully exported PlantUML file to location: $path$name.puml")
         rewritten
       } catch {
         case i:IOException =>
@@ -121,7 +130,6 @@ case class GithubUMLDiagramProcessor(
             s" Try --verbose to get debug information.")
           logger.debug(s"${i.getStackTrace.mkString("Array(", ", ", ")")}")
           rewritten
-
       }
     }
   }

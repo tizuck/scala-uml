@@ -10,7 +10,7 @@ object InsertCompanionDependency extends RewriteStrategy[List[(uml.Class,Boolean
     val f: Any => Any = u => u match {
       case u:UMLUnit => v1.foldLeft(u){
         case (acc,(c,b)) if b => acc.copy(toplevelElements = acc.toplevelElements.appended(
-          Relationship(Annotation,FromTo,RelationshipInfo(None,None,ConcreteClass(c),ClassRef("$"+c.name,c.namespace),None,Without),List(Stereotype("companion",Nil)))
+          Relationship(Annotation,Without,RelationshipInfo(None,None,ConcreteClass(c),ClassRef("$"+c.name,c.namespace),None,Without),List(Stereotype("companion",Nil)))
         ))
         case (acc,_) => acc
       }

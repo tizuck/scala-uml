@@ -92,8 +92,6 @@ object TransformAssociations extends RewriteStrategy[List[Relationship]]{
 
     val withoutSpaces = relId.replaceAll("\\s","")
 
-    println(withoutSpaces)
-
     class Rules(positions:Positions) extends ListParsers(positions){
       lazy val assocId : Parser[AssociationIdentifier] = id ~ opt(temp) ^^ {
         tp => AssociationIdentifier(tp._1,tp._2.getOrElse(Nil))

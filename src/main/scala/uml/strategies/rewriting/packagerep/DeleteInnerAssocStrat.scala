@@ -9,7 +9,7 @@ object DeleteInnerAssocStrat extends RewriteStrategy[List[uml.Class]] {
 
   private def deleteRel[T <: UMLElement](elements: List[T], v1: List[uml.Class]): List[T] = {
     elements.filterNot {
-      case Relationship(Inner, _, relationshipInfo, _) =>
+      case Relationship(Inner, _, relationshipInfo, _) if relationshipInfo.originType.equals(externalReferences.Object) =>
         relationshipInfo.from match {
           case ConcreteClass(cls) =>
             v1.exists(c => c.name.equals(cls.name) && c.namespace.equals(cls.namespace))

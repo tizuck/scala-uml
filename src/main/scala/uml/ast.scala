@@ -618,7 +618,7 @@ sealed case class ClassRef(name:String, namespace:Entry=DefaultNamespace) extend
 
   override type T = ClassRef
 
-  override def structure: String = s"ClassRef($name,${namespace.plantUML})"
+  override def structure: String = s"ClassRef($name,${namespace.toString})"
 
   override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
     for {
@@ -637,7 +637,7 @@ sealed case class PackageRef(namespace: NamespaceEntry) extends RelationshipElem
   override type T = PackageRef
 
   override def structure: String =
-    s"PackageRef(${namespace.plantUML})"
+    s"PackageRef(${namespace.toString})"
 
   override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
     for {
@@ -662,7 +662,7 @@ sealed case class RelationshipInfo(sourceMultiplicity:Option[String],
   override type T = RelationshipInfo
   def structure : String =
     s"""RelationshipInfo(${optionString(sourceMultiplicity)},${optionString(targetMultiplicity)},${
-      from.structure},${to.structure},${optionString(relationshipIdentifier)},${identifierDirection.toString})"""
+      from.structure},${to.structure},${optionString(relationshipIdentifier)},${identifierDirection.toString},$originType)"""
 
   override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
     for {

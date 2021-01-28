@@ -5,14 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/collecting/assoc/CollectClassRelationshipHits.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/assoc/DeleteAssocs.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/assoc/DeleteUnTargetedExternalClasses.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/cstr/SecondaryConstructorCollector.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/ExcludeStrategy.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ast.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/model.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/model.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/GithubUMLDiagramProcessor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/GithubUMLDiagramProcessor.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/Processor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/Processor.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/cstr/PrimaryCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/cstr/PrimaryConstructorCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/StatCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/StatCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclTypeCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnClassCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnClassCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCaseCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCaseCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnObjectCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnObjectCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTypeCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/TraitCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/TraitCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/namespaceEntries.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/namespaceEntries.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/collecting/assoc/CollectClassRelationshipHits.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/collecting/assoc/CollectClassRelationshipHits.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/assoc/TransformAssociations.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/assoc/TransformAssociations.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/InsertCompanionDependency.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/InsertCompanionDependency.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/RenameAllAffectedRelationships.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/RenameAllAffectedRelationships.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/DeleteInnerAssocStrat.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/DeleteInnerAssocStrat.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/InsertInnerNamespaceRelsStrat.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/InsertInnerNamespaceRelsStrat.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/rewriting/assoc/AssocOfExternalsSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/rewriting/assoc/AssocOfExternalsSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/processor/ast/ast.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/assets/processor/ast/ast.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/integration/github/CLSSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/integration/github/CLSSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/rewriting/companion/CompanionObjectSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/rewriting/companion/CompanionObjectSuite.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,41 +138,30 @@
       <recent name="assets" />
     </key>
   </component>
-  <component name="RunManager" selected="ScalaTest.CLSSuite (1)">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+  <component name="RunManager" selected="ScalaTest.CLSSuite.contains a case object Omega with a static value paths">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="app.frontend.Main" />
+      <module name="scala-uml" />
+      <option name="PROGRAM_PARAMETERS" value="--github src/test/scala/assets/processor/github/github.conf --name clsMain --directory src/test/scala/assets/out --textual --exclude (Aux|List|Boolean|Int|org::combinators::cls::types::Minimizable|shapeless::feat.*|Function1|\$FiniteSubstitutionSpace)" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.frontend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AssocOfExternalsSuite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
-      <module name="scala-uml" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="selectedOptions">
-        <list />
-      </option>
-      <option name="testKind" value="Class" />
-      <option name="testClassPath" value="rewriting.assoc.AssocOfExternalsSuite" />
-      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AssocOfExternalsSuite.Associations that reference to external entities are diplayed as attributes" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
-      <module name="scala-uml" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="selectedOptions">
-        <list />
-      </option>
-      <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="rewriting.assoc.AssocOfExternalsSuite" />
-      <option name="testName" value="Associations that reference to external entities are diplayed as attributes" />
-      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -167,46 +179,62 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CLSSuite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="CLSSuite.case class constructor with secondary constructor and primary constructor" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
       <option name="selectedOptions">
         <list />
       </option>
-      <option name="testKind" value="Class" />
-      <option name="testClassPath" value="processors.github.CLSSuite" />
+      <option name="testKind" value="Test name" />
+      <option name="testClassPath" value="integration.github.CLSSuite" />
+      <option name="testName" value="case class constructor with secondary constructor and primary constructor" />
       <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CompanionObjectSuite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="CLSSuite.contains a case object Omega with a static value paths" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
       <option name="selectedOptions">
         <list />
       </option>
-      <option name="testKind" value="Class" />
-      <option name="testClassPath" value="rewriting.companion.CompanionObjectSuite" />
+      <option name="testKind" value="Test name" />
+      <option name="testClassPath" value="integration.github.CLSSuite" />
+      <option name="testName" value="contains a case object Omega with a static value paths" />
+      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CLSSuite.contains all class definitions in type.scala are present" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="scala-uml" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="Test name" />
+      <option name="testClassPath" value="integration.github.CLSSuite" />
+      <option name="testName" value="contains all class definitions in type.scala are present" />
       <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="ScalaTest.CompanionObjectSuite" />
-      <item itemvalue="ScalaTest.CLSSuite" />
-      <item itemvalue="ScalaTest.AssocOfExternalsSuite.Associations that reference to external entities are diplayed as attributes" />
-      <item itemvalue="ScalaTest.AssocOfExternalsSuite" />
+      <item itemvalue="Application.Main" />
       <item itemvalue="ScalaTest.CLSSuite (1)" />
+      <item itemvalue="ScalaTest.CLSSuite.case class constructor with secondary constructor and primary constructor" />
+      <item itemvalue="ScalaTest.CLSSuite.contains all class definitions in type.scala are present" />
+      <item itemvalue="ScalaTest.CLSSuite.contains a case object Omega with a static value paths" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="ScalaTest.CLSSuite.contains a case object Omega with a static value paths" />
+        <item itemvalue="ScalaTest.CLSSuite.contains all class definitions in type.scala are present" />
         <item itemvalue="ScalaTest.CLSSuite (1)" />
-        <item itemvalue="ScalaTest.AssocOfExternalsSuite" />
-        <item itemvalue="ScalaTest.CLSSuite" />
-        <item itemvalue="ScalaTest.AssocOfExternalsSuite.Associations that reference to external entities are diplayed as attributes" />
-        <item itemvalue="ScalaTest.CompanionObjectSuite" />
+        <item itemvalue="ScalaTest.CLSSuite.case class constructor with secondary constructor and primary constructor" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -323,7 +351,12 @@
       <workItem from="1611243758562" duration="1759000" />
       <workItem from="1611316460894" duration="9224000" />
       <workItem from="1611403144238" duration="18226000" />
-      <workItem from="1611483889320" duration="15474000" />
+      <workItem from="1611483889320" duration="16152000" />
+      <workItem from="1611739722887" duration="5503000" />
+      <workItem from="1611789273495" duration="1935000" />
+      <workItem from="1611826578256" duration="3322000" />
+      <workItem from="1611831102420" duration="2205000" />
+      <workItem from="1611833379338" duration="15332000" />
     </task>
     <servers />
   </component>

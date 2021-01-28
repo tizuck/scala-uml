@@ -16,8 +16,8 @@
 
 package scalameta.stats.defn
 
+import scalameta.cstr.PrimaryConstructorCollector
 import scalameta.mods.ClassModsCollector
-import scalameta.operations.PrimaryConstructorCollector
 import scalameta.stats.StatsCollector
 import scalameta.stats.init.InitsCollector
 import scalameta.typeparams.TypeParamsCollector
@@ -71,7 +71,21 @@ object DefnClassCollector {
     )
 
     val innerRelationship = if(previousThisPointer.isDefined){
-      Some(Relationship(Inner,ToFrom,RelationshipInfo(None,None,previousThisPointer.get,ClassRef(className,context.localCon.currentNamespace),None,Without),Nil))
+      Some(
+        Relationship(
+          Inner,
+          ToFrom,
+          RelationshipInfo(
+            None,
+            None,
+            previousThisPointer.get,
+            ClassRef(className,context.localCon.currentNamespace),
+            None,
+            Without,
+            originType = previousThisOrigin
+          ),Nil
+        )
+      )
     } else {None}
 
     new DefnClassCollector(
