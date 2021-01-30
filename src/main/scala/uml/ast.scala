@@ -649,6 +649,8 @@ sealed case class PackageRef(namespace: NamespaceEntry) extends RelationshipElem
   }
 
   override def pretty(implicit pretty: PrettyPrinter[PackageRef]): String = pretty.format(this).layout
+
+  override val toString = namespace.toString.dropRight(1)
 }
 
 sealed case class RelationshipInfo(sourceMultiplicity:Option[String],

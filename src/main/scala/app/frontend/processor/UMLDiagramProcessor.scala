@@ -9,7 +9,7 @@ import pretty.config.PlantUMLConfig
 import pretty.plantuml.UMLUnitPretty
 import scalameta.toplevel.SourcesCollector
 import uml.{UMLUnit, umlMethods}
-import uml.umlMethods.toPackageRep
+import uml.umlMethods.{toAssocRep, toDistinctRep, toPackageRep}
 
 import java.io.{File, FileNotFoundException, FileOutputStream, IOException}
 import java.nio.charset.StandardCharsets
@@ -85,8 +85,12 @@ sealed case class UMLDiagramProcessor(
         implicit val prettyPrinter = UMLUnitPretty()(PlantUMLConfig())
 
         val rewritten = try {
-          val pRep = toPackageRep(umlCol.umlUnit).value.asInstanceOf[UMLUnit]
-          umlMethods.insertCompanionObjects(pRep).value
+          val dRep = toDistinctRep(umlCol.umlUnit).value
+          val pRep = toPackageRep(dRep).value.asInstanceOf[UMLUnit]
+          val cRep = umlMethods.insertCompanionObjects(pRep).value
+          val aRep = toAssocRep(cRep).value.asInstanceOf[UMLUnit]
+          val exRep = exclude.map(r => umlMethods.exclude(aRep,r).value).getOrElse(aRep).asInstanceOf[UMLUnit]
+          exRep
         } catch {
           case e: Exception => throw e
         }

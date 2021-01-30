@@ -82,10 +82,6 @@ case class GithubUMLDiagramProcessor(
       val cRep = umlMethods.insertCompanionObjects(pRep).value
       val aRep = toAssocRep(cRep).value.asInstanceOf[UMLUnit]
       val exRep = exclude.map(r => umlMethods.exclude(aRep,r).value).getOrElse(aRep).asInstanceOf[UMLUnit]
-      println(exRep.toplevelElements.exists{
-        case Relationship(Inner, _, RelationshipInfo(_, _, ClassRef("Minimizable", _), _, _, _, dir), _) => println(dir);true
-        case _ => false
-      })
       exRep
     } catch {
       case e: Exception => throw e

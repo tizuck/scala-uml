@@ -5,37 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/scalameta/cstr/SecondaryConstructorCollector.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/ExcludeStrategy.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ast.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/model.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/model.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/GithubUMLDiagramProcessor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/GithubUMLDiagramProcessor.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/Processor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/Processor.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/cstr/PrimaryCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/cstr/PrimaryConstructorCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/StatCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/StatCollector.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclTypeCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnClassCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnClassCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCaseCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCaseCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnObjectCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnObjectCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTypeCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/TraitCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/TraitCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/namespaceEntries.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/namespaces/namespaceEntries.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclValCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclValCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnCollector.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/collecting/assoc/CollectClassRelationshipHits.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/collecting/assoc/CollectClassRelationshipHits.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/assoc/TransformAssociations.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/assoc/TransformAssociations.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/InsertCompanionDependency.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/InsertCompanionDependency.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/RenameAllAffectedRelationships.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/RenameAllAffectedRelationships.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/DeleteInnerAssocStrat.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/DeleteInnerAssocStrat.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/InsertInnerNamespaceRelsStrat.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/InsertInnerNamespaceRelsStrat.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/processor/ast/ast.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/assets/processor/ast/ast.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/integration/github/CLSSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/integration/github/CLSSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/rewriting/companion/CompanionObjectSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/rewriting/companion/CompanionObjectSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/outclsMain.puml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/assets/outclsMain.puml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,11 +117,11 @@
       <recent name="assets" />
     </key>
   </component>
-  <component name="RunManager" selected="ScalaTest.CLSSuite.contains a case object Omega with a static value paths">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="app.frontend.Main" />
       <module name="scala-uml" />
-      <option name="PROGRAM_PARAMETERS" value="--github src/test/scala/assets/processor/github/github.conf --name clsMain --directory src/test/scala/assets/out --textual --exclude (Aux|List|Boolean|Int|org::combinators::cls::types::Minimizable|shapeless::feat.*|Function1|\$FiniteSubstitutionSpace)" />
+      <option name="PROGRAM_PARAMETERS" value="--fp src/main/resources --d src/main/resources --n arith --textual --exclude (ast::arith::python.Mult)" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="app.frontend.*" />
@@ -153,15 +132,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -230,11 +207,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="ScalaTest.CLSSuite.case class constructor with secondary constructor and primary constructor" />
         <item itemvalue="ScalaTest.CLSSuite.contains a case object Omega with a static value paths" />
         <item itemvalue="ScalaTest.CLSSuite.contains all class definitions in type.scala are present" />
         <item itemvalue="ScalaTest.CLSSuite (1)" />
-        <item itemvalue="ScalaTest.CLSSuite.case class constructor with secondary constructor and primary constructor" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -357,6 +334,7 @@
       <workItem from="1611826578256" duration="3322000" />
       <workItem from="1611831102420" duration="2205000" />
       <workItem from="1611833379338" duration="15332000" />
+      <workItem from="1611933189037" duration="8670000" />
     </task>
     <servers />
   </component>
@@ -372,15 +350,16 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/app/github/GithubLoader.scala</url>
-          <line>137</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/RenameAllAffectedRelationships.scala</url>
+          <line>26</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__scala_.ic" NAME="ScalaTests in 'scala' Coverage Results" MODIFIED="1611069511325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$CLSSuite_contains_a_case_object_Omega_with_a_static_value_paths.ic" NAME="CLSSuite.contains a case object Omega with a static value paths Coverage Results" MODIFIED="1611935346588" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__processors_.ic" NAME="ScalaTests in 'processors' Coverage Results" MODIFIED="1610987435421" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$Main__1_.ic" NAME="Main (1) Coverage Results" MODIFIED="1608403524265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$DottyAndSuite.ic" NAME="DottyAndSuite Coverage Results" MODIFIED="1605482730279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

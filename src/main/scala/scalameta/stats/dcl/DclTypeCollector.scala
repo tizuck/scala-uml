@@ -33,7 +33,6 @@ object DclTypeCollector {
     //@todo types can have generic parameters
     val generics = TypeParamsCollector(dclType.tparams)
 
-    println(s"This pointer: ${context.localCon.thisPointer}, type to depict: ${dclType.structure}")
     val typeClass = Class(
       true,
       dclType.name.value,

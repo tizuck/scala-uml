@@ -52,6 +52,7 @@ object umlMethods {
       relHitMap <- nextCollectState(List.empty[RelationshipElement])(CollectClassRelationshipHits)
       res <- nextRewriteState((possiblyToEliminate,relHitMap))(DeleteUnTargetedExternalClasses)
     } yield {
+      println(allClassDefRefs)
       res
     }
 

@@ -23,7 +23,9 @@ object RenameAllAffectedRelationships extends RewriteStrategy[List[(uml.Class,Bo
         case r: Relationship =>
           //If object is found, see if this object is a companion object
           //and if so, update the name of the from identifier in the relationship
-          println(r.structure)
+          if(r.stereotype.exists(s => s.name.equals("objectdef"))) {
+            println(r.structure)
+          }
           if (r.relationshipDirection.equals(FromTo) &&
             r.relationshipInfo.originType.equals(uml.externalReferences.Object)) {
             updateRelationship(v1, r, r.relationshipInfo.from)
@@ -82,6 +84,34 @@ object RenameAllAffectedRelationships extends RewriteStrategy[List[(uml.Class,Bo
             )
           }
       }
-    } else { r }
+    } else if(nameOfObject.isEmpty && (relElem match {
+      case _:PackageRef => true
+      case _ => false
+    })) {
+      if(relElem.equals(r.relationshipInfo.from)) {
+        r.copy(
+          relationshipInfo = r.relationshipInfo.copy(
+            to = r.relationshipInfo.to match {
+              case c:ClassRef => c.copy(name = "$" + c.name)
+              case c:ConcreteClass => c.copy(c.cls.copy(name = "$" + c.cls.name))
+              case p:PackageRef => p
+            }
+          )
+        )
+      } else {
+        println("Here")
+        r.copy(
+          relationshipInfo = r.relationshipInfo.copy(
+            from = r.relationshipInfo.from match {
+              case c:ClassRef => c.copy(name = "$" + c.name)
+              case c:ConcreteClass => c.copy(c.cls.copy(name = "$" + c.cls.name))
+              case p:PackageRef => p
+            }
+          )
+        )
+      }
+    } else {
+      r
+    }
   }
 }

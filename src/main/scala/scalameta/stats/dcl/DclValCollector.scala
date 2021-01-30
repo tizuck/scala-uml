@@ -23,6 +23,7 @@ import scalameta.stats.StatCollector
 import scalameta.stats.util.AssociationInformation
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
+import scalameta.util.namespaces.NamespaceEntry
 import uml.externalReferences.{CClass, ClassDefRef, ClassType}
 import uml.{Association, Attribute, Class, ClassRef, ConcreteClass, FromTo, NamedElement, Operation, Relationship, RelationshipInfo, UMLElement}
 
@@ -78,7 +79,6 @@ object DclValCollector {
               originType = context.localCon.thisOriginType),
             Nil)
         }
-
         new DclValCollector(relationships, context.withExternalReference(ClassDefRef(classType, name, namespace, templateParameter, oStat)))
     }
   }

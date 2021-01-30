@@ -194,6 +194,7 @@ package org::combinators::cls::types{
          
     }
     abstract class org::combinators::cls::types.T << type >>
+    abstract class org::combinators::cls::types.T << type >>
     abstract class org::combinators::cls::types.Minimizable << trait >>{
         minimize  : Seq<T> 
     
@@ -205,6 +206,7 @@ package org::combinators::cls::types{
     }
 }
 org::combinators::cls::types.Organized <|-- org::combinators::cls::types.Path 
+org::combinators::cls::types.Minimizable +-- org::combinators::cls::types.T 
 org::combinators::cls::types.SubtypeEnvironment +-- org::combinators::cls::types.TypeRelationOf 
 org::combinators::cls::types.SubtypeEnvironment +-- org::combinators::cls::types.cast 
 org::combinators::cls::types.TypeRelationOf <|-- org::combinators::cls::types.toTypeRelationOf 

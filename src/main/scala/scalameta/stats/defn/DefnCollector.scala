@@ -43,7 +43,7 @@ object DefnCollector {
         }
         val ret = new BaseCollector  {
           override val definedElements: List[UMLElement] = dclRels.definedElements
-          override val resultingContext: CollectorContext = context
+          override val resultingContext: CollectorContext = dclRels.resultingContext
         }
         fromDecl(ret)
       case Defn.Var(mods,pats,optionType,_) =>
@@ -51,7 +51,7 @@ object DefnCollector {
           DclCollector(Decl.Var(mods,pats,optionType.getOrElse(Type.Name("#notype#"))))(
             if(optionType.isEmpty){context.typeRequired} else context
         )
-        fromDecl(dclRels.copy(resultingContext = context))
+        fromDecl(dclRels.copy(resultingContext = dclRels.resultingContext))
       case d@Defn.Def(mods, name, tparams, paramss, optionType, _) =>
         val dclRels = if(context.localCon.isTopLevel){
           DefnDefToplevelCollector(d)(

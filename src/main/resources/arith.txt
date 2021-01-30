@@ -1,0 +1,31 @@
+@startuml need_to_find_id
+package ast::arith{
+    class ast::arith.Sub {
+        << ctor >>Sub ()  
+    
+    }
+    class ast::arith.Add << caseclass >>{
+        << ctor >>Add (left : ArithExpr,  right : ArithExpr)  
+    -- <<scalaclass>> --
+        isSealed
+    }
+    class ast::arith.Mult << caseclass >>{
+        << ctor >>Mult (left : ArithExpr,  right : ArithExpr)  
+    -- <<scalaclass>> --
+        isSealed
+    }
+    abstract class ast::arith.ArithExpr << trait >>{
+        collect< T > (op : Func<ArithExpr,T>) : List<T> 
+    -- <<scalaclass>> --
+        isSealed
+    }
+}
+package ast::arith::python{
+    
+}
+ast::arith.ArithExpr <|-- ast::arith.Mult 
+ast::arith.ArithExpr <|-- ast::arith.Add 
+ast::arith.Sub --> "1" ast::arith.ArithExpr : left   > 
+ast::arith.Sub --> "1" ast::arith.ArithExpr : right   > 
+ast::arith.ArithExpr <|-- ast::arith.Sub 
+@enduml
