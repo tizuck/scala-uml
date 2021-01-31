@@ -6,15 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/GithubUMLDiagramProcessor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/GithubUMLDiagramProcessor.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclTypeCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclValCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclValCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/RenameAllAffectedRelationships.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/RenameAllAffectedRelationships.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/outclsMain.puml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/assets/outclsMain.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/arith.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/arith.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,24 +113,13 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="app.frontend.Main" />
       <module name="scala-uml" />
-      <option name="PROGRAM_PARAMETERS" value="--fp src/main/resources --d src/main/resources --n arith --textual --exclude (ast::arith::python.Mult)" />
+      <option name="PROGRAM_PARAMETERS" value="--fp src/main/scala/uml --d src/main/resources --n arith --textual  --exclude (T)" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="app.frontend.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -335,6 +316,7 @@
       <workItem from="1611831102420" duration="2205000" />
       <workItem from="1611833379338" duration="15332000" />
       <workItem from="1611933189037" duration="8670000" />
+      <workItem from="1612100856897" duration="1965000" />
     </task>
     <servers />
   </component>
