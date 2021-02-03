@@ -1,6 +1,6 @@
 package app.frontend.processor
 
-import app.frontend.InputPath
+import app.frontend.{Filter, InputPath}
 import app.frontend.exceptions.{BadInputPathException, BadOutputPathException, UMLConversionException}
 import net.sourceforge.plantuml.{FileFormat, FileFormatOption, SourceStringReader}
 import org.scalameta.UnreachableError
@@ -24,7 +24,7 @@ sealed case class UMLDiagramProcessor(
                                        isVerbose: Boolean,
                                        isTextual : Boolean,
                                        name:String="default",
-                                       exclude:Option[Regex]=None)
+                                       exclude:Option[Filter]=None)
   extends Processor {
 
   override def execute(): UMLUnit = {

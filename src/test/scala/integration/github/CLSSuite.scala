@@ -1,7 +1,7 @@
 package integration.github
 
 import app.frontend.processor.Processor
-import app.frontend.{Github, Name, OutputPath, Textual}
+import app.frontend.{Exclude, Github, Name, Not, OutputPath, Textual}
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
 import scalameta.util.namespaces.NamespaceEntry
@@ -32,7 +32,8 @@ import uml.UMLUnit
 class CLSSuite extends AnyFreeSpec with Matchers {
   val confPath = "src/test/scala/assets/processor/github/github.conf"
   val outputPath = "src/test/scala/assets/out/processor"
-  val commands = List(Github(confPath),OutputPath(outputPath),Textual(),Name("cls"))
+  val commands = List(Github(confPath),OutputPath(outputPath),Textual(),Name("cls"),Not(Exclude("""(org::combinators::cls::types)|((org::combinators::cls::types.)?(\$Type|Type|Arrow|Constructor|Intersection|Omega|Product|Variable))""".r)))
+  //val commands = List(Github(confPath),OutputPath(outputPath),Textual(),Name("cls"),Not(Exclude("""(org::cls::combinator::types\.)?(Arrow|Constructor|Intersection|Omega|Product|Variable)""".r)))
   val processor: Processor = Processor(commands)
   val umlUnit: UMLUnit = processor.execute()
 

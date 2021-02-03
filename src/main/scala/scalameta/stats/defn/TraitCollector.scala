@@ -35,7 +35,6 @@ case class TraitCollector(override val definedElements : List[UMLElement],
 object TraitCollector {
   def apply(defnTrait:Defn.Trait)(implicit context:CollectorContext): TraitCollector = {
 
-
     val traitName = defnTrait.name.value
     val mods = ClassModsCollector(defnTrait.mods)
     val typeParameters = TypeParamsCollector(defnTrait.tparams).typeParams

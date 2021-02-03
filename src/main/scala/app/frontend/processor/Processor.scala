@@ -46,9 +46,9 @@ object Processor {
       case (u:UMLDiagramProcessor,Textual())                => u.copy(isTextual = true)
       case (g:GithubUMLDiagramProcessor,Textual())          => g.copy(isTextual = true)
 
-      case (EmptyProcessor,Exclude(regex))                  => UMLDiagramProcessor("","",false,false,exclude = Some(regex))
-      case (u:UMLDiagramProcessor,Exclude(regex))           => u.copy(exclude = Some(regex))
-      case (g:GithubUMLDiagramProcessor,Exclude(regex))     => g.copy(exclude = Some(regex))
+      case (EmptyProcessor,f:Filter)                  => UMLDiagramProcessor("","",false,false,exclude = Some(f))
+      case (u:UMLDiagramProcessor,f:Filter)           => u.copy(exclude = Some(f))
+      case (g:GithubUMLDiagramProcessor,f:Filter)     => g.copy(exclude = Some(f))
     }
   }
 }

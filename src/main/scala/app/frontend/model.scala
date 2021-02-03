@@ -22,4 +22,14 @@ sealed case class InputPath(path:String) extends Command
 
 sealed case class Textual() extends Command
 
-sealed case class Exclude(regex:Regex) extends Command
+trait Filter extends Command {
+  def matches(s:String):Boolean
+}
+
+sealed case class Exclude(regex:Regex) extends Filter {
+  override def matches(s: String): Boolean = regex.matches(s)
+}
+
+sealed case class Not(f:Filter) extends Filter {
+  override def matches(s: String): Boolean = !f.matches(s)
+}

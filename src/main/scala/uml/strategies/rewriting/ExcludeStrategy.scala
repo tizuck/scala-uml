@@ -1,5 +1,6 @@
 package uml.strategies.rewriting
 
+import app.frontend.Filter
 import org.bitbucket.inkytonik.kiama.rewriting.PositionedRewriter.rulef
 import org.bitbucket.inkytonik.kiama.rewriting.Strategy
 import uml.externalReferences.ClassDefRef
@@ -7,8 +8,8 @@ import uml.{ClassRef, ConcreteClass, PackageRef, Relationship, UMLUnit}
 
 import scala.util.matching.Regex
 
-object ExcludeStrategy extends RewriteStrategy[Regex]{
-  override def apply(v1: Regex): Strategy = {
+object ExcludeStrategy extends RewriteStrategy[Filter]{
+  override def apply(v1: Filter): Strategy = {
     val f: Any => Any = u => u match {
       case u:UMLUnit =>
         val excludedToplevelElements = u.toplevelElements
@@ -60,7 +61,10 @@ object ExcludeStrategy extends RewriteStrategy[Regex]{
 
   //Check if name without namespace matches regex
   //Check if name together with namespace matches regex
-  private def matchesNameOrNamespace(v1:Regex,name:String,namespace:String):Boolean = {
-      v1.matches(name) || v1.matches(namespace+name)
+  private def matchesNameOrNamespace(f:Filter,name:String,namespace:String):Boolean = {
+    val nameMatches =  f.matches(name)
+    val namespaceMatches = f.matches(namespace+name)
+    val res = nameMatches || namespaceMatches
+    res
   }
 }

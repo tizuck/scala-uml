@@ -1,6 +1,6 @@
 package app.frontend.parser
 
-import app.frontend.{Command, Exclude, Github, GithubType, Help, HelpType, InputPath, Name, OutputPath, Textual, Verbose, VerboseType}
+import app.frontend.{Command, Exclude, Filter, Github, GithubType, Help, HelpType, InputPath, Name, Not, OutputPath, Textual, Verbose, VerboseType}
 import org.bitbucket.inkytonik.kiama.parsing.ListParsers
 import org.bitbucket.inkytonik.kiama.util.Positions
 
@@ -62,8 +62,20 @@ class Rules(positions:Positions) extends ListParsers(positions) {
     }
   }
 
-  lazy val exclude : InputState => Parser[Exclude] = _ => {
-    excludePre ~> """([^\s]*)""".r ^^ {r => Exclude(r.replaceAll("""\*""","([^\\s]*)").r)}
+  lazy val exclude : InputState => Parser[Filter] = i => {
+    excludePre ~> filter(i)
+  }
+
+  lazy val regex : InputState => Parser[Filter] = _ => {
+    "r" ~> "(" ~> """([^\s]*)""".r <~ ")" ^^ {r => Exclude(r.replaceAll("""\*""","([^\\s]*)").r)}
+  }
+
+  lazy val not : InputState => Parser[Filter] = i =>  {
+    "not" ~> "(" ~> filter(i) <~ ")" ^^ Not
+  }
+
+  lazy val filter : InputState => Parser[Filter] = i => {
+    not(i) | regex(i)
   }
 
   lazy val github : InputState => Parser[Github] = _ =>

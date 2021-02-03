@@ -1,5 +1,6 @@
 package app.frontend.processor
 
+import app.frontend.Filter
 import app.frontend.exceptions.{BadInputPathException, BadOutputPathException, GithubConfigFailedException, UMLConversionException}
 import app.github.{GithubLoader, PublicGithub}
 import net.sourceforge.plantuml.{FileFormat, FileFormatOption, SourceStringReader}
@@ -25,7 +26,7 @@ case class GithubUMLDiagramProcessor(
                                       isVerbose:Boolean,
                                       isTextual : Boolean,
                                       name:String="default",
-                                      exclude:Option[Regex]=None)
+                                      exclude:Option[Filter]=None)
   extends Processor {
 
   override def execute(): UMLUnit = {

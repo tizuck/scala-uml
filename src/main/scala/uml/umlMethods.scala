@@ -1,5 +1,6 @@
 package uml
 
+import app.frontend.Filter
 import cats.Eval
 import cats.data.State
 import scalameta.util.namespaces.Entry
@@ -97,9 +98,9 @@ object umlMethods {
     }
   }
 
-  def exclude(umlElement: UMLElement,regex:Regex): Eval[UMLElement] = {
+  def exclude(umlElement: UMLElement,f:Filter): Eval[UMLElement] = {
     val excl = for {
-      res <- nextRewriteState(regex)(ExcludeStrategy)
+      res <- nextRewriteState(f)(ExcludeStrategy)
     } yield {
       res
     }
