@@ -1,0 +1,1 @@
+@someAnnotation("foo") @foo final implicit class Foo(i:Int)

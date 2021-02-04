@@ -20,8 +20,7 @@ import java.nio.charset.StandardCharsets
 import java.nio.file.{Files, Paths}
 import scala.util.matching.Regex
 
-case class GithubUMLDiagramProcessor(
-                                      outputPath:String,
+case class GithubUMLDiagramProcessor(outputPath:String,
                                       githubConfigPath:String,
                                       isVerbose:Boolean,
                                       isTextual : Boolean,

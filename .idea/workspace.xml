@@ -5,21 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/example/lattice.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/example/lattice3.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/githubKivy.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/scala/assets/dotty/annotationsAndModifiers.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/scala/assets/processor/cls/substitutionspaces.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/scala/assets/processor/cls/subtyping.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/scala/assets/processor/cls/syntax.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/scala/assets/processor/cls/type.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/AnnotationAndModifiersSuite.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/arith.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ast.scala" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/model.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/model.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/GithubUMLDiagramProcessor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/GithubUMLDiagramProcessor.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/Processor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/Processor.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/TraitCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/TraitCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/ExcludeStrategy.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/ExcludeStrategy.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/mods/ClassModsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/mods/ClassModsCollector.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/scala/integration/github/CLSSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/integration/github/CLSSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/integration/umlprocessor/UMLProcessorSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/integration/umlprocessor/UMLProcessorSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/preprocessing/Namespacing.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/preprocessing/Namespacing.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/EnumSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/EnumSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/ExtensionSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/ExtensionSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/GivenSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/GivenSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/TransparentTraitsSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/TransparentTraitsSuite.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,28 +127,29 @@
       <recent name="assets" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="app.frontend.Main" />
-      <module name="scala-uml" />
-      <option name="PROGRAM_PARAMETERS" value="--github src/main/resources/githubKivy.conf --d src/main/resources/ --textual --n kivy" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="app.frontend.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+  <component name="RunManager" selected="ScalaTest.ScalaTests in 'scala'">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AnnotationAndModifiersSuite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="scala-uml" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="Class" />
+      <option name="testClassPath" value="umlCoverage.dotty.AnnotationAndModifiersSuite" />
+      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -163,7 +167,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CLSSuite.case class constructor with secondary constructor and primary constructor" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="CLSSuite.Local and Github uml unit match" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
       <option name="selectedOptions">
@@ -171,54 +175,91 @@
       </option>
       <option name="testKind" value="Test name" />
       <option name="testClassPath" value="integration.github.CLSSuite" />
-      <option name="testName" value="case class constructor with secondary constructor and primary constructor" />
+      <option name="testName" value="Local and Github uml unit match" />
       <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CLSSuite.contains a case object Omega with a static value paths" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="ScalaTests in 'dotty'" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
       <option name="selectedOptions">
         <list />
       </option>
-      <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="integration.github.CLSSuite" />
-      <option name="testName" value="contains a case object Omega with a static value paths" />
+      <option name="testKind" value="All in package" />
+      <option name="classBuf">
+        <list>
+          <option value="umlCoverage.dotty.EnumSuite" />
+          <option value="umlCoverage.dotty.GivenSuite" />
+          <option value="umlCoverage.dotty.UsingSuite" />
+          <option value="umlCoverage.dotty.ExtensionSuite" />
+          <option value="umlCoverage.dotty.OpenClassesSuite" />
+          <option value="umlCoverage.dotty.ContextBoundSuite" />
+          <option value="umlCoverage.dotty.ContextFunctionSuite" />
+          <option value="umlCoverage.dotty.TraitParametersSuite" />
+          <option value="umlCoverage.dotty.TransparentTraitsSuite" />
+          <option value="umlCoverage.dotty.AnnotationAndModifiersSuite" />
+          <option value="umlCoverage.dotty.types.AndSuite" />
+          <option value="umlCoverage.dotty.types.UnionSuite" />
+        </list>
+      </option>
+      <option name="testPackagePath" value="umlCoverage.dotty" />
       <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CLSSuite.contains all class definitions in type.scala are present" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="ScalaTests in 'scala'" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
       <option name="selectedOptions">
         <list />
       </option>
-      <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="integration.github.CLSSuite" />
-      <option name="testName" value="contains all class definitions in type.scala are present" />
+      <option name="testKind" value="All in package" />
+      <option name="classBuf">
+        <list>
+          <option value="umlCoverage.dotty.EnumSuite" />
+          <option value="umlCoverage.dotty.GivenSuite" />
+          <option value="umlCoverage.dotty.UsingSuite" />
+          <option value="umlCoverage.dotty.ExtensionSuite" />
+          <option value="umlCoverage.dotty.OpenClassesSuite" />
+          <option value="umlCoverage.dotty.ContextBoundSuite" />
+          <option value="umlCoverage.dotty.ContextFunctionSuite" />
+          <option value="umlCoverage.dotty.TraitParametersSuite" />
+          <option value="umlCoverage.dotty.TransparentTraitsSuite" />
+          <option value="umlCoverage.dotty.AnnotationAndModifiersSuite" />
+          <option value="umlCoverage.dotty.types.AndSuite" />
+          <option value="umlCoverage.dotty.types.UnionSuite" />
+          <option value="rewriting.RewritingSuite" />
+          <option value="rewriting.collectingStrats.CollectingSuite" />
+          <option value="rewriting.collectingStrats.PackageRepresentationSuite" />
+          <option value="rewriting.assoc.AssocOfExternalsSuite" />
+          <option value="rewriting.companion.CompanionObjectSuite" />
+          <option value="preprocessing.Namespacing" />
+          <option value="integration.github.CLSSuite" />
+          <option value="integration.umlprocessor.UMLProcessorSuite" />
+        </list>
+      </option>
       <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
       <item itemvalue="ScalaTest.CLSSuite (1)" />
-      <item itemvalue="ScalaTest.CLSSuite.case class constructor with secondary constructor and primary constructor" />
-      <item itemvalue="ScalaTest.CLSSuite.contains all class definitions in type.scala are present" />
-      <item itemvalue="ScalaTest.CLSSuite.contains a case object Omega with a static value paths" />
+      <item itemvalue="ScalaTest.ScalaTests in 'scala'" />
+      <item itemvalue="ScalaTest.AnnotationAndModifiersSuite" />
+      <item itemvalue="ScalaTest.CLSSuite.Local and Github uml unit match" />
+      <item itemvalue="ScalaTest.ScalaTests in 'dotty'" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="ScalaTest.ScalaTests in 'scala'" />
         <item itemvalue="ScalaTest.CLSSuite (1)" />
-        <item itemvalue="ScalaTest.CLSSuite.case class constructor with secondary constructor and primary constructor" />
-        <item itemvalue="ScalaTest.CLSSuite.contains a case object Omega with a static value paths" />
-        <item itemvalue="ScalaTest.CLSSuite.contains all class definitions in type.scala are present" />
+        <item itemvalue="ScalaTest.ScalaTests in 'dotty'" />
+        <item itemvalue="ScalaTest.CLSSuite.Local and Github uml unit match" />
+        <item itemvalue="ScalaTest.AnnotationAndModifiersSuite" />
       </list>
     </recent_temporary>
   </component>
@@ -344,7 +385,8 @@
       <workItem from="1611933189037" duration="8670000" />
       <workItem from="1612100856897" duration="1965000" />
       <workItem from="1612198546151" duration="4759000" />
-      <workItem from="1612345318734" duration="6676000" />
+      <workItem from="1612345318734" duration="6679000" />
+      <workItem from="1612442404951" duration="12548000" />
     </task>
     <servers />
   </component>
@@ -368,7 +410,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__scala_.ic" NAME="ScalaTests in 'scala' Coverage Results" MODIFIED="1611069511325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__scala_.ic" NAME="ScalaTests in 'scala' Coverage Results" MODIFIED="1612456687029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$CLSSuite_contains_a_case_object_Omega_with_a_static_value_paths.ic" NAME="CLSSuite.contains a case object Omega with a static value paths Coverage Results" MODIFIED="1611935346588" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__processors_.ic" NAME="ScalaTests in 'processors' Coverage Results" MODIFIED="1610987435421" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$Main__1_.ic" NAME="Main (1) Coverage Results" MODIFIED="1608403524265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

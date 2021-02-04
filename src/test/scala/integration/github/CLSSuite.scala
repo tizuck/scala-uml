@@ -1,7 +1,7 @@
 package integration.github
 
 import app.frontend.processor.Processor
-import app.frontend.{Exclude, Github, Name, Not, OutputPath, Textual}
+import app.frontend.{Exclude, Github, InputPath, Name, Not, OutputPath, Textual}
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
 import scalameta.util.namespaces.NamespaceEntry
@@ -30,9 +30,12 @@ import uml.UMLUnit
  *   - primary constructor
  */
 class CLSSuite extends AnyFreeSpec with Matchers {
+
   val confPath = "src/test/scala/assets/processor/github/github.conf"
-  val outputPath = "src/test/scala/assets/out/processor"
-  val commands = List(Github(confPath),OutputPath(outputPath),Textual(),Name("cls"),Not(Exclude("""(org::combinators::cls::types)|((org::combinators::cls::types.)?(\$Type|Type|Arrow|Constructor|Intersection|Omega|Product|Variable))""".r)))
+  val outputPath = "src/test/scala/assets/out/processor/"
+  //Not(Exclude("""(org::combinators::cls::types)|((org::combinators::cls::types.)?(\$Type|Type|Arrow|Constructor|Intersection|Omega|Product|Variable))""".r))
+  val commands = List(Github(confPath),OutputPath(outputPath),Textual(),Name("cls"))
+
   //val commands = List(Github(confPath),OutputPath(outputPath),Textual(),Name("cls"),Not(Exclude("""(org::cls::combinator::types\.)?(Arrow|Constructor|Intersection|Omega|Product|Variable)""".r)))
   val processor: Processor = Processor(commands)
   val umlUnit: UMLUnit = processor.execute()
@@ -109,12 +112,12 @@ class CLSSuite extends AnyFreeSpec with Matchers {
     } must be(true)
   }
 
-  " contains a case object Omega with a static value paths" in {
+  " contains a case object Omega with a value paths" in {
     umlUnit.exists{
       case c:uml.Class =>
         c.name.equals("Omega") &&
           c.stereotype.exists(s => s.name.equals("caseobject")) &&
-          c.attributes.exists(s => s.name.equals("paths") && s.attributeType.equals("&<Type,Path>")) &&
+          c.attributes.exists(s => s.name.equals("paths") && s.attributeType.get.trim.equals("List<&<Type,Path>>")) &&
           c.operations.exists(o =>
             o.name.equals("toStringPrec") &&
               o.paramSeq.exists(s => s.exists(p => p.name.equals("prec") && p.paramType.equals("Int")))
@@ -123,16 +126,7 @@ class CLSSuite extends AnyFreeSpec with Matchers {
     } must be(true)
   }
 
-  /*" contains a trait Minimizable that contains a type declaration T" in {
-    umlUnit.exists{
-      case c:uml.Class =>
-        c.name.equals("Minimizable") &&
-        c.stereotype.exists(s => s.name.equals("trait")) &&
-        c.
-    }
-  }*/
-
-  " contains all class definitions in type.scala are present" in {
+  " contains all class definitions in type.scala" in {
     umlUnit.collect {
       case c:uml.Class =>
         if(c.name.equals("Type") ||
@@ -164,4 +158,5 @@ class CLSSuite extends AnyFreeSpec with Matchers {
           "Variable")
       ) must be(true)
   }
+
 }

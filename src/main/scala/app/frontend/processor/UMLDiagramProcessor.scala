@@ -19,10 +19,10 @@ import scala.meta.{Source, dialects}
 import scala.util.matching.Regex
 
 sealed case class UMLDiagramProcessor(
-                                       outputPath: String,
-                                       filesPath: String,
-                                       isVerbose: Boolean,
-                                       isTextual : Boolean,
+                                       outputPath: String = "",
+                                       filesPath: String = "",
+                                       isVerbose: Boolean = false,
+                                       isTextual : Boolean = false,
                                        name:String="default",
                                        exclude:Option[Filter]=None)
   extends Processor {
@@ -30,7 +30,7 @@ sealed case class UMLDiagramProcessor(
   override def execute(): UMLUnit = {
 
     val logger = LoggerFactory.getLogger("execution")
-
+    println(this)
     val filesFound = getAllFiles(
       if(!filesPath.isEmpty) {
         val filePath = new File(filesPath)

@@ -45,12 +45,12 @@ case class ClassModsCollector(mods:List[Compartment], isAbstract:Boolean, classS
         .map{tp => if(tp._2){
           //Annotations should always have a value on tagged values
           tp._1.copy(
-            taggedValues = tp._1.taggedValues.map(t => t.copy(value = Some(s"${t.value.get},$annotation")))
+            taggedValues = tp._1.taggedValues.map(t => t.copy(value = Some(s"${t.value.get.dropRight(1)},$annotation]")))
           )
         } else tp._1}
     } else {
       mods
-        .appended(Compartment(Some("<<annotated>>"),List(TaggedValue("annotations",Some(annotation))),Nil))
+        .appended(Compartment(Some("<<annotated>>"),List(TaggedValue("annotations",Some("[" + annotation + "]"))),Nil))
     }
     this.copy(mods=updated)
   }

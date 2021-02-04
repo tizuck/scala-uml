@@ -22,7 +22,7 @@ object Processor {
 
       case (EmptyProcessor,InputPath(path))                 => UMLDiagramProcessor(outputPath = "",filesPath = path,false,false)
       case (u:UMLDiagramProcessor,InputPath(path))          => u.copy(filesPath = path)
-      case (g:GithubUMLDiagramProcessor,InputPath(path))    => g
+      case (g:GithubUMLDiagramProcessor,InputPath(path))    => UMLDiagramProcessor(outputPath = "",filesPath = path,false,false)
 
       case (EmptyProcessor,Verbose())                       => UMLDiagramProcessor("","",true,false)
       case (u:UMLDiagramProcessor,Verbose())                => u.copy(isVerbose = true)
