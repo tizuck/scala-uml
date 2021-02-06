@@ -81,6 +81,7 @@ object umlMethods {
       _ <- nextRewriteState(allEqualClasses)(InsertCompanionDependency)
       res <- nextRewriteState(allEqualClasses)(RenameAllAffectedRelationships)
     } yield {
+      println(allEqualClasses.map(_.swap).mkString("\n"))
       res
     }
 

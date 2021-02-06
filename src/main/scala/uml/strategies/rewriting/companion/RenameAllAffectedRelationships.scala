@@ -2,7 +2,7 @@ package uml.strategies.rewriting.companion
 
 import org.bitbucket.inkytonik.kiama.rewriting.PositionedRewriter.rulef
 import org.bitbucket.inkytonik.kiama.rewriting.Strategy
-import uml.{ClassRef, ConcreteClass, FromTo, PackageBodyElement, PackageRef, Relationship, RelationshipElement, ToFrom, TopLevelElement, UMLElement, UMLUnit}
+import uml.{ClassRef, ConcreteClass, FromTo, PackageBodyElement, PackageRef, Relationship, RelationshipElement, ToFrom, TopLevelElement, UMLElement, UMLUnit, Without}
 import uml.strategies.rewriting.RewriteStrategy
 
 object RenameAllAffectedRelationships extends RewriteStrategy[List[(uml.Class,Boolean)]] {
@@ -18,19 +18,41 @@ object RenameAllAffectedRelationships extends RewriteStrategy[List[(uml.Class,Bo
   }
 
   private def updateInnerElements(topLevelElements:List[UMLElement], v1: List[(uml.Class, Boolean)]) = {
+    def checkAffected(e: RelationshipElement) = {
+      e match {
+        case ConcreteClass(cls) => v1.exists {
+          case (c, b) => b && c.name.equals(cls.name) && c.namespace.equals(cls.namespace)
+        }
+        case ClassRef(name, namespace) => v1.exists {
+          case (c, b) => b && c.name.equals(name) && c.namespace.equals(namespace)
+        }
+        case PackageRef(namespace) => false
+      }
+    }
+
     topLevelElements
       .map {
         case r: Relationship =>
           //If object is found, see if this object is a companion object
           //and if so, update the name of the from identifier in the relationship
-          if(r.stereotype.exists(s => s.name.equals("objectdef"))) {
+          //true, if fromTo, false if ToFrom
+          val direction = r.relationshipDirection.equals(FromTo)
+          val withoutDirection = r.relationshipDirection.equals(Without)
+          val isAffected = if(r.stereotype.exists(s => s.name.equals("objectdef"))) {
             println(r.structure)
-          }
-          if (r.relationshipDirection.equals(FromTo) &&
+            if(direction && !withoutDirection){
+              checkAffected(r.relationshipInfo.from)
+            } else if(!direction && !withoutDirection) {
+              checkAffected(r.relationshipInfo.to)
+            } else {
+              false
+            }
+          } else {false}
+          if (direction && !withoutDirection && isAffected &&
             r.relationshipInfo.originType.equals(uml.externalReferences.Object)) {
             updateRelationship(v1, r, r.relationshipInfo.from)
           }
-          else if (r.relationshipDirection.equals(ToFrom) &&
+          else if (!direction && !withoutDirection && isAffected &&
             r.relationshipInfo.originType.equals(uml.externalReferences.Object)) {
             updateRelationship(v1, r, r.relationshipInfo.to)
           }

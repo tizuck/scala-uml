@@ -67,11 +67,11 @@ class Rules(positions:Positions) extends ListParsers(positions) {
   }
 
   lazy val regex : InputState => Parser[Filter] = _ => {
-    "r" ~> "(" ~> """([^\s]*)""".r <~ ")" ^^ {r => Exclude(r.replaceAll("""\*""","([^\\s]*)").r)}
+    "r" ~> """([^\s]*)""".r ^^ {r => Exclude(r.replaceAll("""\*""","([^\\s]*)").r)}
   }
 
   lazy val not : InputState => Parser[Filter] = i =>  {
-    "not" ~> "(" ~> filter(i) <~ ")" ^^ Not
+    "not" ~> filter(i) ^^ Not
   }
 
   lazy val filter : InputState => Parser[Filter] = i => {
