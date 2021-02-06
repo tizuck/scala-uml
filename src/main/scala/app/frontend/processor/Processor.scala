@@ -1,6 +1,7 @@
 package app.frontend.processor
 
 import app.frontend._
+import app.frontend.exceptions.BadInputPathException
 import uml.UMLUnit
 
 import java.io.{FileNotFoundException, IOException}
@@ -8,6 +9,7 @@ import java.io.{FileNotFoundException, IOException}
 trait Processor {
   @throws[IOException]()
   @throws[FileNotFoundException]()
+  @throws[BadInputPathException]()
   def execute():UMLUnit
 }
 

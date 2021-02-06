@@ -1,6 +1,6 @@
 package app.frontend
 
-import app.frontend.exceptions.InvalidParameterException
+import app.frontend.exceptions.{InvalidParameterException, NoParametersProvidedException}
 
 import java.io.Reader
 import app.frontend.parser.{InputState, Rules}
@@ -13,10 +13,11 @@ import scala.annotation.tailrec
 case class Loader(commands:List[Command])
 
 object Loader {
-
+  @throws[NoParametersProvidedException]("Commands missing.")
+  @throws[InvalidParameterException]("Sequence of commands is illegal")
   def apply(args:Array[String]):Loader = {
     if(args.isEmpty){
-      new Loader(List.empty[Command])
+      throw new NoParametersProvidedException("No commands provided. See --help for a list of commands.")
     } else {
       val fullParams = args.mkString(" ")
       val res = parseInputSeq(StringSource(fullParams), InputState(Nil), new Rules(new Positions))
@@ -38,8 +39,8 @@ object Loader {
    * @param inputState Current state containing all parsed commands.
    * @param parserRules Rules defining how to parse commands.
    * @return A valid sequence of commands.
-   * @throws java.lang.IllegalArgumentException if sequence of commands is illegal. Provides detailed information
-   *                                            in message of exception.
+   * @throws InvalidParameterException if a parameter could not be parsed. Information about the failure origin is
+   *                                   provided in the exception
    */
   private def parseInputSeq(inputSource:Source, inputState:InputState, parserRules:Rules) : List[Command] = {
       val parse = parserRules.parse(parserRules.command(inputState),inputSource)

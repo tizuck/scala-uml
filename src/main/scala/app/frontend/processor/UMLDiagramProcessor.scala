@@ -1,7 +1,7 @@
 package app.frontend.processor
 
-import app.frontend.{Filter, InputPath}
-import app.frontend.exceptions.{BadInputPathException, BadOutputPathException, UMLConversionException}
+import app.frontend.Filter
+import app.frontend.exceptions.{BadInputPathException, BadOutputPathException, ImplementationMissingException, NoParametersProvidedException}
 import net.sourceforge.plantuml.{FileFormat, FileFormatOption, SourceStringReader}
 import org.scalameta.UnreachableError
 import org.slf4j.{Logger, LoggerFactory}
@@ -12,11 +12,10 @@ import uml.{UMLUnit, umlMethods}
 import uml.umlMethods.{toAssocRep, toDistinctRep, toPackageRep}
 
 import java.io.{File, FileNotFoundException, FileOutputStream, IOException}
-import java.nio.charset.StandardCharsets
-import java.nio.file.{Files, Paths}
+import java.nio.charset.StandardCharsets._
+import java.nio.file.{Files, InvalidPathException, Paths}
 import scala.meta.parsers.Parsed
 import scala.meta.{Source, dialects}
-import scala.util.matching.Regex
 
 sealed case class UMLDiagramProcessor(
                                        outputPath: String = "",
@@ -30,110 +29,94 @@ sealed case class UMLDiagramProcessor(
   override def execute(): UMLUnit = {
 
     val logger = LoggerFactory.getLogger("execution")
-    println(this)
-    val filesFound = getAllFiles(
-      if(!filesPath.isEmpty) {
-        val filePath = new File(filesPath)
-        if(!filePath.exists() || !filePath.isDirectory()){
-          throw new BadInputPathException("Input path does not exist. Try using --fp <path> with a valid path.")
-        } else {
-          filePath
-        }
-      } else {
-        //If no explicit path for consumption of files is given
-        //directory of executed jar is processed
-        val path = ClassLoader.getSystemClassLoader().getResource(".").getPath
-        logger.info(s"No input path specified. Assuming [$path] as input path.")
-        new File(path)
-      }
-    )
 
-    for(file <- filesFound){
-      logger.info(s"Found scala file: ${file} ")
+    val filesFound = getAllFiles(determineInputFilePath(logger))
+
+    logFoundFiles(logger, filesFound)
+
+    val parsedFiles = tryToParseFiles(filesFound)
+
+    if(parsedFiles.isEmpty){
+      throw new BadInputPathException(s"Files in directory $filesPath are not interpretable as Scala programs.")
     }
 
-    val parsedFiles = for {
-      (k, v)  <- filesFound.map(s => (parseTry(s), s))
-      opt     <- k
-    } yield {
-      (opt,v)
-    }
+    val umlProcess = tryUmlConstruction(logger, parsedFiles)
+
+    val res = processUmlCol(umlProcess,logger,name,outputPath, isTextual, exclude)
+    res.getOrElse(null)
+  }
 
 
-    val umlProcess = try {
-      Some(SourcesCollector(parsedFiles,name))
+
+
+  private def rewriteUMLAST(umlCol: SourcesCollector): UMLUnit = {
+    try {
+      val dRep = toDistinctRep(umlCol.umlUnit).value
+      val pRep = toPackageRep(dRep).value.asInstanceOf[UMLUnit]
+      val cRep = umlMethods.insertCompanionObjects(pRep).value
+      val aRep = toAssocRep(cRep).value.asInstanceOf[UMLUnit]
+      val exRep = exclude.map(r => umlMethods.exclude(aRep, r).value).getOrElse(aRep).asInstanceOf[UMLUnit]
+      exRep
     } catch {
-      case ni:NotImplementedError =>
-        throw new UMLConversionException(s"Files contain features that are not yet supported: ${ni.getMessage}",ni)
-      case e:Exception =>
-        throw new UMLConversionException(s"Unknown error when processing. try --verbose to get debug information.",e)
+      case e: Exception => throw e
     }
+  }
 
-     val res = for {
-        umlCol <- umlProcess
-      } yield {
-        val path = if (outputPath.isEmpty) {
-          logger.info(s"No output path specified. Assuming:" +
-            s" ${ClassLoader.getSystemClassLoader.getResource(".").getPath} as output path." +
-            s" Try --d <path> to define output path.")
-          val path = ClassLoader.getSystemClassLoader().getResource(".").getPath
-          path.replaceFirst("/","")
-        } else {
-          outputPath
-        }
+  private def determineOutputPath(logger: Logger): String = {
+    if (outputPath.isEmpty) {
+      logger.info(s"No output path specified. Assuming:" +
+        s" ${ClassLoader.getSystemClassLoader.getResource(".").getPath} as output path." +
+        s" Try --d <path> to define output path.")
+      val path = ClassLoader.getSystemClassLoader.getResource(".").getPath
+      path.replaceFirst("/", "")
+    } else outputPath
+  }
 
-        implicit val prettyPrinter = UMLUnitPretty()(PlantUMLConfig())
+  private def tryUmlConstruction(logger: Logger, parsedFiles: List[(Source, String)]): Option[SourcesCollector] = {
+    try {
+      Some(SourcesCollector(parsedFiles, name))
+    } catch {
+      case ni: NotImplementedError =>
+        throw new ImplementationMissingException(
+          "Construction of UML AST failed because of unimplemented features.",ni)
+      case e: Exception =>
+        throw new ImplementationMissingException(
+          s"Unknown error when processing. try --verbose to get debug information.", e)
+    }
+  }
 
-        val rewritten = try {
-          val dRep = toDistinctRep(umlCol.umlUnit).value
-          val pRep = toPackageRep(dRep).value.asInstanceOf[UMLUnit]
-          val cRep = umlMethods.insertCompanionObjects(pRep).value
-          val aRep = toAssocRep(cRep).value.asInstanceOf[UMLUnit]
-          val exRep = exclude.map(r => umlMethods.exclude(aRep,r).value).getOrElse(aRep).asInstanceOf[UMLUnit]
-          exRep
-        } catch {
-          case e: Exception => throw e
-        }
+  private def tryToParseFiles(filesFound: List[String]): List[(Source, String)] = {
+    for {
+      (k, v) <- filesFound.map(s => (parseTry(s), s))
+      opt <- k
+    } yield {
+      (opt, v)
+    }
+  }
 
-        if (!isTextual) {
-          val reader = new SourceStringReader(rewritten.pretty)
-          val filePath = new File(path)
+  private def logFoundFiles(logger: Logger, filesFound: List[String]): Unit = {
+    for (file <- filesFound) {
+      logger.info(s"Found scala file: $file ")
+    }
+  }
 
-          val fos = try {
-            new FileOutputStream(new File(filePath.getPath + name + ".svg"))
-          } catch {
-            case fnf: FileNotFoundException => throw new BadOutputPathException(
-              s"specified output path: [${filePath.getPath}] is invalid. Try --d <path> with a valid path.",
-              fnf
-            )
-          }
-          try {
-            reader.generateImage(fos, new FileFormatOption(FileFormat.SVG))
-            logger.info(s"Successfully exported image to location: ${filePath.getPath + name + ".svg"}")
-            rewritten
-          } catch {
-            case i: IOException =>
-              logger.error(s"Unable to export image: ${filePath.getPath + name + ".svg"}." +
-                s" Try --verbose to get debug information.")
-              logger.debug(s"${i.getStackTrace.mkString("Array(", ", ", ")")}")
-              rewritten
-          }
-        } else {
-          try {
-            Files.write(Paths.get(path + (if(path.last.equals('/')){""}else{"/"}) + name + ".txt"), rewritten.pretty.getBytes(StandardCharsets.UTF_8))
-            logger.info(s"Successfully exported text file to: ${path + "/" + name + ".txt"}")
-            rewritten
-          } catch {
-            case i:IOException =>
-              logger.error(s"Unable to export image: ${path + "/" + name + ".txt"}." +
-                s" Try --verbose to get debug information.")
-              logger.debug(s"${i.getStackTrace.mkString("Array(", ", ", ")")}")
-              rewritten
-
-          }
-        }
+  @throws[BadInputPathException]("Input path is not a directory or does not exist")
+  private def determineInputFilePath(logger: Logger): File = {
+    if (filesPath.nonEmpty) {
+      val filePath = new File(filesPath)
+      if (!filePath.exists() || !filePath.isDirectory) {
+        throw new BadInputPathException("Input path does not exist or is not a directory." +
+          " Try using --fp <path> with a valid path.")
+      } else {
+        filePath
       }
-    res.get
+    } else {
+      //If no explicit path for consumption of files is given
+      //directory of executed jar is processed
+      val path = ClassLoader.getSystemClassLoader.getResource(".").getPath
+      logger.info(s"No input path specified. Assuming [$path] as input path.")
+      new File(path)
+    }
   }
 
   private def parseTry(s: String):Option[Source] = {
@@ -142,7 +125,7 @@ sealed case class UMLDiagramProcessor(
       dialects.Scala3(new File(s)).parse[Source] match {
         case Parsed.Success(t) =>
           Some(t)
-        case p: Parsed.Error =>
+        case _: Parsed.Error =>
           dialects.Scala213(new File(s)).parse[Source] match {
             case Parsed.Success(t) =>
               Some(t)
@@ -155,12 +138,15 @@ sealed case class UMLDiagramProcessor(
       }
     } catch {
       case u:UnreachableError =>
-        logger.error(s"Parser could not successfully parse file [${s}]. try --verbose to get debug information.")
-        logger.debug(s"Unreachable Error thrown due to an unreachable code sequence with message: ${u.getMessage} and stacktrace: ${u.printStackTrace}.")
-        logger.warn(s"Definitions of file:[$s] will not be considered in final diagram.")
+        logger.warn(s"Definitions of file:[$s] will" +
+          s" not be considered in final diagram because file is not interpretable.")
+        logger.debug(s"Unreachable Error thrown due to an unreachable code sequence with message:" +
+          s" ${u.getMessage} and stacktrace: ${u.printStackTrace()}.")
         None
       case e:Exception =>
-        logger.error(s"unrecognized error with message: ${e.getMessage}")
+        logger.warn(s"unrecognized error while trying to process file: $s with message: ${e.getMessage}")
+        logger.debug(s"unrecognized error while trying to process file: $s with message:" +
+          s" ${e.getMessage} and stacktrace: {${e.getStackTrace.mkString("Array(", ", ", ")")}}")
         None
     }
   }

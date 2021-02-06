@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/ImplementationMissingException.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/package.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/RenameAllAffectedRelationships.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/RenameAllAffectedRelationships.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/Loader.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Loader.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/GithubUMLDiagramProcessor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/GithubUMLDiagramProcessor.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/Processor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/Processor.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,10 +58,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Package Object" />
         <option value="Scala Trait" />
         <option value="Scala Object" />
         <option value="Scala Class" />
+        <option value="Package Object" />
       </list>
     </option>
   </component>
@@ -113,11 +117,11 @@
       <recent name="assets" />
     </key>
   </component>
-  <component name="RunManager" selected="ScalaTest.CLSSuite (1)">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="app.frontend.Main" />
       <module name="scala-uml" />
-      <option name="PROGRAM_PARAMETERS" value="--fp src/main/resources/example/ --d src/main/resources --github src/main/resources/githubKivy.conf --n kivy --t" />
+      <option name="PROGRAM_PARAMETERS" value="-- fp src/main/scala/app/frontend/exceptions --d diaOut/ --t" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="app.frontend.*" />
@@ -240,8 +244,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="ScalaTest.CLSSuite (1)" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="ScalaTest.CLSSuite (1)" />
         <item itemvalue="ScalaTest.ScalaTests in 'scala'" />
         <item itemvalue="ScalaTest.ScalaTests in 'dotty'" />
         <item itemvalue="ScalaTest.CLSSuite.Local and Github uml unit match" />
@@ -373,7 +377,7 @@
       <workItem from="1612345318734" duration="6679000" />
       <workItem from="1612442404951" duration="12548000" />
       <workItem from="1612527027466" duration="29000" />
-      <workItem from="1612612935146" duration="4425000" />
+      <workItem from="1612612935146" duration="12562000" />
     </task>
     <servers />
   </component>

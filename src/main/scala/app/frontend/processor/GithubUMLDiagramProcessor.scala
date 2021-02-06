@@ -1,24 +1,23 @@
 package app.frontend.processor
 
 import app.frontend.Filter
-import app.frontend.exceptions.{BadInputPathException, BadOutputPathException, GithubConfigFailedException, UMLConversionException}
+import app.frontend.exceptions.{BadInputPathException, BadOutputPathException, GithubConfigFailedException, ImplementationMissingException, NoParametersProvidedException}
 import app.github.{GithubLoader, PublicGithub}
 import net.sourceforge.plantuml.{FileFormat, FileFormatOption, SourceStringReader}
 import org.slf4j.LoggerFactory
 import pretty.config.PlantUMLConfig
 import pretty.plantuml.UMLUnitPretty
+import pureconfig.ConfigReader.Result
 import pureconfig.ConfigSource
 import scalameta.toplevel.SourcesCollector
-import uml.{ClassRef, Inner, Relationship, RelationshipInfo, UMLUnit, umlMethods}
+import uml.{UMLUnit, umlMethods}
 import uml.umlMethods.{toAssocRep, toDistinctRep, toPackageRep}
 import pureconfig._
 import pureconfig.generic.auto._
-import uml.externalReferences.ClassDefRef
 
 import java.io.{File, FileNotFoundException, FileOutputStream, IOException}
 import java.nio.charset.StandardCharsets
 import java.nio.file.{Files, Paths}
-import scala.util.matching.Regex
 
 case class GithubUMLDiagramProcessor(outputPath:String,
                                       githubConfigPath:String,
@@ -33,40 +32,17 @@ case class GithubUMLDiagramProcessor(outputPath:String,
 
     val githubRepoLoaded = ConfigSource.file(githubConfigPath).load[PublicGithub]
 
-    val  githubRepo = githubRepoLoaded match {
-      case Left(value) =>
-        logger.debug(s"Github config at: [$githubConfigPath] with message: ${value.toString()}")
-        throw new BadInputPathException(s"Github config at: [$githubConfigPath] is corrupt.")
-      case Right(dirs) => dirs
-    }
-    val loadedGithub = try {
-      GithubLoader(githubRepo)
-    } catch {
-      case exception: Exception =>
-        throw new GithubConfigFailedException(s"Config found at: [$githubConfigPath] is corrupt.",exception)
-    }
+    val  githubRepo = getGithubConfigAtSuccess(githubRepoLoaded)
+
+    val loadedGithub = getGithubRepoAtSuccess(githubRepo)
 
     logFoundScalaFiles(loadedGithub)
 
-    val umlProcess = try {
-      SourcesCollector(
-        loadedGithub
-          .repo
-          .indexedFiles
-          .map {
-            case (s, sources) => (s, sources.headOption.getOrElse(throw new IllegalStateException()))
-          }
-          .toList
-          .map(tp => tp.swap),
-        name)
-    }  catch {
-      case ni:NotImplementedError =>
-        throw new UMLConversionException(s"Files contain features that are not yet supported: ${ni.getMessage}",ni)
-      case e:Exception =>
-        throw new UMLConversionException(s"Unknown error when processing. try --verbose to get debug information.")
-    }
+    val umlProcess = tryParseGithubFiles(loadedGithub)
 
-    val path = if(outputPath.isEmpty){
+    val res = processUmlCol(Some(umlProcess),logger, name, outputPath, isTextual, exclude)
+    res.getOrElse(null)
+    /*val path = if(outputPath.isEmpty){
       logger.info(s"No output path specified. Assuming:" +
         s" ${ClassLoader.getSystemClassLoader.getResource(".").getPath} as output path." +
         s" Try --d <path> to define output path.")
@@ -127,6 +103,45 @@ case class GithubUMLDiagramProcessor(outputPath:String,
           logger.debug(s"${i.getStackTrace.mkString("Array(", ", ", ")")}")
           rewritten
       }
+    } */
+  }
+
+  private def tryParseGithubFiles(loadedGithub: GithubLoader) = {
+    try {
+      SourcesCollector(
+        loadedGithub
+          .repo
+          .indexedFiles
+          .map {
+            case (s, sources) => (s, sources.headOption.getOrElse(throw new IllegalStateException()))
+          }
+          .toList
+          .map(tp => tp.swap),
+        name)
+    } catch {
+      case ni: NotImplementedError =>
+        throw new ImplementationMissingException(
+          "Construction of UML AST failed because of unimplemented features.", ni)
+      case e: Exception =>
+        throw new ImplementationMissingException(
+          s"Unknown error when processing. try --verbose to get debug information.", e)
+    }
+  }
+
+  private def getGithubRepoAtSuccess(githubRepo: PublicGithub) = {
+    try {
+      GithubLoader(githubRepo)
+    } catch {
+      case exception: Exception =>
+        throw new GithubConfigFailedException(s"Config found at: [$githubConfigPath] is corrupt.", exception)
+    }
+  }
+
+  private def getGithubConfigAtSuccess(githubRepoLoaded: Result[PublicGithub]) = {
+    githubRepoLoaded match {
+      case Left(value) =>
+        throw new GithubConfigFailedException(s"Github config at: [$githubConfigPath] is corrupt.")
+      case Right(dirs) => dirs
     }
   }
 
