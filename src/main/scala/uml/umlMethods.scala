@@ -53,7 +53,6 @@ object umlMethods {
       relHitMap <- nextCollectState(List.empty[RelationshipElement])(CollectClassRelationshipHits)
       res <- nextRewriteState((possiblyToEliminate,relHitMap))(DeleteUnTargetedExternalClasses)
     } yield {
-      println(allClassDefRefs)
       res
     }
 
@@ -81,7 +80,6 @@ object umlMethods {
       _ <- nextRewriteState(allEqualClasses)(InsertCompanionDependency)
       res <- nextRewriteState(allEqualClasses)(RenameAllAffectedRelationships)
     } yield {
-      println(allEqualClasses.map(_.swap).mkString("\n"))
       res
     }
 

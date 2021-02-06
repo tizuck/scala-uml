@@ -64,7 +64,6 @@ class EnumSuite extends AnyFreeSpec with Matchers {
   private def caseInheritanceExists(umlUnit: UMLUnit,from:String,to:String) = {
     umlUnit.exists {
       case r: Relationship =>
-        println(r.relationshipInfo)
         r.relationshipInfo.from.exists { case c: ClassRef => c.name.equals(from) case _ => false } &&
           r.relationshipInfo.to.exists {
             case c: ConcreteClass => c.cls.name.equals(to) &&
@@ -79,7 +78,6 @@ class EnumSuite extends AnyFreeSpec with Matchers {
   private def caseInheritanceExistsClassRef(umlUnit: UMLUnit,from:String,to:String) = {
     umlUnit.exists {
       case r: Relationship =>
-        println(r.relationshipInfo)
         r.relationshipInfo.from.exists { case c: ClassRef => c.name.equals(from) case _ => false } &&
           r.relationshipInfo.to.exists {
             case c: ClassRef => c.name.equals(to)

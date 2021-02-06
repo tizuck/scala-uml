@@ -114,7 +114,7 @@ object TransformAssociations extends RewriteStrategy[List[Relationship]]{
     val parseRes = parser.parseAll(parser.assocId,StringSource(withoutSpaces))
     val assocId = parseRes match {
       case Success(result, _) => result
-      case n:NoSuccess => println(n.message);AssociationIdentifier(Id(""),Nil)
+      case n:NoSuccess => AssociationIdentifier(Id(""),Nil)
     }
 
     val name = assocId.id.id

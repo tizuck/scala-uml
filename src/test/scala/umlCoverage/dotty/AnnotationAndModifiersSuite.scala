@@ -29,8 +29,6 @@ class AnnotationAndModifiersSuite extends AnyFreeSpec with Matchers {
 
     implicit val umlUnitPretty: UMLUnitPretty = UMLUnitPretty()(PlantUMLConfig())
 
-    println(umlUnit.pretty)
-
     val reader = new SourceStringReader(umlCollector.umlUnit.pretty)
     val filePath = new File("src/test/scala/assets/out/")
 

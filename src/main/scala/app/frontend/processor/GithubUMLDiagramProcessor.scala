@@ -1,23 +1,19 @@
 package app.frontend.processor
 
 import app.frontend.Filter
-import app.frontend.exceptions.{BadInputPathException, BadOutputPathException, GithubConfigFailedException, ImplementationMissingException, NoParametersProvidedException}
+import app.frontend.exceptions.{GithubConfigFailedException, ImplementationMissingException}
 import app.github.{GithubLoader, PublicGithub}
-import net.sourceforge.plantuml.{FileFormat, FileFormatOption, SourceStringReader}
+
 import org.slf4j.LoggerFactory
-import pretty.config.PlantUMLConfig
-import pretty.plantuml.UMLUnitPretty
+
 import pureconfig.ConfigReader.Result
 import pureconfig.ConfigSource
 import scalameta.toplevel.SourcesCollector
-import uml.{UMLUnit, umlMethods}
-import uml.umlMethods.{toAssocRep, toDistinctRep, toPackageRep}
+import uml.UMLUnit
 import pureconfig._
 import pureconfig.generic.auto._
 
-import java.io.{File, FileNotFoundException, FileOutputStream, IOException}
-import java.nio.charset.StandardCharsets
-import java.nio.file.{Files, Paths}
+
 
 case class GithubUMLDiagramProcessor(outputPath:String,
                                       githubConfigPath:String,
@@ -29,84 +25,16 @@ case class GithubUMLDiagramProcessor(outputPath:String,
 
   override def execute(): UMLUnit = {
     val logger = LoggerFactory.getLogger("execution")
-
     val githubRepoLoaded = ConfigSource.file(githubConfigPath).load[PublicGithub]
-
     val  githubRepo = getGithubConfigAtSuccess(githubRepoLoaded)
-
     val loadedGithub = getGithubRepoAtSuccess(githubRepo)
-
     logFoundScalaFiles(loadedGithub)
-
     val umlProcess = tryParseGithubFiles(loadedGithub)
-
     val res = processUmlCol(Some(umlProcess),logger, name, outputPath, isTextual, exclude)
-    res.getOrElse(null)
-    /*val path = if(outputPath.isEmpty){
-      logger.info(s"No output path specified. Assuming:" +
-        s" ${ClassLoader.getSystemClassLoader.getResource(".").getPath} as output path." +
-        s" Try --d <path> to define output path.")
-        ClassLoader.getSystemClassLoader.getResource(".").getPath
-      } else {
-        outputPath
-      }
-
-    implicit val prettyPrinter: UMLUnitPretty = UMLUnitPretty()(PlantUMLConfig())
-    val rewritten = try {
-      val dRep = toDistinctRep(umlProcess.umlUnit).value
-      val pRep = toPackageRep(dRep).value.asInstanceOf[UMLUnit]
-      val cRep = umlMethods.insertCompanionObjects(pRep).value
-      val aRep = toAssocRep(cRep).value.asInstanceOf[UMLUnit]
-      val exRep = exclude.map(r => umlMethods.exclude(aRep,r).value).getOrElse(aRep).asInstanceOf[UMLUnit]
-      exRep
-    } catch {
-      case e: Exception => throw e
-    }
-
-    val reader = new SourceStringReader(rewritten.pretty)
-    val filePath = new File(path)
-
-    if(!isTextual) {
-      val fos = try {
-        if (filePath.isDirectory) {
-          new FileOutputStream(new File(filePath.getPath + "/" + name + ".svg"))
-        } else {
-          new FileOutputStream(new File(filePath.getPath + name + ".svg"))
-        }
-      } catch {
-        case fnf: FileNotFoundException => throw new BadOutputPathException(
-          s"specified output path: [${filePath.getPath}] is invalid. Try --d <path> with a valid path.",
-          fnf
-        )
-      }
-
-      try {
-        reader.generateImage(fos, new FileFormatOption(FileFormat.SVG))
-        logger.info(s"Successfully exported image to location: ${filePath.getPath + name + ".svg"}")
-        rewritten
-      } catch {
-        case i: IOException =>
-          logger.error(s"Unable to export image: ${filePath.getPath + name + ".svg"}." +
-            s" Try --verbose to get debug information.")
-          logger.debug(s"${i.getStackTrace.mkString("Array(", ", ", ")")}")
-          rewritten
-      }
-    }  else {
-      try {
-        Files.write(Paths.get(path + name + ".puml"), rewritten.pretty.getBytes(StandardCharsets.UTF_8))
-        logger.info(s"Successfully exported PlantUML file to location: $path$name.puml")
-        rewritten
-      } catch {
-        case i:IOException =>
-          logger.error(s"Unable to export image: ${path + name + ".txt"}." +
-            s" Try --verbose to get debug information.")
-          logger.debug(s"${i.getStackTrace.mkString("Array(", ", ", ")")}")
-          rewritten
-      }
-    } */
+    res.orNull
   }
 
-  private def tryParseGithubFiles(loadedGithub: GithubLoader) = {
+  private def tryParseGithubFiles(loadedGithub: GithubLoader): SourcesCollector = {
     try {
       SourcesCollector(
         loadedGithub
@@ -128,7 +56,7 @@ case class GithubUMLDiagramProcessor(outputPath:String,
     }
   }
 
-  private def getGithubRepoAtSuccess(githubRepo: PublicGithub) = {
+  private def getGithubRepoAtSuccess(githubRepo: PublicGithub): GithubLoader = {
     try {
       GithubLoader(githubRepo)
     } catch {
@@ -137,7 +65,7 @@ case class GithubUMLDiagramProcessor(outputPath:String,
     }
   }
 
-  private def getGithubConfigAtSuccess(githubRepoLoaded: Result[PublicGithub]) = {
+  private def getGithubConfigAtSuccess(githubRepoLoaded: Result[PublicGithub]): PublicGithub = {
     githubRepoLoaded match {
       case Left(value) =>
         throw new GithubConfigFailedException(s"Github config at: [$githubConfigPath] is corrupt.")

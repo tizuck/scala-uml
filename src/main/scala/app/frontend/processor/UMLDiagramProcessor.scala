@@ -1,19 +1,14 @@
 package app.frontend.processor
 
 import app.frontend.Filter
-import app.frontend.exceptions.{BadInputPathException, BadOutputPathException, ImplementationMissingException, NoParametersProvidedException}
-import net.sourceforge.plantuml.{FileFormat, FileFormatOption, SourceStringReader}
+import app.frontend.exceptions.{BadInputPathException, ImplementationMissingException}
 import org.scalameta.UnreachableError
 import org.slf4j.{Logger, LoggerFactory}
-import pretty.config.PlantUMLConfig
-import pretty.plantuml.UMLUnitPretty
 import scalameta.toplevel.SourcesCollector
 import uml.{UMLUnit, umlMethods}
 import uml.umlMethods.{toAssocRep, toDistinctRep, toPackageRep}
 
-import java.io.{File, FileNotFoundException, FileOutputStream, IOException}
-import java.nio.charset.StandardCharsets._
-import java.nio.file.{Files, InvalidPathException, Paths}
+import java.io.File
 import scala.meta.parsers.Parsed
 import scala.meta.{Source, dialects}
 
@@ -29,21 +24,15 @@ sealed case class UMLDiagramProcessor(
   override def execute(): UMLUnit = {
 
     val logger = LoggerFactory.getLogger("execution")
-
     val filesFound = getAllFiles(determineInputFilePath(logger))
-
     logFoundFiles(logger, filesFound)
-
     val parsedFiles = tryToParseFiles(filesFound)
-
-    if(parsedFiles.isEmpty){
+    if(parsedFiles.isEmpty) {
       throw new BadInputPathException(s"Files in directory $filesPath are not interpretable as Scala programs.")
     }
-
     val umlProcess = tryUmlConstruction(logger, parsedFiles)
-
     val res = processUmlCol(umlProcess,logger,name,outputPath, isTextual, exclude)
-    res.getOrElse(null)
+    res.orNull
   }
 
 
@@ -62,16 +51,7 @@ sealed case class UMLDiagramProcessor(
     }
   }
 
-  private def determineOutputPath(logger: Logger): String = {
-    if (outputPath.isEmpty) {
-      logger.info(s"No output path specified. Assuming:" +
-        s" ${ClassLoader.getSystemClassLoader.getResource(".").getPath} as output path." +
-        s" Try --d <path> to define output path.")
-      val path = ClassLoader.getSystemClassLoader.getResource(".").getPath
-      path.replaceFirst("/", "")
-    } else outputPath
-  }
-
+  @throws[ImplementationMissingException]("Construction of UML AST failed due to unimplemented features")
   private def tryUmlConstruction(logger: Logger, parsedFiles: List[(Source, String)]): Option[SourcesCollector] = {
     try {
       Some(SourcesCollector(parsedFiles, name))

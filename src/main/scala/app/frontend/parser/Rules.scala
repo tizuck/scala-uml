@@ -4,46 +4,40 @@ import app.frontend.{Command, Exclude, Filter, Github, GithubType, Help, HelpTyp
 import org.bitbucket.inkytonik.kiama.parsing.ListParsers
 import org.bitbucket.inkytonik.kiama.util.Positions
 
-import scala.util.matching.Regex
-
 case class InputState(commands:List[Command])
 
 class Rules(positions:Positions) extends ListParsers(positions) {
 
   override def whitespace: Parser[Any] = regex("[\\s]*".r)
 
-  lazy val command:InputState => Parser[Command] = ins => (
-    (commandPre ~> (
-      help(ins)
-      | verbose(ins)
-      | name(ins)
-      | github(ins)
-      | directory(ins)
-      | filesPath(ins)
-      | textualPre ^^ {_ => Textual()}
-      | exclude(ins)
-      )) ^^ { c =>
-      if(ins.commands.exists(cOther => cOther.getClass.equals(c.getClass))){
-        throw new IllegalArgumentException(
-          s"Same command: $c may not be used twice. Try removing one of the commands."
-        )
-      } else {
-        c
-      }
+  lazy val command:InputState => Parser[Command] = ins => (commandPre ~> (
+    help(ins)
+    | verbose(ins)
+    | name(ins)
+    | github(ins)
+    | directory(ins)
+    | filesPath(ins)
+    | textualPre ^^ {_ => Textual()}
+    | exclude(ins)
+    )) ^^ { c =>
+    if(ins.commands.exists(cOther => cOther.getClass.equals(c.getClass))){
+      throw new IllegalArgumentException(
+        s"Same command: $c may not be used twice. Try removing one of the commands."
+      )
+    } else {
+      c
     }
-  )
+  }
 
   lazy val commandPre: Parser[Unit] = (
     "--" ^^ { _ => () }
       | "-" ^^ { _ => () }
     )
 
-  lazy val helpCommand : Parser[HelpType] = (
-    commandPre ~> (
-      verbosePre ^^ {_ => VerboseType}
-      | githubPre ^^ {_ => GithubType}
-      )
-  )
+  lazy val helpCommand : Parser[HelpType] = commandPre ~> (
+    verbosePre ^^ {_ => VerboseType}
+    | githubPre ^^ {_ => GithubType}
+    )
 
   lazy val directory : InputState => Parser[OutputPath] = _ =>
     directoryPre ~> path ^^ OutputPath

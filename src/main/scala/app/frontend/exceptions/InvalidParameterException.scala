@@ -17,6 +17,6 @@ class InvalidParameterException(message:String, noSucc:NoSuccess) extends Except
     this(null: String,noSucc)
   }
 
-  def getNoSucc():NoSuccess = noSucc
+  def getNoSucc:NoSuccess = noSucc
 
 }
