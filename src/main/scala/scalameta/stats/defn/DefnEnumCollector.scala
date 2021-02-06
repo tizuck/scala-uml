@@ -50,11 +50,11 @@ object DefnEnumCollector {
     )
 
     val cls = Class(
-      true,
+      isAbstract = true,
       enumName.value,
       innerAttributes,
       primaryConstructor.primaryCstr.map(List(_)).getOrElse(Nil) ++ innerOperations,
-      Nil,
+      mods.mods,
       None,
       List(Stereotype("scalaenum",Nil)),
       context.localCon.currentNamespace

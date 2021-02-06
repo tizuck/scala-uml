@@ -70,7 +70,7 @@ object TypeNameCollector {
         //@todo respect path dependent types here
       case Type.Select(qual,name) =>
         val resolvedQual = SelectRefCollector(qual).namespaceAddition
-        TypeNameCollector(typeRep = resolvedQual.qualifiers.mkString("::").appendedAll(s"::${name}"))
+        TypeNameCollector(typeRep = resolvedQual.qualifiers.mkString("::").appendedAll(s"::$name"))
 
       case Type.Repeated(s) => TypeNameCollector(s"VarArgs<$s>")
 

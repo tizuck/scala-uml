@@ -16,9 +16,9 @@
 
 package scalameta.stats.init
 
-import scalameta.util.{BaseCollector, StateChangingCollector}
+import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Relationship, UMLElement}
+import uml.UMLElement
 
 import scala.meta.Init
 

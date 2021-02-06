@@ -15,11 +15,10 @@
  */
 
 package scalameta.stats.dcl
-import scalameta.stateless.TypeNameCollector
 import scalameta.typeparams.TypeParamsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Association, Class, ClassRef, ConcreteClass, FromTo, Inner, Operation, Relationship, RelationshipInfo, Stereotype, ToFrom, UMLElement, Without}
+import uml._
 
 import scala.meta.Decl
 
@@ -34,7 +33,7 @@ object DclTypeCollector {
     val generics = TypeParamsCollector(dclType.tparams)
 
     val typeClass = Class(
-      true,
+      isAbstract = true,
       dclType.name.value,
       Nil,
       Nil,

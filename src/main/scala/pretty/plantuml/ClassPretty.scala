@@ -1,6 +1,6 @@
 package pretty.plantuml
 
-import pretty.{KiamaPretty, PrettyPrinter}
+import pretty.KiamaPretty
 import pretty.config.PrettyConfig
 import pretty.KiamaPretty._
 import scalameta.util.namespaces.NamespaceEntry

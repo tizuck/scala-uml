@@ -1,6 +1,6 @@
 package uml.strategies.collecting.assoc
 
-import uml.{UMLElement}
+import uml.UMLElement
 import uml.externalReferences.ClassDefRef
 import uml.strategies.collecting.CollectStrategy
 

@@ -16,7 +16,7 @@
 
 package scalameta.stats.util
 
-import scalameta.stateless.{TargetMultiplicityCollector, TargetTypeCollector, TypeNameAssociationCollector, TypeNameCollector}
+import scalameta.stateless.{TargetMultiplicityCollector, TargetTypeCollector}
 import scalameta.util.context.CollectorContext
 
 import scala.meta.{Pat, Type}

@@ -3,7 +3,9 @@ package pretty.plantuml
 import pretty.PrettyPrinter
 import scalameta.util.namespaces.{DefaultNamespace, Entry, NamespaceEmpty, NamespaceEntry}
 import pretty.KiamaPretty._
-import uml.{Abstract, AccessModifier, Aggregation, Annotation, Association, Composition, Extension, FromTo, Inner, Modificator, PackagePrivate, Private, Protected, Public, Realization, RelationshipDirection, RelationshipType, Static, Stereotype, ToFrom, UMLElement, Without}
+import uml.{Abstract, AccessModifier, Aggregation, Annotation, Association, Composition, Extension, FromTo,
+  Inner, Modificator, PackagePrivate, Private, Protected, Public, Realization, RelationshipDirection, RelationshipType,
+  Static, Stereotype, ToFrom, UMLElement, Without}
 
 trait PlantUMLPrettyPrinter[T <: UMLElement] extends PrettyPrinter[T] {
 

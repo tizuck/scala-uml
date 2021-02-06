@@ -23,8 +23,7 @@ import scalameta.stats.init.InitsCollector
 import scalameta.typeparams.TypeParamsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import scalameta.util.util.statToString
-import uml.{Attribute, Class, ClassRef, Compartment, ConcreteClass, Inner, Operation, Parameter, Relationship, RelationshipInfo, ToFrom, UMLElement, Without}
+import uml._
 
 import scala.meta.Defn
 
@@ -86,7 +85,7 @@ object DefnClassCollector {
           ),Nil
         )
       )
-    } else {None}
+    } else None
 
     new DefnClassCollector(
       cls ::

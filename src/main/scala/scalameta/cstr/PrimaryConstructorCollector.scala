@@ -16,7 +16,7 @@
 
 package scalameta.cstr
 
-import scalameta.operations.parameters.ParamssCollector
+import scalameta.parameters.ParamssCollector
 import scalameta.util.context.CollectorContext
 import uml.{Operation, Stereotype}
 

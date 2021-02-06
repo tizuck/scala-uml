@@ -28,9 +28,7 @@ import uml.externalReferences.ClassType
 
 import scala.meta.Stat
 
-/**
- * @todo will be used later to define operations on all nodes
- */
+
 sealed trait UMLElement { self =>
 
   type T <: UMLElement
@@ -58,7 +56,7 @@ sealed trait UMLElement { self =>
   }
 
   def map(f:UMLElement ==> UMLElement):UMLElement = {
-    rewrite((u:Unit) => rule(f))(())((ue,t) => t).value._2
+    rewrite((_:Unit) => rule(f))(())((_, t) => t).value._2
   }
 
   def forall(p:UMLElement => Boolean):Boolean = {
@@ -69,7 +67,7 @@ sealed trait UMLElement { self =>
     rewrite((_:Boolean) => id)(false)((u,t) => p(u) || t).value._1
   }
 
-  def toList():List[UMLElement] = {
+  def toList:List[UMLElement] = {
     rewrite((_:List[UMLElement]) => id)(Nil)((u,t) => t.appended(u)).value._1
   }
 
@@ -471,7 +469,7 @@ sealed case class Attribute(modificators:Option[List[Modificator]],
  * Operations
  **************/
 
-//todo:
+
 sealed case class Parameter(name:String,
                             paramType:String,
                             stereotype:List[Stereotype]) extends
@@ -650,7 +648,7 @@ sealed case class PackageRef(namespace: NamespaceEntry) extends RelationshipElem
 
   override def pretty(implicit pretty: PrettyPrinter[PackageRef]): String = pretty.format(this).layout
 
-  override val toString = namespace.toString.dropRight(1)
+  override val toString: String = namespace.toString.dropRight(1)
 }
 
 sealed case class RelationshipInfo(sourceMultiplicity:Option[String],

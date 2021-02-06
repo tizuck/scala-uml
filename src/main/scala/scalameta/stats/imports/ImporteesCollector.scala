@@ -16,10 +16,6 @@
 
 package scalameta.stats.imports
 
-import scalameta.util.BaseCollector
-import scalameta.util.context.CollectorContext
-import uml.UMLElement
-
 import scala.meta.Importee
 import scala.meta.Importee.Name
 import scala.reflect.ClassTag

@@ -3,7 +3,7 @@ package uml.strategies.rewriting.packagerep
 import org.bitbucket.inkytonik.kiama.rewriting.Rewriter.rulef
 import org.bitbucket.inkytonik.kiama.rewriting.Strategy
 import scalameta.util.namespaces.Entry
-import uml.{UMLElement, UMLUnit}
+import uml.UMLUnit
 import uml.strategies.rewriting.RewriteStrategy
 
 object InsertPackagesFromNamespacesStrat extends RewriteStrategy[List[Entry]] {

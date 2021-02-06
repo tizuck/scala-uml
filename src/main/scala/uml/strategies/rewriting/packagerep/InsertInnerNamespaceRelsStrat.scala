@@ -3,8 +3,8 @@ package uml.strategies.rewriting.packagerep
 import org.bitbucket.inkytonik.kiama.rewriting.Rewriter.rulef
 import org.bitbucket.inkytonik.kiama.rewriting.Strategy
 import scalameta.util.namespaces.NamespaceEntry
-import uml.{ClassRef, FromTo, Inner, PackageRef, Relationship, RelationshipInfo, Stereotype, ToFrom, UMLUnit, Without}
 import uml.strategies.rewriting.RewriteStrategy
+import uml._
 
 object InsertInnerNamespaceRelsStrat extends RewriteStrategy[List[uml.Class]] {
   override def apply(v1: List[uml.Class]): Strategy = {

@@ -1,26 +1,16 @@
 package app.frontend
 
-import app.frontend.exceptions.{BadInputPathException, BadOutputPathException, InvalidParameterException, NoParametersProvidedException}
-import app.frontend.processor.{Processor, UMLDiagramProcessor}
+import app.frontend.processor.Processor
 import org.slf4j.LoggerFactory
 
-import scala.util.Failure
 
 object Main extends App {
+  val log = LoggerFactory.getLogger("execution")
   try {
-    val log = LoggerFactory.getLogger("execution")
     val loader = Loader(args)
     val proc = Processor(loader.commands)
     proc.execute()
   } catch {
-     case i:InvalidParameterException =>
-       val log = LoggerFactory.getLogger("execution")
-       log.error(i.getMessage)
-       log.debug(s"${i.getMessage} caused by: ${i.getNoSucc()}")
-     case n:NoParametersProvidedException =>
-       val log = LoggerFactory.getLogger("execution")
-       log.error(n.getMessage)
-       log.debug(s"${n.getMessage} caused by: ${n.getStackTrace.mkString("Array(", ", ", ")")}")
      case e:Exception => logException(e)
   }
 

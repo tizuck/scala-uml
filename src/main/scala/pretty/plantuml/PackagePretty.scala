@@ -1,6 +1,5 @@
 package pretty.plantuml
 
-import pretty.PrettyPrinter
 import pretty.config.PrettyConfig
 import pretty.KiamaPretty._
 

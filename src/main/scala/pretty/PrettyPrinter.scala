@@ -3,9 +3,8 @@ package pretty
 
 import org.bitbucket.inkytonik.kiama.output.PrettyPrinterTypes.Document
 import pretty.config.PrettyConfig
-import uml.{AccessModifier, Relationship, TopLevelElement, UMLElement, externalReferences}
-import scalameta.util.namespaces.Entry
 import pretty.KiamaPretty._
+import uml.{AccessModifier, UMLElement}
 
 trait PrettyPrinter[T <: UMLElement] {
 
@@ -20,14 +19,12 @@ trait PrettyPrinter[T <: UMLElement] {
   protected def showNamespace(e:scalameta.util.namespaces.Entry) : Doc
   protected def showAccessModifier(accessModifier: AccessModifier):Doc
 
-  protected def opt[T](opt:Option[T],
-              show:T => Doc,
-              l:Doc=emptyDoc,
-              r:Doc=space,
-              emptyL:Doc = emptyDoc,
-              emptyR:Doc = emptyDoc)
+  protected def opt[InnerT](opt:Option[InnerT],
+                            show:InnerT => Doc,
+                            l:Doc=emptyDoc,
+                            r:Doc=space,
+                            emptyL:Doc = emptyDoc,
+                            emptyR:Doc = emptyDoc)
   :Doc =
     opt.map(t => l <> show(t) <> r).getOrElse(emptyL <> emptyDoc <> emptyR)
-
-
 }

@@ -2,16 +2,16 @@ package uml.strategies.rewriting.companion
 
 import org.bitbucket.inkytonik.kiama.rewriting.PositionedRewriter.rulef
 import org.bitbucket.inkytonik.kiama.rewriting.Strategy
-import uml.{ClassRef, ConcreteClass, FromTo, PackageBodyElement, PackageRef, Relationship, RelationshipElement, ToFrom, TopLevelElement, UMLElement, UMLUnit, Without}
 import uml.strategies.rewriting.RewriteStrategy
+import uml._
 
 object RenameAllAffectedRelationships extends RewriteStrategy[List[(uml.Class,Boolean)]] {
   override def apply(v1: List[(uml.Class, Boolean)]): Strategy = {
-    val f : Any => Any = u => u match {
-      case u:UMLUnit =>
-        u.copy(toplevelElements = updateInnerElements(u.toplevelElements,v1).asInstanceOf[List[TopLevelElement]])
-      case p:uml.Package =>
-        p.copy(packageBodyElements = updateInnerElements(p.packageBodyElements,v1).asInstanceOf[List[PackageBodyElement]])
+    val f : Any => Any = {
+      case u: UMLUnit =>
+        u.copy(toplevelElements = updateInnerElements(u.toplevelElements, v1).asInstanceOf[List[TopLevelElement]])
+      case p: uml.Package =>
+        p.copy(packageBodyElements = updateInnerElements(p.packageBodyElements, v1).asInstanceOf[List[PackageBodyElement]])
       case u@_ => u
     }
     rulef(f)
@@ -26,7 +26,7 @@ object RenameAllAffectedRelationships extends RewriteStrategy[List[(uml.Class,Bo
         case ClassRef(name, namespace) => v1.exists {
           case (c, b) => b && c.name.equals(name) && c.namespace.equals(namespace)
         }
-        case PackageRef(namespace) => false
+        case PackageRef(_) => false
       }
     }
 

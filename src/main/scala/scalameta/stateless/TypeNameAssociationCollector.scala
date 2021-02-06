@@ -25,7 +25,7 @@ object TypeNameAssociationCollector {
   def apply(mType:Type): TypeNameAssociationCollector =  mType match {
     case Var(name) => TypeNameAssociationCollector(name.value)
     case Name(value) => TypeNameAssociationCollector(value)
-    case Apply(name, args) =>
+    case Apply(name, _) =>
       new TypeNameAssociationCollector(TypeNameAssociationCollector(name).typeRep)
   }
 }

@@ -18,14 +18,11 @@ package scalameta.stats.dcl
 
 
 
-import scalameta.stateless.TargetTypeCollector
-import scalameta.stats.StatCollector
 import scalameta.stats.util.AssociationInformation
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import scalameta.util.namespaces.NamespaceEntry
 import uml.externalReferences.{CClass, ClassDefRef, ClassType}
-import uml.{Association, Attribute, Class, ClassRef, ConcreteClass, FromTo, NamedElement, Operation, Relationship, RelationshipInfo, UMLElement}
+import uml._
 
 import scala.meta.{Case, Decl, Defn, Type}
 

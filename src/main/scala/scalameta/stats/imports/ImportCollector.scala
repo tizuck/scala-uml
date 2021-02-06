@@ -27,12 +27,6 @@ case class ImportCollector(override val definedElements: List[UMLElement],
                            override val resultingContext: CollectorContext) extends BaseCollector
 
 object ImportCollector {
-  /**
-   * Builds imported `NamespaceEntry` from structure of `imprt`
-   * @param imprt
-   * @param context
-   * @return
-   */
   def apply(imprt:Import)(implicit context:CollectorContext): ImportCollector = {
     val namespaces = imprt.importers.foldLeft(List.empty[NamespaceEntry]){
       case (acc,importer) => acc ++ ImporterCollector(importer).namespaces

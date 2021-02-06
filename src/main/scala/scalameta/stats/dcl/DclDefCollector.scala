@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package scalameta.relationships.dcl
+package scalameta.stats.dcl
 
-import scalameta.operations.parameters.ParamssCollector
+import scalameta.parameters.ParamssCollector
 import scalameta.stateless.{AccessModifierCollector, ModificatorsCollector, TypeNameCollector}
 import scalameta.typeparams.TypeParamsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Operation, Parameter, Relationship, Stereotype, UMLElement}
+import uml.{Parameter, Stereotype, UMLElement}
 
 import scala.meta.Decl
 
@@ -61,7 +61,6 @@ object DclDefCollector {
   private def interpretCBounds(cBounds:Map[String,List[String]]): List[Parameter] = {
     cBounds.foldLeft(List.empty[Parameter]){
       case (acc,(k,vs)) =>
-        val templateParam = k
         val cBounds = vs.map(v => Parameter("_",s"$v<$k>",List(Stereotype("using",Nil))))
         acc ++ cBounds
     }

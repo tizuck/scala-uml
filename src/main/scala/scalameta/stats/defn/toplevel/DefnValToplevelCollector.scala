@@ -42,7 +42,7 @@ object DefnValToplevelCollector {
     val clss = classNames.foldLeft(List.empty[Class]){
       case (acc,cn) =>
         acc ++ List(Class(
-        false,
+        isAbstract = false,
         cn.toUpperCase,
         List(Attribute(None,None,cn,optionRetTypeRep,Nil)),
           Nil,

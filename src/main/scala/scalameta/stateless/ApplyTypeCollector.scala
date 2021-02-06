@@ -17,7 +17,7 @@
 package scalameta.stateless
 
 import scalameta.util.context.CollectorContext
-import scalameta.util.namespaces.{DefaultNamespace, Entry}
+import scalameta.util.namespaces.Entry
 
 import scala.meta.{Stat, Type}
 

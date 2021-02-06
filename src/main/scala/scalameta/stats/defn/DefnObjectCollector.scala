@@ -22,8 +22,7 @@ import scalameta.stats.init.InitsCollector
 import scalameta.stats.util.defs.obtainFurtherNamespace
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import scalameta.util.namespaces.DefaultNamespace
-import uml.{Attribute, Class, ClassRef, Compartment, ConcreteClass, Inner, Operation, PackageRef, Relationship, RelationshipInfo, Stereotype, ToFrom, UMLElement, Without}
+import uml._
 
 import scala.meta.Defn
 
@@ -62,7 +61,7 @@ object DefnObjectCollector {
     val isCaseobject = mods.objectStereotypes.contains(Stereotype("caseobject",Nil))
 
     val cls = Class(
-      false,
+      isAbstract = false,
       objectName,
       innerattributes,
       operations,
@@ -87,7 +86,7 @@ object DefnObjectCollector {
         ),
         Nil)
       )
-    } else {None}
+    } else None
 
     new DefnObjectCollector(
       cls :: innerDefs ++ inheritedElements.definedElements ++ innerRelationship.map( List(_)).getOrElse(Nil),

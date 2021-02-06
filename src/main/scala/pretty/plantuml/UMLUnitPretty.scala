@@ -1,9 +1,8 @@
 package pretty.plantuml
 
-import pretty.PrettyPrinter
 import pretty.config.PrettyConfig
-import uml.UMLUnit
 import pretty.KiamaPretty._
+import uml.UMLUnit
 
 case class UMLUnitPretty()(override implicit val config: PrettyConfig)
   extends PlantUMLPrettyPrinter[UMLUnit] {

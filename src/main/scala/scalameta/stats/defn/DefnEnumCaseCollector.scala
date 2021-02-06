@@ -45,11 +45,11 @@ object DefnEnumCaseCollector {
     )
 
     val cls = Class(
-      false,
+      isAbstract = false,
       caseName,
       Nil,
       primaryConstructor.primaryCstr.map(List(_)).getOrElse(Nil),
-      Nil,
+      mods.mods,
       None,
       List(Stereotype("case",Nil)),
       context.localCon.currentNamespace

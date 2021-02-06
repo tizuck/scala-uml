@@ -22,7 +22,6 @@ sealed case class UMLDiagramProcessor(
   extends Processor {
 
   override def execute(): UMLUnit = {
-
     val logger = LoggerFactory.getLogger("execution")
     val filesFound = getAllFiles(determineInputFilePath(logger))
     logFoundFiles(logger, filesFound)

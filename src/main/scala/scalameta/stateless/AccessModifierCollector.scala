@@ -26,19 +26,17 @@ object AccessModifierCollector {
   def apply(mods:List[Mod]): AccessModifierCollector = {
     val accessMods = for(mod <- mods) yield {
       mod match {
-        case Mod.Private(within) =>
-          //@todo what to do if package private ?
+        case Mod.Private(_) =>
           List(Private)
-        case Mod.Protected(within) =>
-          //@todo what to do if package protected ?
+        case Mod.Protected(_) =>
           List(Protected)
         case _ => Nil
       }
     }
 
-    //Multiple Access modifier should not be allowed
+    //Multiple Access modifier are not allowed
     new AccessModifierCollector(accessMods.flatten.foldLeft[Option[AccessModifier]](None){
-      case (Some(m),amod) => Some(m)
+      case (Some(m), _) => Some(m)
       case (None,amod) => Some(amod)
       case _ => None
     })

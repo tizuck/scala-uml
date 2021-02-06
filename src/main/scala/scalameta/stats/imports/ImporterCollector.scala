@@ -16,10 +16,7 @@
 
 package scalameta.stats.imports
 
-import scalameta.util.BaseCollector
-import scalameta.util.context.CollectorContext
 import scalameta.util.namespaces.{Name, NamespaceEntry, Wildcard}
-import uml.UMLElement
 
 import scala.meta.Importer
 

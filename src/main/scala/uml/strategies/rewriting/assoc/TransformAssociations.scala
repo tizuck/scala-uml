@@ -9,13 +9,13 @@ import uml.strategies.rewriting.RewriteStrategy
 
 object TransformAssociations extends RewriteStrategy[List[Relationship]]{
   override def apply(v1: List[Relationship]): Strategy = {
-    val f: Any => Any = u => u match {
-      case p:uml.Package => p.copy(packageBodyElements = p.packageBodyElements.map{
-        case c:uml.Class => updateClass(v1, c)
+    val f: Any => Any = {
+      case p: uml.Package => p.copy(packageBodyElements = p.packageBodyElements.map {
+        case c: uml.Class => updateClass(v1, c)
         case u@_ => u
       })
-      case u:UMLUnit => u.copy(toplevelElements = u.toplevelElements.map{
-        case c:uml.Class => updateClass(v1, c)
+      case u: UMLUnit => u.copy(toplevelElements = u.toplevelElements.map {
+        case c: uml.Class => updateClass(v1, c)
         case u@_ => u
       })
       case u@_ => u
@@ -114,7 +114,7 @@ object TransformAssociations extends RewriteStrategy[List[Relationship]]{
     val parseRes = parser.parseAll(parser.assocId,StringSource(withoutSpaces))
     val assocId = parseRes match {
       case Success(result, _) => result
-      case n:NoSuccess => AssociationIdentifier(Id(""),Nil)
+      case _:NoSuccess => AssociationIdentifier(Id(""),Nil)
     }
 
     val name = assocId.id.id

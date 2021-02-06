@@ -17,11 +17,10 @@
 package scalameta.stats.defn
 
 import scalameta.stateless.TypeNameCollector
-import scalameta.stats.dcl.DclTypeCollector
 import scalameta.typeparams.TypeParamsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Attribute, Class, ConcreteClass, Inner, Relationship, RelationshipInfo, Stereotype, ToFrom, UMLElement, Without}
+import uml._
 
 import scala.meta.Defn
 
@@ -36,7 +35,7 @@ object DefnTypeCollector {
     val typeRep = TypeNameCollector(dType.body)
     val attr = Attribute(None,None,"_type_",Some(typeRep.typeRep),List(Stereotype("typeDef",Nil)))
     val typeClass = Class(
-      true,
+      isAbstract = true,
       dType.name.value,
       List(attr),
       Nil,

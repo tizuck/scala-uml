@@ -16,7 +16,7 @@
 
 package scalameta.stats.defn.toplevel
 
-import scalameta.relationships.dcl.DclDefCollector
+
 import scalameta.stats.dcl.DclCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
@@ -37,7 +37,7 @@ object DefnDefToplevelCollector {
           defnDef.tparams,
           defnDef.paramss,
           defnDef.decltpe.getOrElse(Type.Name("#notype#"))))(
-            if(defnDef.decltpe.isEmpty){context.copy(localCon = context.localCon.copy(typeRequired = false))}else{context}
+            if(defnDef.decltpe.isEmpty){context.copy(localCon = context.localCon.copy(typeRequired = false))}else context
       )
     val operation = dclRels.definedElements.flatMap{
       case o:Operation => Some(o)
@@ -46,7 +46,7 @@ object DefnDefToplevelCollector {
 
     new DefnDefToplevelCollector(
       List(Class(
-        false,
+        isAbstract = false,
         defnDef.name.value.toUpperCase,
         Nil,
         operation,

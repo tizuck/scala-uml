@@ -23,7 +23,7 @@ import scalameta.stats.init.InitsCollector
 import scalameta.typeparams.TypeParamsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Class, ClassRef, Compartment, ConcreteClass, Inner, Operation, Relationship, RelationshipInfo, Stereotype, ToFrom, UMLElement, Without}
+import uml._
 
 import scala.meta.Defn
 
@@ -56,7 +56,7 @@ object TraitCollector {
       context.withCstrOrigin(traitName)
     )
     val cls = Class(
-      true,
+      isAbstract = true,
       traitName,
       List.empty,
       primaryConstructor.primaryCstr.map(p => List(p)).getOrElse(Nil) ++

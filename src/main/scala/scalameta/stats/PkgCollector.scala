@@ -16,10 +16,10 @@
 
 package scalameta.stats
 
-import scalameta.util.{BaseCollector, StateChangingCollector}
+import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
 import scalameta.util.namespaces.collector.BaseNamespaceCollector.qualName
-import scalameta.util.namespaces.{DefaultNamespace, NamespaceEmpty, NamespaceEntry}
+import scalameta.util.namespaces.{DefaultNamespace, NamespaceEntry}
 import uml.UMLElement
 
 import scala.meta.Pkg

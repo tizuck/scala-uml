@@ -18,20 +18,20 @@ package app.github
 
 import java.io.IOException
 import java.util.concurrent.Executors
-
 import cats.data.NonEmptyList
-import cats.effect.{Blocker, ContextShift, IO, Resource}
+import cats.effect.{Blocker, ContextShift, IO}
 import cats.implicits._
 import cats.kernel.Semigroup
 import github4s.Github
 import github4s.domain.Content
 import org.http4s.client.{Client, JavaNetClientBuilder}
+import org.slf4j.LoggerFactory
 
 import scala.concurrent.ExecutionContext.global
 import scala.concurrent.duration.Duration
 import scala.meta.{Source, dialects}
 import scala.meta.parsers.Parsed
-import scala.concurrent.{ExecutionContext, duration}
+import scala.concurrent.duration
 
 case class GithubLoader(repo:Repository)
 
@@ -44,11 +44,6 @@ object GithubLoader {
 
   private val AMOUNT_SECONDS = 1
   private val TIMEOUT_DURATION = Duration(AMOUNT_SECONDS,duration.SECONDS)
-
-  //val executionContext: ExecutionContext =
-   // scala.concurrent.ExecutionContext.Implicits.global
-
-  //val clientResource: Resource[IO, Client[IO]] = BlazeClientBuilder[IO](executionContext).resource
 
   private val httpClient: Client[IO] = {
     val N_THREADS = 5
@@ -82,8 +77,17 @@ object GithubLoader {
     (directory.`type`,directory.content) match {
 
       case ("file",None) =>
-        val parsedFile = processFile(directory)
-        Repository(Map(directory.path -> List(parsedFile)))
+        try {
+          val parsedFile = processFile(directory)
+          Repository(Map(directory.path -> List(parsedFile)))
+        } catch {
+          case e:Exception =>
+            val logger = LoggerFactory.getLogger("execution")
+            logger.warn(s"File: [$directory] could not be processed as a Scala Source. Continuing with other files.")
+            logger.debug(s"File: [$directory] could not be processed as a Scala Source. Continuing with other files." +
+              s" Caused by: ${e.getMessage} with stacktrace: ${e.getStackTrace.mkString("Array(", ", ", ")")}")
+            Repository(Map.empty)
+        }
 
       case ("file",Some(encodedFile)) =>
         val fileContent = decodeFileBase64(Some(encodedFile))
@@ -117,7 +121,7 @@ object GithubLoader {
 
     case _ => throw new NotImplementedError
   }
-
+  @throws[IllegalArgumentException]("File is not parseable")
   private def processFile(content: Content)(implicit config: Config): Source = {
     val recievedFile = recieveFileEncoded(content.path)
     val parsedFile = parseRecievedFile(decodeFileBase64(recievedFile))
@@ -125,13 +129,18 @@ object GithubLoader {
     parsedFile
   }
 
+  @throws[IllegalArgumentException]("File is not parseable")
   private def parseRecievedFile(recievedFile: String): Source = {
     dialects
-      .Dotty(recievedFile)
+      .Scala3(recievedFile)
       .parse[Source] match {
       case Parsed.Success(t) => t
       case _:Parsed.Error =>
-        throw new IllegalArgumentException("File could not be interpreted as Scala File.")
+        dialects.Scala213(recievedFile).parse[Source] match {
+          case Parsed.Success(t) => t
+          case error: Parsed.Error =>
+            throw new IllegalArgumentException(s"File $recievedFile could not be processed as Scala file.")
+        }
     }
   }
 

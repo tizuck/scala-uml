@@ -18,9 +18,9 @@ package scalameta.mods
 
 import scalameta.stateless.TypeNameCollector
 import scalameta.util.context.CollectorContext
-import uml.{Attribute, Compartment, Stereotype, TaggedValue}
+import uml.{Compartment, Stereotype, TaggedValue}
 
-import scala.meta.{Mod, Term}
+import scala.meta.Mod
 
 case class ClassModsCollector(mods:List[Compartment], isAbstract:Boolean, classStereotypes:List[Stereotype] = Nil){
   self =>
@@ -66,7 +66,7 @@ case class ClassModsCollector(mods:List[Compartment], isAbstract:Boolean, classS
 object ClassModsCollector {
 
   def apply(mods:List[Mod])(implicit context: CollectorContext): ClassModsCollector = {
-    mods.foldLeft(ClassModsCollector(Nil,false)){
+    mods.foldLeft(ClassModsCollector(Nil,isAbstract = false)){
       case (acc,Mod.Final()) =>
         acc.appendScalaClass(TaggedValue("isFinal",None))
       case (acc,Mod.Private(ref)) =>

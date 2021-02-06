@@ -17,14 +17,13 @@
 package scalameta.stats.init
 
 
-import scalameta.stateless.{TargetTypeCollector, TypeNameCollector}
-import scalameta.util.{BaseCollector, StateChangingCollector}
+import scalameta.stateless.TargetTypeCollector
+import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import scalameta.stats.StatCollector
 import uml._
 import uml.externalReferences.{CClass, ClassDefRef, ClassType}
 
-import scala.meta.{Case, Defn, Init, Term}
+import scala.meta.{Case, Defn, Init}
 
 case class InitCollector(override val definedElements: List[UMLElement],
                          override val resultingContext: CollectorContext) extends BaseCollector
@@ -48,9 +47,6 @@ object InitCollector {
         .map{
           tbind => s"${tbind._1} -> ${tbind._2}"}
         .mkString(",")
-
-    //@todo problem with matching inits argss with entities argss are default values
-    //  this would mean a complete depiction of default values behaviour
 
     val mappedInitArgs = Option.when(init.argss.nonEmpty && init.argss.head.nonEmpty) {
       init

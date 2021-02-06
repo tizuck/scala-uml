@@ -17,7 +17,7 @@
 package scalameta.mods
 
 import scalameta.util.context.CollectorContext
-import uml.{Attribute, Compartment, Stereotype}
+import uml.{Compartment, Stereotype}
 
 import scala.meta.Mod
 

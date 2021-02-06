@@ -21,10 +21,10 @@ import scalameta.stats.util.AssociationInformation
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
 import uml.externalReferences.{CClass, ClassDefRef, ClassType}
-import uml.{Association, Class, ClassRef, ConcreteClass, FromTo, NamedElement, Operation, Relationship, RelationshipInfo, Stereotype, UMLElement}
+import uml._
 
-import scala.meta.{Case, Defn}
 import scala.meta.Decl.Var
+import scala.meta.{Case, Defn}
 
 case class DclVarCollector(override val definedElements: List[UMLElement],
                            override val resultingContext: CollectorContext

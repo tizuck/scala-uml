@@ -6,16 +6,75 @@
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/InvalidParameterException.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/InvalidParameterException.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/EmptyProcessor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/EmptyProcessor.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/GithubUMLDiagramProcessor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/GithubUMLDiagramProcessor.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/Loader.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Loader.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/Processor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/Processor.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/github/GithubLoader.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/github/GithubLoader.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/PrettyPrinter.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/PrettyPrinter.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ClassDefRefPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ClassDefRefPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ClassPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ClassPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/CompartmentPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/CompartmentPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ConcreteClassPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/ConcreteClassPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PackagePretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PackagePretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PlantUMLPrettyPrinter.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/PlantUMLPrettyPrinter.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/RelationshipPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/RelationshipPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/TopLevelPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/TopLevelPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/UMLUnitPretty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/pretty/plantuml/UMLUnitPretty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/cstr/PrimaryConstructorCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/cstr/PrimaryConstructorCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/cstr/SecondaryConstructorCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/cstr/SecondaryConstructorCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/mods/ClassModsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/mods/ClassModsCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/mods/ObjectModsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/mods/ObjectModsCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/parameters/ParamCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/parameters/ParamCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/parameters/ParamsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/parameters/ParamsCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/parameters/ParamssCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/parameters/ParamssCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/AccessModifierCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/AccessModifierCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/ApplyTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/ApplyTypeCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/BoundsNameCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/BoundsNameCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TargetMultiplicityCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TargetMultiplicityCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TemplateBindingCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TemplateBindingCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TypeNameAssociationCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TypeNameAssociationCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TypeNameCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stateless/TypeNameCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/PkgCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/PkgCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclDefCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclDefCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclTypeCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclValCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclValCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclVarCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclVarCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnClassCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnClassCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCaseCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCaseCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnEnumCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnObjectCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnObjectCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnOpaqueTypealiasCollector.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnRepeatedEnumCaseCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnRepeatedEnumCaseCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTypeCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/TraitCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/TraitCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/toplevel/DefnDefToplevelCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/toplevel/DefnDefToplevelCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/toplevel/DefnValToplevelCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/toplevel/DefnValToplevelCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImportCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImportCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImporteesCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImporteesCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImporterCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/imports/ImporterCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/init/InitCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/init/InitCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/init/InitsCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/init/InitsCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/util/AssociationInformation.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/util/AssociationInformation.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/collecting/CollectStrategy.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/collecting/CollectStrategy.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/collecting/assoc/CollectAllClassDefRefs.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/collecting/assoc/CollectAllClassDefRefs.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/predef/NonCollect.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/predef/NonCollect.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/DistinctionStrat.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/DistinctionStrat.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/ExcludeStrategy.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/ExcludeStrategy.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/InsertNamespaceObjectRelsStrat.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/InsertNamespaceObjectRelsStrat.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/assoc/DeleteAssocs.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/assoc/DeleteAssocs.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/assoc/DeleteUnTargetedExternalClasses.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/assoc/DeleteUnTargetedExternalClasses.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/assoc/TransformAssociations.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/assoc/TransformAssociations.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/InsertCompanionDependency.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/InsertCompanionDependency.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/RenameAllAffectedRelationships.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/RenameAllAffectedRelationships.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/RenameCompanionObject.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/RenameCompanionObject.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/DeleteAllClassesOnToplevel.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/DeleteAllClassesOnToplevel.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/InsertClassesInPackageStrat.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/InsertClassesInPackageStrat.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/InsertInnerNamespaceRelsStrat.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/InsertInnerNamespaceRelsStrat.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/InsertPackagesFromNamespacesStrat.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/packagerep/InsertPackagesFromNamespacesStrat.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/AnnotationAndModifiersSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/AnnotationAndModifiersSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/EnumSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/EnumSuite.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -380,7 +439,7 @@
       <workItem from="1612345318734" duration="6679000" />
       <workItem from="1612442404951" duration="12548000" />
       <workItem from="1612527027466" duration="29000" />
-      <workItem from="1612612935146" duration="13905000" />
+      <workItem from="1612612935146" duration="16111000" />
     </task>
     <servers />
   </component>
@@ -397,7 +456,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/ExcludeStrategy.scala</url>
-          <line>55</line>
+          <line>53</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>

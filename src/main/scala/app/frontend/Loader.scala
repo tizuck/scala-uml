@@ -1,14 +1,10 @@
 package app.frontend
 
 import app.frontend.exceptions.{InvalidParameterException, NoParametersProvidedException}
-
-import java.io.Reader
 import app.frontend.parser.{InputState, Rules}
 import org.bitbucket.inkytonik.kiama.parsing.{NoSuccess, Success}
 import org.bitbucket.inkytonik.kiama.util.{Positions, Source, StringSource}
 import org.slf4j.LoggerFactory
-
-import scala.annotation.tailrec
 
 case class Loader(commands:List[Command])
 
@@ -47,7 +43,6 @@ object Loader {
       val (parseRes,next) = parse match {
         case Success(result, next) => (result,next)
         case success: NoSuccess =>
-          val logger = LoggerFactory.getLogger("execution")
           throw new InvalidParameterException(s"input: ${inputSource.content} could not be processed." +
             s" Try --help to get a list of available commands.",success)
       }

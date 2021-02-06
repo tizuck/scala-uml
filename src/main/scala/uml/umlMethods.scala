@@ -4,17 +4,14 @@ import app.frontend.Filter
 import cats.Eval
 import cats.data.State
 import scalameta.util.namespaces.Entry
-import uml.UMLElement
 import uml.externalReferences.ClassDefRef
 import uml.strategies.collecting.CollectStrategy
 import uml.strategies.collecting.assoc.{CollectAllAssociationsBasedOn, CollectAllClassDefRefs, CollectClassRelationshipHits}
 import uml.strategies.collecting.packagerep.{CollectAllClassesStrat, CollectAllNamespacesStrat, CollectNamespaceObjectsStrat}
 import uml.strategies.rewriting.assoc.{DeleteAssocs, DeleteUnTargetedExternalClasses, TransformAssociations}
-import uml.strategies.rewriting.{DistinctionStrat, ExcludeStrategy, RewriteStrategy}
-import uml.strategies.rewriting.packagerep.{DeleteAllClassesOnToplevel, DeleteEmptyPackages, DeleteInnerAssocStrat, InsertClassesInPackageStrat, InsertInnerNamespaceRelsStrat, InsertPackagesFromNamespacesStrat}
 import uml.strategies.rewriting.companion.{InsertCompanionDependency, RenameAllAffectedRelationships, RenameCompanionObject}
-
-import scala.util.matching.Regex
+import uml.strategies.rewriting.packagerep._
+import uml.strategies.rewriting.{DistinctionStrat, ExcludeStrategy, RewriteStrategy}
 object umlMethods {
 
   private def startState[T](start:T):State[UMLElement,T] = State(

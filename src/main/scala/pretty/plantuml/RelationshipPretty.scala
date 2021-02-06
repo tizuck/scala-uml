@@ -16,7 +16,8 @@ case class RelationshipPretty()(override implicit val config: PrettyConfig) exte
       from,
       to,
       relationshipIdentifier,
-      identifierDirection
+      identifierDirection,
+      _
     ),
     stereotype) =>
       RelationshipElementPretty().toDoc(from) <+>

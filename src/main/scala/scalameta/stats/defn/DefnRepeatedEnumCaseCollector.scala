@@ -18,7 +18,7 @@ package scalameta.stats.defn
 
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Class, ConcreteClass, Extension, FromTo, Relationship, RelationshipInfo, Stereotype, ToFrom, UMLElement, Without}
+import uml.{Class, ConcreteClass, Extension, Relationship, RelationshipInfo, Stereotype, ToFrom, UMLElement, Without}
 
 import scala.meta.Defn
 
@@ -30,7 +30,7 @@ object DefnRepeatedEnumCaseCollector {
   DefnRepeatedEnumCaseCollector = {
     val caseAsClasses = repeatedEnumCase.cases.foldLeft(List.empty[Class]){
       case (acc,enumCase) =>
-       Class(false,enumCase.value,Nil,Nil,Nil,None,List(Stereotype("case",Nil))) :: acc
+       Class(isAbstract = false,enumCase.value,Nil,Nil,Nil,None,List(Stereotype("case",Nil))) :: acc
     }
 
     caseAsClasses.foldLeft(DefnRepeatedEnumCaseCollector(Nil,context)){
