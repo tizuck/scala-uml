@@ -1,18 +1,17 @@
 package rewriting.assoc
 
 
-import org.scalactic.PrettyMethods.Prettyizer
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
 import pretty.config.PlantUMLConfig
 import pretty.plantuml.UMLUnitPretty
 import scalameta.toplevel.SourcesCollector
-import uml.{Association, ClassRef, Relationship, UMLUnit, umlMethods}
+import uml._
 
 import scala.meta.{Source, dialects}
 
 class AssocOfExternalsSuite() extends AnyFreeSpec with Matchers {
-  val program =
+  val program: String =
     """
       |package foo {
       |  trait FooExpr extends (Unit => Unit) {
@@ -24,31 +23,31 @@ class AssocOfExternalsSuite() extends AnyFreeSpec with Matchers {
       |}
       |""".stripMargin
 
-  val parsedProgram = dialects.Scala3(program).parse[Source].get
-  val collectedUml = SourcesCollector(List((parsedProgram,"foo.scala")),"foo")
+  val parsedProgram: Source = dialects.Scala3(program).parse[Source].get
+  val collectedUml: SourcesCollector = SourcesCollector(List((parsedProgram,"foo.scala")),"foo")
 
   "Associations that reference to external entities are diplayed as attributes" in {
     val rewritten = umlMethods.toAssocRep(collectedUml.umlUnit).value.asInstanceOf[UMLUnit]
-    implicit val pretty = UMLUnitPretty()(PlantUMLConfig())
+    implicit val pretty: UMLUnitPretty = UMLUnitPretty()(PlantUMLConfig())
 
     rewritten.exists{
       case c:uml.Class =>
         c.name.equals("FooExpr") &&
-        c.attributes.exists(a => a.name.equals("b") && a.attributeType.equals(Some("Boolean")))
+        c.attributes.exists(a => a.name.equals("b") && a.attributeType.contains("Boolean"))
       case _ => false
     } must be(true)
 
     rewritten.exists{
       case c:uml.Class =>
         c.name.equals("FooExpr") &&
-          c.attributes.exists(a => a.name.equals("c") && a.attributeType.equals(Some("Int")))
+          c.attributes.exists(a => a.name.equals("c") && a.attributeType.contains("Int"))
       case _ => false
     } must be(true)
 
     rewritten.exists{
       case c:uml.Class =>
         c.name.equals("FooExpr") &&
-          c.attributes.exists(a => a.name.equals("d") && a.attributeType.equals(Some("Function1<Unit,Unit>")))
+          c.attributes.exists(a => a.name.equals("d") && a.attributeType.contains("Function1<Unit,Unit>"))
       case _ => false
     } must be(true)
 

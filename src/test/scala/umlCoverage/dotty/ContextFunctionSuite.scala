@@ -58,7 +58,7 @@ class ContextFunctionSuite extends AnyFreeSpec with Matchers {
       case _ => false
     } must be(1)
 
-    implicit val umlUnitPretty = UMLUnitPretty()(PlantUMLConfig())
+    implicit val umlUnitPretty: UMLUnitPretty = UMLUnitPretty()(PlantUMLConfig())
 
     val reader = new SourceStringReader(umlCollector.umlUnit.pretty)
     val filePath = new File("src/test/scala/assets/out/contextFuncs/")

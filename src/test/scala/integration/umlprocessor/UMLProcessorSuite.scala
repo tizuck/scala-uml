@@ -1,11 +1,10 @@
 package integration.umlprocessor
 
-import app.frontend.{Command, Github, Help, InputPath, Name, OutputPath, Textual}
-import app.frontend.exceptions.{BadInputPathException, BadOutputPathException}
-import app.frontend.processor.{EmptyProcessor, GithubUMLDiagramProcessor, HelpProcessor, Processor, UMLDiagramProcessor}
+import app.frontend.exceptions.BadInputPathException
+import app.frontend.processor.{EmptyProcessor, HelpProcessor, Processor, UMLDiagramProcessor}
+import app.frontend._
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
-import org.slf4j.{Logger, LoggerFactory}
 
 class UMLProcessorSuite extends AnyFreeSpec with Matchers {
 
@@ -32,7 +31,7 @@ class UMLProcessorSuite extends AnyFreeSpec with Matchers {
         Processor(List(OutputPath("path/foo/foo/foo/foo/foo")))
       ){
         proc mustBe a[UMLDiagramProcessor]
-        a [BadOutputPathException] must be thrownBy proc.execute()
+        a [BadInputPathException] must be thrownBy proc.execute()
       }
     }
     "with a non-valid input path" in new TestData(
@@ -100,7 +99,7 @@ class UMLProcessorSuite extends AnyFreeSpec with Matchers {
             }
             "with a textual representation request" - {
               "processes a UML diagram" in new TestData(Processor(List(
-                InputPath("src/test/scala/assets/processor"),
+                InputPath("src/test/scala/assets/processor/ast"),
                 Name("ast"),
                 Textual()
               ))) {
@@ -119,7 +118,7 @@ class UMLProcessorSuite extends AnyFreeSpec with Matchers {
               Name("ast")
             ))) {
               proc mustBe a[UMLDiagramProcessor]
-              proc.execute()
+              a [BadInputPathException] must be thrownBy proc.execute()
             }
           }
         }

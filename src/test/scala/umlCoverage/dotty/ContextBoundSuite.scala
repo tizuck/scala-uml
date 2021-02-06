@@ -22,7 +22,7 @@ class ContextBoundSuite extends AnyFreeSpec with Matchers {
     val bytes = Files.readAllBytes(path)
     val fileString  = new String(bytes,"UTF-8")
     val vFile = Input.VirtualFile(path.toString,fileString)
-    val input = dialects.Dotty(vFile).parse[Source].get
+    val input = dialects.Scala3(vFile).parse[Source].get
 
     val globalScope = scalameta.util.namespaces.collector.SourcesCollector(List((input,path.toAbsolutePath.toString)))
     val umlCollector = SourceCollector(input,GlobalContext(globalScope.resultingMap),path.toAbsolutePath.toString)

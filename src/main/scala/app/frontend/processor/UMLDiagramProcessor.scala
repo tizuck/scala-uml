@@ -5,8 +5,7 @@ import app.frontend.exceptions.{BadInputPathException, ImplementationMissingExce
 import org.scalameta.UnreachableError
 import org.slf4j.{Logger, LoggerFactory}
 import scalameta.toplevel.SourcesCollector
-import uml.{UMLUnit, umlMethods}
-import uml.umlMethods.{toAssocRep, toDistinctRep, toPackageRep}
+import uml.UMLUnit
 
 import java.io.File
 import scala.meta.parsers.Parsed
@@ -29,29 +28,13 @@ sealed case class UMLDiagramProcessor(
     if(parsedFiles.isEmpty) {
       throw new BadInputPathException(s"Files in directory $filesPath are not interpretable as Scala programs.")
     }
-    val umlProcess = tryUmlConstruction(logger, parsedFiles)
+    val umlProcess = tryUmlConstruction(parsedFiles)
     val res = processUmlCol(umlProcess,logger,name,outputPath, isTextual, exclude)
     res.orNull
   }
 
-
-
-
-  private def rewriteUMLAST(umlCol: SourcesCollector): UMLUnit = {
-    try {
-      val dRep = toDistinctRep(umlCol.umlUnit).value
-      val pRep = toPackageRep(dRep).value.asInstanceOf[UMLUnit]
-      val cRep = umlMethods.insertCompanionObjects(pRep).value
-      val aRep = toAssocRep(cRep).value.asInstanceOf[UMLUnit]
-      val exRep = exclude.map(r => umlMethods.exclude(aRep, r).value).getOrElse(aRep).asInstanceOf[UMLUnit]
-      exRep
-    } catch {
-      case e: Exception => throw e
-    }
-  }
-
   @throws[ImplementationMissingException]("Construction of UML AST failed due to unimplemented features")
-  private def tryUmlConstruction(logger: Logger, parsedFiles: List[(Source, String)]): Option[SourcesCollector] = {
+  private def tryUmlConstruction(parsedFiles: List[(Source, String)]): Option[SourcesCollector] = {
     try {
       Some(SourcesCollector(parsedFiles, name))
     } catch {

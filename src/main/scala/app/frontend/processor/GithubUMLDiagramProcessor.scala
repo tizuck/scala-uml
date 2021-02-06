@@ -67,7 +67,7 @@ case class GithubUMLDiagramProcessor(outputPath:String,
 
   private def getGithubConfigAtSuccess(githubRepoLoaded: Result[PublicGithub]): PublicGithub = {
     githubRepoLoaded match {
-      case Left(value) =>
+      case Left(_) =>
         throw new GithubConfigFailedException(s"Github config at: [$githubConfigPath] is corrupt.")
       case Right(dirs) => dirs
     }

@@ -20,7 +20,7 @@ class AnnotationAndModifiersSuite extends AnyFreeSpec with Matchers {
     val bytes = Files.readAllBytes(path)
     val fileString  = new String(bytes,"UTF-8")
     val vFile = Input.VirtualFile(path.toString,fileString)
-    val input = dialects.Dotty(vFile).parse[Source].get
+    val input = dialects.Scala3(vFile).parse[Source].get
 
     val globalScope = scalameta.util.namespaces.collector.SourcesCollector(List((input,path.toAbsolutePath.toString)))
     val umlCollector = SourceCollector(input,GlobalContext(globalScope.resultingMap),path.toAbsolutePath.toString)
@@ -45,7 +45,7 @@ class AnnotationAndModifiersSuite extends AnyFreeSpec with Matchers {
         c.additionalCompartements.exists(c =>
           c.identifier.get.trim.equals("<<annotated>>") &&
             c.taggedValues.exists(t => t.name.trim.equals("annotations") &&
-              t.value.map(s => s.trim.equals("""[@someAnnotation("foo"),@foo]""")).getOrElse(false))) &&
+              t.value.exists(s => s.trim.equals("""[@someAnnotation("foo"),@foo]""")))) &&
           c.additionalCompartements.exists(c =>
             c.identifier.get.trim.equals("<<scalaclass>>") &&
             c.taggedValues.exists(t => t.name.trim.equals("isFinal")) &&

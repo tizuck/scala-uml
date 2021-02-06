@@ -10,7 +10,7 @@ import uml.{Annotation, Association, ClassRef, ConcreteClass, FromTo, Relationsh
 import scala.meta.{Source, dialects}
 
 class CompanionObjectSuite extends AnyFreeSpec with Matchers {
-  val program =
+  val program: String =
     """
       |package foo {
       |  trait FooExpr
@@ -22,14 +22,14 @@ class CompanionObjectSuite extends AnyFreeSpec with Matchers {
       |}
       |""".stripMargin
 
-  val parsedProgram = dialects.Scala3(program).parse[Source].get
-  val collectedUml = SourcesCollector(List((parsedProgram,"foo.scala")),"foo")
+  val parsedProgram: Source = dialects.Scala3(program).parse[Source].get
+  val collectedUml: SourcesCollector = SourcesCollector(List((parsedProgram,"foo.scala")),"foo")
 
   "companion object is correctly depicted in resulting UML class diagram" in {
     val umlUnit = collectedUml.umlUnit
     val rewritten = umlMethods.insertCompanionObjects(umlUnit)
 
-    implicit val pretty = UMLUnitPretty()(PlantUMLConfig())
+    implicit val pretty: UMLUnitPretty = UMLUnitPretty()(PlantUMLConfig())
 
     //Test if companion object is correctly created
     rewritten.value.exists{
@@ -57,6 +57,8 @@ class CompanionObjectSuite extends AnyFreeSpec with Matchers {
       case _ => false
     } must be(true)
     //Test if association to FooExpr is outgoing from companion object
+
+    println(rewritten.value.pretty)
     rewritten.value.exists{
       case r:Relationship =>
         r.relationshipType.equals(Association) &&

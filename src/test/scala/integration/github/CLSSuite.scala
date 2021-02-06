@@ -1,7 +1,7 @@
 package integration.github
 
 import app.frontend.processor.Processor
-import app.frontend.{Exclude, Github, InputPath, Name, Not, OutputPath, Textual}
+import app.frontend.{Github, Name, OutputPath, Textual}
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
 import scalameta.util.namespaces.NamespaceEntry

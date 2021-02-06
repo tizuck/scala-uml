@@ -38,7 +38,7 @@ object RenameAllAffectedRelationships extends RewriteStrategy[List[(uml.Class,Bo
           //true, if fromTo, false if ToFrom
           val direction = r.relationshipDirection.equals(FromTo)
           val withoutDirection = r.relationshipDirection.equals(Without)
-          val isAffected = if(r.stereotype.exists(s => s.name.equals("objectdef"))) {
+          val isAffected =
             if(direction && !withoutDirection){
               checkAffected(r.relationshipInfo.from)
             } else if(!direction && !withoutDirection) {
@@ -46,7 +46,6 @@ object RenameAllAffectedRelationships extends RewriteStrategy[List[(uml.Class,Bo
             } else {
               false
             }
-          } else {false}
           if (direction && !withoutDirection && isAffected &&
             r.relationshipInfo.originType.equals(uml.externalReferences.Object)) {
             updateRelationship(v1, r, r.relationshipInfo.from)
