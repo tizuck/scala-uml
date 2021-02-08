@@ -20,6 +20,6 @@ object Main extends App {
     log.error(e.getMessage)
     log.debug(s"${e.getMessage}" +
       s" and \n stacktrace: ${e.getStackTrace.mkString("Array(", ", ", ")")}" +
-      (if(e.getCause != null){s"and cause: ${e.getCause.getStackTrace.mkString("Array(", ", ", ")")}"}else{""}))
+      (if(e.getCause != null){s"and cause: ${e.getCause.getMessage}, ${e.getCause.getStackTrace.mkString("Array(", ", ", ")")}"}else{""}))
   }
 }

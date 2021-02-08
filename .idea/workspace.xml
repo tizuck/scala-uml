@@ -5,23 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml-build.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/GithubUMLDiagramProcessor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/GithubUMLDiagramProcessor.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/RenameAllAffectedRelationships.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/companion/RenameAllAffectedRelationships.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/integration/github/CLSSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/integration/github/CLSSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/integration/umlprocessor/UMLProcessorSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/integration/umlprocessor/UMLProcessorSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/preprocessing/Namespacing.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/preprocessing/Namespacing.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/rewriting/RewritingSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/rewriting/RewritingSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/rewriting/assoc/AssocOfExternalsSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/rewriting/assoc/AssocOfExternalsSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/rewriting/collectingStrats/CollectingSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/rewriting/collectingStrats/CollectingSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/rewriting/collectingStrats/PackageRepresentationSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/rewriting/collectingStrats/PackageRepresentationSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/rewriting/companion/CompanionObjectSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/rewriting/companion/CompanionObjectSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/AnnotationAndModifiersSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/AnnotationAndModifiersSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/ContextBoundSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/ContextBoundSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/ContextFunctionSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/ContextFunctionSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/types/AndSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/types/AndSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/types/UnionSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/types/UnionSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kivy.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,17 +34,6 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="scala-uml" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="scala-uml" type="f1a62948:ProjectNode" />
-                <item name="scala-uml-build" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="scala-uml" type="f1a62948:ProjectNode" />
-                <item name="scala-uml-build" type="2d1252cf:ModuleNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
               </path>
             </expand>
             <select />
@@ -91,7 +69,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/scala/assets" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -99,7 +77,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.excludes" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -126,11 +104,11 @@
       <recent name="assets" />
     </key>
   </component>
-  <component name="RunManager" selected="ScalaTest.ScalaTests in 'scala'">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="app.frontend.Main" />
       <module name="scala-uml" />
-      <option name="PROGRAM_PARAMETERS" value="--github src/main/resources/githubKivy.conf --d diaOut --t" />
+      <option name="PROGRAM_PARAMETERS" value="--github src/main/resources/github.conf --d diaOut/ --n clsImportant --textual --exclude not r (org::combinators::cls::types)|((org::combinators::cls::types.)?(\$Type|Type|Arrow|Constructor|Intersection|Omega|Product|Variable))" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="app.frontend.*" />
@@ -141,13 +119,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -238,9 +218,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="ScalaTest.ScalaTests in 'scala'" />
         <item itemvalue="ScalaTest.UMLProcessorSuite.starting the console application with the help command triggers the help processor&#10;starting the console application without a given files path without a given output path without github parameter without a given name or with a given name processes nothing&#10;starting the console application without a given files path with a given non-valid output path&#10;starting the console application with a non-valid input path&#10;starting the console application with a valid input path and a valid output path without github parameter with a given name processes an UML diagram&#10;starting the console application with a valid input path and a valid output path with a github repository with a given name processes a github repository as an UML diagram&#10;starting the console application with a valid input path and a valid output path with a github repository with a given name with a textual representation&#10;starting the console application with a valid input path without an output path without a github path with a given name processes a UML diagram&#10;starting the console application with a valid input path without an output path without a github path with a given name with a textual representation request processes a UML diagram&#10;starting the console application with a valid input path with an output path to an illegal Scala file without a github path with a given name processes a UML diagram" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="ScalaTest.CompanionObjectSuite.companion object is correctly depicted in resulting UML class diagram" />
         <item itemvalue="ScalaTest.CLSSuite (1)" />
       </list>
@@ -372,6 +352,7 @@
       <workItem from="1612442404951" duration="12548000" />
       <workItem from="1612527027466" duration="29000" />
       <workItem from="1612612935146" duration="18064000" />
+      <workItem from="1612813414206" duration="4410000" />
     </task>
     <servers />
   </component>

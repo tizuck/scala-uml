@@ -86,7 +86,7 @@ class Rules(positions:Positions) extends ListParsers(positions) {
   }
 
   lazy val path : Parser[String] = {
-    """([A-Z][:][\\/])?([~a-zA-Z0-9]+[\\/]?)+""".r
+    """([A-Z][:][\\/])?(([~a-zA-Z0-9]|(\.\.)|-)+[\\/]?)+""".r
   }
 
   lazy val identifier : Parser[String] = """[_a-zA-Z][_a-zA-Z0-9]*""".r
