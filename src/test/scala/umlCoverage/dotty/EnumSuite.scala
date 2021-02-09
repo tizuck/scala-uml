@@ -16,7 +16,7 @@ import scala.meta.{Source, dialects}
 
 class EnumSuite extends AnyFreeSpec with Matchers {
 
-  val path: Path = Paths.get("src","test","scala","assets","dotty","enums.txt")
+  val path: Path = Paths.get("src","test","resources","assets","dotty","enums.txt")
 
   "Dotty Reference to enums can be processed to a plantUML png" in {
     val bytes = Files.readAllBytes(path)

@@ -16,7 +16,7 @@ import scala.meta.inputs.Input
 
 class ContextBoundSuite extends AnyFreeSpec with Matchers {
 
-  val path: Path = Paths.get("src","test","scala","assets","dotty","contextBounds.txt")
+  val path: Path = Paths.get("src","test","resources","assets","dotty","contextBounds.txt")
 
   "Dotty Reference to Intersectiontypes can be processed to a plantUML png" in {
     val bytes = Files.readAllBytes(path)

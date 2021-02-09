@@ -1,0 +1,4 @@
+trait A [+A]
+trait B [-B]
+trait C [A <: B]
+trait D [A >: B]

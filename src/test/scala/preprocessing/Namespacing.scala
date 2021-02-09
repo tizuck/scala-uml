@@ -17,10 +17,10 @@ class Namespacing extends AnyFreeSpec with Matchers {
   class TestData() {
     private val paths:List[Path] =
       List(
-        Paths.get("src","test","scala","assets","ast.txt"),
-        Paths.get("src","test","scala","assets","SimplePlantUMLPrettyPrinter.txt"),
-        Paths.get("src","test","scala","assets","StatCollector.txt"),
-        Paths.get("src","test","scala","assets","StatsCollector.txt")
+        Paths.get("src","test","resources","assets","ast.txt"),
+        Paths.get("src","test","resources","assets","SimplePlantUMLPrettyPrinter.txt"),
+        Paths.get("src","test","resources","assets","StatCollector.txt"),
+        Paths.get("src","test","resources","assets","StatsCollector.txt")
       )
     val repository:List[(Source,String)] =
       paths

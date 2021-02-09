@@ -15,7 +15,7 @@ import scala.meta.{Source, dialects}
 
 class UsingSuite extends AnyFreeSpec with Matchers {
 
-  val path: Path = Paths.get("src","test","scala","assets","dotty","using.txt")
+  val path: Path = Paths.get("src","test","resources","assets","dotty","using.txt")
 
   "Dotty Reference to enums can be processed to a plantUML png" in {
     val bytes = Files.readAllBytes(path)
@@ -30,6 +30,17 @@ class UsingSuite extends AnyFreeSpec with Matchers {
 
     val reader = new SourceStringReader(umlCollector.umlUnit.pretty)
     val filePath = new File("src/test/scala/assets/out/")
+
+    umlCollector.umlUnit.exists{
+      case o:uml.Operation =>
+        o.name.equals("max") &&
+        o.paramSeq.exists(ps => ps.exists(p =>
+          p.stereotype.exists(s => s.name.equals("using")) &&
+            p.name.equals("ord") &&
+            p.paramType.equals("Ord<T>")
+        ))
+      case _ => false
+    }
 
     filePath.mkdirs()
 

@@ -1,40 +1,18 @@
 package integration.github
 
+import app.frontend.{Github, InputPath, Name, OutputPath, Textual}
 import app.frontend.processor.Processor
-import app.frontend.{Github, Name, OutputPath, Textual}
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
 import scalameta.util.namespaces.NamespaceEntry
 import uml.UMLUnit
 
-/**
- * Integration test rgarding the CLS framework found at:
- * (CLS types package)[https://github.com/combinators/cls-scala/blob/master/src/main/scala/org/combinators/cls/types]
- *
- * Tests are oriented towards the verification of each feature in combination.
- * Thus, all features are tested randomly once.
- *
- * Test include:
- * - sealed trait
- *   - values
- *   - operations
- *   - trait stereotype
- *   - namespace of trait
- * - companion object existence of
- *   - trait
- *   - case class
- * - case class
- *   - values
- *   - operations
- *   - secondary constructor
- *   - primary constructor
- */
-class CLSSuite extends AnyFreeSpec with Matchers {
+class LocalCLSSuite extends AnyFreeSpec with Matchers {
 
-  val confPath = "src/test/scala/assets/processor/github/github.conf"
-  val outputPath = "src/test/scala/assets/out/processor/"
+  val inputPath = "src/test/resources/assets/processor/cls/"
+  val outputPath = "src/test/resources/assets/out/processor/"
   //Not(Exclude("""(org::combinators::cls::types)|((org::combinators::cls::types.)?(\$Type|Type|Arrow|Constructor|Intersection|Omega|Product|Variable))""".r))
-  val commands = List(Github(confPath),OutputPath(outputPath),Textual(),Name("cls"))
+  val commands = List(InputPath(inputPath),OutputPath(outputPath),Textual(),Name("clsLocal"))
 
   //val commands = List(Github(confPath),OutputPath(outputPath),Textual(),Name("cls"),Not(Exclude("""(org::cls::combinator::types\.)?(Arrow|Constructor|Intersection|Omega|Product|Variable)""".r)))
   val processor: Processor = Processor(commands)
@@ -63,7 +41,7 @@ class CLSSuite extends AnyFreeSpec with Matchers {
     umlUnit.exists{
       case c:uml.Class =>
         c.name.equals("$Type") &&
-         c.stereotype.exists(s => s.name.equals("object")) &&
+          c.stereotype.exists(s => s.name.equals("object")) &&
           c.operations.exists(o =>
             o.name.equals("intersect") &&
               o.returnType.exists(s => s.equals("Type")) &&
@@ -77,28 +55,28 @@ class CLSSuite extends AnyFreeSpec with Matchers {
     umlUnit.exists {
       case c: uml.Class =>
         c.name.equals("Constructor") &&
-        c.stereotype.exists(s => s.name.equals("caseclass")) &&
-        c.operations.exists(o =>
-          o.name.equals("toStringPrec") &&
-            o.paramSeq.exists(s => s.exists(p => p.name.equals("prec") && p.paramType.equals("Int")))
-        ) &&
-        c.attributes.exists(a =>
-          a.name.equals("isOmega") &&
-            a.attributeType.exists(t => t.equals("Boolean"))
-        ) &&
-        c.operations.exists(o =>
-          o.stereotype.exists(s => s.name.equals("ctor")) &&
-            o.paramSeq.exists(s => s.exists(p => p.name.equals("name") &&
-              p.paramType.equals("String")))
-        ) &&
-        c.operations.exists(o =>
-          o.name.equals("this") &&
-            o.paramSeq.exists(s =>
-              s.exists(p => p.name.equals("name") && p.paramType.equals("String")) &&
-                s.exists(p => p.name.equals("argument") && p.paramType.equals("Type")) &&
-                s.exists(p => p.name.equals("arguments") && p.paramType.equals("VarArgs<Type>"))
-            )
-        )
+          c.stereotype.exists(s => s.name.equals("caseclass")) &&
+          c.operations.exists(o =>
+            o.name.equals("toStringPrec") &&
+              o.paramSeq.exists(s => s.exists(p => p.name.equals("prec") && p.paramType.equals("Int")))
+          ) &&
+          c.attributes.exists(a =>
+            a.name.equals("isOmega") &&
+              a.attributeType.exists(t => t.equals("Boolean"))
+          ) &&
+          c.operations.exists(o =>
+            o.stereotype.exists(s => s.name.equals("ctor")) &&
+              o.paramSeq.exists(s => s.exists(p => p.name.equals("name") &&
+                p.paramType.equals("String")))
+          ) &&
+          c.operations.exists(o =>
+            o.name.equals("this") &&
+              o.paramSeq.exists(s =>
+                s.exists(p => p.name.equals("name") && p.paramType.equals("String")) &&
+                  s.exists(p => p.name.equals("argument") && p.paramType.equals("Type")) &&
+                  s.exists(p => p.name.equals("arguments") && p.paramType.equals("VarArgs<Type>"))
+              )
+          )
       case _ => false
     } must be(true)
   }
@@ -130,14 +108,14 @@ class CLSSuite extends AnyFreeSpec with Matchers {
     umlUnit.collect {
       case c:uml.Class =>
         if(c.name.equals("Type") ||
-        c.name.equals("$Type") ||
-        c.name.equals("Constructor") ||
-        c.name.equals("$Constructor") ||
-        c.name.equals("Product") ||
-        c.name.equals("Intersection") ||
-        c.name.equals("Omega") ||
-        c.name.equals("Arrow") ||
-        c.name.equals("Variable")) {
+          c.name.equals("$Type") ||
+          c.name.equals("Constructor") ||
+          c.name.equals("$Constructor") ||
+          c.name.equals("Product") ||
+          c.name.equals("Intersection") ||
+          c.name.equals("Omega") ||
+          c.name.equals("Arrow") ||
+          c.name.equals("Variable")) {
           Some(c.name)
         } else {
           None

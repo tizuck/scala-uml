@@ -15,7 +15,7 @@ import scala.meta.{Source, dialects}
 
 class OpenClassesSuite extends AnyFreeSpec with Matchers {
 
-  val path: Path = Paths.get("src","test","scala","assets","dotty","openclasses.txt")
+  val path: Path = Paths.get("src","test","resources","assets","dotty","openclasses.txt")
 
   "Dotty Reference to enums can be processed to a plantUML png" in {
     val bytes = Files.readAllBytes(path)
@@ -30,6 +30,16 @@ class OpenClassesSuite extends AnyFreeSpec with Matchers {
 
     val reader = new SourceStringReader(umlCollector.umlUnit.pretty)
     val filePath = new File("src/test/scala/assets/out/")
+
+    umlCollector.umlUnit.exists{
+      case c:uml.Class =>
+        c.name.equals("Writer") &&
+        c.additionalCompartements.exists(
+          ac => ac.identifier.exists(_.equals("<<scalaclass>>")) &&
+            ac.taggedValues.exists(t => t.name.equals("isOpen"))
+        )
+      case _ => false
+    } must be(true)
 
     filePath.mkdirs()
 

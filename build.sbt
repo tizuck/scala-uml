@@ -24,4 +24,7 @@ libraryDependencies ++= Seq(
 lazy val root = (project in file("."))
   .settings(
     name := "scala-uml",
+      coverageEnabled := true,
+      coverageExcludedPackages := "app.frontend.*;app.github;pretty.plantuml.ClassDefRefPretty;scalameta.mods.ObjectModsCollector;" +
+        "uml.strategies.collecting.assoc.CollectAllAssociationsBasedOn"
   )

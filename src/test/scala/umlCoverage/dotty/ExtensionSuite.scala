@@ -16,7 +16,7 @@ import scala.meta.{Source, dialects}
 
 class ExtensionSuite extends AnyFreeSpec with Matchers {
 
-  val path: Path = Paths.get("src","test","scala","assets","dotty","extensions.txt")
+  val path: Path = Paths.get("src","test","resources","assets","dotty","extensions.txt")
   //@todo eliminated for coverage purpose
   /*
   "Dotty Reference to enums can be processed to a plantUML png" in {

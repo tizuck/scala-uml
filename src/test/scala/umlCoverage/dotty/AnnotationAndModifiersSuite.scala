@@ -14,7 +14,7 @@ import scala.meta.{Source, dialects}
 import scala.meta.inputs.Input
 
 class AnnotationAndModifiersSuite extends AnyFreeSpec with Matchers {
-  val path: Path = Paths.get("src","test","scala","assets","dotty","annotationsAndModifiers.txt")
+  val path: Path = Paths.get("src","test","resources","assets","dotty","annotationsAndModifiers.txt")
 
   "Dotty Reference to Intersectiontypes can be processed to a plantUML png" in {
     val bytes = Files.readAllBytes(path)

@@ -16,7 +16,7 @@ import scala.meta.inputs.Input
 
 class TraitParametersSuite extends AnyFreeSpec with Matchers {
 
-  val path: Path = Paths.get("src","test","scala","assets","dotty","traitParams","traitParams.txt")
+  val path: Path = Paths.get("src","test","resources","assets","dotty","traitParams","traitParams.txt")
 
   "Scala 3 Reference to Intersectiontypes can be processed to a plantUML png" in {
     val bytes = Files.readAllBytes(path)
@@ -31,6 +31,14 @@ class TraitParametersSuite extends AnyFreeSpec with Matchers {
 
     val reader = new SourceStringReader(umlCollector.umlUnit.pretty)
     val filePath = new File("src/test/scala/assets/out/traitParams/")
+
+    umlCollector.umlUnit.exists{
+      case o:uml.Operation =>
+        o.name.equals("Greeting") &&
+        o.paramSeq.exists(ps => ps.exists( p => p.name.equals("name") && p.paramType.equals("String"))) &&
+        o.stereotype.exists(s => s.name.equals("ctor"))
+      case _ => false
+    }
 
     filePath.mkdirs()
 

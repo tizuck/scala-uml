@@ -11,7 +11,7 @@ import uml.strategies.collecting.packagerep.{CollectAllClassesStrat, CollectAllN
 import uml.strategies.rewriting.assoc.{DeleteAssocs, DeleteUnTargetedExternalClasses, TransformAssociations}
 import uml.strategies.rewriting.companion.{InsertCompanionDependency, RenameAllAffectedRelationships, RenameCompanionObject}
 import uml.strategies.rewriting.packagerep._
-import uml.strategies.rewriting.{DistinctionStrat, ExcludeStrategy, RewriteStrategy}
+import uml.strategies.rewriting.RewriteStrategy
 object umlMethods {
 
   private def startState[T](start:T):State[UMLElement,T] = State(
@@ -27,13 +27,6 @@ object umlMethods {
   private def nextCollectState[T](start:T)(collectStrategy: CollectStrategy[T]):State[UMLElement,T] = State(
     umlElem => (umlElem,umlElem.rewrite((_:T) => id)(start)(collectStrategy).value._1)
   )
-
-  private val distinctRep : State[UMLElement,Unit] =
-    for {
-      res <- nextRewriteState(())(DistinctionStrat)
-    } yield {
-      res
-    }
 
   private val toExternalAssociationsRep : State[UMLElement,(List[RelationshipElement],List[RelationshipElement])] =
     for {
@@ -94,23 +87,11 @@ object umlMethods {
     }
   }
 
-  def exclude(umlElement: UMLElement,f:Filter): Eval[UMLElement] = {
-    val excl = for {
-      res <- nextRewriteState(f)(ExcludeStrategy)
-    } yield {
-      res
-    }
-    excl.runS(umlElement)
-  }
-
   def toPackageRep(umlElement: UMLElement): Eval[UMLElement] =
     transferToPackageRep.runS(umlElement)
 
   def insertCompanionObjects(umlUnit:UMLUnit) : Eval[UMLUnit] =
     addCompanionObjects.runS(umlUnit).asInstanceOf[Eval[UMLUnit]]
-
-  def toDistinctRep(umlElement: UMLElement) : Eval[UMLElement] =
-    distinctRep.runS(umlElement)
 
   def toAssocRep(umlElement: UMLElement) : Eval[UMLElement] =
     toExternalAssociationsRep.runS(umlElement)

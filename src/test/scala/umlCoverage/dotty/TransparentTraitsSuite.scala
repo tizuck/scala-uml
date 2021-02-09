@@ -15,7 +15,7 @@ import scala.meta.{Source, dialects}
 
 class TransparentTraitsSuite extends AnyFreeSpec with Matchers {
 
-  val path: Path = Paths.get("src","test","scala","assets","dotty","transparent.txt")
+  val path: Path = Paths.get("src","test","resources","assets","dotty","transparent.txt")
 
   //@todo eliminated for coverage purpose
   /*"Dotty Reference to enums can be processed to a plantUML png" in {

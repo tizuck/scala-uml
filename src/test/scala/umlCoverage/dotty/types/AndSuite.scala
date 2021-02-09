@@ -15,7 +15,7 @@ import scala.meta.{Source, dialects}
 
 class AndSuite extends AnyFreeSpec with Matchers {
 
-  val path: Path = Paths.get("src","test","scala","assets","dotty","and","and.txt")
+  val path: Path = Paths.get("src","test","resources","assets","dotty","and","and.txt")
 
   "Dotty Reference to Intersectiontypes can be processed to a plantUML png" in {
     val bytes = Files.readAllBytes(path)
@@ -29,6 +29,11 @@ class AndSuite extends AnyFreeSpec with Matchers {
     implicit val umlUnit: UMLUnitPretty = UMLUnitPretty()(PlantUMLConfig())
     val reader = new SourceStringReader(umlCollector.umlUnit.pretty)
     val filePath = new File("src/test/scala/assets/out/and/")
+
+    umlCollector.umlUnit.exists{
+      case a:uml.Attribute => a.attributeType.exists(s => s.equals("&<A,B>")) && a.name.equals("x")
+      case _ => false
+    }
 
     filePath.mkdirs()
 

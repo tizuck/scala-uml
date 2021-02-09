@@ -16,7 +16,7 @@ import scala.meta.inputs.Input
 
 class ContextFunctionSuite extends AnyFreeSpec with Matchers {
 
-  val path: Path = Paths.get("src","test","scala","assets","dotty","contextFuncs","contextFuncs.txt")
+  val path: Path = Paths.get("src","test","resources","assets","dotty","contextFuncs","contextFuncs.txt")
 
   "Scala 3 Reference to Intersectiontypes can be processed to a plantUML png" in {
     val bytes = Files.readAllBytes(path)

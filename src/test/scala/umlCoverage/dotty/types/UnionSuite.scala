@@ -15,7 +15,7 @@ import scala.meta.{Source, dialects}
 
 class UnionSuite extends AnyFreeSpec with Matchers {
 
-  val path: Path = Paths.get("src","test","scala","assets","dotty","union","union.txt")
+  val path: Path = Paths.get("src","test","resources","assets","dotty","union","union.txt")
 
   "Dotty Reference to Intersectiontypes can be processed to a plantUML png" in {
     val bytes = Files.readAllBytes(path)
@@ -30,6 +30,12 @@ class UnionSuite extends AnyFreeSpec with Matchers {
 
     val reader = new SourceStringReader(umlCollector.umlUnit.pretty)
     val filePath = new File("src/test/scala/assets/out/union/")
+
+    umlCollector.umlUnit.exists{
+      case o:uml.Operation => o.name.equals("help") &&
+        o.paramSeq.exists(ps => ps.exists(p => p.name.equals("id") && p.paramType.equals("|<UserName,Password>")))
+      case _ => false
+    }
 
     filePath.mkdirs()
 

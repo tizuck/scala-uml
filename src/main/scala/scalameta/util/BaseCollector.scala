@@ -27,19 +27,9 @@ trait BaseCollector extends StateChangingCollector {
     case _ => None 
   }
 
-  def templates : List[NamedElement] = definedElements.flatMap{
-    case c:Class => Some(c)
-    case _ => None
-  }
-
   def innerElements : List[UMLElement] = definedElements.flatMap{
     case c:Class => Some(c)
     case r:Relationship => Some(r)
-    case _ => None
-  }
-
-  def classDefRefs : List[UMLElement] = definedElements.flatMap{
-    case c:ClassDefRef => Some(c)
     case _ => None
   }
 
