@@ -5,58 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/resources/assets/dotty/template.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/TemplateParameterSuite.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/ExcludeStrategy.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml-build.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/plugins.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/project/plugins.sbt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/package.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/package.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/BaseCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/BaseCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/DistinctionStrat.scala" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/ExcludeStrategy.scala" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/InsertNamespaceObjectRelsStrat.scala" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/SimplePlantUMLPrettyPrinter.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/SimplePlantUMLPrettyPrinter.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/StatCollector.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/StatCollector.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/StatsCollector.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/StatsCollector.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/ast.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/ast.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/dotty/and/and.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/dotty/and/and.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/dotty/annotationsAndModifiers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/dotty/annotationsAndModifiers.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/dotty/contextBounds.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/dotty/contextBounds.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/dotty/contextFuncs/contextFuncs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/dotty/contextFuncs/contextFuncs.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/dotty/enums.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/dotty/enums.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/dotty/extensions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/dotty/extensions.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/dotty/given.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/dotty/given.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/dotty/openclasses.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/dotty/openclasses.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/dotty/traitParams/traitParams.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/dotty/traitParams/traitParams.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/dotty/transparent.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/dotty/transparent.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/dotty/union/union.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/dotty/union/union.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/dotty/using.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/dotty/using.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/outclsMain.puml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/outclsMain.puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/processor/ast/ast.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/processor/ast/ast.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/processor/cls/substitutionspaces.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/processor/cls/substitutionspaces.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/processor/cls/subtyping.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/processor/cls/subtyping.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/processor/cls/syntax.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/processor/cls/syntax.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/processor/cls/type.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/processor/cls/type.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/processor/fail/Fail.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/processor/fail/Fail.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/assets/processor/github/github.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/assets/processor/github/github.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/integration/github/CLSSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/integration/github/LocalCLSSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/integration/umlprocessor/UMLProcessorSuite.scala" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/preprocessing/Namespacing.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/preprocessing/Namespacing.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/AnnotationAndModifiersSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/AnnotationAndModifiersSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/ContextBoundSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/ContextBoundSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/ContextFunctionSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/ContextFunctionSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/EnumSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/EnumSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/ExtensionSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/ExtensionSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/GivenSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/GivenSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/OpenClassesSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/OpenClassesSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/TraitParametersSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/TraitParametersSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/TransparentTraitsSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/TransparentTraitsSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/UsingSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/UsingSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/types/AndSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/types/AndSuite.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/types/UnionSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/umlCoverage/dotty/types/UnionSuite.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +68,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/scala/integration/github" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../masterarbeit/scala-uml" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -127,11 +80,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit-abgabe-coverage\scala-uml\src\main\scala\uml\strategies\rewriting" />
       <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit-abgabe-coverage\scala-uml\src\test\scala\integration\github" />
       <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\main\resources" />
       <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\test\scala\assets\processor\github" />
       <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\test\scala\assets\processor" />
-      <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\test\scala\assets\dotty" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit-abgabe-coverage\scala-uml\src\test\resources\assets\dotty" />
@@ -147,21 +100,34 @@
       <recent name="plantuml" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="uml.strategies.rewriting" />
       <recent name="integration.github" />
       <recent name="umlCoverage.dotty" />
       <recent name="assets" />
     </key>
   </component>
-  <component name="RunManager" selected="ScalaTest.UnionSuite.Dotty Reference to Intersectiontypes can be processed to a plantUML png">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="app.frontend.Main" />
+      <module name="scala-uml" />
+      <option name="PROGRAM_PARAMETERS" value="--fp src/test/resources/assets/processor/cls/ --d diaOut --n clsLocal --textual --exclude not r (org::combinators::cls::types)|((org::combinators::cls::types.)?(\$Type|Type|Arrow|Constructor|Intersection|Omega|Product|Variable))" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.frontend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -175,20 +141,6 @@
       <option name="testKind" value="Test name" />
       <option name="testClassPath" value="umlCoverage.dotty.types.AndSuite" />
       <option name="testName" value="Dotty Reference to Intersectiontypes can be processed to a plantUML png" />
-      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit-abgabe-coverage\scala-uml" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="OpenClassesSuite.Dotty Reference to enums can be processed to a plantUML png" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
-      <module name="scala-uml" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="selectedOptions">
-        <list />
-      </option>
-      <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="umlCoverage.dotty.OpenClassesSuite" />
-      <option name="testName" value="Dotty Reference to enums can be processed to a plantUML png" />
       <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit-abgabe-coverage\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -237,7 +189,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="ScalaTest.OpenClassesSuite.Dotty Reference to enums can be processed to a plantUML png" />
+      <item itemvalue="Application.Main" />
       <item itemvalue="ScalaTest.TraitParametersSuite.Scala 3 Reference to Intersectiontypes can be processed to a plantUML png" />
       <item itemvalue="ScalaTest.UsingSuite.Dotty Reference to enums can be processed to a plantUML png" />
       <item itemvalue="ScalaTest.AndSuite.Dotty Reference to Intersectiontypes can be processed to a plantUML png" />
@@ -245,11 +197,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="ScalaTest.UnionSuite.Dotty Reference to Intersectiontypes can be processed to a plantUML png" />
         <item itemvalue="ScalaTest.AndSuite.Dotty Reference to Intersectiontypes can be processed to a plantUML png" />
         <item itemvalue="ScalaTest.UsingSuite.Dotty Reference to enums can be processed to a plantUML png" />
         <item itemvalue="ScalaTest.TraitParametersSuite.Scala 3 Reference to Intersectiontypes can be processed to a plantUML png" />
-        <item itemvalue="ScalaTest.OpenClassesSuite.Dotty Reference to enums can be processed to a plantUML png" />
       </list>
     </recent_temporary>
   </component>
@@ -381,7 +333,8 @@
       <workItem from="1612612935146" duration="18064000" />
       <workItem from="1612813414206" duration="4410000" />
       <workItem from="1612866446011" duration="6879000" />
-      <workItem from="1612893436724" duration="5499000" />
+      <workItem from="1612893436724" duration="6109000" />
+      <workItem from="1612901290345" duration="1312000" />
     </task>
     <servers />
   </component>

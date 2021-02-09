@@ -30,7 +30,8 @@ package object processor {
       val pRep = toPackageRep(umlCol.umlUnit).value.asInstanceOf[UMLUnit]
       val cRep = umlMethods.insertCompanionObjects(pRep).value
       val aRep = toAssocRep(cRep).value.asInstanceOf[UMLUnit]
-      aRep
+      val exRep = exclude.map(r => umlMethods.exclude(aRep, r).value).getOrElse(aRep).asInstanceOf[UMLUnit]
+      exRep
     } catch {
       case e: Exception => throw e
     }

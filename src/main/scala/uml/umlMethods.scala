@@ -11,7 +11,8 @@ import uml.strategies.collecting.packagerep.{CollectAllClassesStrat, CollectAllN
 import uml.strategies.rewriting.assoc.{DeleteAssocs, DeleteUnTargetedExternalClasses, TransformAssociations}
 import uml.strategies.rewriting.companion.{InsertCompanionDependency, RenameAllAffectedRelationships, RenameCompanionObject}
 import uml.strategies.rewriting.packagerep._
-import uml.strategies.rewriting.RewriteStrategy
+import uml.strategies.rewriting.{ExcludeStrategy, RewriteStrategy}
+
 object umlMethods {
 
   private def startState[T](start:T):State[UMLElement,T] = State(
@@ -73,6 +74,16 @@ object umlMethods {
       res
     }
 
+  def exclude(umlElement: UMLElement,f:Filter): Eval[UMLElement] = {
+    val excl = for {
+      res <- nextRewriteState(f)(ExcludeStrategy)
+    } yield {
+      println("Hier")
+      res
+    }
+    excl.runS(umlElement)
+  }
+
   private def classesAndCompanion(allClasses: List[Class]) = {
     allClasses.map {
       c =>
@@ -95,4 +106,5 @@ object umlMethods {
 
   def toAssocRep(umlElement: UMLElement) : Eval[UMLElement] =
     toExternalAssociationsRep.runS(umlElement)
+
 }
