@@ -6,8 +6,6 @@ Obtain UML class diagrams from Scala 2 or Scala 3 source code in a compiler-inde
 
 **Output:**  Image of a class diagram in the svg format, or a file in the UML class diagram format of the [PlantUML](https://plantuml.com/de/class-diagram) project.
 
-:grey_exclamation: **This project is in an early stage**, it still needs a lot of improvement :grey_exclamation:
-
 ## Quick Example
 
 <table>
@@ -51,6 +49,3 @@ sealed case class Olm(
 </td>
 </tr>
 </table>
-
-## Usage
-
