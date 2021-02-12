@@ -24,13 +24,12 @@ trait Animal {
 }
 
 sealed case class Wombat(
-                          location:String
-                        ) extends Animal
+  location:String
+) extends Animal
 ```
 
 </td>
 <td>
-<pre>
 
 ```Scala
 package animals.extension
@@ -38,12 +37,13 @@ package animals.extension
 import animals.Animal
 
 sealed case class Olm(
-                       location:String
-                     ) extends Animal
+  location:String
+) extends Animal
 ```
 
 </td>
+<td>
+<img align="center" src="docs/examples/animals.svg">
+</td>
 </tr>
 </table>
-
-<img align="center" src="docs/examples/animals.svg">
