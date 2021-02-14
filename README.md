@@ -5,8 +5,8 @@ Obtain UML class diagrams from Scala 2 or Scala 3 source code in a compiler-inde
 ##### Table of Contents
 
 - [What it can](#whatcan)
-- [How to Use?](#howuse)
-- [How does it work?](#howworks)
+- [How to use it](#howuse)
+- [How does it work](#howworks)
 
 
 ##### Quick example:
@@ -82,8 +82,20 @@ Scala-uml evolved from a master thesis in which stereotypes were inserted for al
 
 ## How to use it
 
-At the moment there is no release. However, this project is planned to be a console application and it can allready repond to a few console commands.
-To use it you need to get the repository and start the application with `sbt "run <commands>"`.  
+At the moment there is no release. However, this project is planned to be a console application and it can allready respond to a few console commands.
+Until there is an actual console application, in order to use it you need to get the repository and start the application with `sbt "run <commands>"`.   
+
+**Commands available:**
+
+|Command|Functionality|
+|-------|-------------|
+|--fp \<path\>   | Directory of input Scala files|
+|--d  \<path\>  | Directory of output class diagram |
+|--n \<name\> | name of the output file |
+|--t | states that the output format should be in the `.puml` format of PlantUML class diagrams |
+  |--exclude r \<regex\> | Excludes classes or packages from the diagram that match a given regular expression <regex>. The regular expression is matched on the package + name. If you want to delete anything in a package named "org::com::foo" you can use (org::com::foo.*). More options are planned here :) |
+|--github \<path to config\> | Processes directories of a github repository stated in a config file. More infos on config files [here](#config) |    
+
 
 <a name="howworks"/>
 
