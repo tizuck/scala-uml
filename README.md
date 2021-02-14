@@ -66,14 +66,14 @@ sealed case class Olm(
 
 <a name="whatcan"/>
 
-## What it can
+## What it can do
 
-This project can generate UML class diagrams from Scala programs without being dependent on the scala compiler.
+This project can generate UML class diagrams from Scala programs without being dependent on the scala compiler. 
 That means you can obtain class diagrams of work in progress files and also standalone files that would not compile on their own.
 However, it is also possible to generate class diagrams to multiple directories of a public github repository.
 The project takes into account not only the relationships of the classes but also the package definitions. 
-If you are interested in more details about how this project works see the How it works section in this readme
-or you can have a look at the (master thesis) that lead to this tool :) 
+
+Scala-uml evolved from a master thesis in which stereotypes were inserted for all scala-specific features in the context of a UML profile.
 
 - **Input**: Folder of Scala files or a config file targeting a public github repository
 - **Output**: UML class diagram of the files as an svg-image or in the format of class diagrams of [PlantUML](https://plantuml.com/de/class-diagram)
@@ -81,6 +81,9 @@ or you can have a look at the (master thesis) that lead to this tool :)
 <a name="howuse"/>
 
 ## How to use it
+
+At the moment there is no release. However, this project is planned to be a console application and it can allready repond to a few console commands.
+To use it you need to get the repository and start the application with `sbt "run <commands>"`.  
 
 <a name="howworks"/>
 
