@@ -7,6 +7,7 @@ Obtain UML class diagrams from Scala 2 or Scala 3 source code in a compiler-inde
 - [What it can](#whatcan)
 - [How to use it](#howuse)
 - [How does it work](#howworks)
+- [Github Config](#config)
 
 
 ##### Quick example:
@@ -100,3 +101,18 @@ Until there is an actual console application, in order to use it you need to get
 <a name="howworks"/>
 
 ## How it works
+
+<a name="config"
+## Github Config
+
+```Java
+name = "kivy-astmanip"
+owner = "theorydudes"
+directories = {
+  type="directories",
+  dir-entries=[
+    {type = "entry", path = "src/main/scala/com/github/theorydudes/model"}
+    ]
+}
+```
+At the moment only public repositories can be used. The config must include the `name` of the repository and the `owner` and also a list of directories you want to consider in the visualization. In this case, there is only one directory `model`. You can just add entries in the list of `dir-entries`.
