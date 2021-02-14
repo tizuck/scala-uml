@@ -102,7 +102,8 @@ Until there is an actual console application, in order to use it you need to get
 
 ## How it works
 
-<a name="config"
+<a name="config">
+  
 ## Github Config
 
 ```Java
