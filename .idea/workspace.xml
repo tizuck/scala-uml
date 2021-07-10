@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="" />
+    <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend2/Config.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend2/Main.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/frontend2/parserContainer.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,7 +69,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/scala/pretty" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -100,7 +107,21 @@
       <recent name="assets" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="app.frontend2.Main" />
+      <module name="scala-uml" />
+      <option name="PROGRAM_PARAMETERS" value=" -f $PROJECT_DIR$/src/main/scala/app/frontend2 -o $PROJECT_DIR$/../../ -t" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.frontend2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="app.frontend.Main" />
       <module name="scala-uml" />
@@ -115,6 +136,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AndSuite.Dotty Reference to Intersectiontypes can be processed to a plantUML png" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
@@ -125,21 +157,6 @@
       <option name="testKind" value="Test name" />
       <option name="testClassPath" value="umlCoverage.dotty.types.AndSuite" />
       <option name="testName" value="Dotty Reference to Intersectiontypes can be processed to a plantUML png" />
-      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit-abgabe-coverage\scala-uml" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TraitParametersSuite.Scala 3 Reference to Intersectiontypes can be processed to a plantUML png" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
-      <module name="scala-uml" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="projectPathOnTarget" />
-      <option name="selectedOptions">
-        <list />
-      </option>
-      <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="umlCoverage.dotty.TraitParametersSuite" />
-      <option name="testName" value="Scala 3 Reference to Intersectiontypes can be processed to a plantUML png" />
       <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit-abgabe-coverage\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -177,18 +194,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="ScalaTest.TraitParametersSuite.Scala 3 Reference to Intersectiontypes can be processed to a plantUML png" />
+      <item itemvalue="Application.Main (1)" />
       <item itemvalue="ScalaTest.UsingSuite.Dotty Reference to enums can be processed to a plantUML png" />
       <item itemvalue="ScalaTest.AndSuite.Dotty Reference to Intersectiontypes can be processed to a plantUML png" />
       <item itemvalue="ScalaTest.UnionSuite.Dotty Reference to Intersectiontypes can be processed to a plantUML png" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
         <item itemvalue="ScalaTest.UnionSuite.Dotty Reference to Intersectiontypes can be processed to a plantUML png" />
         <item itemvalue="ScalaTest.AndSuite.Dotty Reference to Intersectiontypes can be processed to a plantUML png" />
         <item itemvalue="ScalaTest.UsingSuite.Dotty Reference to enums can be processed to a plantUML png" />
-        <item itemvalue="ScalaTest.TraitParametersSuite.Scala 3 Reference to Intersectiontypes can be processed to a plantUML png" />
       </list>
     </recent_temporary>
   </component>
@@ -322,7 +339,8 @@
       <workItem from="1612866446011" duration="6879000" />
       <workItem from="1612893436724" duration="6109000" />
       <workItem from="1612901290345" duration="1312000" />
-      <workItem from="1625577933121" duration="16000" />
+      <workItem from="1625577933121" duration="337000" />
+      <workItem from="1625578357906" duration="22420000" />
     </task>
     <servers />
   </component>
