@@ -55,8 +55,8 @@ object parserContainer {
           Nil
         }
       ).toList
-      .filter(_._1.isEmpty)
-      .map(tp => (tp._1.get,tp._2))
+      .filter(t => t._1.nonEmpty)
+      .map(t => (t._1.get,t._2))
   }
 
   private def parseFile(f:File):Option[Source] = {
@@ -113,13 +113,14 @@ object parserContainer {
       .text("specify to load a repository and produce uml diagram.")
 
   private val validityGithubXorFiles =
-    checkConfig(c =>
-    if(c.in.isEmpty && c.github.isEmpty){
-      failure("Either a file or a github repository must be provided as input using -f or -g respectively.")
-    } else {
-      success
+    checkConfig { c =>
+      println(c)
+      if (c.in.isEmpty && c.github.isEmpty) {
+        failure("Either a file or a github repository must be provided as input using -f or -g respectively.")
+      } else {
+        success
+      }
     }
-  )
 
   private val validityAtLeastOneFile =
     checkConfig(c =>
@@ -141,8 +142,6 @@ object parserContainer {
       name,
       github,
       help('h',"help").text("prints all commands with explenation"),
-      validityGithubXorFiles,
-      validityAtLeastOneFile
     )
   }
 }
