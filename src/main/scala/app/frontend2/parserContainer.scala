@@ -90,6 +90,10 @@ object parserContainer {
     opt[File]('o',"output")
       .required()
       .valueName("<path>")
+      .validate{f =>
+        if(f.exists()) success
+        else failure("<path> from option -o is invalid. It must be an existing directory.")
+      }
       .action((o,c) => c.copy(out = o))
       .text("output path where generated UML diagram is stored.")
 
@@ -121,15 +125,6 @@ object parserContainer {
         success
       }
     }
-
-  private val validityAtLeastOneFile =
-    checkConfig(c =>
-    if(c.in.isEmpty && c.github.isEmpty){
-      failure("There must be at least one interpretable Scala Source file" +
-        " in either github repository or listed directories.")
-    } else {
-      success
-    })
 
   val parser: OParser[Unit, Config] = {
     import builder._

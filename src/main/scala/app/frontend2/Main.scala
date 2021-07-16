@@ -13,7 +13,7 @@ import uml.umlMethods.{toAssocRep, toPackageRep}
 import uml.{UMLUnit, umlMethods}
 
 import java.nio.charset.StandardCharsets.UTF_8
-import java.io.{File, FileNotFoundException, FileOutputStream}
+import java.io.{File, FileNotFoundException, FileOutputStream, IOException}
 import java.nio.file.{Files, Path, Paths}
 
 object Main extends App {
@@ -78,9 +78,13 @@ object Main extends App {
           logger.info(s"Successfully exported text file to: $file")
           rew
         } catch {
+          case i:IOException =>
+            logger.error(s"Could not write output file to path [${config.out}]." +
+              s" Does the path exist and do you have the correct access rights ?")
+            rew
           case e:Exception =>
             logException(e)
-            throw new IllegalArgumentException
+            rew
         }
       } else {
         val reader = new SourceStringReader(rew.pretty)

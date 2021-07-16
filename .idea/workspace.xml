@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml-build.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend2/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend2/Main.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend2/parserContainer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend2/parserContainer.scala" afterDir="false" />
@@ -110,7 +108,7 @@
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="app.frontend2.Main" />
       <module name="scala-uml" />
-      <option name="PROGRAM_PARAMETERS" value=" -f $PROJECT_DIR$/src/main/scala/app/frontend2 -o $PROJECT_DIR$/../../ -t" />
+      <option name="PROGRAM_PARAMETERS" value=" -f $PROJECT_DIR$/src/main/scala/app/frontend2 -o $PROJECT_DIR$/../../../../../Usesssrs/dbs476/Documents/ -t" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="app.frontend2.*" />
@@ -135,13 +133,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -338,7 +338,8 @@
       <workItem from="1625577933121" duration="337000" />
       <workItem from="1625578357906" duration="22420000" />
       <workItem from="1625921069035" duration="37000" />
-      <workItem from="1625921171404" duration="12887000" />
+      <workItem from="1625921171404" duration="13241000" />
+      <workItem from="1626445629257" duration="3389000" />
     </task>
     <servers />
   </component>
