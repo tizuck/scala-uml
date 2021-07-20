@@ -1,6 +1,6 @@
-package app.frontend.exceptions
+package app.ci.exceptions
 
-class NoParametersProvidedException(message:String) extends Exception(message) {
+class ImplementationMissingException(message:String) extends Exception(message) {
 
   def this(message:String,cause:Throwable) {
     this(message)

@@ -5,11 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/ExcludeStrategy.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml-build.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/ci/Config.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/ci/exceptions/ImplementationMissingException.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/ci/filters.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/package.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/package.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/Loader.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/BadInputPathException.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/BadOutputPathException.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/GithubConfigFailedException.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/ImplementationMissingException.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/InvalidParameterException.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/NoParametersProvidedException.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/UMLConversionException.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/model.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/EmptyProcessor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/GithubUMLDiagramProcessor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/HelpProcessor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/Processor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/package.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend2/Config.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/ci/ParseConfig.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend2/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/ci/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend2/parserContainer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/ci/parserContainer.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/ExcludeStrategy.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/ExcludeStrategy.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/integration/github/LocalCLSSuite.scala" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +70,7 @@
         <option value="Scala Object" />
         <option value="Scala Class" />
         <option value="Package Object" />
+        <option value="Scala Worksheet" />
       </list>
     </option>
   </component>
@@ -68,7 +91,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../masterarbeit/scala-uml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -106,7 +129,21 @@
       <recent name="assets" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="app.ci.Main" />
+      <module name="scala-uml" />
+      <option name="PROGRAM_PARAMETERS" value="-f $PROJECT_DIR$/src/main/scala/app/ci -o $PROJECT_DIR$/../../ -t" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.ci.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="app.frontend.Main" />
       <module name="scala-uml" />
@@ -135,6 +172,7 @@
     <configuration name="AndSuite.Dotty Reference to Intersectiontypes can be processed to a plantUML png" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
       </option>
@@ -146,23 +184,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TraitParametersSuite.Scala 3 Reference to Intersectiontypes can be processed to a plantUML png" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
-      <module name="scala-uml" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="selectedOptions">
-        <list />
-      </option>
-      <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="umlCoverage.dotty.TraitParametersSuite" />
-      <option name="testName" value="Scala 3 Reference to Intersectiontypes can be processed to a plantUML png" />
-      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\masterarbeit-abgabe-coverage\scala-uml" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="UnionSuite.Dotty Reference to Intersectiontypes can be processed to a plantUML png" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
       </option>
@@ -177,6 +202,7 @@
     <configuration name="UsingSuite.Dotty Reference to enums can be processed to a plantUML png" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
       <option name="allowRunningInParallel" value="false" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
       </option>
@@ -190,18 +216,15 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="ScalaTest.TraitParametersSuite.Scala 3 Reference to Intersectiontypes can be processed to a plantUML png" />
-      <item itemvalue="ScalaTest.UsingSuite.Dotty Reference to enums can be processed to a plantUML png" />
+      <item itemvalue="Application.Main (1)" />
       <item itemvalue="ScalaTest.AndSuite.Dotty Reference to Intersectiontypes can be processed to a plantUML png" />
       <item itemvalue="ScalaTest.UnionSuite.Dotty Reference to Intersectiontypes can be processed to a plantUML png" />
+      <item itemvalue="ScalaTest.UsingSuite.Dotty Reference to enums can be processed to a plantUML png" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="ScalaTest.UnionSuite.Dotty Reference to Intersectiontypes can be processed to a plantUML png" />
-        <item itemvalue="ScalaTest.AndSuite.Dotty Reference to Intersectiontypes can be processed to a plantUML png" />
-        <item itemvalue="ScalaTest.UsingSuite.Dotty Reference to enums can be processed to a plantUML png" />
-        <item itemvalue="ScalaTest.TraitParametersSuite.Scala 3 Reference to Intersectiontypes can be processed to a plantUML png" />
       </list>
     </recent_temporary>
   </component>
@@ -335,11 +358,28 @@
       <workItem from="1612866446011" duration="6879000" />
       <workItem from="1612893436724" duration="6109000" />
       <workItem from="1612901290345" duration="1312000" />
+      <workItem from="1625577933121" duration="337000" />
+      <workItem from="1625578357906" duration="22420000" />
+      <workItem from="1625921069035" duration="37000" />
+      <workItem from="1625921171404" duration="13241000" />
+      <workItem from="1626445629257" duration="3458000" />
+      <workItem from="1626786958913" duration="10055000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
@@ -347,19 +387,19 @@
     </ignored-roots>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__scala_.ic" NAME="ScalaTests in 'scala' Coverage Results" MODIFIED="1612456687029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/scala_uml$CLSSuite_contains_a_case_object_Omega_with_a_static_value_paths.ic" NAME="CLSSuite.contains a case object Omega with a static value paths Coverage Results" MODIFIED="1611935346588" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__processors_.ic" NAME="ScalaTests in 'processors' Coverage Results" MODIFIED="1610987435421" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$Main__1_.ic" NAME="Main (1) Coverage Results" MODIFIED="1608403524265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$DottyAndSuite.ic" NAME="DottyAndSuite Coverage Results" MODIFIED="1605482730279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__dotty_.ic" NAME="ScalaTests in 'dotty' Coverage Results" MODIFIED="1610990201104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$UMLProcessorSuite_starting_the_console_application_with_a_valid_input_path_with_an_output_path_to_an_illegal_Scala_file_without_a_github_path_with_a_given_name_processes_a_UML_diagram.ic" NAME="UMLProcessorSuite.starting the console application with a valid input path with an output path to an illegal Scala file without a github path with a given name processes a UML diagram Coverage Results" MODIFIED="1610988181231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$CLSSuite_contains_a_case_object_Omega_with_a_static_value_paths.ic" NAME="CLSSuite.contains a case object Omega with a static value paths Coverage Results" MODIFIED="1611935346588" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_StatCollector_should_result_in_a_local_match_in_current_namespace.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of StatCollector should result in a local match in current namespace Coverage Results" MODIFIED="1605264065214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__scala_.ic" NAME="ScalaTests in 'scala' Coverage Results" MODIFIED="1612456687029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__umlprocessor_.ic" NAME="ScalaTests in 'umlprocessor' Coverage Results" MODIFIED="1610988419834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$RewritingSuite.ic" NAME="RewritingSuite Coverage Results" MODIFIED="1606582804268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__processors_.ic" NAME="ScalaTests in 'processors' Coverage Results" MODIFIED="1610987435421" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$Namespacing.ic" NAME="Namespacing Coverage Results" MODIFIED="1605286159348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition Coverage Results" MODIFIED="1605264077135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$UMLProcessorSuite.ic" NAME="UMLProcessorSuite Coverage Results" MODIFIED="1610988881952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_ast_scala_produces_resulting_context_that_is_able_to_locate_reference_to_classes_in_the_same_namespace_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_StatCollector_should_result_in_a_local_match_in_current_namespace_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Package_yields_the_namespace_uml_since_it_is_imported_with_import_uml___and_it_is_defined_in_the_global_context.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of ast.scala produces resulting context that is able to locate reference to classes in the same namespace&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of StatCollector should result in a local match in current namespace&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of Package yields the namespace uml since it is imported with import uml._ and it is defined in the global context Coverage Results" MODIFIED="1605265552744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/scala_uml$Namespacing.ic" NAME="Namespacing Coverage Results" MODIFIED="1605286159348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__umlprocessor_.ic" NAME="ScalaTests in 'umlprocessor' Coverage Results" MODIFIED="1610988419834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_StatCollector_should_result_in_a_local_match_in_current_namespace.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of StatCollector should result in a local match in current namespace Coverage Results" MODIFIED="1605264065214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/scala_uml$UMLProcessorSuite_starting_the_console_application_with_a_valid_input_path_with_an_output_path_to_an_illegal_Scala_file_without_a_github_path_with_a_given_name_processes_a_UML_diagram.ic" NAME="UMLProcessorSuite.starting the console application with a valid input path with an output path to an illegal Scala file without a github path with a given name processes a UML diagram Coverage Results" MODIFIED="1610988181231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition Coverage Results" MODIFIED="1605264077135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__dotty_.ic" NAME="ScalaTests in 'dotty' Coverage Results" MODIFIED="1610990201104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

@@ -16,7 +16,7 @@
 
 package uml.strategies.rewriting
 
-import app.frontend.Filter
+import app.ci.Filter
 import org.bitbucket.inkytonik.kiama.rewriting.PositionedRewriter.rulef
 import org.bitbucket.inkytonik.kiama.rewriting.Strategy
 import uml.externalReferences.ClassDefRef

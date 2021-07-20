@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id="root [file:/C:/Users/Tilman/Documents/Repos/masterarbeit-abgabe-coverage/scala-uml/]" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" type="JAVA_MODULE" version="4">
+<module external.linked.project.id="root [file:/C:/Users/dbs476/Documents/Repos/scala-uml/]" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/../../target/scala-2.13/classes" />
     <output-test url="file://$MODULE_DIR$/../../target/scala-2.13/test-classes" />
@@ -25,6 +25,7 @@
     <orderEntry type="library" name="sbt: com.github.pureconfig:pureconfig-generic_2.13:0.14.0:jar" level="project" />
     <orderEntry type="library" name="sbt: com.github.pureconfig:pureconfig-macros_2.13:0.14.0:jar" level="project" />
     <orderEntry type="library" name="sbt: com.github.pureconfig:pureconfig_2.13:0.14.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.scopt:scopt_2.13:4.0.1:jar" level="project" />
     <orderEntry type="library" name="sbt: com.google.guava:guava:21.0:jar" level="project" />
     <orderEntry type="library" name="sbt: com.google.protobuf:protobuf-java:3.11.4:jar" level="project" />
     <orderEntry type="library" name="sbt: com.lihaoyi:fastparse_2.13:2.3.0:jar" level="project" />
