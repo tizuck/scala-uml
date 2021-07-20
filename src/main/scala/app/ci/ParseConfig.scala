@@ -1,13 +1,14 @@
-package app.frontend2
+package app.ci
 
 import java.io.File
 import scala.meta.Source
 
-case class Config(
+case class ParseConfig(
                  verbose : Boolean = false,
                  out : File = new File("."),
-                 in : Seq[(Source,String)] = Nil,
+                 in : Seq[File] = Nil,
                  textual : Boolean = false,
                  name : String = "default",
-                 github : Option[File] = None
+                 github : Option[File] = None,
+                 filter: Option[String] = None
                  )

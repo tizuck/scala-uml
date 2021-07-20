@@ -1,8 +1,6 @@
-package app.frontend2
+package app.ci
 
-
-import app.frontend.Filter
-import app.frontend.exceptions.ImplementationMissingException
+import app.ci.exceptions.ImplementationMissingException
 import net.sourceforge.plantuml.{FileFormat, FileFormatOption, SourceStringReader}
 import org.slf4j.LoggerFactory
 import pretty.config.PlantUMLConfig
@@ -13,20 +11,19 @@ import uml.umlMethods.{toAssocRep, toPackageRep}
 import uml.{UMLUnit, umlMethods}
 
 import java.nio.charset.StandardCharsets.UTF_8
-import java.io.{File, FileNotFoundException, FileOutputStream, IOException}
-import java.nio.file.{Files, Path, Paths}
+import java.io.{File,FileOutputStream, IOException}
+import java.nio.file.{Files}
 
 object Main extends App {
   import parserContainer._
 
   def execution(): Unit = {
-    OParser.parse(parser, args, Config()) match {
+    OParser.parse(parser, args, ParseConfig()) match {
       case Some(conf) =>
         println(conf)
         if(conf.in.nonEmpty){
-          val col = tryUmlConstruction(conf)
-          //TODO: Give this a new wrapping, just for now it is sufficient
-          val res = processUmlCol(conf,col)
+          val procConf = Config(conf)
+          val res = processUmlCol(procConf,tryUmlConstruction(procConf))
           res.orNull
         }
       case None => println("naa")
@@ -61,24 +58,24 @@ object Main extends App {
     }
   }
 
-  private def processUmlCol(config:Config,sourcesCol:Option[SourcesCollector]):Option[UMLUnit] = {
+  private def processUmlCol(config:Config, sourcesCol:Option[SourcesCollector]):Option[UMLUnit] = {
     for {
       umlCol <- sourcesCol
     } yield {
       //@todo add the exclude option
-      val rew = rewriteUMLAST(umlCol,None)
+      val rew = rewriteUMLAST(umlCol,config.filter)
       implicit val prettyPrinter: UMLUnitPretty = UMLUnitPretty()(PlantUMLConfig())
       val fileContent = rew.pretty
       val logger = LoggerFactory.getLogger("execution")
       if(config.textual){
         try {
           //Assumption: out is a path not a file (this is checked by the parser)
-          val file = new File(config.out.getAbsolutePath + config.name + ".puml")
+          val file = new File(config.out.getAbsolutePath + """\""" + config.name + ".puml")
           Files.write(file.toPath, fileContent.getBytes(UTF_8))
           logger.info(s"Successfully exported text file to: $file")
           rew
         } catch {
-          case i:IOException =>
+          case _:IOException =>
             logger.error(s"Could not write output file to path [${config.out}]." +
               s" Does the path exist and do you have the correct access rights ?")
             rew

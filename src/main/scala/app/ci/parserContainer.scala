@@ -1,4 +1,4 @@
-package app.frontend2
+package app.ci
 
 
 import org.slf4j.{Logger, LoggerFactory}
@@ -9,13 +9,22 @@ import scala.meta.Source
 import scala.meta.parsers.Parsed
 
 object parserContainer {
-  val builder: OParserBuilder[Config] = OParser.builder[Config]
+  val builder: OParserBuilder[ParseConfig] = OParser.builder[ParseConfig]
   import builder._
 
   private val verbose =
     opt[Unit]('v',"verbose")
     .action((v,c) => c.copy(verbose = true))
     .text("Shows additional debug information.")
+
+  private val exclude =
+    opt[String]('e',"exclude")
+      .action((v,c) => c.copy(filter = Some(v)))
+      .text("Exclude option to exclude UML elements from the diagram." +
+        " Elements are matched on their package and name.\n" +
+        "It is possible to define filters and concatenate them together.\n" +
+        "Opterators to concatenate are: <filter> ::= And(<filter>;<filter>),Or(<filter>;<filter>)\n" +
+        ",Not(<filter>),R(<regex>). Where <regex> is a regular expression.\n")
 
   private val files =
     opt[Seq[File]]('f',"files")
@@ -31,60 +40,11 @@ object parserContainer {
       }
       .action{
         (d,c) =>
-          c.copy(in = parseAllFiles(d))
+          c.copy(in = d)
       }
       .text("specify path where to find files. Can be single files or a directory full of files.")
 
-  private def parseAllFiles(files:Seq[File]):List[(Source,String)] = {
-    val logger = LoggerFactory.getLogger("execution")
-    files
-      .flatMap(f =>
-        if(f.isFile && f.getName.endsWith(".scala")){
-          logger.info(s"Final diagram includes file: ${f.getName}")
-          List((parseFile(f),f.getPath + "." + f.getName)).filter(_._1.isEmpty)
-        } else if(f.isDirectory){
-          f
-            .listFiles()
-            .filter(_.isFile)
-            .filter(_.getName.endsWith(".scala"))
-            .map { df =>
-              logger.info(s"Final diagram includes file: ${df.getName}")
-              (parseFile(df),df.getPath + "." + df.getName)
-            }.toList
-        } else {
-          Nil
-        }
-      ).toList
-      .filter(t => t._1.nonEmpty)
-      .map(t => (t._1.get,t._2))
-  }
 
-  private def parseFile(f:File):Option[Source] = {
-    import scala.meta.dialects
-    val logger : Logger = LoggerFactory.getLogger("execution")
-    try {
-      dialects.Scala3(f).parse[Source] match {
-        case Parsed.Success(s) => Some(s)
-        case error: Parsed.Error =>
-          dialects.Scala213(f).parse[Source] match {
-            case Parsed.Success(s) => Some(s)
-            case error: Parsed.Error =>
-              val msg =
-                s"""File [${f.getName}] could not be interpreted as a Scala source.
-                   | Continuing with other files.""".stripMargin
-              logger.warn(msg)
-              logger.debug(msg + s" Caused by: ${error.message} with stacktrace: ${error.details.toString}")
-              None
-          }
-      }
-    } catch {
-      case e:Exception =>
-        val msg = s"unrecognizable error while trying to parse file ${f.getName}"
-        logger.warn(msg)
-        logger.debug(msg + s"Caused by: ${e.getMessage} and stacktrace: ${e.toString}")
-        None
-    }
-  }
 
   private val output =
     opt[File]('o',"output")
@@ -126,7 +86,7 @@ object parserContainer {
       }
     }
 
-  val parser: OParser[Unit, Config] = {
+  val parser: OParser[Unit, ParseConfig] = {
     import builder._
     OParser.sequence(
       programName("scala-uml"),
@@ -136,7 +96,9 @@ object parserContainer {
       textual,
       name,
       github,
-      help('h',"help").text("prints all commands with explenation"),
+      exclude,
+      validityGithubXorFiles,
+      help('h',"help").text("prints all commands with explanation"),
     )
   }
 }

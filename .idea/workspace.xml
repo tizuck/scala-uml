@@ -5,9 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/ci/Config.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/ci/exceptions/ImplementationMissingException.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/app/ci/filters.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend2/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend2/Main.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend2/parserContainer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/frontend2/parserContainer.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/Loader.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/Main.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/BadInputPathException.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/BadOutputPathException.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/GithubConfigFailedException.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/ImplementationMissingException.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/InvalidParameterException.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/NoParametersProvidedException.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/exceptions/UMLConversionException.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/model.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/parser/Rules.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/EmptyProcessor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/GithubUMLDiagramProcessor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/HelpProcessor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/Processor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/UMLDiagramProcessor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend/processor/package.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend2/Config.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/ci/ParseConfig.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend2/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/ci/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/frontend2/parserContainer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/ci/parserContainer.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/ExcludeStrategy.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/strategies/rewriting/ExcludeStrategy.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/umlMethods.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/integration/github/LocalCLSSuite.scala" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +70,7 @@
         <option value="Scala Object" />
         <option value="Scala Class" />
         <option value="Package Object" />
+        <option value="Scala Worksheet" />
       </list>
     </option>
   </component>
@@ -106,12 +131,12 @@
   </component>
   <component name="RunManager" selected="Application.Main (1)">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="app.frontend2.Main" />
+      <option name="MAIN_CLASS_NAME" value="app.ci.Main" />
       <module name="scala-uml" />
-      <option name="PROGRAM_PARAMETERS" value=" -f $PROJECT_DIR$/src/main/scala/app/frontend2 -o $PROJECT_DIR$/../../../../../Usesssrs/dbs476/Documents/ -t" />
+      <option name="PROGRAM_PARAMETERS" value="-f $PROJECT_DIR$/src/main/scala/app/ci -o $PROJECT_DIR$/../../ -t" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="app.frontend2.*" />
+          <option name="PATTERN" value="app.ci.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -133,15 +158,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -339,12 +362,24 @@
       <workItem from="1625578357906" duration="22420000" />
       <workItem from="1625921069035" duration="37000" />
       <workItem from="1625921171404" duration="13241000" />
-      <workItem from="1626445629257" duration="3389000" />
+      <workItem from="1626445629257" duration="3458000" />
+      <workItem from="1626786958913" duration="10055000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>

@@ -1,6 +1,6 @@
 package uml
 
-import app.frontend.Filter
+import app.ci.Filter
 import cats.Eval
 import cats.data.State
 import scalameta.util.namespaces.Entry
