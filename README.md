@@ -90,12 +90,12 @@ Until there is an actual console application, in order to use it you need to get
 
 |Command|Functionality|
 |-------|-------------|
-|--fp \<path\>   | Directory of input Scala files|
-|--d  \<path\>  | Directory of output class diagram |
-|--n \<name\> | name of the output file |
-|--t | states that the output format should be in the `.puml` format of PlantUML class diagrams |
-  |--exclude r \<regex\> | Excludes classes or packages from the diagram that match a given regular expression <regex>. The regular expression is matched on the package + name. If you want to delete anything in a package named "org::com::foo" you can use (org::com::foo.*). More options are planned here :) |
-|--github \<path to config\> | Processes directories of a github repository stated in a config file. More infos on config files [here](#config) |    
+|-f,--files \<path\>   | Directory of input Scala files|
+|-o,--output  \<path\>  | Directory of output class diagram |
+|-n,--name \<name\> | name of the output file |
+|-t,--textual | states that the output format should be in the `.puml` format of PlantUML class diagrams |
+  |-e,--exclude r \<regex\> | Excludes classes or packages from the diagram that match a given regular expression <regex>. The regular expression is matched on the package + name. If you want to delete anything in a package named "org::com::foo" you can use (org::com::foo.*). More options are planned here :) |
+|-g,--github \<path to config\> | Processes directories of a github repository stated in a config file. More infos on config files [here](#config) |    
 
 
 <a name="howworks"/>
