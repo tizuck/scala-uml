@@ -187,19 +187,11 @@ sealed trait UMLElement { self =>
 sealed trait StereotypeElement extends UMLElement {
   val stereotype: List[Stereotype]
 }
-
 sealed trait TopLevelElement extends UMLElement {
   val namespace : Entry = DefaultNamespace
 }
-
-sealed trait CompartmentElement extends UMLElement {
-
-}
-
-sealed trait PackageBodyElement extends UMLElement {
-
-}
-
+sealed trait CompartmentElement extends UMLElement
+sealed trait PackageBodyElement extends UMLElement
 sealed trait NamedElement extends UMLElement {
   val name : String
 }
@@ -469,6 +461,19 @@ sealed case class Attribute(modificators:Option[List[Modificator]],
  * Operations
  **************/
 
+sealed trait Type extends UMLElement
+
+/**
+ * A UML type of a reference to another defined UML class
+ * with `name` and `namepsace`
+ * @param name name of the referenced UML class
+ * @param namespace namespace of the referenced UML class
+ */
+sealed case class RefName(name:String,namespace:Entry) extends Type
+
+sealed case class RefTemplate(preType:Type,templateTypes:List[Type]) extends Type
+
+sealed case class RefPathQualifier(path:List[String],target:String) extends Type
 
 sealed case class Parameter(name:String,
                             paramType:String,

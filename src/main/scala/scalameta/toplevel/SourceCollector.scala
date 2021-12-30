@@ -37,9 +37,7 @@ import uml.{TopLevelElement, UMLUnit}
  * @param umlUnit
  * @param resultingContext
  */
-case class SourceCollector(umlUnit:UMLUnit, resultingContext:CollectorContext) {
-
-}
+case class SourceCollector(umlUnit:UMLUnit, resultingContext:CollectorContext)
 
 object SourceCollector {
   //@todo Add the name of the file additionally to the source so the find
