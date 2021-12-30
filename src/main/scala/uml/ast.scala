@@ -469,11 +469,43 @@ sealed trait Type extends UMLElement
  * @param name name of the referenced UML class
  * @param namespace namespace of the referenced UML class
  */
-sealed case class RefName(name:String,namespace:Entry) extends Type
+sealed case class RefName(name:String,namespace:Entry) extends Type {
+  override type T = RefName
 
-sealed case class RefTemplate(preType:Type,templateTypes:List[Type]) extends Type
+  //@todo implement
+  override def pretty(implicit pretty: PrettyPrinter[T]): String = ""
 
-sealed case class RefPathQualifier(path:List[String],target:String) extends Type
+  override def structure: String = s"RefName($name,${namespace.toString})"
+
+    //@todo implement
+  override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
+    State(s => (s,this))
+  }
+}
+
+sealed case class RefTemplate(preType:Type,templateTypes:List[Type]) extends Type {
+  override type T = RefTemplate
+
+  override def pretty(implicit pretty: PrettyPrinter[T]): String = ""
+
+  override def structure: String = ""
+
+  override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
+    State(s => (s,this))
+  }
+}
+
+sealed case class RefPathQualifier(path:List[String],target:String) extends Type {
+  override type T = RefPathQualifier
+
+  override def pretty(implicit pretty: PrettyPrinter[T]): String = ""
+
+  override def structure: String = ""
+
+  override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
+    State(s => (s,this))
+  }
+}
 
 sealed case class Parameter(name:String,
                             paramType:String,

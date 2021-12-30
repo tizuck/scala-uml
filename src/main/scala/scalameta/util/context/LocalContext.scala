@@ -39,6 +39,9 @@ case class LocalContext(thisPointer: Option[RelationshipElement] = None,
                         thisOriginType:uml.externalReferences.ClassType = Trait)
 
 object LocalContext {
+  def apply():LocalContext = {
+    new LocalContext(currentCompilationUnit = "none",opReps = Ops(Nil))
+  }
   def apply(compilationUnit:String): LocalContext = {
     val loadedOpsConfig = ConfigSource.file("src/main/resources/operators.conf").load[Ops]
     val ops = loadedOpsConfig match {

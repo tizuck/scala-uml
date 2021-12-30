@@ -17,13 +17,47 @@ object TargetTypeCollector {
     // class. Therefore it is sufficient to refer to the name
     case t@Type.Select(qual,name) => pathQualifier(qual, name)
     case Type.ApplyInfix(value, name, value1) => templateType(context,name,List(value,value1))
-    
+    case Type.Tuple(value) => tupleType(context,value)
+    case Type.Function(params,res) => functionType(context,params,res)
+    case Type.With(value, value1) => twoTypeWithName(context, value, value1,"With")
+    case Type.And(value, value1) => twoTypeWithName(context,value,value1,"And")
+    case Type.Or(value, value1) => twoTypeWithName(context,value,value1,"Or")
+    case t@_ => throw new NotImplementedError(s"the requested type (${t}) is not supported yet.")
+  }
+
+  private def twoTypeWithName(context: CollectorContext, value: Type, value1: Type,name:String) = {
+    TargetTypeCollector(
+      RefTemplate(
+        RefName(name, DefaultNamespace),
+        List(value, value1).map(TargetTypeCollector(_)(context).umlType)
+      )
+    )
+  }
+
+  private def functionType(context: CollectorContext, params: List[Type], res: Type) = {
+    val count = params.size
+    val tpe = RefTemplate(
+      RefName(s"Function$count", DefaultNamespace),
+      params
+        .map(TargetTypeCollector(_)(context).umlType)
+        .appended(TargetTypeCollector(res)(context).umlType)
+    )
+    TargetTypeCollector(tpe)
+  }
+
+  private def tupleType(context:CollectorContext, value: List[Type]) = {
+    val numberArgs = value.size
+    val tpe = RefTemplate(
+      RefName(s"Tuple$numberArgs", DefaultNamespace),
+      value.map(tpe => TargetTypeCollector(tpe)(context).umlType)
+    )
+    TargetTypeCollector(tpe)
   }
 
   private def pathQualifier(qual: Term.Ref, name: Type.Name) = {
     def createNamespace(qual: Term.Ref): RefPathQualifier = qual match {
       case Term.Name(str) => RefPathQualifier(Nil, str)
-      case Term.Select(term: Term.Select, name) =>
+      case Term.Select(term:Term.Ref, name) =>
         val innerRes = createNamespace(term)
         //Root Node
         if (innerRes.path.isEmpty) {
