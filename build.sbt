@@ -19,7 +19,17 @@ libraryDependencies ++= Seq(
     "com.github.pureconfig" %% "pureconfig" % "0.14.0",
     "com.47deg" %% "github4s" % "0.27.1",
     "ch.qos.logback" % "logback-classic" % "1.2.3",
-    "com.github.scopt" % "scopt_2.13" % "4.0.1"
+    "com.github.scopt" % "scopt_2.13" % "4.0.1",
+)
+
+lazy val akkaHttpVersion = "10.2.7"
+lazy val akkaVersion = "2.6.18"
+
+libraryDependencies ++= Seq(
+    "com.typesafe.akka" %% "akka-http"                % akkaHttpVersion,
+    "com.typesafe.akka" %% "akka-http-spray-json"     % akkaHttpVersion,
+    "com.typesafe.akka" %% "akka-actor-typed"         % akkaVersion,
+    "com.typesafe.akka" %% "akka-stream"              % akkaVersion,
 )
 
 lazy val root = (project in file("."))
