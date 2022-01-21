@@ -100,8 +100,8 @@ object TargetTypeCollector {
       context.localCon.currentImports
     )
     lookup match {
-      case Some(ref) => TargetTypeCollector(RefName(n, ref._1))
-      case None => TargetTypeCollector(RefName(n, DefaultNamespace))
+      case Some(ref) => TargetTypeCollector(RefName(n, ref._1,ref._2))
+      case None => TargetTypeCollector(RefName(n, DefaultNamespace,None))
     }
   }
 }

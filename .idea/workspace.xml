@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/scala/collector/TypeCollectorSpec.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/init/InitCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/init/InitCollector.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/types/TargetTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/types/TargetTypeCollector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/LocalContext.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/util/context/LocalContext.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/uml/ast.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,7 +106,7 @@
       <recent name="assets" />
     </key>
   </component>
-  <component name="RunManager" selected="ScalaTest.TypeCollectorSpec.Template Type with depth n should be transformed correctly into a RefTemplate">
+  <component name="RunManager" selected="ScalaTest.TypeCollectorSpec">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -119,16 +118,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="app.ci.Main" />
+    <configuration name="TypeCollectorSpec" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="scala-uml" />
-      <option name="PROGRAM_PARAMETERS" value="-f $PROJECT_DIR$/src/main/scala/app/ci -o $PROJECT_DIR$/../../ -t" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="app.ci.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <option name="allowRunningInParallel" value="false" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="Class" />
+      <option name="testClassPath" value="collector.TypeCollectorSpec" />
+      <option name="workingDirectory" value="C:\Users\Tilman\Documents\Repos\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -194,19 +193,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main (1)" />
       <item itemvalue="ScalaTest.TypeCollectorSpec.A Type of the form Type.Select should be transformed into a RefPathQualifier with correct order" />
       <item itemvalue="ScalaTest.TypeCollectorSpec.Single Template type should be transformed properly" />
       <item itemvalue="ScalaTest.TypeCollectorSpec.Map template type should be transformed into a RefTemplate with two type parameters" />
       <item itemvalue="ScalaTest.TypeCollectorSpec.Template Type with depth n should be transformed correctly into a RefTemplate" />
+      <item itemvalue="ScalaTest.TypeCollectorSpec" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="ScalaTest.TypeCollectorSpec" />
         <item itemvalue="ScalaTest.TypeCollectorSpec.Template Type with depth n should be transformed correctly into a RefTemplate" />
         <item itemvalue="ScalaTest.TypeCollectorSpec.Map template type should be transformed into a RefTemplate with two type parameters" />
         <item itemvalue="ScalaTest.TypeCollectorSpec.Single Template type should be transformed properly" />
         <item itemvalue="ScalaTest.TypeCollectorSpec.A Type of the form Type.Select should be transformed into a RefPathQualifier with correct order" />
-        <item itemvalue="Application.Main (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -373,19 +372,19 @@
     </ignored-roots>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/scala_uml$CLSSuite_contains_a_case_object_Omega_with_a_static_value_paths.ic" NAME="CLSSuite.contains a case object Omega with a static value paths Coverage Results" MODIFIED="1611935346588" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_StatCollector_should_result_in_a_local_match_in_current_namespace.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of StatCollector should result in a local match in current namespace Coverage Results" MODIFIED="1605264065214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$Namespacing.ic" NAME="Namespacing Coverage Results" MODIFIED="1605286159348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__processors_.ic" NAME="ScalaTests in 'processors' Coverage Results" MODIFIED="1610987435421" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__dotty_.ic" NAME="ScalaTests in 'dotty' Coverage Results" MODIFIED="1610990201104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/scala_uml$UMLProcessorSuite_starting_the_console_application_with_a_valid_input_path_with_an_output_path_to_an_illegal_Scala_file_without_a_github_path_with_a_given_name_processes_a_UML_diagram.ic" NAME="UMLProcessorSuite.starting the console application with a valid input path with an output path to an illegal Scala file without a github path with a given name processes a UML diagram Coverage Results" MODIFIED="1610988181231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/scala_uml$RewritingSuite.ic" NAME="RewritingSuite Coverage Results" MODIFIED="1606582804268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__umlprocessor_.ic" NAME="ScalaTests in 'umlprocessor' Coverage Results" MODIFIED="1610988419834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$CLSSuite_contains_a_case_object_Omega_with_a_static_value_paths.ic" NAME="CLSSuite.contains a case object Omega with a static value paths Coverage Results" MODIFIED="1611935346588" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$DottyAndSuite.ic" NAME="DottyAndSuite Coverage Results" MODIFIED="1605482730279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_ast_scala_produces_resulting_context_that_is_able_to_locate_reference_to_classes_in_the_same_namespace_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_StatCollector_should_result_in_a_local_match_in_current_namespace_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Package_yields_the_namespace_uml_since_it_is_imported_with_import_uml___and_it_is_defined_in_the_global_context.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of ast.scala produces resulting context that is able to locate reference to classes in the same namespace&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of StatCollector should result in a local match in current namespace&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of Package yields the namespace uml since it is imported with import uml._ and it is defined in the global context Coverage Results" MODIFIED="1605265552744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/scala_uml$Main__1_.ic" NAME="Main (1) Coverage Results" MODIFIED="1608403524265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_StatCollector_should_result_in_a_local_match_in_current_namespace.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of StatCollector should result in a local match in current namespace Coverage Results" MODIFIED="1605264065214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__scala_.ic" NAME="ScalaTests in 'scala' Coverage Results" MODIFIED="1612456687029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition Coverage Results" MODIFIED="1605264077135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$UMLProcessorSuite_starting_the_console_application_with_a_valid_input_path_with_an_output_path_to_an_illegal_Scala_file_without_a_github_path_with_a_given_name_processes_a_UML_diagram.ic" NAME="UMLProcessorSuite.starting the console application with a valid input path with an output path to an illegal Scala file without a github path with a given name processes a UML diagram Coverage Results" MODIFIED="1610988181231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/scala_uml$UMLProcessorSuite.ic" NAME="UMLProcessorSuite Coverage Results" MODIFIED="1610988881952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__dotty_.ic" NAME="ScalaTests in 'dotty' Coverage Results" MODIFIED="1610990201104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$ScalaTests_in__umlprocessor_.ic" NAME="ScalaTests in 'umlprocessor' Coverage Results" MODIFIED="1610988419834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_ast_scala_produces_resulting_context_that_is_able_to_locate_reference_to_classes_in_the_same_namespace_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_StatCollector_should_result_in_a_local_match_in_current_namespace_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Package_yields_the_namespace_uml_since_it_is_imported_with_import_uml___and_it_is_defined_in_the_global_context.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of ast.scala produces resulting context that is able to locate reference to classes in the same namespace&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of StatCollector should result in a local match in current namespace&#10;Repository when scanned for global scope and used for visiting of StatsCollector lookup of Package yields the namespace uml since it is imported with import uml._ and it is defined in the global context Coverage Results" MODIFIED="1605265552744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$RewritingSuite.ic" NAME="RewritingSuite Coverage Results" MODIFIED="1606582804268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$Main__1_.ic" NAME="Main (1) Coverage Results" MODIFIED="1608403524265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/scala_uml$Namespacing_Repository_when_scanned_for_global_scope_and_used_for_visiting_of_StatsCollector_lookup_of_Stat_should_not_result_in_a_local_match_but_yield_namespace_scala__meta__Stat_of_external_repo_without_a_template_definition.ic" NAME="Namespacing.Repository when scanned for global scope and used for visiting of StatsCollector lookup of Stat should not result in a local match but yield namespace scala::meta::Stat of external repo without a template definition Coverage Results" MODIFIED="1605264077135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

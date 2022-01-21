@@ -469,7 +469,7 @@ sealed trait Type extends UMLElement
  * @param name name of the referenced UML class
  * @param namespace namespace of the referenced UML class
  */
-sealed case class RefName(name:String,namespace:Entry) extends Type {
+sealed case class RefName(name:String,namespace:Entry,metaOrigin:Option[Stat]) extends Type {
   override type T = RefName
 
   //@todo implement
