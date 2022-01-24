@@ -1,6 +1,5 @@
 package app.ci
 
-import app.ci.Main.logException
 import app.ci.exceptions.ImplementationMissingException
 import net.sourceforge.plantuml.{FileFormat, FileFormatOption, SourceStringReader}
 import org.slf4j.LoggerFactory

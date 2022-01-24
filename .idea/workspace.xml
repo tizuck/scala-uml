@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/app/ci/umlProcessing.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/rest/ASTCreator.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/rest/ASTRoutes.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml-build.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/scala-uml.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/rest/JSONFormats.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/rest/StartServer.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/app/ci/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/ci/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/app/ci/umlProcessing.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/app/ci/umlProcessing.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/rest/ASTCreator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/rest/ASTCreator.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/rest/ASTRoutes.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/rest/ASTRoutes.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +71,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ACS/PA 2/submissions/assignmentgroup42_176805_5523929_code-2/acertainbookstore-assignment2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -84,11 +83,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\dbs476\Documents\Repos\scala-uml\src\main\resources" />
       <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit-abgabe-coverage\scala-uml\src\main\scala\uml\strategies\rewriting" />
       <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit-abgabe-coverage\scala-uml\src\test\scala\integration\github" />
       <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\main\resources" />
       <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\test\scala\assets\processor\github" />
-      <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit\scala-uml\src\test\scala\assets\processor" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Tilman\Documents\Repos\masterarbeit-abgabe-coverage\scala-uml\src\test\resources\assets\dotty" />
@@ -110,7 +109,7 @@
       <recent name="assets" />
     </key>
   </component>
-  <component name="RunManager" selected="ScalaTest.TypeCollectorSpec">
+  <component name="RunManager" selected="Application.StartServer">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -118,6 +117,19 @@
         </value>
       </option>
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StartServer" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="rest.StartServer" />
+      <module name="scala-uml" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="rest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -131,21 +143,6 @@
       </option>
       <option name="testKind" value="Class" />
       <option name="testClassPath" value="collector.TypeCollectorSpec" />
-      <option name="workingDirectory" value="C:\Users\dbs476\Documents\Repos\scala-uml" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TypeCollectorSpec.A Type of the form Type.Select should be transformed into a RefPathQualifier with correct order" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
-      <module name="scala-uml" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="projectPathOnTarget" />
-      <option name="selectedOptions">
-        <list />
-      </option>
-      <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="collector.TypeCollectorSpec" />
-      <option name="testName" value="A Type of the form Type.Select should be transformed into a RefPathQualifier with correct order" />
       <option name="workingDirectory" value="C:\Users\dbs476\Documents\Repos\scala-uml" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -197,19 +194,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="ScalaTest.TypeCollectorSpec.A Type of the form Type.Select should be transformed into a RefPathQualifier with correct order" />
       <item itemvalue="ScalaTest.TypeCollectorSpec.Single Template type should be transformed properly" />
       <item itemvalue="ScalaTest.TypeCollectorSpec.Map template type should be transformed into a RefTemplate with two type parameters" />
       <item itemvalue="ScalaTest.TypeCollectorSpec.Template Type with depth n should be transformed correctly into a RefTemplate" />
       <item itemvalue="ScalaTest.TypeCollectorSpec" />
+      <item itemvalue="Application.StartServer" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.StartServer" />
         <item itemvalue="ScalaTest.TypeCollectorSpec" />
         <item itemvalue="ScalaTest.TypeCollectorSpec.Template Type with depth n should be transformed correctly into a RefTemplate" />
         <item itemvalue="ScalaTest.TypeCollectorSpec.Map template type should be transformed into a RefTemplate with two type parameters" />
         <item itemvalue="ScalaTest.TypeCollectorSpec.Single Template type should be transformed properly" />
-        <item itemvalue="ScalaTest.TypeCollectorSpec.A Type of the form Type.Select should be transformed into a RefPathQualifier with correct order" />
       </list>
     </recent_temporary>
   </component>
@@ -354,6 +351,7 @@
       <workItem from="1640729090548" duration="16216000" />
       <workItem from="1642457411087" duration="2030000" />
       <workItem from="1642688600625" duration="5506000" />
+      <workItem from="1642765223189" duration="11343000" />
     </task>
     <servers />
   </component>
