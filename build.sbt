@@ -40,3 +40,5 @@ lazy val root = (project in file("."))
       coverageExcludedPackages := "app.frontend.*;app.github;pretty.plantuml.ClassDefRefPretty;scalameta.mods.ObjectModsCollector;" +
         "uml.strategies.collecting.assoc.CollectAllAssociationsBasedOn"
   )
+
+enablePlugins(TypeScriptGeneratorPlugin)

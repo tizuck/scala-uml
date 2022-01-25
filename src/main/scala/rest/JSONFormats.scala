@@ -37,12 +37,12 @@ object JSONFormats {
         }
 
       override def write(obj: TopLevelElement): JsValue = {
-        JsObject(appendType((obj match {
+        obj match {
           case p:Package => p.toJson
           case c:externalReferences.ClassDefRef => c.toJson
           case c:Class => c.toJson
           case r:Relationship => r.toJson
-        }).asJsObject.fields, obj))
+        }
       }
     }
 
@@ -63,9 +63,20 @@ object JSONFormats {
           }
       )
     }
-    implicit val namespaceEntryFormat: RootJsonFormat[NamespaceEntry] = jsonFormat2(NamespaceEntry)
 
-    implicit val namespaceEmptyFormat : RootJsonFormat[Entry] =  new RootJsonFormat[Entry] {
+    implicit val namespaceEntryFormat: RootJsonFormat[NamespaceEntry] = new RootJsonFormat[NamespaceEntry] {
+      override def read(json: JsValue): NamespaceEntry = throw new NotImplementedError()
+
+      override def write(obj: NamespaceEntry): JsValue = JsObject(
+        Map(
+          "qualifiers" -> obj.qualifiers.toJson,
+          "targetType" -> obj.targetType.toJson,
+          "type" -> JsString("NamespaceEntry")
+        )
+      )
+    }
+
+    implicit val entryFormat : RootJsonFormat[Entry] =  new RootJsonFormat[Entry] {
       override def read(json: JsValue): Entry = json.asJsObject.getFields("type") match {
         case Seq(JsString("NamespaceEmpty")) => NamespaceEmpty
         case Seq(JsString("DefaultNamespace")) => DefaultNamespace
@@ -101,8 +112,34 @@ object JSONFormats {
           })
     }
 
-    implicit val umlUnitJson: RootJsonFormat[UMLUnit] = jsonFormat2(UMLUnit)
-    implicit val packageJson: RootJsonFormat[Package] = jsonFormat3(Package)
+    implicit val umlUnitJson: RootJsonFormat[UMLUnit] = new RootJsonFormat[UMLUnit] {
+      override def read(json: JsValue): UMLUnit = throw new NotImplementedError()
+
+      override def write(obj: UMLUnit): JsValue = {
+        JsObject(
+          Map(
+            "name" -> obj.name.toJson,
+            "toplevelElements" -> obj.toplevelElements.toJson,
+            "type" -> JsString("UMLUnit")
+          )
+        )
+      }
+    }
+
+    implicit val packageJson: RootJsonFormat[Package] = new RootJsonFormat[Package] {
+      override def read(json: JsValue): Package = throw new NotImplementedError()
+
+      override def write(obj: Package): JsValue = {
+        JsObject(
+          Map(
+            "packageBodyElements" -> obj.packageBodyElements.toJson,
+            "stereotype" -> obj.stereotype.toJson,
+            "namespace" -> obj.namespace.toJson,
+            "type" -> JsString("Package")
+          )
+        )
+      }
+    }
 
     /**
      * The JSON representation in here is only ment to send the content of a stat
@@ -117,8 +154,8 @@ object JSONFormats {
 
         override def write(obj: Stat): JsValue =  JsObject(
           Map(
-            "type" -> JsString("Scalameta.Stat"),
-            "contentBase64" -> JsString(Base64.getEncoder.encodeToString(obj.structure.getBytes))
+            "contentBase64" -> JsString(Base64.getEncoder.encodeToString(obj.structure.getBytes)),
+            "type" -> JsString("Scalameta.Stat")
           )
         )
       }
@@ -152,17 +189,106 @@ object JSONFormats {
       )
     }
 
-    implicit val taggedValueFormat : RootJsonFormat[TaggedValue] = jsonFormat2(TaggedValue)
+    implicit val taggedValueFormat : RootJsonFormat[TaggedValue] = new RootJsonFormat[TaggedValue] {
+      override def read(json: JsValue): TaggedValue = throw new NotImplementedError()
 
-    implicit val parameterFormat : RootJsonFormat[Parameter] = jsonFormat3(Parameter)
-    implicit val genericParameterFormat : RootJsonFormat[GenericParameter] = jsonFormat3(GenericParameter)
+      override def write(obj: TaggedValue): JsValue = JsObject(
+        Map(
+          "name" -> obj.name.toJson,
+          "value" -> obj.value.toJson,
+          "type" -> JsString("TaggedValue")
+        )
+      )
+    }
 
-    implicit val operationFormat : RootJsonFormat[Operation] = jsonFormat7(Operation)
-    implicit val attributeFormat: RootJsonFormat[Attribute] = jsonFormat6(Attribute)
+    implicit val parameterFormat : RootJsonFormat[Parameter] = new RootJsonFormat[Parameter] {
+      override def read(json: JsValue): Parameter = throw new NotImplementedError()
 
-    implicit val compartmentFormat : RootJsonFormat[Compartment] = jsonFormat3(Compartment)
+      override def write(obj: Parameter): JsValue = JsObject(
+        Map(
+          "name" -> obj.name.toJson,
+          "paramType" -> obj.paramType.toJson,
+          "stereotype" -> obj.stereotype.toJson,
+          "type" -> JsString("Parameter")
+        )
+      )
+    }
 
-    implicit val classJson: RootJsonFormat[Class] = jsonFormat8(Class)
+    implicit val genericParameterFormat : RootJsonFormat[GenericParameter] = new RootJsonFormat[GenericParameter] {
+      override def read(json: JsValue): GenericParameter = throw new NotImplementedError()
+
+      override def write(obj: GenericParameter): JsValue = JsObject(
+        Map(
+          "name" -> obj.name.toJson,
+          "concreteType" -> obj.concreteType.toJson,
+          "stereotype" -> obj.stereotype.toJson,
+          "type" -> JsString("GenericParameter")
+        )
+      )
+    }
+
+    implicit val operationFormat : RootJsonFormat[Operation] = new RootJsonFormat[Operation] {
+      override def read(json: JsValue): Operation = throw new NotImplementedError()
+
+      override def write(obj: Operation): JsValue = JsObject(
+        Map(
+          "modificator" -> obj.modificator.toJson,
+          "accessModifier" -> obj.accessModifier.toJson,
+          "name" -> obj.name.toJson,
+          "paramSeq" -> obj.paramSeq.toJson,
+          "returnType" -> obj.returnType.toJson,
+          "stereotype" -> obj.stereotype.toJson,
+          "templateParameter" -> obj.templateParameter.toJson,
+          "type" -> JsString("Operation")
+        )
+      )
+    }
+
+    implicit val attributeFormat: RootJsonFormat[Attribute] = new RootJsonFormat[Attribute] {
+      override def read(json: JsValue): Attribute = throw new NotImplementedError()
+
+      override def write(obj: Attribute): JsValue = JsObject(
+        Map(
+          "modificators" -> obj.modificators.toJson,
+          "modifier" -> obj.modifier.toJson,
+          "name" -> obj.name.toJson,
+          "attributeType" -> obj.attributeType.toJson,
+          "stereotype" -> obj.stereotype.toJson,
+          "defaultValue" -> obj.defaultValue.toJson,
+          "type" -> JsString("Attribute")
+        )
+      )
+    }
+
+    implicit val compartmentFormat : RootJsonFormat[Compartment] = new RootJsonFormat[Compartment] {
+      override def read(json: JsValue): Compartment = throw new NotImplementedError()
+
+      override def write(obj: Compartment): JsValue = JsObject(
+        Map(
+          "identifier" -> obj.identifier.toJson,
+          "taggedValues" -> obj.taggedValues.toJson,
+          "stereotype" -> obj.stereotype.toJson,
+          "type" -> JsString("Compartment")
+        )
+      )
+    }
+
+    implicit val classJson: RootJsonFormat[Class] = new RootJsonFormat[Class] {
+      override def read(json: JsValue): Class = throw new NotImplementedError()
+
+      override def write(obj: Class): JsValue = JsObject(
+        Map(
+          "isAbstract" -> obj.isAbstract.toJson,
+          "name" -> obj.name.toJson,
+          "attributes" -> obj.attributes.toJson,
+          "operations" -> obj.operations.toJson,
+          "additionalCompartements" -> obj.additionalCompartements.toJson,
+          "genericParameters" -> obj.genericParameters.toJson,
+          "stereotype" -> obj.stereotype.toJson,
+          "type" -> JsString("Class")
+        )
+      )
+    }
 
     implicit val relationshipTypeFormat : RootJsonFormat[RelationshipType] = new RootJsonFormat[RelationshipType] {
       override def read(json: JsValue): RelationshipType =
@@ -194,37 +320,82 @@ object JSONFormats {
       )
     }
 
+    implicit val concreteClassFormat: RootJsonFormat[ConcreteClass] = new RootJsonFormat[ConcreteClass] {
+      override def read(json: JsValue): ConcreteClass = throw new NotImplementedError()
+
+      override def write(obj: ConcreteClass): JsValue = JsObject(
+        Map(
+          "class" -> obj.cls.toJson,
+          "type" -> JsString("ConcreteClass")
+        )
+      )
+    }
+
+    implicit val classRefFormat: RootJsonFormat[ClassRef] = new RootJsonFormat[ClassRef] {
+      override def read(json: JsValue): ClassRef = throw new NotImplementedError()
+
+      override def write(obj: ClassRef): JsValue = JsObject(
+        Map(
+          "name" -> obj.name.toJson,
+          "namespace" -> obj.namespace.toJson,
+          "type" -> JsString("ClassRef")
+        )
+      )
+    }
+
+    /**
+     * Automatic generation causes runtime error
+     */
+    implicit val packageRef: RootJsonFormat[PackageRef] = new RootJsonFormat[PackageRef] {
+      override def read(json: JsValue): PackageRef =
+        throw new NotImplementedError()
+
+      override def write(obj: PackageRef): JsValue = JsObject (
+        obj.namespace.toJson.asJsObject.fields + ("type" -> JsString("PackageRef"))
+      )
+    }
+
     implicit val relationshipElementFormat : RootJsonFormat[RelationshipElement] = new RootJsonFormat[RelationshipElement] {
       override def read(json: JsValue): RelationshipElement =
         throw new NotImplementedError()
 
-      implicit val concreteClassFormat: RootJsonFormat[ConcreteClass] = jsonFormat1(ConcreteClass)
-      implicit val classRefFormat: RootJsonFormat[ClassRef] = jsonFormat2(ClassRef)
-
-      /**
-       * Automatic generation causes runtime error
-       */
-      implicit val packageRef: RootJsonFormat[PackageRef] = new RootJsonFormat[PackageRef] {
-        override def read(json: JsValue): PackageRef =
-          throw new NotImplementedError()
-
-        override def write(obj: PackageRef): JsValue = JsObject (
-          obj.namespace.toJson.asJsObject.fields + ("type" -> JsString("PackageRef"))
-        )
+      override def write(obj: RelationshipElement): JsValue = obj match {
+        case c:ConcreteClass => c.toJson
+        case c:ClassRef => c.toJson
+        case p:PackageRef => p.toJson
       }
+    }
 
-      override def write(obj: RelationshipElement): JsValue = JsObject(
-        appendType((obj match {
-          case c:ConcreteClass => c.toJson
-          case c:ClassRef => c.toJson
-          case p:PackageRef => p.toJson
-        }).asJsObject.fields,obj)
+    implicit val relationshipInfoFormat : RootJsonFormat[RelationshipInfo] = new RootJsonFormat[RelationshipInfo] {
+      override def read(json: JsValue): RelationshipInfo = throw new NotImplementedError()
+
+      override def write(obj: RelationshipInfo): JsValue = JsObject(
+        Map(
+          "sourceMultiplicity" -> obj.sourceMultiplicity.toJson,
+          "targetMultiplicity" -> obj.targetMultiplicity.toJson,
+          "from" -> obj.from.toJson,
+          "to" -> obj.to.toJson,
+          "relationshipIdentifier" -> obj.relationshipIdentifier.toJson,
+          "identifierDirection" -> obj.identifierDirection.toJson,
+          "originType" -> obj.originType.toJson,
+          "type" -> JsString("RelationshipInfo")
+        )
       )
     }
 
-    implicit val relationshipInfoFormat : RootJsonFormat[RelationshipInfo] = jsonFormat7(RelationshipInfo)
+    implicit val releationshipJson: RootJsonFormat[Relationship] = new RootJsonFormat[Relationship] {
+      override def read(json: JsValue): Relationship = throw new NotImplementedError()
 
-    implicit val releationshipJson: RootJsonFormat[Relationship] = jsonFormat4(Relationship)
+      override def write(obj: Relationship): JsValue = JsObject(
+        Map(
+          "relationshipType" -> obj.relationshipType.toJson,
+          "relationshipDirection" -> obj.relationshipDirection.toJson,
+          "relationshipInfo" -> obj.relationshipInfo.toJson,
+          "stereotype" -> obj.stereotype.toJson,
+          "type" -> JsString("Relationship")
+        )
+      )
+    }
 
     /**
      * Package Body Element
@@ -238,16 +409,24 @@ object JSONFormats {
         case Seq(JsString("Relationship")) => json.convertTo[Relationship]
       }
 
-      override def write(obj: PackageBodyElement): JsValue = {
-        JsObject(appendType((obj match {
+      override def write(obj: PackageBodyElement): JsValue = obj match {
           case p:Package => p.toJson
           case c:Class => c.toJson
           case r:Relationship => r.toJson
-        }).asJsObject.fields,obj))
       }
     }
 
-    implicit val stereotypeFormat: RootJsonFormat[Stereotype] = jsonFormat2(Stereotype)
+    implicit val stereotypeFormat: RootJsonFormat[Stereotype] = new RootJsonFormat[Stereotype] {
+      override def read(json: JsValue): Stereotype = throw new NotImplementedError()
+
+      override def write(obj: Stereotype): JsValue = JsObject(
+        Map(
+          "name" -> obj.name.toJson,
+          "taggedValues" -> obj.taggedValues.toJson,
+          "type" -> JsString("Stereotype")
+        )
+      )
+    }
 
     private def appendType[T](conv:Map[String,JsValue],t:T): Map[String, JsValue] =
       conv + ("type" -> JsString(t.getClass.getSimpleName))
