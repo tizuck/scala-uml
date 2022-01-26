@@ -21,19 +21,41 @@ import scalameta.util.namespaces.{DefaultNamespace, Entry, Name, NamespaceEmpty,
 import scala.meta.{Defn, Stat}
 import scalameta.util.namespaces
 
+/**
+ * Carries the information necessary to reason globally
+ * about origins of class definitions and enables lookup of class
+ * definitions. This context is necessary to sort UML classes in their
+ * according namespaces in the final UML diagram and to reason about endpoint
+ * origins of relationships.
+ *
+ * @param globalScope maps entries of namespaces such as `scala.util`
+ *                    to the scala definition parsed using the scalameta parser
+ *                    which does not contain the namespace information by itself.
+ *                    This way we hold a global map of which scala object
+ *                    has been defined in which package and thus it can be used
+ *                    for lookups of class definitions.
+ *                    The String type represents the name of the compilation unit
+ *                    (scala file) that the scala object was defined in.
+ *                    This is necessary for resolutions of scala objects with the same name
+ *                    but different compilation units.
+ */
 case class GlobalContext(globalScope:Map[Entry,List[(Stat,String)]]) {
 
   /**
    * inv: currentNamespace must match lastPkgNamespace after
    * multiple `currentNamespace.upperNamespace` iterations.
    *
-   * @param nameOfStat
-   * @param namespaceAddition
-   * @param currentCompilationUnit
-   * @param currentNamespace
-   * @param lastPkgNamespace
-   * @param imports
-   * @return
+   * @param nameOfStat name of the scala object that should be found.
+   * @param namespaceAddition Addition of the namespace. A "scala.util.Random" reference in code
+   *                          for example has the namespaceAdditon "scala.util".
+   * @param currentCompilationUnit name of the file that we are currently parsing.
+   * @param currentNamespace the namespace that is the relevant context for the
+   *                         current lookup.
+   * @param lastPkgNamespace the namespace that is defined by the surrounding package.
+   * @param imports A list of Imports that is known in the context of the current lookup.
+   * @return None if no scala object definition can be found as a reference,
+   *         Some reference to the definition with an optional parsed object
+   *         relating to the scalameta parsed scala object.
    */
   def find(nameOfStat:String,
            namespaceAddition:Option[NamespaceEntry],
