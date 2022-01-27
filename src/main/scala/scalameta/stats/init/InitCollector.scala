@@ -17,13 +17,12 @@
 package scalameta.stats.init
 
 
-import scalameta.types.TargetTypeCollector
+import scalameta.stateless.TargetTypeCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
 import uml._
 import uml.externalReferences.{CClass, ClassDefRef, ClassType}
 
-import scala.annotation.tailrec
 import scala.meta.{Case, Defn, Init}
 
 case class InitCollector(override val definedElements: List[UMLElement],
@@ -33,23 +32,14 @@ object InitCollector {
   def apply(init:Init)(implicit context:CollectorContext): InitCollector = {
     val extendedType = TargetTypeCollector(init.tpe)
 
-    @tailrec
-    def defineClassType(umlType:Type):ClassType = umlType match {
-      case RefName(name, namespace,origin) =>
-        origin
-          .map {
-            case _: Defn.Object => uml.externalReferences.Object
-            case c: Defn.Class if c.mods.contains(Case) => uml.externalReferences.CCaseClass
-            case _: Defn.Class => uml.externalReferences.CClass
-            case _: Defn.Enum => uml.externalReferences.Enum
-            case _: Defn.Trait => uml.externalReferences.Trait
-            case _ => CClass
-          }.getOrElse(CClass)
-      case RefTemplate(preType, templateTypes) => defineClassType(preType)
-      case RefPathQualifier(path, target) => CClass
-    }
-
-    val classType:ClassType = defineClassType(extendedType.umlType)
+    val classType:ClassType = extendedType.oTemplate.map {
+      case _: Defn.Object => uml.externalReferences.Object
+      case c: Defn.Class if c.mods.contains(Case) => uml.externalReferences.CCaseClass
+      case _: Defn.Class => uml.externalReferences.CClass
+      case _: Defn.Enum => uml.externalReferences.Enum
+      case _: Defn.Trait => uml.externalReferences.Trait
+      case _ => CClass
+    }.getOrElse(CClass)
 
     val relationshipIdentifier =
       extendedType

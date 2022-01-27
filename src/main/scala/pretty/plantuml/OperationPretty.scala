@@ -18,8 +18,9 @@ case class OperationPretty()(override implicit val config: PrettyConfig) extends
         opt(modificators,showModificators) <>
         opt(accessModifier,showAccessModifier) <>
         identifier <>
-        opt(templateParameter,  (gps:List[GenericParameter]) => hsep(gps.map(GenericParameterPretty().toDoc),sep = ','),l="< ",r=" >" <> space,emptyR = space) <>
+        opt(templateParameter,  (gps:List[GenericParameter]) => hsep(gps.map(GenericParameterPretty().toDoc),sep = ','),
+          l="< ",r=" >" <> space,emptyR = space) <>
         hsep(paramSeq.map(params => '(' <> hsep(params.map(ParameterPretty().toDoc),", ") <> ')')) <+>
-        opt(returnType,text,":" <> space,r = emptyDoc)
+        opt(returnType,TypePretty().toDoc,":" <> space,r = emptyDoc)
   }
 }

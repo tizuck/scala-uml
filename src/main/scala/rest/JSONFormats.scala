@@ -201,6 +201,53 @@ object JSONFormats {
       )
     }
 
+    implicit val refNameFormat : RootJsonFormat[RefName] = new RootJsonFormat[RefName] {
+      override def read(json: JsValue): RefName = throw new NotImplementedError()
+
+      override def write(obj: RefName): JsValue = JsObject(
+        Map(
+          "name" -> JsString(obj.name),
+          "namespace" -> obj.namespace.toJson,
+          "metaOrigin" -> obj.metaOrigin.toJson,
+          "type" -> JsString("RefName")
+        )
+      )
+    }
+
+    implicit val refTemplateFormat : RootJsonFormat[RefTemplate] = new RootJsonFormat[RefTemplate] {
+      override def read(json: JsValue): RefTemplate = throw new NotImplementedError()
+
+      override def write(obj: RefTemplate): JsValue = JsObject(
+        Map(
+          "preType" -> obj.preType.toJson,
+          "templateTypes" -> obj.templateTypes.toJson,
+          "type" -> JsString("RefTemplate")
+        )
+      )
+    }
+
+    implicit val refPathQualifierFormat : RootJsonFormat[RefPathQualifier] = new RootJsonFormat[RefPathQualifier] {
+      override def read(json: JsValue): RefPathQualifier = throw new NotImplementedError()
+
+      override def write(obj: RefPathQualifier): JsValue = JsObject(
+        Map(
+          "path" -> obj.path.toJson,
+          "target" -> obj.target.toJson,
+          "type" -> JsString("RefPathQualifier")
+        )
+      )
+    }
+
+    implicit val typeFormat : RootJsonFormat[uml.Type] = new RootJsonFormat[Type] {
+      override def read(json: JsValue): Type = throw new NotImplementedError()
+
+      override def write(obj: Type): JsValue = obj match {
+        case r:RefName => r.toJson
+        case r:RefTemplate => r.toJson
+        case r:RefPathQualifier => r.toJson
+      }
+    }
+
     implicit val parameterFormat : RootJsonFormat[Parameter] = new RootJsonFormat[Parameter] {
       override def read(json: JsValue): Parameter = throw new NotImplementedError()
 
