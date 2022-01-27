@@ -28,7 +28,7 @@ object TargetTypeCollector {
   private def twoTypeWithName(context: CollectorContext, value: Type, value1: Type,name:String) = {
     TargetTypeCollector(
       RefTemplate(
-        RefName(name, DefaultNamespace),
+        RefName(name, DefaultNamespace,None),
         List(value, value1).map(TargetTypeCollector(_)(context).umlType)
       )
     )
@@ -37,7 +37,7 @@ object TargetTypeCollector {
   private def functionType(context: CollectorContext, params: List[Type], res: Type) = {
     val count = params.size
     val tpe = RefTemplate(
-      RefName(s"Function$count", DefaultNamespace),
+      RefName(s"Function$count", DefaultNamespace, None),
       params
         .map(TargetTypeCollector(_)(context).umlType)
         .appended(TargetTypeCollector(res)(context).umlType)
@@ -48,7 +48,7 @@ object TargetTypeCollector {
   private def tupleType(context:CollectorContext, value: List[Type]) = {
     val numberArgs = value.size
     val tpe = RefTemplate(
-      RefName(s"Tuple$numberArgs", DefaultNamespace),
+      RefName(s"Tuple$numberArgs", DefaultNamespace,None),
       value.map(tpe => TargetTypeCollector(tpe)(context).umlType)
     )
     TargetTypeCollector(tpe)
@@ -100,8 +100,8 @@ object TargetTypeCollector {
       context.localCon.currentImports
     )
     lookup match {
-      case Some(ref) => TargetTypeCollector(RefName(n, ref._1))
-      case None => TargetTypeCollector(RefName(n, DefaultNamespace))
+      case Some(ref) => TargetTypeCollector(RefName(n, ref._1,ref._2))
+      case None => TargetTypeCollector(RefName(n, DefaultNamespace,None))
     }
   }
 }

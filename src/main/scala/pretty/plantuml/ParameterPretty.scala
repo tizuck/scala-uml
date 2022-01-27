@@ -11,6 +11,6 @@ case class ParameterPretty()(override implicit val config: PrettyConfig) extends
       showStereotype(stereotype) <>
         identifier <+>
         ':' <+>
-        paramType
+        TypePretty().toDoc(paramType)
   }
 }

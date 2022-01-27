@@ -17,7 +17,7 @@
 package scalameta.parameters
 
 import scalameta.mods.ParameterModsCollector
-import scalameta.stateless.TypeNameCollector
+import scalameta.types.TargetTypeCollector
 import scalameta.util.context.CollectorContext
 import uml.Parameter
 
@@ -29,7 +29,9 @@ object ParamCollector {
   def apply(param: Term.Param)(implicit context : CollectorContext): ParamCollector = {
     val paramName = param.name.value
 
-    val paramType = TypeNameCollector(param.decltpe.getOrElse(Type.Placeholder(Type.Bounds(None,None)))).typeRep
+    val paramType = TargetTypeCollector(
+      param.decltpe.getOrElse(Type.Placeholder(Type.Bounds(None,None)))
+    ).umlType
 
     val stereotypes = ParameterModsCollector(param.mods)
 

@@ -17,11 +17,13 @@
 package scalameta.stats.dcl
 
 import scalameta.parameters.ParamssCollector
-import scalameta.stateless.{AccessModifierCollector, ModificatorsCollector, TypeNameCollector}
+import scalameta.stateless.{AccessModifierCollector, ModificatorsCollector}
+import scalameta.types.TargetTypeCollector
 import scalameta.typeparams.TypeParamsCollector
 import scalameta.util.BaseCollector
 import scalameta.util.context.CollectorContext
-import uml.{Parameter, Stereotype, UMLElement}
+import scalameta.util.namespaces.DefaultNamespace
+import uml.{Parameter, RefName, RefTemplate, Stereotype, UMLElement}
 
 import scala.meta.Decl
 
@@ -39,7 +41,7 @@ object DclDefCollector {
     val typeParams = Option.when(typeParamsCollector.typeParams.nonEmpty)(typeParamsCollector.typeParams)
     val typeParamsCBounds = typeParamsCollector.contextBounds
 
-    val returnType = if(context.localCon.typeRequired){Some(TypeNameCollector(dclDef.decltpe).typeRep)}else None
+    val returnType = if(context.localCon.typeRequired){Some(TargetTypeCollector(dclDef.decltpe).umlType)}else None
 
     val modificators = ModificatorsCollector(dclDef.mods).modificators
 
@@ -61,7 +63,12 @@ object DclDefCollector {
   private def interpretCBounds(cBounds:Map[String,List[String]]): List[Parameter] = {
     cBounds.foldLeft(List.empty[Parameter]){
       case (acc,(k,vs)) =>
-        val cBounds = vs.map(v => Parameter("_",s"$v<$k>",List(Stereotype("using",Nil))))
+        val cBounds = vs.map(v => Parameter(
+          "_",
+          RefTemplate(
+            RefName(v,DefaultNamespace,None),
+            List(RefName(k,DefaultNamespace,None))),
+          List(Stereotype("using",Nil))))
         acc ++ cBounds
     }
   }

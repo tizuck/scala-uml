@@ -469,7 +469,7 @@ sealed trait Type extends UMLElement
  * @param name name of the referenced UML class
  * @param namespace namespace of the referenced UML class
  */
-sealed case class RefName(name:String,namespace:Entry) extends Type {
+sealed case class RefName(name:String,namespace:Entry,metaOrigin:Option[Stat]) extends Type {
   override type T = RefName
 
   //@todo implement
@@ -508,7 +508,7 @@ sealed case class RefPathQualifier(path:List[String],target:String) extends Type
 }
 
 sealed case class Parameter(name:String,
-                            paramType:String,
+                            paramType:Type,
                             stereotype:List[Stereotype]) extends
   StereotypeElement with
   NamedElement {
@@ -539,7 +539,7 @@ sealed case class Operation(modificator: Option[List[Modificator]],
                             accessModifier: Option[AccessModifier],
                             name:String,
                             paramSeq:List[List[Parameter]],
-                            returnType:Option[String],
+                            returnType:Option[Type],
                             stereotype:List[Stereotype],
                             templateParameter:Option[List[GenericParameter]] = None) extends
   CompartmentElement  with
@@ -553,7 +553,7 @@ sealed case class Operation(modificator: Option[List[Modificator]],
     templateParameter.map(g => "Some(" + g.map(_.structure).mkString(",") + ")").getOrElse(None)
   },${
     if(paramSeq.isEmpty || paramSeq.head.isEmpty){"List(List())"} else {paramSeq.map(seq => s"""List(${seq.map(_.structure).mkString(",")})""")}
-  },${optionString(returnType)},${listStructure(stereotype)})"""
+  },${optionAny(returnType)},${listStructure(stereotype)})"""
 
   override def rewrite[T](s: State[T, Strategy])(f: UMLElement => State[T, Unit]): State[T, UMLElement] = {
     for {
