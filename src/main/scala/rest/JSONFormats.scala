@@ -4,6 +4,7 @@ import spray.json._
 import DefaultJsonProtocol._
 import scalameta.util.namespaces
 import scalameta.util.namespaces.{DefaultNamespace, Entry, Name, NamespaceEmpty, NamespaceEntry, TargetType, Wildcard}
+import sun.reflect.generics.reflectiveObjects.NotImplementedException
 
 import java.util.Base64
 import scala.meta.Stat
@@ -162,7 +163,23 @@ object JSONFormats {
     }
 
     import scalametaJSON._
-    implicit val classDefRefJson: RootJsonFormat[externalReferences.ClassDefRef] = jsonFormat5(externalReferences.ClassDefRef)
+    implicit val classDefRefJson: RootJsonFormat[externalReferences.ClassDefRef] = new RootJsonFormat[externalReferences.ClassDefRef] {
+      override def write(obj: externalReferences.ClassDefRef): JsValue = {
+        JsObject(
+          Map(
+            "classtype" -> obj.classtype.toJson,
+            "name" -> JsString(obj.name),
+            "namespace" -> obj.namespace.toJson,
+            "templateParameter" -> obj.templateParameter.toJson,
+            "type" -> JsString("ClassDefRef")
+          )
+        )
+      }
+
+      override def read(json: JsValue): externalReferences.ClassDefRef = {
+        throw new NotImplementedError()
+      }
+    }
 
     implicit val modificatorFormat: RootJsonFormat[Modificator] = new RootJsonFormat[Modificator] {
       override def read(json: JsValue): Modificator =
