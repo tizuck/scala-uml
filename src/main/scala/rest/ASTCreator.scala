@@ -46,7 +46,6 @@ object ASTCreator {
         .map({ f =>
           val decoded = Base64.getDecoder.decode(f.contentBase64)
           val stringRepDecoded = new String(decoded,StandardCharsets.UTF_8)
-          println(stringRepDecoded)
           (stringRepDecoded,f.name)
         })
           .map(t => ((parseScalaFile(t._1),t._2)))

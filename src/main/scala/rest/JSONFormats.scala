@@ -332,6 +332,7 @@ object JSONFormats {
           "additionalCompartements" -> obj.additionalCompartements.toJson,
           "genericParameters" -> obj.genericParameters.toJson,
           "stereotype" -> obj.stereotype.toJson,
+          "namespace" -> obj.namespace.toJson,
           "type" -> JsString("Class")
         )
       )
@@ -372,7 +373,7 @@ object JSONFormats {
 
       override def write(obj: ConcreteClass): JsValue = JsObject(
         Map(
-          "class" -> obj.cls.toJson,
+          "cls" -> obj.cls.toJson,
           "type" -> JsString("ConcreteClass")
         )
       )

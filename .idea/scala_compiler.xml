@@ -4,12 +4,12 @@
     <profile name="sbt 1" modules="scala-uml_7694" />
     <profile name="sbt 2" modules="scala-uml">
       <parameters>
-        <parameter value="-P:scalats:configuration=C:\Users\dbs476\Documents\Repos\scala-uml\target\scala-ts.conf" />
-        <parameter value="-P:scalats:printerOutputDirectory=C:\Users\dbs476\Documents\Repos\scala-uml\target\scala-ts\src_managed" />
-        <parameter value="-P:scalats:sys.scala-ts.printer.prelude-url=file:/C:/Users/dbs476/Documents/Repos/scala-uml/target/scala-ts-prelude.tmp" />
+        <parameter value="-P:scalats:configuration=C:\Users\Tilman\Documents\Repos\scala-uml\target\scala-ts.conf" />
+        <parameter value="-P:scalats:printerOutputDirectory=C:\Users\Tilman\Documents\Repos\scala-uml\target\scala-ts\src_managed" />
+        <parameter value="-P:scalats:sys.scala-ts.printer.prelude-url=file:/C:/Users/Tilman/Documents/Repos/scala-uml/target/scala-ts-prelude.tmp" />
       </parameters>
       <plugins>
-        <plugin path="C:\Users\dbs476\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\io\github\scala-ts\scala-ts-core_2.13\0.5.8\scala-ts-core_2.13-0.5.8.jar" />
+        <plugin path="C:\Users\Tilman\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\io\github\scala-ts\scala-ts-core_2.13\0.5.8\scala-ts-core_2.13-0.5.8.jar" />
       </plugins>
     </profile>
   </component>
