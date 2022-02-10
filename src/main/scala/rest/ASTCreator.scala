@@ -4,7 +4,8 @@ import akka.actor.typed.{ActorRef, Behavior}
 import akka.actor.typed.scaladsl.Behaviors
 import org.slf4j.LoggerFactory
 import scalameta.toplevel.SourcesCollector
-import uml.UMLUnit
+import uml.{UMLUnit, umlMethods}
+import uml.umlMethods.{toAssocRep, toPackageRep}
 
 import java.nio.charset.StandardCharsets
 import java.util.Base64
@@ -34,6 +35,7 @@ object ASTCreator {
   sealed trait Command
   final case class CreateAST(scalaFiles:ScalaFilesCollection,replyTo: ActorRef[ASTCreated]) extends Command
 
+  val logger = LoggerFactory.getLogger("ASTCreator")
   def apply(): Behavior[Command] = astCreation()
 
   def astCreation() : Behavior[Command] =
@@ -51,9 +53,18 @@ object ASTCreator {
           .map(t => ((parseScalaFile(t._1),t._2)))
           .filter(_._1.isDefined)
           .map(t => (t._1.get,t._2))
-
-        replyTo ! ASTCreated(SourcesCollector(parsed,"test").umlUnit)
-        Behaviors.same
+        try {
+          val umlUnit = SourcesCollector(parsed, "test").umlUnit
+          val pRep = toPackageRep(umlUnit).value.asInstanceOf[UMLUnit]
+          val cRep = umlMethods.insertCompanionObjects(pRep).value
+          val aRep = toAssocRep(cRep).value.asInstanceOf[UMLUnit]
+          replyTo ! ASTCreated(aRep)
+          Behaviors.same
+        } catch {
+          case e:Exception =>
+            logger.error(s"Ast construction failed on request from: ${replyTo.path.address}")
+            Behaviors.empty
+        }
     })
 
   private def parseScalaFile(file:String):Option[Source] = {
