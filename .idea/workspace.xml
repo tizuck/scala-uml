@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b894318d-1f1b-4c84-a1aa-11290f7e44e1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/dia/test.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/rest/ASTCreator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/rest/ASTCreator.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dia/foo.puml" beforeDir="false" afterPath="$PROJECT_DIR$/dia/foo.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/dcl/DclTypeCollector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTypeCollector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/scalameta/stats/defn/DefnTypeCollector.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -353,6 +356,7 @@
       <workItem from="1643817754176" duration="1235000" />
       <workItem from="1644397668649" duration="4467000" />
       <workItem from="1644529196280" duration="1578000" />
+      <workItem from="1644588451172" duration="3768000" />
     </task>
     <servers />
   </component>

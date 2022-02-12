@@ -30,28 +30,30 @@ case class DefnTypeCollector(override val definedElements: List[UMLElement],
 
 object DefnTypeCollector {
   def apply(dType:Defn.Type)(implicit context:CollectorContext): DefnTypeCollector = {
-    val generics = TypeParamsCollector(dType.tparams)
 
     val typeRep = TypeNameCollector(dType.body)
-    val attr = Attribute(None,None,"_type_",Some(typeRep.typeRep),List(Stereotype("typeDef",Nil)))
-    val typeClass = Class(
-      isAbstract = true,
-      dType.name.value,
-      List(attr),
-      Nil,
-      Nil,
-      Option.when(generics.typeParams.nonEmpty)(generics.typeParams),
-      List(Stereotype("type",Nil)),
-      context.localCon.currentNamespace)
 
-    //If the type is defined within another entity
-    if(context.localCon.thisPointer.isDefined){
-      val relationshipInfo = RelationshipInfo(None,None,context.localCon.thisPointer.get,ConcreteClass(typeClass),None,Without,originType = context.localCon.thisOriginType)
-      val relationship = Relationship(Inner,ToFrom,relationshipInfo,Nil)
-      new DefnTypeCollector(relationship :: typeClass :: Nil,context)
-    }//if type is defined on toplevel
-    else {
+    if(context.localCon.isTopLevel){
+      val generics = TypeParamsCollector(dType.tparams)
+      //@todo add a proper type here
+      val attr = Attribute(None,None,"_type_",Some(typeRep.typeRep),List(Stereotype("typeDef",Nil)))
+      val typeClass = Class(
+        isAbstract = true,
+        dType.name.value,
+        List(attr),
+        Nil,
+        Nil,
+        Option.when(generics.typeParams.nonEmpty)(generics.typeParams),
+        List(Stereotype("type",Nil)),
+        context.localCon.currentNamespace)
+
       new DefnTypeCollector(typeClass :: Nil,context)
+
+    } else {
+      val attribute = Attribute(None,None,dType.name.value,Some(typeRep.typeRep),List(Stereotype("type",Nil)),None)
+
+      new DefnTypeCollector(attribute :: Nil,context)
+
     }
   }
 }
