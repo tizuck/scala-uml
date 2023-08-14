@@ -1,4 +1,6 @@
-# scala-uml
+# THIS PROJECT IS CURRENTLY ON HOLD SINCE I AM IN MY LAST YEAR OF MY PHD. HOWEVER, I WILL CONTINUE WORKING ON THIS IF I FIND THE TIME
+
+## scala-uml
 
 Obtain UML class diagrams from Scala 2 or Scala 3 source code in a compiler-independent way.
 
