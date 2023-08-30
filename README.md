@@ -1,3 +1,6 @@
+> :warning: **The project is currently on halt. I noticed the increased interest, but I am currently in the end phase of my PhD. I plan on continuing this project afterwards.**
+
+
 # scala-uml
 
 Obtain UML class diagrams from Scala 2 or Scala 3 source code in a compiler-independent way.
